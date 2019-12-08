@@ -1,0 +1,1022 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<!-- set the encoding of your site -->
+    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>UserCenter</title>
+	<!-- include the site stylesheet -->
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CPoppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/font-awesome.min.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/bootstrap.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/animate.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/style.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_dycynze6id6.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_oyyrvpk63p.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_07f5zbdbyf9q.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_xmpmtbu3qm.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_2jx8jr9khtj.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_h5pzyznynb7.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_drtal8y33re.css">
+{#    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>#}
+{#    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>#}
+{#    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>#}
+{#    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">#}
+{#    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>#}
+    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+</head>
+<body class="version-ii">
+	<div class="loader-holder">
+		<div class="loader">
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+		</div>
+	</div>
+	<!-- main container of all the page elements -->
+	<div id="wrapper">
+		<!-- w1 of the page -->
+		<div class="w1">
+			<!-- header of the page -->
+			<header id="header" class="version-ii">
+				<div class="container">
+					<div class="row top-bar">
+						<!-- Top Nav of the page -->
+						<nav class="col-xs-12 col-sm-6 policy-nav">
+							<ul>
+								<li><a href="#">sitemap</a></li>
+								<li><a href="#">privacy policy</a></li>
+								<li><a href="#">support</a></li>
+							</ul>
+						</nav>
+						<!-- Top Nav of the page end -->
+						<div class="col-xs-12 col-sm-6 pull-right hidden-xs">
+							<!-- Social Network of the page -->
+							<ul class="social-networks">
+								<li><a href="#"><span class="ico-facebook"></span></a></li>
+								<li><a href="#"><span class="ico-twitter"></span></a></li>
+								<li><a href="#"><span class="ico-google-plus"></span></a></li>
+								<li><a href="#"><span class="ico-linkedin"></span></a></li>
+								<li><a href="#"><span class="ico-pinterest"></span></a></li>
+							</ul>
+							<!-- Social Network of the page end -->
+						</div>
+					</div>
+				</div>
+				<div class="stick-holder">
+					<div class="container">
+						<div class="row holder">
+							<div class="col-xs-3 col-sm-2">
+								<!-- Logo of the page -->
+								<div class="logo"><a href="#"><img src="/static/JiaBlog/images/logonew.png" alt="dot"></a></div>
+								<!-- Logo of the page end -->
+							</div>
+							<div class="col-xs-9 col-sm-10 nav-holder">
+								<!-- Nav of the page -->
+								<nav id="nav" class="navbar navbar-default">
+									<!-- Navbar Header of the page -->
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+									</div>
+									<!-- Navbar Header of the page end -->
+									<a href="#" class="pull-right icon-menu"><span class="ico-menu"></span></a>
+									<!-- Collapse of the page -->
+									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+										<ul class="nav navbar-nav navbar-right">
+											<li><a href="/JiaBlog/index/">Home</a></li>
+											<li><a href="/JiaBlog/list/">Archive</a></li>
+											<!--li><a href="single.html">Single</a></li-->
+											<li><a href="/JiaBlog/contact-us">Contact</a></li>
+                                            <li><a href="/JiaBlog/JiaFile/" target="_blank">File</a></li>
+                                            <li><a href="/JiaBlog/onlineeditor" target="_blank">OnlineExplain</a></li>
+                                            {% if request.session.is_login %}
+                                                <li><a href="/JiaBlog/mylist/" target="_blank">{{  request.session.user_name }}</a></li>
+                                                <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                            {% else %}
+                                                <li><a href="">Tourist</a></li>
+                                                <li><a href="/JiaBlog/login/">Login</a></li>
+                                            {% endif %}
+										</ul>
+									</div>
+									<!-- Collapse of the page end -->
+								</nav>
+								<!-- Nav of the page -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Side Nav of the page -->
+				<nav class="side-nav">
+					<a href="#" class="close"><i class="fa fa-times"></i></a>
+					<!-- Widget of the page -->
+					<h2>About me</h2>
+					<section class="widget profile-widget">
+						<div class="profile-pic">
+							<a href="#">
+								<img src="/static/JiaBlog/images/head.jpg" alt="John Aston">
+							</a>
+						</div>
+						<h3><a href="#">ArithmeticJia</a></h3>
+						<p>Life is short, you need Python</p>
+						<!-- Social Network of the page -->
+						<ul class="social-networks">
+							<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+							<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+							<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+							<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+							<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+						</ul>
+						<!-- Social Network of the page end -->
+					</section>
+					<!-- Widget of the page end -->
+				</nav>
+				<!-- Side Nav of the page end -->
+			</header>
+			<!-- Header of the page end -->
+			<!-- Main of the page -->
+			<main id="main" role="main">
+				<!-- Page head of the page -->
+				<header class="page-head wow fadeInUp" data-wow-delay="0.6s" style="background-color: #2a2d34">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<h1>User Page</h1>
+								<ol class="breadcrumb">
+									<li><a href="/JiaBlog/index">Home</a></li>
+									<li class="active">User</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</header>
+				<!-- Page head of the page end -->
+				<div id="twocolumns" class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="main-header">
+                                <strong class="title"><a style="text-decoration: none;" href="/JiaBlog/article/editor/create/" target="_blank">Create</a></strong>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<!-- Content of the page -->
+						<div id="content" class="col-xs-12 col-md-8">
+							<!-- Widget of the page -->
+							<div class="widget widget_search hidden-md hidden-lg">
+								<form method="get" class="search-form" action="/search/">
+									<fieldset>
+										<input type="search" name="q" placeholder="Type to search here">
+										<button type="button" class="ico-search"></button>
+									</fieldset>
+								</form>
+							</div>
+							<!-- Widget of the page end -->
+							<!-- Widget of the page -->
+							<section class="widget profile-widget version-ii hidden-lg hidden-md">
+								<div class="profile-pic">
+									<a href="#">
+										<img src="{{ user.userpic.url }}" alt="John Aston">
+									</a>
+								</div>
+								<h3>{{ user.name }}<!--a href="#"><img src="/static/JiaBlog/images/text-jhon-aston.png" alt="jhon aston"></a--></h3>
+								<p>Hi, I am John Aston. Duis autem vel eum dolor in hendrerit in vulputate velit esse mole consequat, vel illum dolore eu feugiat nulla lisis at vero eros et accumsan et iusto.</p>
+                                <span class="iconfont icon-write_fill"></span>
+								<!-- Social Network of the page -->
+								<ul class="social-networks">
+									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+									<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+									<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+									<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+									<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+								</ul>
+								<!-- SOcial Network of the page end -->
+							</section>
+							<!-- Widget of the page end -->
+							<!-- Posts Blocks of the page -->
+                            <div class="cols-holder">
+                                <article class="post fluid text-center wow fadeInUp" data-wow-delay="0.6s">
+                                    <div  class="post fluid text-center wow fadeInUp" id="myechart" style="width: 100%;height:450px;position: relative"></div>
+                                        <script type="text/javascript" src="/static/JiaBlog/js/echarts.js">
+                                            //app.title = '环形图';
+                                            var myChart = echarts.init(document.getElementById('myechart'));
+
+                                            // 指定图表的配置项和数据
+                                            var option2 ={
+                                                text: '暂无数据',
+                                                effect:'bubble',
+                                                effectOption : {
+                                                    effect: {
+                                                        n: 2 //气泡个数为0
+                                                    }
+                                                }
+                                            };
+                                            var option = {
+                                                noDataLoadingOption: {
+                                                    text: '暂无数据',
+                                                    effect: 'bubble',
+                                                    effectOption: {
+                                                    effect: {
+                                                        n: 0
+                                                    }
+                                                }
+                                                },
+                                                tooltip: {
+                                                    trigger: 'item',
+                                                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                                                },
+                                                legend: {
+                                                    orient: 'vertical',
+                                                    x: 'left',
+                                                    data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                                                },
+                                                series: [
+                                                    {
+                                                        name:'访问来源',
+                                                        type:'pie',
+                                                        radius: ['45%', '55%'],
+                                                        avoidLabelOverlap: false,
+                                                        label: {
+                                                            normal: {
+                                                                show: false,
+                                                                position: 'center'
+                                                            },
+                                                            emphasis: {
+                                                                show: true,
+                                                                textStyle: {
+                                                                    fontSize: '30',
+                                                                    fontWeight: 'bold'
+                                                                }
+                                                            }
+                                                        },
+                                                        labelLine: {
+                                                            normal: {
+                                                                show: false
+                                                            }
+                                                        },
+                                                        data:[
+                                                            {value:335, name:'直接访问'},
+                                                            {value:310, name:'邮件营销'},
+                                                            {value:234, name:'联盟广告'},
+                                                            {value:135, name:'视频广告'},
+                                                            {value:1548, name:'搜索引擎'}
+                                                        ]
+                                                    }
+                                                ]
+                                            };
+                                            {% if not categorydic %}
+                                                myChart.setOption(option2);
+                                            {% endif %}
+                                        myChart.setOption(option);
+
+                                        </script>
+                                        <div class="text-wrap text-center">
+                                            <h2>Ariticle Counts</h2>
+                                             <p><a href="https://echarts.baidu.com/" target="_blank">Created by Echarts</a></p>
+                                        </div>
+                                </article>
+                            </div>
+                            {% if article_status == 'active' %}
+                            <h3><a  style="display: inline;color: #f5ab35" href="/JiaBlog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;" href="/JiaBlog/mylist/draft/">Draft</a></h3>
+                            {% elif article_status == 'draft' %}
+                            <h3><a  style="display: inline;" href="/JiaBlog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;color: #f5ab35" href="/JiaBlog/mylist/draft/">Draft</a></h3>
+                            {% else %}
+                            <h3><a  style="display: inline;" href="/JiaBlog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;" href="/JiaBlog/mylist/draft/">Draft</a></h3>
+                            {% endif %}
+							<section class="posts-blocks">
+								<!-- Post Block of the page -->
+                                {% for i in contacts %}
+								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder" style="">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/media/{{ i.pic }}" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+										<h2><a href="/JiaBlog/article/{{ i.id }}/" target="_blank">{{ i.title }}</a></h2>
+										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
+										<a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="javascript:void(0);" class="read-more" style="color: red" type="button" article_id="{{ i.id }}" onclick=Delete(this)>Delete</a>
+										<script>
+                                            function Delete(obj) {
+                                                var article_id = $(obj).attr("article_id");
+                                                {#console.log(article_id);#}
+                                                swal({
+                                                    title: '确定删除吗？',
+                                                    text: '',
+                                                    type: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#d33',
+                                                    cancelButtonColor: '#3085d6',
+                                                    confirmButtonText: '确定！',
+                                                    }).then(function(value) {
+                                                        if(value.value){
+                                                     $.ajax({
+                                                        url: "/JiaBlog/article/" + article_id + "/editor/delete/",
+                                                        type: 'POST',
+                                                        data: {
+                                                            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                                            article_id: article_id,
+                                                        },
+                                                        success: function (result) {
+                                                            var status = result.result;
+                                                            if(status=='success') {
+                                                                swal(
+                                                                    '删除成功！',
+                                                                    '',
+                                                                    'success'
+                                                                );
+                                                            }else{
+                                                                swal(
+                                                                    '出错啦。。。',
+                                                                    "error"
+                                                                );           //后端删除失败
+                                                            }
+                                                            setTimeout(function () {
+                                                                window.location.reload()
+                                                            },1000);
+                                                        }
+
+                                                    })  }else {
+                                                           swal(
+                                                                '已取消！',
+                                                                '',
+                                                                'error'
+                                                           )}
+
+                                                })}
+                                        </script>
+                                        <footer>
+                                            <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ i.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                            <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ i.greats }}</a></strong>
+											<!--strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">{{ i.all_comments.count }} comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">{{ i.greats }} greats</a></strong-->
+
+										</footer>
+									</div>
+								</article>
+                                {% empty %}
+                                    <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+                                        <div class="post-holder" style="">哎呀，不如写点什么吧~</div>
+                                    </article>
+                                {% endfor %}
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/static/JiaBlog/images/timg.jpg" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">NEW</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="video-holder">
+											<a href="#" class="ico-play lightbox fancybox.iframe"></a>
+											<img src="/static/JiaBlog/images/img70.jpg" alt="image description">
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">I get up in the morning looking for adventure.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/static/JiaBlog/images/img65.jpg" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">Traveling is awesome <br>if you can enjoy.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/static/JiaBlog/images/img66.jpg" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">I get up in the morning looking for adventure.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/static/JiaBlog/images/img67.jpg" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">Traveling is awesome <br>if you can enjoy.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+							</section>
+							<!-- Posts Blocks of the page end -->
+							<!-- Navigation of the page -->
+							<nav role="navigation" class="navigation pagination">
+								<div class="nav-links">
+									<!--a href="#" class="prev page-numbers">Prev post.</a>
+									<a href="#" class="page-numbers">1</a>
+									<span class="page-numbers current">2</span>
+									<span class="page-numbers dots hidden">…</span>
+									<a href="#" class="page-numbers">3</a>
+									<a href="#" class="next page-numbers">NEXT post.</a-->
+                                    {% if contacts.has_previous %}
+                                        <a href="?page={{ contacts.previous_page_number }}" class="prev page-numbers">Prev Page</a>
+                                    {% endif %}
+                                    <span>
+                                        {% for pagelist in contacts.paginator.page_range %}
+                                            <a href="?page={{ pagelist }}" class="page-numbers"><b>{{ pagelist }}</b></a>&nbsp;
+                                        {% endfor %}
+                                    </span>
+                                    <span class="page-numbers current">
+                                        Page {{ contacts.number }}&nbsp;/&nbsp;{{ contacts.paginator.num_pages }}&nbsp;Pages
+                                    </span>
+                                    {% if contacts.has_next %}
+                                        <a href="?page={{ contacts.next_page_number }}" class="next page-numbers">Next Page</a>
+                                    {% endif %}
+								</div>
+							</nav>
+							<!-- Navigation of the page end -->
+						</div>
+						<!-- Sidebar of the page -->
+						<aside id="sidebar" class="col-xs-12 col-md-4">
+							<!-- Widget of the page -->
+							<section class="widget profile-widget version-ii hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
+								<div class="profile-pic">
+									<a href="#">
+										<img src="{{ user.userpic.url }}" alt="John Aston">
+									</a>
+								</div>
+								<h3>{{ user.name }}<!--a href="#"><img src="/static/JiaBlog/images/text-jhon-aston.png" alt="jhon aston"></a--></h3>
+								<p id="briefcontent">{{ user.brief }}</p>
+                                <span class="iconfont icon-write_fill" id="briefcontent"></span>
+                                <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+                            <script>
+    $(function(){
+        $('span').click(function(){
+            var o = document.getElementById("briefcontent");
+            var c = o.innerHTML;
+             o.innerHTML = "<input type='text' value='" + c + "'/>";
+            //$(this).html( input );
+
+            $('input').click(function(){
+                return false;
+            }); //阻止表单默认点击行为
+
+            //$('input').select(); //点击自动全选中表单的内容
+
+            $('input').blur(function(){
+                var nextxt=$(this).val();
+                console.log('dddd',nextxt)
+                $.ajax({
+                    url:"/JiaBlog/editor/userbrief/",
+                    type:'POST',
+                    data:{
+                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                        "briefcontent":nextxt,
+                    },
+                    success:function (result) {
+                        var flag = result.flag;
+                        if(flag == 'success') {
+                            swal(
+                                "Editor UserBrief Success！",
+                                "",
+                                "success"
+                            );
+                            var newbrief = result.result;
+                            $("#briefcontent").html(newbrief);
+                        }
+                        else if(flag == 'fail'){
+                            swal(
+                                "Editor UserBrief Fail！",
+                                "",
+                                "fail"
+                            );
+                            var newbrief = result.result;
+                            $("#briefcontent").html(newbrief);
+                        }
+
+
+                    }
+                })
+                //td.html(nextxt);
+            }); //表单失去焦点文本框变成文本
+
+        });
+    })
+    </script>
+								<!-- Social Network of the page -->
+								<ul class="social-networks">
+									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+									<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+									<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+									<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+									<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+								</ul>
+								<!-- Social Network of the page end -->
+							</section>
+                        <script type="text/javascript">
+
+                                    // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('myechart'));
+                                var option2 = {
+                                    backgroundColor:'#B0B0B0',
+                                    title: {
+                                        text: '哎呀，不如写点什么吧~',
+                                        x:'center',
+                                        y: 'center',
+                                        textStyle: {
+                                            fontSize: '45',
+                                            {#textAlign: 'middle',#}
+                                        },
+                                    },
+                                    noDataLoadingOption: {
+                                        text: '暂无数据',
+                                        effect: 'bubble',
+                                        effectOption: {
+                                        effect: {
+                                            n: 0
+                                            }
+                                        }
+                                    },
+                                    tooltip: {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        x: 'left',
+                                        data:[{% for i in catcharts %}"{{ i }}",{% endfor %}]
+                                    },
+                                    series: [
+                                    {
+                                        name:'访问来源',
+                                        type:'pie',
+                                        radius: ['45%', '65%'],
+                                        avoidLabelOverlap: false,
+                                        label: {
+                                            normal: {
+                                                show: false,
+                                                position: 'center'
+                                            },
+                                            emphasis: {
+                                                show: true,
+                                                textStyle: {
+                                                    fontSize: '30',
+                                                    fontWeight: 'bold'
+                                                }
+                                            }
+                                        },
+                                    labelLine: {
+                                        normal: {
+                                            show: false
+                                        }
+                                    },
+                                    data:[
+                                        {% for key,value in catcharts.items%}
+                                        {value:{{ value }}, name:'{{ key }}'},
+                                        {% endfor %}
+                                        ]
+                                    }
+                                ]
+                            };
+
+                                    // 指定图表的配置项和数据
+                                var option = {
+                                    backgroundColor:'#B0B0B0',
+                                    noDataLoadingOption: {
+                                        text: '暂无数据',
+                                        effect: 'bubble',
+                                        effectOption: {
+                                        effect: {
+                                            n: 0
+                                            }
+                                        }
+                                    },
+                                    tooltip: {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        x: 'left',
+                                        top:'30',
+                                        data:[{% for i in catcharts %}"{{ i }}",{% endfor %}]
+                                    },
+                                    series: [
+                                    {
+                                        name:'访问来源',
+                                        type:'pie',
+                                        radius: ['45%', '65%'],
+                                        avoidLabelOverlap: false,
+                                        label: {
+                                            normal: {
+                                                show: false,
+                                                position: 'center'
+                                            },
+                                            emphasis: {
+                                                show: true,
+                                                textStyle: {
+                                                    fontSize: '30',
+                                                    fontWeight: 'bold'
+                                                }
+                                            }
+                                        },
+                                    labelLine: {
+                                        normal: {
+                                            show: false
+                                        }
+                                    },
+                                    data:[
+                                        {% for key,value in catcharts.items%}
+                                        {value:{{ value }}, name:'{{ key }}'},
+                                        {% endfor %}
+                                        ]
+                                    }
+                                ]
+                            };
+
+                                    // 使用刚指定的配置项和数据显示图表。
+                                    {% if not catcharts %}
+                                        myChart.setOption(option2);
+                                    {% else %}
+                                        myChart.setOption(option);
+                                    {% endif %}
+                            </script>
+							<!-- Widget of the page -->
+							<div class="widget widget_search hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
+								<form method="get" class="search-form" action="/search/">
+									<fieldset>
+										<input type="search" name="q" placeholder="Type to search here">
+										<button type="submit" class="ico-search"></button>
+									</fieldset>
+								</form>
+							</div>
+							<!-- Widget of the page end -->
+							<!-- Widget of the page -->
+                            <section class="widget recent-posts-widget wow fadeInUp" data-wow-delay="0.6s">
+								<header class="widget-head">
+									<h3>Recent Posts</h3>
+									<p>post those are very recent in Dot</p>
+								</header>
+								<ol>
+                                    {% for i in blog_list_three %}
+									<li>
+										<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+											<strong class="tag hot">HOT</strong>
+										</span>
+									</li>
+                                    {% endfor %}
+									<!--li>
+										<h4><a href="single-post.html">Letter from the desk of an <br>unsuccessful designer.</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">25th may</a></time>
+											<strong class="tag">trending</strong>
+										</span>
+									</li-->
+									<!--li>
+										<h4><a href="single-post.html">Exploring the unknow truth about myself - My Story.</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">25th may</a></time>
+										</span>
+									</li-->
+								</ol>
+							</section>
+							<section class="widget recent-posts-widget version-ii wow fadeInUp" data-wow-delay="0.6s">
+								<header class="tab-head">
+									<h3><a class="active" href="#tab1">Recent Posts</a></h3>
+									<h3><a href="#tab2">Popular Posts</a></h3>
+								</header>
+								<div class="tab-content">
+									<div id="tab1">
+										<ul>
+	                                     {% for i in blog_list_comments %}
+											<li>
+												<div class="alignleft">
+													<img src="{{ i.pic.url }}" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+													</span>
+												</div>
+
+											</li>
+                                            {% endfor %}
+											<!--li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img28.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">I get up in the morning looking <br>for an adventure.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img29.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">Holiday is awesome when loved <br>one beside me.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li-->
+										</ul>
+									</div>
+									<div id="tab2">
+										<ul>
+		                                    {% for i in blog_list_greats %}
+											<li>
+												<div class="alignleft">
+													<img src="{{ i.pic.url }}" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+													</span>
+												</div>
+											</li>
+                                            {% endfor %}
+											<!--li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img27.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">Traveling is awesome if you <br>can enjoy.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img28.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">I get up in the morning looking <br>for an adventure.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li-->
+										</ul>
+									</div>
+								</div>
+							</section>
+							<!-- Widget of the page end -->
+							<!-- Widget of the page 广告-->
+							<!--div class="widget promo-widget">
+								<a href="#"><img src="/static/JiaBlog/images/ad-placeholder.jpg" alt="“Place your Advertisement here”"></a>
+							</div-->
+							<!-- Widget of the page end -->
+							<!-- Widget of the page -->
+
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Tags</h3>
+								</header>
+								<ul>
+                                    {% for i in tags %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="#">- {{ i.name }}</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+							</div>
+
+							<div class="widget widget_categories tabs wow fadeInUp" data-wow-delay="0.6s">
+								<header class="widget-head">
+									<h3>Category</h3>
+								</header>
+								<ul>
+                                    {% for i in categorys %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/JiaBlog/articles/{{ i.name }}">- {{ i.name }}---({{ i.catcount }})</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+							</div>
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Version Updates</h3>
+								</header>
+								<ul>
+                                    {% for i in versions %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="#">- {{ i }}</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+							</div>
+							<!-- Widget of the page end -->
+						</aside>
+						<!-- Sidebar of the page end -->
+					</div>
+				</div>
+				<!-- Instagram Slider of the page -->
+				<div class="instagram-slider version-ii container-fluid wow fadeInUp" data-wow-delay="0.6s">
+					<div class="row">
+						<div class="mask">
+							<div class="slideset">
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img30.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img31.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img35.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img32.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img33.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img36.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img34.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img30.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img31.jpg" alt="image description"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Instagram Slider of the page end -->
+			</main>
+			<!-- Main of the page end -->
+			<!-- Aside of the page -->
+			<aside class="aside version-ii container">
+				<div class="row">
+					<div class="col-xs-12 holder">
+						<div class="col">
+							<div class="logo"><a href="#"><img src="/static/JiaBlog/images/logo2.png" alt="dot"></a></div>
+							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.</p>
+							<!-- Social Network of the page -->
+							<ul class="social-networks">
+								<li><a href="#"><span class="ico-facebook"></span></a></li>
+								<li><a href="#"><span class="ico-twitter"></span></a></li>
+								<li><a href="#"><span class="ico-google-plus"></span></a></li>
+								<li><a href="#"><span class="ico-linkedin"></span></a></li>
+								<li><a href="#"><span class="ico-pinterest"></span></a></li>
+							</ul>
+							<!-- Social Network of the page end -->
+						</div>
+						<!-- Footer Nav of the page -->
+						<nav class="col footer-nav">
+							<h3>Important Links</h3>
+							<ul>
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Sitemap</a></li>
+								<li><a href="#">Support</a></li>
+							</ul>
+						</nav>
+						<!-- Footer Nav of the page end -->
+						<!-- Footer Nav of the page -->
+						<nav class="col footer-nav">
+							<h3>Popular Links</h3>
+							<ul>
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Sitemap</a></li>
+								<li><a href="#">Support</a></li>
+							</ul>
+						</nav>
+						<!-- Footer Nav of the page end -->
+						<div class="col">
+							<h3>Subscribe to Newsletter</h3>
+							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie.</p>
+							<!-- subscribe form of the page -->
+							<form action="#" class="subscribe-form">
+								<div class="form-group">
+									<input type="email" class="form-control" placeholder="Enter your email here">
+									<button type="button" class="ico-send"></button>
+								</div>
+							</form>
+							<!-- subscribe form of the page end -->
+						</div>
+					</div>
+				</div>
+			</aside>
+			<!-- Aside of the page end -->
+			<!-- Footer of the page -->
+			<footer id="footer" class="container version-ii">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<p>Copyright &copy; 2019.Company name All rights reserved.苏ICP备19007197号<a target="_blank" href=""></a></p>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<!-- Social Network of the page -->
+						<ul class="social-networks">
+							<li><a href="#"><span class="ico-facebook"></span></a></li>
+							<li><a href="#"><span class="ico-twitter"></span></a></li>
+							<li><a href="#"><span class="ico-google-plus"></span></a></li>
+							<li><a href="#"><span class="ico-linkedin"></span></a></li>
+							<li><a href="#"><span class="ico-pinterest"></span></a></li>
+						</ul>
+						<!-- Social Network of the page end -->
+					</div>
+				</div>
+			</footer>
+			<!-- Footer of the page end -->
+			<!-- Back Top of the page -->
+	    	<span id="back-top" class="fa fa-angle-up"></span>
+	    	<!-- Style Changer of the page -->
+	    	<div id="style-changer" data-src="inc/style-changer.html"></div>
+		</div>
+	</div>
+	<!-- include jQuery -->
+    <script src="/static/JiaBlog/js/echarts.js"></script>
+	<script src="/static/JiaBlog/js/jquery.js"></script>
+	<!-- include jQuery -->
+    <script src="/static/JiaBlog/js/plugins.js"></script>
+    <!-- include jQuery -->
+    <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script src="/static/JiaBlog/js/echarts.js"></script>
+    <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
+</body>
+</html>
+
