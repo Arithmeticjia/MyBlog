@@ -3,6 +3,7 @@ from django.db import connection
 from django.db import models
 from django.forms.models import model_to_dict
 from django.utils.decorators import method_decorator
+from django.http import FileResponse
 from django.utils.safestring import mark_safe
 from django.views import View
 from django.shortcuts import HttpResponseRedirect
@@ -17,7 +18,6 @@ from wechat_sdk import WechatBasic
 from wechat_sdk.exceptions import ParseError
 from wechat_sdk.messages import TextMessage
 from django.http.response import HttpResponse, HttpResponseBadRequest
-from Blog import talk_machine
 from wechatpy import WeChatClient
 from django.core.mail import send_mail
 import os
@@ -1121,95 +1121,7 @@ def aboutme(request):
     return render_to_response('about.html')
 
 
-WECHAT_TOKEN = 'ssjsecrettoken980612ssj'
-AppID = 'wx3200e87d6dd9eddd'
-AppSecret = '3aade7b8bbf9cb305b076a1d2d0e4a71'
 
-# 实例化 WechatBasic
-wechat_instance = WechatBasic(
-    token='ssjsecrettoken980612ssj',
-    appid='wx3200e87d6dd9eddd',
-    appsecret='3aade7b8bbf9cb305b076a1d2d0e4a71'
-)
-
-
-def mymenu(request):
-    # 第一个参数是公众号里面的appID，第二个参数是appsecret,个人微信公众号无法获得接口
-    client = WeChatClient("wx3200e87d6dd9eddd", "3aade7b8bbf9cb305b076a1d2d0e4a71")
-    client.menu.create({
-        "button": [
-            {
-                "name": "菜单",
-                "sub_button": [
-                    {
-                        "type": "view",
-                        "name": "搜索",
-                        "url": "http://www.soso.com/"
-                    },
-                    {
-                        "type": "view",
-                        "name": "视频",
-                        "url": "http://v.qq.com/"
-                    },
-
-                ]
-            }
-        ],
-    }
-    )
-    return HttpResponse('ok')
-
-
-@csrf_exempt
-def weixin(request):
-    if request.method == "GET":
-        signature = request.GET.get('signature')
-        timestamp = request.GET.get('timestamp')
-        nonce = request.GET.get('nonce')
-        echostr = request.GET.get('echostr')
-        token = "john"
-        tmpArr = [token, timestamp, nonce]
-        tmpArr.sort()
-        string = ''.join(tmpArr).encode('utf-8')
-        string = hashlib.sha1(string).hexdigest()
-        if string == signature:
-            return HttpResponse(echostr)
-        else:
-            return HttpResponse("false")
-
-    # 解析本次请求的 XML 数据
-    try:
-        wechat_instance.parse_data(data=request.body)
-    except ParseError:
-        return HttpResponseBadRequest('Invalid XML Data')
-
-    # 获取解析好的微信请求信息
-    message = wechat_instance.get_message()
-    # 关注事件以及不匹配时的默认回复
-    response = wechat_instance.response_text(
-        request=('感谢您的关注！\n本订阅号是智能机器人，回复任意内容开始聊天！谢谢您的关注\n'
-                 'Created By ArithmeticJia'
-
-                 ))
-
-    if isinstance(message, TextMessage):
-        # 当前会话内容
-        request = message.request.strip()
-        if request == '你的真名叫什么':
-            reply_text = '单沙嘉'
-            response = wechat_instance.response_text(request=reply_text)
-
-        elif request == '联系方式':
-            reply_text = 'bluesaltssj@gmail.com'
-            response = wechat_instance.response_text(request=reply_text)
-
-        else:
-            reply_text = talk_machine.talk(request)
-            response = wechat_instance.response_text(request=reply_text)
-    return HttpResponse(response, request_type="application/xml")
-
-
-from django.http import FileResponse
 
 
 def file_down(request):

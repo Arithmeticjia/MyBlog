@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dwebsocket',
-    'Blog',
     'JiaBlog',
     'mdeditor',
     'django_crontab',
