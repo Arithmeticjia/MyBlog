@@ -311,7 +311,11 @@
 								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
 									<div class="post-holder" style="">
 										<div class="img-holder">
-											<a href="single-post.html"><img src="/media/{{ i.pic }}" alt="image description"></a>
+                                            {% if i.id == 86 %}
+											    <a href="single-post.html"><img src="{{ i.pic_800_450.url }}" alt="image description"></a>
+                                            {% else %}
+                                                <a href="single-post.html"><img src="/media/{{ i.pic }}" alt="image description"></a>
+                                            {% endif %}
 										</div>
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 										<h2><a href="/JiaBlog/article/{{ i.id }}/" target="_blank">{{ i.title }}</a></h2>
