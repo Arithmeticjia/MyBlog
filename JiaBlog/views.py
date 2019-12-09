@@ -14,16 +14,10 @@ from JiaBlog.models import Articles, Message, Tag, Category, Note, Comment, Blog
 from django.contrib.auth import logout
 import time
 import requests
-from wechat_sdk import WechatBasic
-from wechat_sdk.exceptions import ParseError
-from wechat_sdk.messages import TextMessage
 from django.http.response import HttpResponse, HttpResponseBadRequest
-from wechatpy import WeChatClient
 from django.core.mail import send_mail
 import os
 from .forms import RegisterForm
-# from .forms import monitorForm
-# from Blog.models import Comment
 import psutil
 import datetime
 import markdown
@@ -40,13 +34,9 @@ from .visit_info import change_info
 from django.views.decorators.http import require_POST
 import subprocess
 from django.views.decorators.csrf import csrf_exempt
-import hashlib
 from rest_framework import serializers, viewsets
-import numpy as np
 import random
 import json
-import torch
-from torch.autograd import Variable
 from haystack.views import SearchView
 from dwebsocket.decorators import accept_websocket
 import collections
