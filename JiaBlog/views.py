@@ -1940,6 +1940,7 @@ def article_create_save(request):
         tags = request.POST.getlist('tags')
         status = request.POST.get('status')
         pic = request.FILES.get('pic')
+        print(pic)
         newtags = Tag.objects.filter(name__in=tags)
         tag_id = []
         for i in newtags:
@@ -1960,13 +1961,17 @@ def article_create_save(request):
                 post.comments = 0
                 post.status = status
                 post.pic = pic
+                print('ooo')
                 post.views = 0
                 post.timestamp = timezone.now()
+                print(post.pic,post.body,post.timestamp)
                 post.save()
+                print('999')
                 post.tags.set(tag_id)
                 post.save()
+                print('888')
             except:
-                messages = '编辑失败'
+                messages = '创建失败'
                 return HttpResponse(messages)
         return redirect('/JiaBlog/mylist/')
 

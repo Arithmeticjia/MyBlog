@@ -3,6 +3,8 @@ from django.utils import timezone
 from mdeditor.fields import MDTextField
 from django.contrib.auth.models import User, AbstractUser
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from imagekit.processors import ResizeToFill
+from imagekit.models import ImageSpecField
 from django.conf import settings
 from datetime import date
 
@@ -60,6 +62,14 @@ class Articles(models.Model):
     # bodypic = models.ImageField(upload_to='jiablogimages', blank=True, null=True)
     istop = models.CharField(max_length=5, default='', null=True, blank=True)
     articlebodybrief = models.TextField(blank=True, null=True)
+    last_edit_timestamp = models.DateTimeField(auto_now=True, verbose_name="更新时间", editable=True)
+
+    pic_800_450 = ImageSpecField(
+        source="pic",
+        processors=[ResizeToFill(800,450)],
+        format='JPEG',
+        options={'quality':95}
+    )
 
     # 访问量
 
