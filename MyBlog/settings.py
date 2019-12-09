@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'sslserver',
     'social_core',
+    'imagekit',
 ]
 
 HAYSTACK_CONNECTIONS = {

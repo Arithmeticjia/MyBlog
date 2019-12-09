@@ -27,6 +27,7 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(label="邮箱地址", widget=forms.EmailInput(attrs={'class': 'form-control'}))
 #sex = forms.ChoiceField(label='性别', choices=gender)
 
+
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
@@ -34,11 +35,12 @@ class MessageForm(forms.ModelForm):
 
 
 class UploadFileForm(forms.Form):
-    #title = forms.CharField(max_length=50)
+    # title = forms.CharField(max_length=50)
     file = forms.FileField()
+
 
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Articles
-        #fields = ('title', 'body')
+        # fields = ('title', 'body')
         exclude = ['authorname','timestamp','tags','category','greats','comments','pic','brief','views','status']

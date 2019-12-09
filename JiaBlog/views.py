@@ -1927,7 +1927,6 @@ def article_create_save(request):
         tags = request.POST.getlist('tags')
         status = request.POST.get('status')
         pic = request.FILES.get('pic')
-        print(pic)
         newtags = Tag.objects.filter(name__in=tags)
         tag_id = []
         for i in newtags:
@@ -1936,7 +1935,6 @@ def article_create_save(request):
         if form.is_valid():
             try:
                 post = form.save(commit=False)
-                print(post)
                 post.authorname = BlogUser.objects.get(name=name)
                 post.greats = 0
                 post.category_id = category.id
@@ -1948,18 +1946,30 @@ def article_create_save(request):
                 post.comments = 0
                 post.status = status
                 post.pic = pic
-                print('ooo')
                 post.views = 0
                 post.timestamp = timezone.now()
-                print(post.pic,post.body,post.timestamp)
                 post.save()
-                print('999')
                 post.tags.set(tag_id)
                 post.save()
-                print('888')
             except:
                 messages = '创建失败'
                 return HttpResponse(messages)
+            post.pic = pic
+            post.tags.set(tag_id)
+            post.save()
+            from PIL import Image
+            img = Image.open('.%s' % (post.pic.url))
+            width, height = img.size
+            w = int(width / 800)
+            h = int(height / 450)
+            if width >= 1600 and height >= 900:
+                cropped = img.resize((int(width / w), int(height / h)))
+                newwidth, newheight = cropped.size
+                lcropped = cropped.crop((newwidth / 2 - 400, newheight / 2 - 225, newwidth / 2 + 400,
+                                         newheight / 2 + 225))  # (left, upper, right, lower)
+            else:
+                lcropped = img.crop((width / 2 - 400, height / 2 - 225, width / 2 + 400, height / 2 + 225))
+            lcropped.save('.%s' % (post.pic.url))
         return redirect('/JiaBlog/mylist/')
 
 
