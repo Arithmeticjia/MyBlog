@@ -52,13 +52,11 @@ INSTALLED_APPS = [
     'social_django',
     'haystack',
     'emoji',
-    # 'guardian',
     'rest_framework',
     'werkzeug_debugger_runserver',
     'django_extensions',
     'sslserver',
     'social_core',
-    'notifications',
 ]
 
 HAYSTACK_CONNECTIONS = {

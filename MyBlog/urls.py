@@ -20,7 +20,6 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from JiaBlog import views
-import notifications.urls
 from channels.routing import ProtocolTypeRouter
 
 # from django.views import static

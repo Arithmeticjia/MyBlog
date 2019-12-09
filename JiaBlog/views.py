@@ -39,10 +39,7 @@ import random
 import json
 from haystack.views import SearchView
 from dwebsocket.decorators import accept_websocket
-import collections
-from django import template
 from django.utils.safestring import mark_safe
-from notifications.signals import notify
 # Create your views here.
 
 
