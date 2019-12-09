@@ -57,6 +57,10 @@ from notifications.signals import notify
 
 
 class ArticlesSerializers(serializers.ModelSerializer):
+    authorname = serializers.CharField(source='authorname.name')
+    category = serializers.CharField(source='category.name')
+    tags = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Articles  # 指定的模型类
         fields = ('id', 'title', 'body', 'timestamp', 'authorname', 'views', 'tags', 'category')  # 需要序列化的属性
