@@ -1,12 +1,15 @@
-
 from django.contrib import admin
 from . import models
+from mdeditor.widgets import MDEditorWidget
 
 
 class BlogsPostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'body', 'timestamp']
+    formfield_overrides = {
+        models.MDTextField: {'widget': MDEditorWidget}
+    }
+    list_display = ['title', 'body', 'timestamp', 'authorname']
 
-admin.site.register(models.Articles,BlogsPostAdmin)
+admin.site.register(models.Articles, BlogsPostAdmin)
 admin.site.register(models.Message)
 admin.site.register(models.Comment)
 admin.site.register(models.Category)

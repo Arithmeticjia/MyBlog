@@ -46,9 +46,10 @@ class Tag(models.Model):
 
 
 class Articles(models.Model):
-    id = models.AutoField(primary_key=True)  # id
-    title = models.CharField(max_length=150)  # 博客标题
-    body = models.TextField()  # 博客正文
+    id = models.AutoField(primary_key=True)         # id
+    title = models.CharField(max_length=150)        # 博客标题
+    # body = models.TextField()  # 博客正文
+    body = MDTextField()
     timestamp = models.DateTimeField()  # 创建时间
     authorname = models.ForeignKey('JiaBlog.BlogUser', on_delete=models.CASCADE)  # 作者姓名
     views = models.PositiveIntegerField(default=0)
