@@ -176,8 +176,65 @@
 				<div id="twocolumns" class="container">
 					<div class="row">
 						<div class="col-xs-12">
-							<div class="main-header">
-								<strong class="title">Blogs</strong>
+{#							<div class="main-header">#}
+{#								<strong class="title">Blogs</strong>#}
+{#							</div>#}
+                            <div class="main-header">
+								<strong class="title" id="blogview"><a href="javascript:void(0);" style="text-decoration: none;" onclick="switchto()">switchview</a></strong>
+                                <script type="text/javascript">
+                                {#var btn4 = document.getElementById("blogview");#}
+                                {#btn4.addEventListener("click",switchto);#}
+                                {#btn4.addEventListener("click",backto);#}
+                                {% if query %}
+                                function switchto() {
+                                    var n = `<header class="header">
+                                        </header>
+                                {% for result in page.object_list %}
+                                        {#<hr style="height:2px;border:none;border-top:3px double black;" />#}
+                                        <div class="comment-form" style="border-top: 1px solid #f1f1f1;"><h4><a href="/JiaBlog/article/{{ result.object.id }}" style="color: #f5ab35;font-size:18px;text-decoration: none;" target="_blank">{{ result.object.title }}</a></h4>
+                                            <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ result.object.articlebodybrief|slice:"100"|safe}}</p>
+                                            <p style="color:rgba(30,30,30,0.85);font-weight: bold;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ result.object.timestamp }}&nbsp;&nbsp;&nbsp;&nbsp;views:&nbsp;&nbsp;{{ result.object.views }}&nbsp;&nbsp;&nbsp;&nbsp;comments:&nbsp;&nbsp;{{ result.object.all_comments.count }}&nbsp;&nbsp;&nbsp;&nbsp;greats:&nbsp;&nbsp;{{ result.object.greats }}</p>
+                                        </div>
+                                {% empty %}
+                                    <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+                                        <div class="post-holder" style="">没有搜索到符合条件的文章</div>
+                                    </article>
+                                {% endfor %}`;
+                                    var v = `<strong class="title" id="blogview2"><a href="javascript:void(0);" style="text-decoration: none;" onclick="backto()">back</a></strong>`;
+                                    $("#blogview").html(v);
+                                    $("#articlelist").html(n);
+                                }
+                                function backto() {
+                                    var o = `<section class="posts-blocks">
+                                            {% for result in page.object_list %}
+                                           <article class="post-block wow fadeInUp" data-wow-delay="0.6s" >
+                                            <div class="post-holder" style="font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif " >
+                                                <div class="img-holder">
+                                                    <a href="/JiaBlog/article/{{ result.object.id }}" target="_blank"><img src="/media/{{ result.object.pic }}" alt="image description"></a>
+                                                </div>
+                                                <time datetime="2011-01-12"><a href="#">{{ result.object.timestamp }}</a></time>
+                                                <h2><a href="/JiaBlog/article/{{ result.object.id }}" target="_blank">{{ result.object.title }}</a></h2>
+                                                <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ result.object.articlebodybrief|slice:"150"|safe }}</p>
+                                                <a href="/JiaBlog/article/{{ result.object.id }}" class="read-more">Read more</a>
+                                                <footer>
+                                                    <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ result.object.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                                    <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ result.object.greats }}</a></strong>
+                                                </footer>
+                                            </div>
+                                            </article>
+                                            {% empty %}
+                                                <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+                                                    <div class="post-holder" style="">没有搜索到符合条件的文章</div>
+                                                </article>
+                                        {% endfor %}
+                                        </section>`;
+                                    $("#articlelist").html(o);
+                                    var k = `<strong class="title" id="blogview2"><a href="javascript:void(0);" style="text-decoration: none;" onclick="switchto()">switchview</a></strong>`;
+                                    $("#blogview").html(k);
+                                    {#window.location.reload();#}
+                                    {% endif %}
+                                }
+                            </script>
 							</div>
 						</div>
 					</div>
@@ -219,6 +276,7 @@
 							</section>
 							<!-- Widget of the page end -->
 							<!-- Posts Blocks of the page -->
+                            <section class="comment-respond wow fadeInUp" id="articlelist">
 							<section class="posts-blocks">
 								<!-- Post Block of the page -->
                             {% if query %}
@@ -339,6 +397,7 @@
 								</article-->
 								<!-- Post Block of the page end -->
 							</section>
+                            </section>
 							<!-- Posts Blocks of the page end -->
 							<!-- Navigation of the page -->
 							<nav role="navigation" class="navigation pagination">
