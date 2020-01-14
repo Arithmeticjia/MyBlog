@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^baidu_verify_iYpMqoGJf4.html/$', views.baiduyz),
     path('admin/', admin.site.urls),
     path('JiaBlog/', include('JiaBlog.urls', namespace="JiaBlog")),
+    path('activemq/', include('activemq.urls', namespace="activemq")),
     path('mdeditor/', include('mdeditor.urls')),
     url(r'', include('social_django.urls', namespace='social')),
     # url(r'^oauth/', include('social_django.urls', namespace='social')),
