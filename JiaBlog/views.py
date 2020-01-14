@@ -839,7 +839,6 @@ def blog_index(request):
     return render(request, 'Jiaindex.html', context=context)  # 返回Jiaindex.html页面
 
 
-
 def comments(request,article_id):
     thisarticle = get_object_or_404(Articles, id=article_id, status='有效')
     comment_list = thisarticle.comment_set.all()
