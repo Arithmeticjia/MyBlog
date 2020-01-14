@@ -8,7 +8,7 @@ class SampleListener(stomp.ConnectionListener):
         print(msg)
 
     def on_error(self, headers, message):
-        print(f"headers:{headers['destination']}, message:{message}")
+        print("headers:{0['destination']}, message:{1}".format(headers, message))
 
 
 conn = stomp.Connection10()
@@ -22,4 +22,5 @@ conn.subscribe('SampleQueue')
 time.sleep(1)
 while True:
     pass
+
 # conn.disconnect()
