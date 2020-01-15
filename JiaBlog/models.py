@@ -292,16 +292,6 @@ class AuthUser(models.Model):
         db_table = 'auth_user'
 
 
-class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
-    session_data = models.TextField()
-    expire_date = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_session'
-
-
 class SocialAuthPartial(models.Model):
     token = models.CharField(max_length=32)
     next_step = models.PositiveSmallIntegerField()
@@ -440,6 +430,7 @@ class Jia(models.Model):
     brief = models.CharField(max_length=100)
     pic = models.ImageField(upload_to='jia', blank=True, null=True)
 # Create your models here.
+
 
 class Graduation(models.Model):
     id = models.AutoField(primary_key=True)
