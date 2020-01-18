@@ -40,6 +40,7 @@ import json
 from haystack.views import SearchView
 from dwebsocket.decorators import accept_websocket
 from django.utils.safestring import mark_safe
+from django.views.decorators.cache import cache_page
 # Create your views here.
 
 
@@ -212,7 +213,6 @@ class MySeachView(SearchView):
         context['jia'] = jia
 
         return context
-
 
 
 @csrf_exempt
@@ -723,6 +723,7 @@ def search(request):
     return render(request, 'archive.html', context=context)
 
 
+# @cache_page(60 * 15)
 def blog_index(request):
     # post = request.get_post(Articles, pk=pk)
     change_info(request)
