@@ -239,7 +239,6 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/JiaBlog/index/'
 CRONJOBS = (
             ('*/1 * * * *', 'JiaBlog.views.collect_cpu'),
 )
-'' \
 
 # cache
 # CACHES = {

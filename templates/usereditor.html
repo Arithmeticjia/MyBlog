@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<!-- set the encoding of your site -->
     <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
 	<meta charset="utf-8">
@@ -279,6 +280,13 @@
                             </select>
                             Hold down "Control", or "Command" on a Mac, to select more than one.
                             * means necessary!
+                        </div>
+                        </br>
+                        <div>
+                            <span style="font-size: 16px;color: black;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 600">
+                                Last Editor Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            {{ article.last_edit_timestamp }}
                         </div>
                         </br>
                             <button style="float:right;width:200px;font-size: larger;background: #f5ab35;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" type="submit">save</button>

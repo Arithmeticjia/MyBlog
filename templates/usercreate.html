@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<!-- set the encoding of your site -->
     <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
 	<meta charset="utf-8">
@@ -23,11 +24,12 @@
 	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
     <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_c5936x81jmd.css">
     <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_g8vm0a3stgk.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_cxy0cuyzhbe.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_m5w65t65bfq.css">
     <script src="/static/JiaBlog/js/jquery.js"></script>
 {#    <script src="/static/js/jquery-3.4.1.min.js"></script>#}
     <script src="/static/JiaBlog/js/echarts.js"></script>
     <script src="/static/js/worldcloud.js"></script>
+    <script src="https://at.alicdn.com/t/font_1039987_m5w65t65bfq.js"></script>
     <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
     <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
@@ -38,6 +40,14 @@
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 </head>
 <body class="version-ii">
+    <style type="text/css">
+        .icon {
+           width: 1em; height: 1em;
+           vertical-align: -0.15em;
+           fill: currentColor;
+           overflow: hidden;
+        }
+    </style>
 	<div class="loader-holder">
 		<div class="loader">
 			<div class="side"></div>
@@ -211,17 +221,17 @@
                                 $(function() {
                                     testEditor = editormd("test-editormd", {
                                         emoji : true,
-                                        saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
+                                        saveHTMLToTextarea: true,       // 保存 HTML 到 Textarea
                                         searchReplace: true,
                                         editorTheme : "pastel-on-dark",
                                         theme : "dark",
                                         previewTheme : "dark",
                                         taskList : true,
                                         codeFold : true,
-                                        tocm: true,                  // Using [TOCM]
-                                        tex: true,                   // 开启科学公式TeX语言支持，默认关闭
-                                        flowChart: true,             // 开启流程图支持，默认关闭
-                                        sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+                                        tocm: true,                     // Using [TOCM]
+                                        tex: true,                      // 开启科学公式TeX语言支持，默认关闭
+                                        flowChart: true,                // 开启流程图支持，默认关闭
+                                        sequenceDiagram: true,          // 开启时序/序列图支持，默认关闭,
                                         width   : "100%",
                                         height  : 800,
                                         syncScrolling : "single",
@@ -253,6 +263,57 @@
                                     <option>{{ i.name }}</option>
                                 {% endfor %}
                             </select>&nbsp;&nbsp;&nbsp;
+{#                            <svg class="icon" aria-hidden="true" id="hao" onclick="addcategory()">#}
+{#                                <use xlink:href="#icon-hao"></use>#}
+{#                            </svg>#}
+                            <span class="iconfont icon-hao" id="hao" onclick="addcategory()"></span>
+                            <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+                            <script>
+                                function addcategory() {
+                                    {#alert('add');#}
+                                    var o = document.getElementById("hao");
+                                    var c = o.innerHTML;
+                                    o.innerHTML = "<input type='text' style='width: 100px;height: 24px;border-radius: 5px;' value='" + c + "'/>";
+                                    $('input').click(function(){
+                                            return false;
+                                        }); //阻止表单默认点击行为
+                                    $('input').blur(function(){
+                                            var nextxt=$(this).val();
+                                            $.ajax({
+                                                url:"/JiaBlog/editor/addcategory/",
+                                                type:'POST',
+                                                data:{
+                                                    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                                    "newcategory":nextxt,
+                                                },
+                                                success:function (result) {
+                                                    var flag = result.flag;
+                                                    if(flag == 'success') {
+                                                        swal(
+                                                            "Add Catefory Success！",
+                                                            "",
+                                                            "success"
+                                                        );
+                                                        var newcategory = result.result;
+                                                        $("#briefcontent").html(newcategory);
+                                                    }
+                                                    else if(flag == 'fail'){
+                                                        swal(
+                                                            "Add Catefory  Fail！",
+                                                            "",
+                                                            "fail"
+                                                        );
+                                                        var newcategory = result.result;
+                                                        $("#briefcontent").html(newcategory);
+                                                    }
+
+
+                                                }
+                                            })
+                                            //td.html(nextxt);
+                                        }); //表单失去焦点文本框变成文本
+                                }
+                            </script>
                         </div>
                         </br>
                         <div>

@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<!-- set the encoding of your site -->
     <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
 	<meta charset="utf-8">
@@ -21,13 +22,7 @@
 	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
 	<!-- include the site stylesheet -->
 	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_dycynze6id6.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_oyyrvpk63p.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_07f5zbdbyf9q.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_xmpmtbu3qm.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_2jx8jr9khtj.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_h5pzyznynb7.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_drtal8y33re.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_59rljodj7o8.css">
 {#    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>#}
 {#    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>#}
 {#    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>#}
@@ -115,8 +110,11 @@
                                             {% if request.session.is_login %}
                                                 <li><a href="/JiaBlog/mylist/" target="_blank">{{  request.session.user_name }}</a></li>
                                                 <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                            {% elif request.user.is_authenticated %}
+                                                <li><a href="/JiaBlog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                                <li><a href="/JiaBlog/logout/">Logout</a></li>
                                             {% else %}
-                                                <li><a href="">Tourist</a></li>
+                                                <li><a href="/JiaBlog/mylist/">Tourist</a></li>
                                                 <li><a href="/JiaBlog/login/">Login</a></li>
                                             {% endif %}
 										</ul>
@@ -298,6 +296,85 @@
                                         </div>
                                 </article>
                             </div>
+                            <div class="main-header" id="mycollects">
+                                <strong class="title" style="color: #f5ab35">My Collects</strong>
+							</div>
+                            <section class="posts-blocks">
+                            {% for i in my_collects %}
+                            <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder" style="">
+										<div class="img-holder">
+											<a href="/JiaBlog/article/{{ i.id }}/" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+										<h2><a href="/JiaBlog/article/{{ i.id }}/" target="_blank">{{ i.title }}</a></h2>
+										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
+{#										<a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#}
+                                        <a href="javascript:void(0);" class="read-more" style="color: red;text-decoration: none;" type="button" article_id="{{ i.id }}" onclick=CancelCollect(this)>Cancel</a>
+										<script>
+                                            function CancelCollect(obj) {
+                                                var article_id = $(obj).attr("article_id");
+                                                console.log(article_id);
+                                                swal({
+                                                    title: 'Are you sure to cancel collect?',
+                                                    text: '',
+                                                    type: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#d33',
+                                                    cancelButtonColor: '#3085d6',
+                                                    confirmButtonText: 'Yes',
+                                                    cancelButtonText: 'Cancel',
+                                                    }).then(function(value) {
+                                                        if(value.value){
+                                                     $.ajax({
+                                                        url: "/JiaBlog/article/" + article_id + "/cancelcollect/",
+                                                        type: 'POST',
+                                                        data: {
+                                                            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                                            article_id: article_id,
+                                                        },
+                                                        success: function (result) {
+                                                            var status = result.result;
+                                                            if(status=='success') {
+                                                                swal(
+                                                                    '取消关注成功！',
+                                                                    '',
+                                                                    'success'
+                                                                );
+                                                            }else{
+                                                                swal(
+                                                                    '出错啦。。。',
+                                                                    "error"
+                                                                );           //后端删除失败
+                                                            }
+                                                            setTimeout(function () {
+                                                                window.location.reload()
+                                                            },1000);
+                                                        }
+
+                                                    })  }else {
+                                                           swal(
+                                                                'Cancelled！',
+                                                                '',
+                                                                'error'
+                                                           )}
+
+                                                })}
+                                        </script>
+                                        <footer>
+                                            <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                            <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.greats }}</a></strong>
+											<!--strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">{{ i.all_comments.count }} comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">{{ i.greats }} greats</a></strong-->
+
+										</footer>
+									</div>
+								</article>
+                            {% endfor %}
+                            </section>
+                            <div class="main-header" id="myarticles">
+                                <strong class="title" style="color: #f5ab35">My Articles</strong>
+							</div>
                             {% if article_status == 'active' %}
                             <h3><a  style="display: inline;color: #f5ab35" href="/JiaBlog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;" href="/JiaBlog/mylist/draft/">Draft</a></h3>
                             {% elif article_status == 'draft' %}
@@ -311,30 +388,28 @@
 								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
 									<div class="post-holder" style="">
 										<div class="img-holder">
-{#                                            {% if i.id == 86 %}#}
-{#											    <a href="single-post.html"><img src="{{ i.pic_800_450.url }}" alt="image description"></a>#}
-{#                                            {% else %}#}
-{#                                                <a href="single-post.html"><img src="/media/{{ i.pic }}" alt="image description"></a>#}
-{#                                            {% endif %}#}
-                                            <a href="single-post.html"><img src="/media/{{ i.pic }}" alt="image description"></a>
+											<a href="/JiaBlog/article/{{ i.id }}/" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
 										</div>
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 										<h2><a href="/JiaBlog/article/{{ i.id }}/" target="_blank">{{ i.title }}</a></h2>
 										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
-										<a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="javascript:void(0);" class="read-more" style="color: red" type="button" article_id="{{ i.id }}" onclick=Delete(this)>Delete</a>
+                                        <a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more"><span class="iconfont icon-bianji" style="cursor: pointer;"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{#										<a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more" style="text-decoration: none;">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#}
+{#                                        <a href="javascript:void(0);" class="read-more" style="color: red;text-decoration: none;" type="button" article_id="{{ i.id }}" onclick=Delete(this)>Delete</a>#}
+                                        <span class="iconfont icon-shanchu" style="cursor: pointer;" article_id="{{ i.id }}" onclick=Delete(this)>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 										<script>
                                             function Delete(obj) {
                                                 var article_id = $(obj).attr("article_id");
                                                 {#console.log(article_id);#}
                                                 swal({
-                                                    title: '确定删除吗？',
+                                                    title: 'Are you sure to delete?',
                                                     text: '',
                                                     type: 'warning',
                                                     showCancelButton: true,
                                                     confirmButtonColor: '#d33',
                                                     cancelButtonColor: '#3085d6',
-                                                    confirmButtonText: '确定！',
+                                                    confirmButtonText: 'Yes',
+                                                    cancelButtonText: 'Cancel',
                                                     }).then(function(value) {
                                                         if(value.value){
                                                      $.ajax({
@@ -365,7 +440,7 @@
 
                                                     })  }else {
                                                            swal(
-                                                                '已取消！',
+                                                                'Cancelled！',
                                                                 '',
                                                                 'error'
                                                            )}
@@ -373,11 +448,10 @@
                                                 })}
                                         </script>
                                         <footer>
-                                            <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ i.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
-                                            <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ i.greats }}</a></strong>
+                                            <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                            <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.greats }}</a></strong>
 											<!--strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">{{ i.all_comments.count }} comments</a></strong>
 											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">{{ i.greats }} greats</a></strong-->
-
 										</footer>
 									</div>
 								</article>
@@ -503,7 +577,7 @@
 							<!-- Navigation of the page end -->
 						</div>
 						<!-- Sidebar of the page -->
-						<aside id="sidebar" class="col-xs-12 col-md-4">
+						<aside id="sidebar" class="col-xs-12 col-md-4" >
 							<!-- Widget of the page -->
 							<section class="widget profile-widget version-ii hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
 								<div class="profile-pic">
@@ -512,63 +586,62 @@
 									</a>
 								</div>
 								<h3>{{ user.name }}<!--a href="#"><img src="/static/JiaBlog/images/text-jhon-aston.png" alt="jhon aston"></a--></h3>
-								<p id="briefcontent">{{ user.brief }}</p>
+                                <p id="briefcontent">{{ user.brief }}</p>
                                 <span class="iconfont icon-write_fill" id="briefcontent"></span>
                                 <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
-                            <script>
-    $(function(){
-        $('span').click(function(){
-            var o = document.getElementById("briefcontent");
-            var c = o.innerHTML;
-             o.innerHTML = "<input type='text' value='" + c + "'/>";
-            //$(this).html( input );
+                                <script>
+                                $(function(){
+                                    $('span').click(function(){
+                                        var o = document.getElementById("briefcontent");
+                                        var c = o.innerHTML;
+                                         o.innerHTML = "<input type='text' style='width: 250px' value='" + c + "'/>";
+                                        //$(this).html( input );
 
-            $('input').click(function(){
-                return false;
-            }); //阻止表单默认点击行为
+                                        $('input').click(function(){
+                                            return false;
+                                        }); //阻止表单默认点击行为
 
-            //$('input').select(); //点击自动全选中表单的内容
+                                        //$('input').select(); //点击自动全选中表单的内容
 
-            $('input').blur(function(){
-                var nextxt=$(this).val();
-                console.log('dddd',nextxt)
-                $.ajax({
-                    url:"/JiaBlog/editor/userbrief/",
-                    type:'POST',
-                    data:{
-                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                        "briefcontent":nextxt,
-                    },
-                    success:function (result) {
-                        var flag = result.flag;
-                        if(flag == 'success') {
-                            swal(
-                                "Editor UserBrief Success！",
-                                "",
-                                "success"
-                            );
-                            var newbrief = result.result;
-                            $("#briefcontent").html(newbrief);
-                        }
-                        else if(flag == 'fail'){
-                            swal(
-                                "Editor UserBrief Fail！",
-                                "",
-                                "fail"
-                            );
-                            var newbrief = result.result;
-                            $("#briefcontent").html(newbrief);
-                        }
+                                        $('input').blur(function(){
+                                            var nextxt=$(this).val();
+                                            $.ajax({
+                                                url:"/JiaBlog/editor/userbrief/",
+                                                type:'POST',
+                                                data:{
+                                                    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                                    "briefcontent":nextxt,
+                                                },
+                                                success:function (result) {
+                                                    var flag = result.flag;
+                                                    if(flag == 'success') {
+                                                        swal(
+                                                            "Editor UserBrief Success！",
+                                                            "",
+                                                            "success"
+                                                        );
+                                                        var newbrief = result.result;
+                                                        $("#briefcontent").html(newbrief);
+                                                    }
+                                                    else if(flag == 'fail'){
+                                                        swal(
+                                                            "Editor UserBrief Fail！",
+                                                            "",
+                                                            "fail"
+                                                        );
+                                                        var newbrief = result.result;
+                                                        $("#briefcontent").html(newbrief);
+                                                    }
 
 
-                    }
-                })
-                //td.html(nextxt);
-            }); //表单失去焦点文本框变成文本
+                                                }
+                                            })
+                                            //td.html(nextxt);
+                                        }); //表单失去焦点文本框变成文本
 
-        });
-    })
-    </script>
+                                    });
+                                })
+                                </script>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">
 									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
@@ -715,6 +788,23 @@
 										<button type="submit" class="ico-search"></button>
 									</fieldset>
 								</form>
+							</div>
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Contents</h3>
+								</header>
+								<ul>
+									<li class="cat-item cat-item-1"><span><a href="javascript:void(0);" onclick="to_mycollects()">- My Collects</a></span></li>
+                                    <li class="cat-item cat-item-1"><span><a href="javascript:void(0);" onclick="to_myarticles()">- My Articles</a></span></li>
+                                    <script type="text/javascript">
+                                        function to_mycollects() {
+                                             document.getElementById("mycollects").scrollIntoView();
+                                        }
+                                        function to_myarticles() {
+                                             document.getElementById("myarticles").scrollIntoView();
+                                        }
+                                    </script>
+								</ul>
 							</div>
 							<!-- Widget of the page end -->
 							<!-- Widget of the page -->

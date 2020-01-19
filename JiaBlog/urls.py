@@ -31,8 +31,6 @@ urlpatterns = [
     url(r'^search/$', views.search),
     url(r'^upload_file/$', views.upload_file),
     url(r'^JiaFile/$', views.Jiafile),
-               #url(r'^handle_uploaded_file/$', views.handle_uploaded_file),
-               #url(r'^usereditor/$', views.usereditor),
     url(r'^article/(?P<article_id>[0-9]+)/editor/$', views.usereditor),
     url(r'^article/(?P<article_id>[0-9]+)/editor/save/$', views.article_save),
     url(r'^mylist/$', views.mylist),
