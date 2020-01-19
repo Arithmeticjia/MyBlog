@@ -570,7 +570,7 @@
 								<!-- post of the page -->
                                 {% for i in blog_list_up %}
 								<article class="post wow fadeInLeft" data-wow-delay="0.6s">
-									<div class="img-holder"><a href="single-post.html"><img src="{{ i.pic.url }}" alt="image description"></a></div>
+									<div class="img-holder"><a href="/JiaBlog/article/{{ i.id }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
 									<div class="text-wrap">
 										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
 										<h2><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h2>
