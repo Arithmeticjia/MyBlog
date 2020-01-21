@@ -176,7 +176,7 @@
                         <header style="text-align: center">
                             <h2 style="color: black">Welcome {{ request.session.user_name }}</h2>
                         </header>
-                <form method="POST" id="editorform"  action="/JiaBlog/article/{{ article.id }}/editor/save/" enctype="multipart/form-data" onsubmit="return checkvalue()">
+                <form method="POST" id="editorform"  action="/JiaBlog/article/{{ article.id }}/{{ article.url_slug }}/editor/save/" enctype="multipart/form-data" onsubmit="return checkvalue()">
                     {% csrf_token %}
 					<div class="container" style="border: 1px solid #cccccc">
                         </br>

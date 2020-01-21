@@ -108,7 +108,7 @@
 											<!--li><a href="single.html">Single</a></li-->
 											<li><a href="/JiaBlog/contact-us">Contact</a></li>
                                             <li><a href="/JiaBlog/JiaFile/" target="_blank">File</a></li>
-                                            <li><a href="/JiaBlog/onlineeditor" target="_blank">OnlineExplain</a></li>
+                                            <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
                                             {% if request.session.is_login %}
                                                 <li><a href="/JiaBlog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
                                                 <li><a href="/JiaBlog/logout/">Logout</a></li>
@@ -210,12 +210,12 @@
                                            <article class="post-block wow fadeInUp" data-wow-delay="0.6s" >
                                             <div class="post-holder" style="font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif " >
                                                 <div class="img-holder">
-                                                    <a href="/JiaBlog/article/{{ result.object.id }}" target="_blank"><img src="/media/{{ result.object.pic }}" alt="image description"></a>
+                                                    <a href="/JiaBlog/article/{{ result.object.id }}/{{ result.object.url_slug }}" target="_blank"><img src="/media/{{ result.object.pic }}" alt="image description"></a>
                                                 </div>
                                                 <time datetime="2011-01-12"><a href="#">{{ result.object.timestamp }}</a></time>
-                                                <h2><a href="/JiaBlog/article/{{ result.object.id }}" target="_blank">{{ result.object.title }}</a></h2>
+                                                <h2><a href="/JiaBlog/article/{{ result.object.id }}/{{ result.object.url_slug }}" target="_blank">{{ result.object.title }}</a></h2>
                                                 <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ result.object.articlebodybrief|slice:"150"|safe }}</p>
-                                                <a href="/JiaBlog/article/{{ result.object.id }}" class="read-more">Read more</a>
+                                                <a href="/JiaBlog/article/{{ result.object.id }}/{{ result.object.url_slug }}" class="read-more">Read more</a>
                                                 <footer>
                                                     <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ result.object.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                                                     <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ result.object.greats }}</a></strong>
@@ -287,12 +287,12 @@
 								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
 									<div class="post-holder" style="">
 										<div class="img-holder">
-											<a href="/JiaBlog/article/{{ result.object.id }}" target="_blank"><img src="/media/{{ result.object.pic }}" alt="image description"></a>
+											<a href="/JiaBlog/article/{{ result.object.id }}/{{ result.object.url_slug }}" target="_blank"><img src="/media/{{ result.object.pic }}" alt="image description"></a>
 										</div>
 										<time datetime="2011-01-12"><a href="#">{{ result.object.timestamp }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ result.object.id }}" target="_blank">{% highlight result.object.title with query %}</a></h2>
+										<h2><a href="/JiaBlog/article/{{ result.object.id }}/{{ result.object.url_slug }}" target="_blank">{% highlight result.object.title with query %}</a></h2>
 										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{% highlight result.object.body with query %}</p>
-										<a href="/JiaBlog/article/{{ result.object.id }}" class="read-more">Read more</a>
+										<a href="/JiaBlog/article/{{ result.object.id }}/{{ result.object.url_slug }}" class="read-more">Read more</a>
 										<footer>
                                             <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ result.object.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                                             <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ result.object.greats }}</a></strong>
@@ -477,7 +477,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
@@ -517,7 +517,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>

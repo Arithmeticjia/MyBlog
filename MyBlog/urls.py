@@ -34,6 +34,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('JiaBlog/', include('JiaBlog.urls', namespace="JiaBlog")),
     path('activemq/', include('activemq.urls', namespace="activemq")),
+    path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
     path('mdeditor/', include('mdeditor.urls')),
     url(r'', include('social_django.urls', namespace='social')),
     # url(r'^oauth/', include('social_django.urls', namespace='social')),

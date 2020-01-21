@@ -216,7 +216,7 @@ class MySeachView(SearchView):
 
 
 @csrf_exempt
-def cancelcollect(request,article_id):
+def cancelcollect(request, article_id, slug):
     if request.method == "POST":
         blog_id = request.POST.get('article_id')
         name = request.session.get('user_name')
@@ -886,7 +886,7 @@ def make_blog_user(hits):
     print(hitsdict)
 
 
-def blog_info(request, article_id):
+def blog_info(request, article_id, slug):
     change_info(request)
     login_name = request.session.get('user_name')
     print(login_name)
@@ -1297,10 +1297,7 @@ def blog_category(request, blog_category):
     cate = get_object_or_404(Category, name=blog_category)
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
-    # blog_lists = Articles.objects.filter(category__name__exact=blog_category).filter(status="有效").order_by("id")  # 获取所有数据
     blog_lists = Articles.objects.filter(category=cate).filter(status="有效").order_by('id')
-    print('ccc', blog_lists)
-    print('ddd', blog_list_comments)
     paginator = Paginator(blog_lists, 10)  # 分页，每页10条数据
     page = request.GET.get('page')
     try:
@@ -1592,7 +1589,7 @@ def upload_file(request):
 
 
 @check_login
-def usereditor(request, article_id):
+def usereditor(request, article_id, slug):
     # article = Articles.objects.filter(id=article_id)
     article = get_object_or_404(Articles, id=article_id)
     article_user_id = article.authorname_id
@@ -1847,7 +1844,7 @@ def mylist_para(request, article_status):
     return render(request, 'editorlist.html', context=context)
 
 
-def article_save(request, article_id):
+def article_save(request, article_id, slug):
     change_info(request)
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -1974,7 +1971,7 @@ def article_create_save(request):
 
 
 @csrf_exempt
-def article_delete(request, article_id):
+def article_delete(request, article_id, slug):
     if request.method == 'POST':
         id = request.POST.get('article_id')
         data = {}

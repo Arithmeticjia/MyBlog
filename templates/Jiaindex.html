@@ -24,17 +24,57 @@
 	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
 	<!-- include the site stylesheet -->
 	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.css">
+    <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
+    <script src="/static/JiaBlog/js/echarts.js"></script>
+	<script src="/static/JiaBlog/js/jquery.js"></script>
+	<!-- include jQuery -->
+    <script src="/static/JiaBlog/js/plugins.js"></script>
+    <!-- include jQuery -->
+    <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
+
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <meta name="baidu-site-verification" content="iYpMqoGJf4" />
 </head>
 <body>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            let timerInterval;
+            Swal.fire({
+                title: '🧨祝大家2020鼠年大吉🧨',
+                html: 'I will close in <b></b> milliseconds.',
+                imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579615243295&di=7bedc214cea751b6ad4fcdcb465d3f7c&imgtype=0&src=http%3A%2F%2Fwww.banbijiang.com%2Fuploads%2Fallimg%2F200120%2F155H52331-0.jpg%3FimageView2%2F2%2Fw%2F750%2Fq%2F80%2Fformat%2Fjpeg',
+                timer: 3000,
+                timerProgressBar: true,
+                width: 400,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                    timerInterval = setInterval(() => {
+                        const content = Swal.getContent();
+                        if (content) {
+                            const b = content.querySelector('b');
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                            }
+                        }
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        });
+    </script>
 	<div class="loader-holder">
 		<div class="loader">
 			<div class="side"></div>
@@ -80,7 +120,7 @@
 										<!--li><a href="single.html">Single</a></li-->
 										<li><a href="/JiaBlog/contact-us">Contact</a></li>
                                         <li><a href="/JiaBlog/JiaFile/" target="_blank">File</a></li>
-                                        <li><a href="/JiaBlog/onlineeditor" target="_blank">OnlineExplain</a></li>
+                                        <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
                                         {% if request.session.is_login %}
                                             <li><a href="/JiaBlog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
                                             <li><a href="/JiaBlog/logout/">Logout</a></li>
@@ -205,7 +245,7 @@
 										<div class="img-holder">
 											<img src="{{ i.pic.url }}" alt="image description">
 										</div>
-										<h2><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title|slice:"18" }}...</a></h2>
+										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title|slice:"18" }}...</a></h2>
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 									</div>
 								</div>
@@ -287,113 +327,114 @@
             </script>
 {#            <button style="border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 16px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;" onclick="vshow()">版本更新</button>#}
             <div class="form-submit" >
-                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 15px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="Updates" onclick="vshow()">
+                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 15px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="Try Me" onclick="vshow()">
             </div>
                 <script type="text/javascript">
                     function vshow() {
                         swal.setDefaults({
                             confirmButtonText: 'Next',
                             showCancelButton: true,
-                            animation: false
+                            animation: false,
+                            width: 400,
                         });
 
                         var steps = [
                             {
-                            title: 'ArithmeticJia网站一轮测试完成，Debug模式关闭!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091194033_gaitubao_800x450.jpg',
-                          },
+                                title: 'ArithmeticJia网站一轮测试完成，Debug模式关闭!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091194033_gaitubao_800x450.jpg',
+                            },
                             {
-                            title: '欢迎来到全新的支持HTTPS的Blog!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1571586753049_gaitubao_800x450.jpg'
-                          },
+                                title: '欢迎来到全新的支持HTTPS的Blog!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1571586753049_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '欢迎注册登录开始你的创作!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563090869675_gaitubao_800x450.jpg'
-                          },
+                                title: '欢迎注册登录开始你的创作!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563090869675_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '令人兴奋的全新的文章创作和编辑界面!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563090609515_gaitubao_800x450.jpg',
-                          },
+                                title: '令人兴奋的全新的文章创作和编辑界面!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563090609515_gaitubao_800x450.jpg',
+                            },
                             {
-                            title: '支持全文haystack搜索!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091876432_gaitubao_800x450.jpg'
-                          },
+                                title: '支持全文haystack搜索!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091876432_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '支持上传多张图片!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091413884_gaitubao_800x450.jpg'
-                          },
+                                title: '支持上传多张图片!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091413884_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '支持点赞，新增打赏功能!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091754038_gaitubao_800x450.jpg'
-                          },
+                                title: '支持点赞，新增打赏功能!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091754038_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增文章详情目录预览!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1564847139337_gaitubao_800x450.jpg'
-                          },
+                                title: '新增文章详情目录预览!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1564847139337_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增editor.md文章编辑功能!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563090609515_gaitubao_800x450.jpg',
-                          },
+                                title: '新增editor.md文章编辑功能!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563090609515_gaitubao_800x450.jpg',
+                            },
                             {
-                            title: '新增全文高亮检索!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091876432_gaitubao_800x450.jpg'
-                          },
+                                title: '新增全文高亮检索!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091876432_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增博客时间归档!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563626397522_gaitubao_800x450.jpg'
-                          },
+                                title: '新增博客时间归档!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563626397522_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增博客收藏功能!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1571586551374_gaitubao_800x450.jpg'
-                          },
+                                title: '新增博客收藏功能!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1571586551374_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增个人词云展示!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091023056_gaitubao_800x450.jpg'
-                          },
+                                title: '新增个人词云展示!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563091023056_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增文件上传下载密码校验!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563092377345_gaitubao_800x450.jpg'
-                          },
+                                title: '新增文件上传下载密码校验!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563092377345_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增文件删除校验!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563092511349_gaitubao_800x450.jpg'
-                          },
+                                title: '新增文件删除校验!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563092511349_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增编辑文章自动裁切配图!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563092957559_gaitubao_800x450.jpg'
-                          },
+                                title: '新增编辑文章自动裁切配图!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563092957559_gaitubao_800x450.jpg'
+                            },
                             {
-                            title: '新增Github第三方登录!',
-                            text: '',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563092763476_gaitubao_800x450.jpg'
-                          },
+                                title: '新增Github第三方登录!',
+                                text: '',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/1563092763476_gaitubao_800x450.jpg'
+                            },
                         ];
 
-                        swal.queue(steps).then(function() {
-                          swal({
-                            title: 'All done!',
-                            confirmButtonText: 'OK',
-                            imageUrl: 'http://www.guanacossj.com/media/jiablogimages/IMG_0323.JPG',
-                            showCancelButton: false
-                          });
-                        }).finally(function() {
-                          swal.resetDefaults();
+                        swal.queue(steps).then(function () {
+                            swal({
+                                title: 'All done!',
+                                confirmButtonText: 'OK',
+                                imageUrl: 'http://www.guanacossj.com/media/jiablogimages/IMG_0323.JPG',
+                                showCancelButton: false
+                            });
+                        }).finally(function () {
+                            swal.resetDefaults();
                         })
                     }
                 </script>
@@ -431,20 +472,20 @@
             <script type="text/javascript" src="/static/QPlayer/js/jquery.marquee.min.js"></script>
             <script>
             	var	playlist = [
-            {title:"让我偷偷看看你",artist:"赵雷",mp3:"/static/QPlayer/music/赵雷-让我偷偷看你.mp3",cover:"/static/QPlayer/musicpic/1572674856916.jpg",},
-            {title:"医生",artist:"许嵩",mp3:"/static/QPlayer/music/许嵩-医生.mp3",cover:"/static/QPlayer/musicpic/1572678461964.jpg",},
-            ];
-              var isRotate = true;
-              var autoplay = false;
+                    {title:"让我偷偷看看你",artist:"赵雷",mp3:"/static/QPlayer/music/赵雷-让我偷偷看你.mp3",cover:"/static/QPlayer/musicpic/1572674856916.jpg",},
+                    {title:"医生",artist:"许嵩",mp3:"/static/QPlayer/music/许嵩-医生.mp3",cover:"/static/QPlayer/musicpic/1572678461964.jpg",},
+                    ];
+                var isRotate = true;
+                var autoplay = false;
             </script>
             <script type="text/javascript" src="/static/QPlayer/js/player.js"></script>
             <script>
-            function bgChange(){
-            	var lis= $('.lib');
-            	for(var i=0; i<lis.length; i+=2)
-            	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
-            }
-            window.onload = bgChange;
+                function bgChange(){
+            	    var lis= $('.lib');
+            	    for(var i=0; i<lis.length; i+=2)
+            	    lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+                }
+                window.onload = bgChange;
             </script>
 			<div id="twocolumns">
 				<div class="container">
@@ -570,12 +611,12 @@
 								<!-- post of the page -->
                                 {% for i in blog_list_up %}
 								<article class="post wow fadeInLeft" data-wow-delay="0.6s">
-									<div class="img-holder"><a href="/JiaBlog/article/{{ i.id }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
+									<div class="img-holder"><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
 									<div class="text-wrap">
 										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h2>
+										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
 										<p>{{ i.body|safe|slice:"150" }}</p>
-										<a href="/JiaBlog/article/{{ i.id }}" target="_blank" class="link-more">Read more</a>
+										<a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank" class="link-more">Read more</a>
 									</div>
 								</article>
                                 {% endfor %}
@@ -615,12 +656,12 @@
 								<!-- post of the page -->
                                 {% for i in blog_list_middel %}
 								<article class="post wow fadeInLeft" data-wow-delay="0.6s">
-									<div class="img-holder"><a href="/JiaBlog/article/{{ i.id }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
+									<div class="img-holder"><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
 									<div class="text-wrap">
 										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h2>
+										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
 										<p>{{ i.body|safe|slice:"150" }}</p>
-										<a href="/JiaBlog/article/{{ i.id }}" target="_blank" class="link-more">Read more</a>
+										<a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank" class="link-more">Read more</a>
 									</div>
 								</article>
                                 {% endfor %}
@@ -658,9 +699,9 @@
 									<div class="text-wrap text-center">
 
 										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h2>
+										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
 										<p>{{ i.body|safe|slice:"150" }}</p>
-										<a href="/JiaBlog/article/{{ i.id }}" target="_blank" class="link-more">read more</a>
+										<a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank" class="link-more">read more</a>
                                         {% endfor %}
 									</div>
 								</article>
@@ -672,12 +713,12 @@
 								<!-- post of the page -->
                                 {% for i in blog_list_down %}
 								<article class="post wow fadeInLeft" data-wow-delay="0.6s">
-									<div class="img-holder"><a href="/JiaBlog/article/{{ i.id }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
+									<div class="img-holder"><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
 									<div class="text-wrap">
 										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h2>
+										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
 										<p>{{ i.body|safe|slice:"150" }}</p>
-										<a href="/JiaBlog/article/{{ i.id }}" target="_blank" class="link-more">Read more</a>
+										<a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank" class="link-more">Read more</a>
 									</div>
 								</article>
                                 {% endfor %}
@@ -750,7 +791,7 @@
 								<ol>
                                     {% for i in blog_list_three %}
 									<li>
-										<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+										<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 										<span class="post-tag">
 											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 											<strong class="tag hot">HOT</strong>
@@ -786,7 +827,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
@@ -826,7 +867,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
@@ -1170,6 +1211,10 @@
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->
     <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
     <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
 
     <!--script src="/static/js/echarts.js"></script-->

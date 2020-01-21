@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'sslserver',
     'social_core',
     'imagekit',
+    'online_intepreter'
 ]
 
 HAYSTACK_CONNECTIONS = {

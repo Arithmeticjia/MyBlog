@@ -5,6 +5,7 @@ from django.contrib.auth.models import User, AbstractUser
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
 from imagekit.processors import ResizeToFill
 from imagekit.models import ImageSpecField
+from uuslug import slugify
 from django.conf import settings
 from datetime import date
 
@@ -64,6 +65,7 @@ class Articles(models.Model):
     istop = models.CharField(max_length=5, default='', null=True, blank=True)
     articlebodybrief = models.TextField(blank=True, null=True)
     last_edit_timestamp = models.DateTimeField(auto_now=True, verbose_name="更新时间", editable=True)
+    url_slug = models.SlugField(editable=False,max_length=200)
 
     pic_800_450 = ImageSpecField(
         source="pic",
@@ -89,6 +91,10 @@ class Articles(models.Model):
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = '文章'
+
+    def save(self, *args, **kwargs):
+        self.url_slug = slugify(self.title)
+        super(Articles, self).save(*args, **kwargs)
 
 
 # Create your models here.

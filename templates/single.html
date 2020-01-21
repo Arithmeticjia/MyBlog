@@ -34,12 +34,12 @@
 {#    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>#}
     <script src="https://at.alicdn.com/t/font_1039987_pvt3d04d5y7.js"></script>
     <script src="https://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.css">
+    <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src="/static/js/emoji.js"></script>
@@ -98,7 +98,7 @@
                                 }
                                 else if (result.result == "success"){
                                     swal(
-                                    '收藏成功！',
+                                    'Collect Successfully！',
                                     );
                                     $("#collect").html(`<span type="submit" class="iconfont icon-shoucang-copy" style="text-align: center;color: red" onclick="collect()"></span>`);
                                 }
@@ -107,7 +107,7 @@
                                 }
                                 else {
                                     swal(
-                                    '收藏失败，请稍后重试！',
+                                    'Error! ',
                                     );
                                 }
                             }
@@ -186,7 +186,7 @@
 											<!--li><a href="single.html">Single</a></li-->
 											<li><a href="/JiaBlog/contact-us">Contact</a></li>
                                             <li><a href="/JiaBlog/JiaFile/" target="_blank">File</a></li>
-                                            <li><a href="/JiaBlog/onlineeditor" target="_blank">OnlineExplain</a></li>
+                                            <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
                                             {% if request.session.is_login %}
                                                 <li><a href="/JiaBlog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
                                                 <li><a href="/JiaBlog/logout/">Logout</a></li>
@@ -296,9 +296,10 @@
                                                         article_id:article_id,
                                                     },
                                                     success:function (result) {
-                                                        {#alert("Thumb up Success！");#}
-                                                        swal(
+                                                        Swal.fire(
                                                               'Thanks！',
+                                                              '',
+                                                              'success'
                                                         );
                                                         var newgreats = result.result;
                                                         $("#greatsrel").html(newgreats);
@@ -316,7 +317,7 @@
                                 <script>
                                 function pay() {
                                     swal({
-                                        title: 'Thanks for your surport!',
+                                        title: 'Thanks for your support!',
                                         text: '',
                                         imageUrl: '/static/images/newpay.jpg',
                                         imageWidth: 400,
@@ -395,7 +396,7 @@
 											<a href=""><img alt="image description" src="{{ i.pic.url }}"></a>
 										</div>
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h2>
+										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
                                         <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
 									</div>
 								</div>
@@ -713,7 +714,7 @@
 								<ol>
                                     {% for i in blog_list_three %}
 									<li>
-										<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+										<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 										<span class="post-tag">
 											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 											<strong class="tag hot">HOT</strong>
@@ -749,7 +750,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
@@ -789,7 +790,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
