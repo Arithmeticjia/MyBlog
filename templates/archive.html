@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<!-- set the encoding of your site -->
     {% load highlight %}
-    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
+{#    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">#}
+    <link rel="shortcut icon" href="/static/images/写博客.png">
 	<meta charset="utf-8">
 	<!-- set the viewport width and initial-scale on mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -190,7 +191,7 @@
                                         </header>
                                 {% for i in contacts %}
                                         {#<hr style="height:2px;border:none;border-top:3px double black;" />#}
-                                        <div class="comment-form" style="border-top: 1px solid #f1f1f1;"><h4><a href="/JiaBlog/article/{{ i.id }}" style="color: #f5ab35;font-size:18px;text-decoration: none;" target="_blank">{{ i.title }}</a></h4>
+                                        <div class="comment-form" style="border-top: 1px solid #f1f1f1;"><h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" style="color: #f5ab35;font-size:18px;text-decoration: none;" target="_blank">{{ i.title }}</a></h4>
                                             <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.articlebodybrief|slice:"100"|safe}}</p>
                                             <p style="color:rgba(30,30,30,0.85);font-weight: bold;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ i.timestamp }}&nbsp;&nbsp;&nbsp;&nbsp;views:&nbsp;&nbsp;{{ i.views }}&nbsp;&nbsp;&nbsp;&nbsp;comments:&nbsp;&nbsp;{{ i.all_comments.count }}&nbsp;&nbsp;&nbsp;&nbsp;greats:&nbsp;&nbsp;{{ i.greats }}</p>
                                         </div>
@@ -209,12 +210,12 @@
                                            <article class="post-block wow fadeInUp" data-wow-delay="0.6s" >
                                             <div class="post-holder" style="font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif " >
                                                 <div class="img-holder">
-                                                    <a href="/JiaBlog/article/{{ i.id }}" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
+                                                    <a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
                                                 </div>
                                                 <time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
-                                                <h2><a href="/JiaBlog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h2>
+                                                <h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
                                                 <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.articlebodybrief|slice:"150"|safe }}</p>
-                                                <a href="/JiaBlog/article/{{ i.id }}" class="read-more">Read more</a>
+                                                <a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" class="read-more">Read more</a>
                                                 <footer>
                                                     <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ i.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                                                     <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ i.greats }}</a></strong>

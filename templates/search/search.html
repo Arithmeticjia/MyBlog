@@ -3,11 +3,12 @@
 <head>
     {% load highlight %}
 	<!-- set the encoding of your site -->
-    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
+{#    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">#}
+    <link rel="shortcut icon" href="/static/images/写博客.png">
 	<meta charset="utf-8">
 	<!-- set the viewport width and initial-scale on mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Archive</title>
+	<title>Search</title>
 	<!-- include the site stylesheet -->
 	<link href='https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CPoppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 	<!-- include the site stylesheet -->
@@ -262,7 +263,7 @@
                                         <img src="{{ jia.pic.url }}" alt="ArithmeticJia">
                                     </a>
                                 </div>
-                                <h3><a href="#">A{{ jia.name }}</a></h3>
+                                <h3><a href="#">{{ jia.name }}</a></h3>
                                 <p>{{ jia.brief }}</p>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">
@@ -281,7 +282,7 @@
 								<!-- Post Block of the page -->
                             {% if query %}
                                 <header class="header">
-                                    <h2>搜索结果如下：</h2>
+                                    <h2>Search Results:</h2>
                                 </header>
                                 {% for result in page.object_list %}
 								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
@@ -435,7 +436,7 @@
                                         <img src="{{ jia.pic.url }}" alt="ArithmeticJia">
                                     </a>
                                 </div>
-                                <h3><a href="#">A{{ jia.name }}</a></h3>
+                                <h3><a href="#">{{ jia.name }}</a></h3>
                                 <p>{{ jia.brief }}</p>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">

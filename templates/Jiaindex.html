@@ -3,7 +3,8 @@
 <head>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<!-- set the encoding of your site -->
-    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
+{#    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">#}
+    <link rel="shortcut icon" href="/static/images/写博客.png">
 	<meta charset="utf-8">
 	<!-- set the viewport width and initial-scale on mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -911,77 +912,77 @@
 
                                     // 指定图表的配置项和数据
                                 var option = {
-    backgroundColor: '#2c343c',
+                                    backgroundColor: '#2c343c',
 
-    title: {
-        text: 'Category Counting',
-        left: 'center',
-        top: 15,
-        textStyle: {
-            color: '#ccc'
-        }
-    },
+                                    title: {
+                                        text: 'Category Counting',
+                                        left: 'center',
+                                        top: 15,
+                                        textStyle: {
+                                            color: '#ccc'
+                                        }
+                                    },
 
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                    },
 
-    visualMap: {
-        show: false,
-        min: {{ min }},
-        max: {{ max }},
-        inRange: {
-            colorLightness: [0, 1]
-        }
-    },
-    series : [
-        {
-            name:'article category',
-            type:'pie',
-            radius : '68%',
-            center: ['50%', '50%'],
-            data:[
-                {% for key,value in catcharts.items %}
-                    {value:{{ value }},name:"{{ key }}"},
-                {% endfor %}
-            ].sort(function (a, b) { return a.value - b.value; }),
-            roseType: 'radius',
-            label: {
-                normal: {
-                    textStyle: {
-                        color: 'rgba(255, 255, 255, 0.3)',
-                        fontSize:16,
-                    }
-                }
-            },
-            labelLine: {
-                normal: {
-                    lineStyle: {
-                        color: 'rgba(255, 255, 255, 0.3)'
-                    },
-                    smooth: 0.2,
-                    length: 10,
-                    length2: 20
-                }
-            },
-            itemStyle: {
-                normal: {
-                    color: '#c23531',
-                    shadowBlur: 200,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-            },
+                                    visualMap: {
+                                        show: false,
+                                        min: {{ min }},
+                                        max: {{ max }},
+                                        inRange: {
+                                        colorLightness: [0, 1]
+                                        }
+                                    },
+                                    series : [
+                                        {
+                                            name:'article category',
+                                            type:'pie',
+                                            radius : '68%',
+                                            center: ['50%', '50%'],
+                                            data:[
+                                                {% for key,value in catcharts.items %}
+                                                    {value:{{ value }},name:"{{ key }}"},
+                                                {% endfor %}
+                                            ].sort(function (a, b) { return a.value - b.value; }),
+                                            roseType: 'radius',
+                                            label: {
+                                                normal: {
+                                                textStyle: {
+                                                    color: 'rgba(255, 255, 255, 0.3)',
+                                                    fontSize:16,
+                                                    }
+                                                }
+                                            },
+                                            labelLine: {
+                                                normal: {
+                                                lineStyle: {
+                                                    color: 'rgba(255, 255, 255, 0.3)'
+                                                    },
+                                                    smooth: 0.2,
+                                                    length: 10,
+                                                    length2: 20
+                                                }
+                                            },
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#c23531',
+                                                    shadowBlur: 200,
+                                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                }
+                                            },
 
-            animationType: 'scale',
-            animationEasing: 'elasticOut',
-            animationDelay: function (idx) {
-                return Math.random() * 200;
-            }
-        }
-    ]
-};
-                                    // 使用刚指定的配置项和数据显示图表。
+                                            animationType: 'scale',
+                                            animationEasing: 'elasticOut',
+                                            animationDelay: function (idx) {
+                                            return Math.random() * 200;
+                                            }
+                                        }
+                                    ]
+                                };
+                                // 使用刚指定的配置项和数据显示图表。
                                 myChart.setOption(option);
                                 </script>
 							<!-- Widget of the page end -->
