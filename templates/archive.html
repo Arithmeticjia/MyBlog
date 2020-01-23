@@ -24,6 +24,8 @@
 	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
 	<!-- include the site stylesheet -->
 	<link type="text/css" rel="stylesheet" href="/static/css/github.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/viewerjs-master/dist/viewer.min.css">
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_dycynze6id6.css">
     <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_oyyrvpk63p.css">
     <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_07f5zbdbyf9q.css">
@@ -280,7 +282,18 @@
 								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
 									<div class="post-holder" style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" >
 										<div class="img-holder">
-											<a href="/JiaBlog/article/{{ i.id }}" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
+{#											<a href="/JiaBlog/article/{{ i.id }}" target="_blank"><img class="viewerpic" src="/media/{{ i.pic }}" alt="image description"></a>#}
+                                            <img class="viewerpic" src="/media/{{ i.pic }}" alt="image description">
+                                            <script type="text/javascript">
+                                                $(document).ready(function () {
+    	            	                            $('.viewerpic').viewer({
+                    		                            navbar: false,
+                    		                            button: true,
+                    		                            toolbar: true,
+                    		                            title: false
+                                                    });
+		                                        });
+                                            </script>
 										</div>
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
@@ -763,6 +776,8 @@
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->
     <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script type="text/javascript" src="/static/viewerjs-master/dist/viewer.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-viewer-master/dist/jquery-viewer.min.js"></script>
     <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
 </body>
 </html>

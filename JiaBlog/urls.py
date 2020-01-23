@@ -64,6 +64,7 @@ urlpatterns = [
     url('api/', include(route.urls)),
     url(r'^collect/$', views.collect),
     url(r'^comments/(?P<article_id>[0-9]+)$',views.comments),
+    url(r'^china/$', views.china),
 
 ]
 

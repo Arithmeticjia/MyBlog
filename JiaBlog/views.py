@@ -2270,3 +2270,7 @@ def editor_addcategory(request):
             data['flag'] = 'fail'
             return HttpResponse(json.dumps(data), content_type='application/json')
 
+
+def china(request):
+    return render(request, 'china.html')
+
