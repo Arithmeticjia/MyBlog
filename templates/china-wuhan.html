@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/static/images/写博客.png">
+    <title>武汉加油</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script src="/static/china/dist/echarts.js"></script>
+    <script src="/static/china/map/js/china.js"></script>
+    <style>
+        *{margin:0;padding:0}
+        html,body{
+            width:100%;
+            height:100%;
+        }
+        #main{
+              width:850px;
+              height:637.5px;
+              margin: 150px auto;
+              border:1px solid #ddd;
+          }
+        /*默认长宽比0.75*/
+    </style>
+</head>
+<body>
+    <div id="main">
+    </div>
+    <script type="text/javascript">
+        var dataList=[
+            {name:"南海诸岛",value: virus(0)},
+            {name: '北京', value: virus(14)},
+            {name: '天津', value: virus(4)},
+            {name: '上海', value: virus(16)},
+            {name: '重庆', value: virus(9)},
+            {name: '河北', value: virus(1)},
+            {name: '河南', value: virus(5)},
+            {name: '云南', value: virus(1)},
+            {name: '辽宁', value: virus(3)},
+            {name: '黑龙江', value: virus(1)},
+            {name: '湖南', value: virus(9)},
+            {name: '安徽', value: virus(9)},
+            {name: '山东', value: virus(6)},
+            {name: '新疆', value: virus(0)},
+            {name: '江苏', value: virus(1)},
+            {name: '浙江', value: virus(10)},
+            {name: '江西', value: virus(3)},
+            {name: '湖北', value: virus(444)},
+            {name: '广西', value: virus(5)},
+            {name: '甘肃', value: virus(0)},
+            {name: '山西', value: virus(1)},
+            {name: '内蒙古', value: virus(-1)},
+            {name: '陕西', value: virus(4)},
+            {name: '吉林', value: virus(1)},
+            {name: '福建', value: virus(4)},
+            {name: '贵州', value: virus(3)},
+            {name: '广东', value: virus(32)},
+            {name: '青海', value: virus(0)},
+            {name: '西藏', value: virus(0)},
+            {name: '四川', value: virus(8)},
+            {name: '宁夏', value: virus(1)},
+            {name: '海南', value: virus(4)},
+            {name: '台湾', value: virus(1)},
+            {name: '香港', value: virus(1)},
+            {name: '澳门', value: virus(2)}
+        ];
+        var datavirus=[
+            {name:"南海诸岛",value: 0},
+            {name: '北京', value: 14},
+            {name: '天津', value: 4},
+            {name: '上海', value: 16},
+            {name: '重庆', value: 9},
+            {name: '河北', value: 1},
+            {name: '河南', value: 5},
+            {name: '云南', value: 1},
+            {name: '辽宁', value: 3},
+            {name: '黑龙江', value: 1},
+            {name: '湖南', value: 9},
+            {name: '安徽', value: 9},
+            {name: '山东', value: 6},
+            {name: '新疆', value: 0},
+            {name: '江苏', value: 1},
+            {name: '浙江', value: 10},
+            {name: '江西', value: 3},
+            {name: '湖北', value: 444},
+            {name: '广西', value: 5},
+            {name: '甘肃', value: 0},
+            {name: '山西', value: 1},
+            {name: '内蒙古', value: 0},
+            {name: '陕西', value: 4},
+            {name: '吉林', value: 1},
+            {name: '福建', value: 4},
+            {name: '贵州', value: 3},
+            {name: '广东', value: 32},
+            {name: '青海', value: 0},
+            {name: '西藏', value: 0},
+            {name: '四川', value: 8},
+            {name: '宁夏', value: 1},
+            {name: '海南', value: 5},
+            {name: '台湾', value: 1},
+            {name: '香港', value: 1},
+            {name: '澳门', value: 2}
+        ];
+        var myChart = echarts.init(document.getElementById('main'));
+        function randomValue() {
+            return Math.round(Math.random()*1000);
+        }
+        function virus(num){
+            if (num === 0){
+                return 0;
+            }else if(num >= 1 && num <= 9){
+                return 2;
+            }else if(num >=10 && num <= 100){
+                return 3;
+            }else if(num > 100){
+                return 4;
+            }else
+                return 1;
+        }
+        option = {
+            backgroundColor: '#404a59',
+            title:  {
+                text: '武汉',
+                x: 'center',
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+                    fontSize:28,
+                    color: '#fff'
+                },
+            },
+            tooltip: {
+                formatter:function(params,ticket, callback){
+                    return params.seriesName+'<br />'+params.name+'：'+params.value
+                }//数据格式化
+            },
+            visualMap: {
+                min: 0,
+                max: 50,
+                align: 'auto',
+                {#type: 'piecewise',    //是否连续#}
+                left: 'left',
+                top: 'bottom',
+                text: ['高','低'],    //取值范围的文字
+                {#categories: [#}
+                {#    '0','1','2','3','4','5','6','7','8','9','10','14','16','32','444',#}
+                {#],#}
+                inRange: {
+                    color: ['#fdfff8','#f0a23f','#dd5340','#dd292f','#DD2020'],
+                    {#color: {#}
+                    {#    '0':'#fcffde',#}
+                    {#    '1':'#ffaa2a',#}
+                    {#    '2':'#ffaa2a',#}
+                    {#    '3':'#ffaa2a',#}
+                    {#    '4':'#ffaa2a',#}
+                    {#    '5':'#ffaa2a',#}
+                    {#    '6':'#ffaa2a',#}
+                    {#    '7':'#ffaa2a',#}
+                    {#    '8':'#ffaa2a',#}
+                    {#    '9':'#ffaa2a',#}
+                    {#    '10':'#f06a5c',#}
+                    {#    '14':'#f06a5c',#}
+                    {#    '16':'#f06a5c',#}
+                    {#    '32':'#f06a5c',#}
+                    {#    '444':'#dd292f',#}
+                    //取值范围的颜色
+                },
+                show:false//图注
+            },
+            geo: {
+                map: 'china',
+                roam: false,//不开启缩放和平移
+                zoom:1.23,//视角缩放比例
+                label: {
+                    normal: {
+                        show: true,
+                        fontSize:'10',
+                        color: 'rgba(0,0,0,0.7)'
+                    }
+                },
+                itemStyle: {
+                    normal:{
+                        borderColor: 'rgba(0, 0, 0, 0.2)'
+                    },
+                    emphasis:{
+                        areaColor: '#53adf3',//鼠标选择区域颜色
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            },
+            series : [
+                {
+                    name: '确诊人数',
+                    type: 'map',
+                    geoIndex: 0,
+                    data: [{% for key,value in data.items%}
+                        {value:{{ value }}, name:'{{ key }}'},
+                    {% endfor %}]
+                }
+            ]
+        };
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+            alert(params.name+"确诊人数"+params.data['value']);
+        });
+
+      /*  setTimeout(function () {
+            myChart.setOption({
+                series : [
+                    {
+                        name: '信息量',
+                        type: 'map',
+                        geoIndex: 0,
+                        data:dataList
+                    }
+                ]
+            });
+        },1000)*/
+    </script>
+</body>
+</html>
