@@ -2280,25 +2280,20 @@ def china_wuhan(request):
     req.encoding = 'urf-8'
     html = req.text
     soup = BeautifulSoup(html, 'lxml')
-    cities = soup.find('div', {'class': 'descBox___3dfIo'})
-    protocols = cities.find_all('p')
+    cities = soup.find('div', {'class': 'areaBox___3jZkr'})
+    # 每个省
+    protocols = cities.find_all('div')
     data = {}
 
     for i in protocols:
         try:
-            content = i.find('span').get_text()
-            name = content[:3].replace(" ", "")
-            content = content.replace(" ", "")
-            num = 0
-            try:
-                num_start = content.index('诊')
-                num_end = content.find('例')
-                num = content[num_start + 1:num_end]
-                data['{}'.format(name)] = num
-            except:
-                pass
-            print('疫情：', name, '确诊', num, '例')
-
+            first = i.find('div', {'class': 'areaBlock1___3V3UU'})
+            content = first.find_all('p')
+            name = content[0].get_text()
+            num = content[1].get_text()
+            if num == "":
+                num = 0
+            data['{}'.format(name)] = num
         except AttributeError as e:
             continue
     protocols = ["南海诸岛",'北京','天津','上海','重庆','河南',
@@ -2326,24 +2321,22 @@ def china_wuhan_virus(request):
         req.encoding = 'urf-8'
         html = req.text
         soup = BeautifulSoup(html, 'html.parser')
-        cities = soup.find('div', {'class': 'descBox___3dfIo'})
-        protocols = cities.find_all('p')
+        cities = soup.find('div', {'class': 'areaBox___3jZkr'})
+        # 每个省
+        protocols = cities.find_all('div')
         data = {}
 
         for i in protocols:
             try:
-                content = i.find('span').get_text()
-                name = content[:3].replace(" ", "")
-                content = content.replace(" ", "")
-                num = 0
-                try:
-                    num_start = content.index('诊')
-                    num_end = content.find('例')
-                    num = content[num_start + 1:num_end]
-                    data['{}'.format(name)] = num
-                except:
-                    continue
-
+                first = i.find('div', {'class': 'areaBlock1___3V3UU'})
+                content = first.find_all('p')
+                name = content[0].get_text()
+                num = content[1].get_text()
+                print(num)
+                if num == "":
+                    num = 0
+                data['{}'.format(name)] = num
+                print('疫情：', name, '确诊', num, '例')
             except AttributeError as e:
                 continue
 
