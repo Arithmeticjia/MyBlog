@@ -2274,12 +2274,20 @@ def editor_addcategory(request):
 def china_wuhan(request):
     import requests
     from bs4 import BeautifulSoup
+    from selenium import webdriver
 
     target = 'https://3g.dxy.cn/newh5/view/pneumonia?scene=2&clicktime=1579579384&enterid=1579579384&from=groupmessage&isappinstalled=0'
     req = requests.get(url=target)
     req.encoding = 'urf-8'
     html = req.text
-    soup = BeautifulSoup(html, 'lxml')
+    option = webdriver.ChromeOptions()
+    option.add_argument('headless')  # 设置option,后台运行
+    driver = webdriver.Chrome(chrome_options=option)
+    driver.get(target)
+    js = "var q=document.documentElement.scrollTop=1500"
+    driver.execute_script(js)
+    selenium_page = driver.page_source
+    soup = BeautifulSoup(selenium_page, 'html.parser')
     cities = soup.find('div', {'class': 'areaBox___3jZkr'})
     # 每个省
     protocols = cities.find_all('div')
@@ -2320,7 +2328,14 @@ def china_wuhan_virus(request):
         req = requests.get(url=target)
         req.encoding = 'urf-8'
         html = req.text
-        soup = BeautifulSoup(html, 'html.parser')
+        option = webdriver.ChromeOptions()
+        option.add_argument('headless')  # 设置option,后台运行
+        driver = webdriver.Chrome(chrome_options=option)
+        driver.get(target)
+        js = "var q=document.documentElement.scrollTop=1500"
+        driver.execute_script(js)
+        selenium_page = driver.page_source
+        soup = BeautifulSoup(selenium_page, 'html.parser')
         cities = soup.find('div', {'class': 'areaBox___3jZkr'})
         # 每个省
         protocols = cities.find_all('div')
@@ -2332,15 +2347,13 @@ def china_wuhan_virus(request):
                 content = first.find_all('p')
                 name = content[0].get_text()
                 num = content[1].get_text()
-                print(num)
                 if num == "":
                     num = 0
                 data['{}'.format(name)] = num
-                print('疫情：', name, '确诊', num, '例')
             except AttributeError as e:
                 continue
 
-        return JsonResponse(data, json_dumps_params={'ensure_ascii':False})
+        return JsonResponse(data, json_dumps_params={'ensure_ascii': False})
 
 
 
