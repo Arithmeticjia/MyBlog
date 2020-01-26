@@ -2323,6 +2323,7 @@ def china_wuhan_virus(request):
     if request.method == 'GET':
         import requests
         from bs4 import BeautifulSoup
+        from selenium import webdriver
 
         target = 'https://3g.dxy.cn/newh5/view/pneumonia?scene=2&clicktime=1579579384&enterid=1579579384&from=groupmessage&isappinstalled=0'
         req = requests.get(url=target)
