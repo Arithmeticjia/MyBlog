@@ -102,6 +102,12 @@
                     showCloseButton: true,
                     showCancelButton: true,
                     focusConfirm: false,
+                    confirmButtonText: "返回首页",
+                    cancelButtonText: "关闭"
+                }).then((result) =>{
+                        if(result.value){
+                            window.open('https://www.guanacossj.com')
+                        }
                 })
             }
     </script>
