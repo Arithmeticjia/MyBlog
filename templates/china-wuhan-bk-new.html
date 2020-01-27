@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/static/images/写博客.png">
+    <title>武汉加油</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script src="/static/china/dist/echarts.js"></script>
+    <script src="/static/china/map/js/china.js"></script>
+    <script src="/static/JiaBlog/js/jquery.js"></script>
+    <!-- include jQuery -->
+    <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
+    <style>
+        *{margin:0;padding:0}
+        html,body{
+            width:100%;
+            height:100%;
+        }
+        #main{
+              width:850px;
+              height:637.5px;
+              margin: 150px auto;
+              border:1px solid #ddd;
+          }
+        /*默认长宽比0.75*/
+        .box-block {
+            display: table;
+            width: 100%;
+            text-align: center;
+        }
+
+        .box-block div {
+            display: table-cell;
+            word-wrap: break-word;
+            text-align: center;
+        }
+        #allinfo{
+            z-index: 10;
+            border-radius:2px;
+            display: block;
+            position: fixed;
+            left: 10px;
+            top: 300px;
+            width:87px;
+            height: 50px;
+            background: #f5ab35;
+            font-size: 15px;
+            color: white;
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin:0 auto;
+            text-align: center;
+        }
+        button.orange {
+            z-index: 10;
+            color: #444444;
+            display: block;
+            position: fixed;
+            left: 10px;
+            top: 300px;
+            width:87px;
+            height: 50px;
+            {#background: #F3F3F3;#}
+            background: #f5ab35;
+            border: 1px #DADADA solid;
+            padding: 5px 10px;
+            border-radius: 2px;
+            font-weight: bold;
+            font-size: 12pt;
+            outline: none;
+
+        }
+        button.orange:hover {
+            border: 1px #C6C6C6 solid;
+            box-shadow: 1px 1px 1px #EAEAEA;
+            color: #333333;
+            background: #F7F7F7;
+        }
+        button.orange:active {
+            box-shadow: inset 1px 1px 1px #DFDFDF;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-submit" >
+{#        <input type="button" id="allinfo" value="详细信息" onclick="showall()">#}
+        <button class="orange" onclick="showall()">详细信息</button>
+    </div>
+    <script type="text/javascript">
+            function showall() {
+                Swal.fire({
+                    title: '<strong>地区&nbsp;确诊人数</u></strong>',
+                    {#icon: 'info',#}
+                    html:
+                        '{% for key,value in data.items%}\n'+
+                            '<p style="font-size:larger;">{{ key }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ value }}&nbsp;人</p>\n'+
+                            '{% endfor %}',
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText: "返回首页",
+                    cancelButtonText: "关闭"
+                }).then((result) =>{
+                        if(result.value){
+                            window.open('https://www.guanacossj.com')
+                        }
+                })
+            }
+    </script>
+    <div id="main">
+    </div>
+    <script type="text/javascript">
+        var dataList=[
+            {name:"南海诸岛",value: virus(0)},
+            {name: '北京', value: virus(14)},
+            {name: '天津', value: virus(4)},
+            {name: '上海', value: virus(16)},
+            {name: '重庆', value: virus(9)},
+            {name: '河北', value: virus(1)},
+            {name: '河南', value: virus(5)},
+            {name: '云南', value: virus(1)},
+            {name: '辽宁', value: virus(3)},
+            {name: '黑龙江', value: virus(1)},
+            {name: '湖南', value: virus(9)},
+            {name: '安徽', value: virus(9)},
+            {name: '山东', value: virus(6)},
+            {name: '新疆', value: virus(0)},
+            {name: '江苏', value: virus(1)},
+            {name: '浙江', value: virus(10)},
+            {name: '江西', value: virus(3)},
+            {name: '湖北', value: virus(444)},
+            {name: '广西', value: virus(5)},
+            {name: '甘肃', value: virus(0)},
+            {name: '山西', value: virus(1)},
+            {name: '内蒙古', value: virus(-1)},
+            {name: '陕西', value: virus(4)},
+            {name: '吉林', value: virus(1)},
+            {name: '福建', value: virus(4)},
+            {name: '贵州', value: virus(3)},
+            {name: '广东', value: virus(32)},
+            {name: '青海', value: virus(0)},
+            {name: '西藏', value: virus(0)},
+            {name: '四川', value: virus(8)},
+            {name: '宁夏', value: virus(1)},
+            {name: '海南', value: virus(4)},
+            {name: '台湾', value: virus(1)},
+            {name: '香港', value: virus(1)},
+            {name: '澳门', value: virus(2)}
+        ];
+        var datavirus=[
+            {name:"南海诸岛",value: 0},
+            {name: '北京', value: 14},
+            {name: '天津', value: 4},
+            {name: '上海', value: 16},
+            {name: '重庆', value: 9},
+            {name: '河北', value: 1},
+            {name: '河南', value: 5},
+            {name: '云南', value: 1},
+            {name: '辽宁', value: 3},
+            {name: '黑龙江', value: 1},
+            {name: '湖南', value: 9},
+            {name: '安徽', value: 9},
+            {name: '山东', value: 6},
+            {name: '新疆', value: 0},
+            {name: '江苏', value: 1},
+            {name: '浙江', value: 10},
+            {name: '江西', value: 3},
+            {name: '湖北', value: 444},
+            {name: '广西', value: 5},
+            {name: '甘肃', value: 0},
+            {name: '山西', value: 1},
+            {name: '内蒙古', value: 0},
+            {name: '陕西', value: 4},
+            {name: '吉林', value: 1},
+            {name: '福建', value: 4},
+            {name: '贵州', value: 3},
+            {name: '广东', value: 32},
+            {name: '青海', value: 0},
+            {name: '西藏', value: 0},
+            {name: '四川', value: 8},
+            {name: '宁夏', value: 1},
+            {name: '海南', value: 5},
+            {name: '台湾', value: 1},
+            {name: '香港', value: 1},
+            {name: '澳门', value: 2}
+        ];
+        var myChart = echarts.init(document.getElementById('main'));
+        function randomValue() {
+            return Math.round(Math.random()*1000);
+        }
+        function virus(num){
+            if (num === 0){
+                return 0;
+            }else if(num >= 1 && num <= 9){
+                return 2;
+            }else if(num >=10 && num <= 100){
+                return 3;
+            }else if(num > 100){
+                return 4;
+            }else
+                return 1;
+        }
+        var statisticsData = [];                //这是我自己建的空数组，为了把异步拿到的数据push进去
+        $.ajax({
+            type : "get",
+            async : true,                       //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "/china-wuhan/virusdata",     //请求发送到相应的servlet
+            dataType : "json",
+            success : function(data){
+                if (data) {
+                    var dataStage = data;
+                    for(var i in dataStage) {
+                        var statisticsObj = {name:'',value:''};   //因为ECharts里边需要的的数据格式是这样的
+                        statisticsObj.name = i;
+                        statisticsObj.value = dataStage[i];
+                        statisticsData.push(statisticsObj);   //把拿到的异步数据push进我自己建的数组里
+                    }
+                    var option = {
+                        backgroundColor: '#404a59',
+                        title:  {
+                            text: '武汉疫情',
+                            x: 'center',
+                            textStyle: {
+                                fontSize:28,
+                                color: '#fff'
+                            },
+                        },
+                        tooltip: {
+                            formatter:function(params,ticket, callback){
+                                return params.seriesName+'<br />'+params.name+'：'+params.value
+                            }//数据格式化
+                        },
+                        visualMap: {
+                            min: 0,
+                            max: 50,
+                            align: 'auto',
+                            {#type: 'piecewise',    //是否连续#}
+                            left: 'left',
+                            top: 'bottom',
+                            text: ['高','低'],    //取值范围的文字
+                            {#categories: [#}
+                            {#    '0','1','2','3','4','5','6','7','8','9','10','14','16','32','444',#}
+                            {#],#}
+                            inRange: {
+                                color: ['#fdfff8','#f0a23f','#DD7931','#dd5340','#dd292f','#DD3E1B','#DD2020','#742B33',],
+                            },
+                            show:false//图注
+                        },
+                        geo: {
+                            map: 'china',
+                            roam: false,//不开启缩放和平移
+                            zoom:1.23,//视角缩放比例
+                            label: {
+                            normal: {
+                                show: true,
+                                fontSize:'10',
+                                color: 'rgba(0,0,0,0.7)'
+                            }
+                        },
+                        itemStyle: {
+                            normal:{
+                                borderColor: 'rgba(0, 0, 0, 0.2)'
+                            },
+                            emphasis:{
+                                areaColor: '#53adf3',//鼠标选择区域颜色
+                                shadowOffsetX: 0,
+                                shadowOffsetY: 0,
+                                shadowBlur: 20,
+                                borderWidth: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        },
+                        series : [
+                            {
+                                name: '确诊人数',
+                                type: 'map',
+                                geoIndex: 0,
+                                data: statisticsData
+                                }
+                            ]
+                        };
+                        myChart.setOption(option);
+                        myChart.on('click', function (params) {
+                            Swal.fire(
+                                params.name+"确诊人数"+params.data['value']+"人",
+                                '',
+                            )
+                        });
+                    }
+                }
+            });
+
+      /*  setTimeout(function () {
+            myChart.setOption({
+                series : [
+                    {
+                        name: '信息量',
+                        type: 'map',
+                        geoIndex: 0,
+                        data:dataList
+                    }
+                ]
+            });
+        },1000)*/
+    </script>
+</body>
+</html>
