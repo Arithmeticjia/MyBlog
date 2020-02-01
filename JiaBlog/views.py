@@ -1298,6 +1298,7 @@ def blog_category(request, blog_category):
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
     blog_lists = Articles.objects.filter(category=cate).filter(status="有效").order_by('id')
+    blog_list_news = Articles.objects.filter(status="有效").order_by("-timestamp")[0:10]  # 获取10 recent posts
     paginator = Paginator(blog_lists, 10)  # 分页，每页10条数据
     page = request.GET.get('page')
     try:
@@ -1332,6 +1333,7 @@ def blog_category(request, blog_category):
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
         'blog_category': blog_category,
+        'blog_list_three': blog_list_news,
         'jia': jia,
         'year_month_number': year_month_number,
         'oauth2_from': oauth2_from
