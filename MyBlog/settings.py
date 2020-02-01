@@ -33,6 +33,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# debug-toolbar
+INTERNAL_IPS = ['127.0.0.1']
+
 # AUTH_USER_MODEL = "JiaBlog.BlogUser"
 
 
@@ -58,7 +61,8 @@ INSTALLED_APPS = [
     'sslserver',
     'social_core',
     'imagekit',
-    'online_intepreter'
+    'online_intepreter',
+    'debug_toolbar',
 ]
 
 HAYSTACK_CONNECTIONS = {
@@ -80,6 +84,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'MyBlog.urls'

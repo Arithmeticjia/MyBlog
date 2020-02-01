@@ -65,7 +65,7 @@ class Articles(models.Model):
     istop = models.CharField(max_length=5, default='', null=True, blank=True)
     articlebodybrief = models.TextField(blank=True, null=True)
     last_edit_timestamp = models.DateTimeField(auto_now=True, verbose_name="更新时间", editable=True)
-    url_slug = models.SlugField(editable=False,max_length=200)
+    url_slug = models.SlugField(editable=False, max_length=200)
 
     pic_800_450 = ImageSpecField(
         source="pic",

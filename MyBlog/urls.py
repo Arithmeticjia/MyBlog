@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from JiaBlog import views
 from channels.routing import ProtocolTypeRouter
+import debug_toolbar
 
 # from django.views import static
 
@@ -42,6 +43,7 @@ urlpatterns = [
     # url(r'^oauth/', include('social_django.urls', namespace='social')),
     # url(r'^search/', include('haystack.urls')),                   # old way
     url(r'^search/', views.MySeachView(), name='haystack_search'),  # new way
+    path(r"__debug__/", include(debug_toolbar.urls)),
     # url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}, name='static'),
     # url(r'^media/(?P<path>.*)$',  serve, {"document_root": MEDIA_ROOT}),
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
