@@ -321,7 +321,7 @@
                 "location": "WX4FBXXFKE4F",
                 "geolocation": "enabled",
                 "position": "top-left",
-                "margin": "300px 10px",
+                "margin": "250px 10px",
                 "language": "zh-chs",
                 "unit": "c",
                 "theme": "chameleon",
@@ -332,7 +332,7 @@
             </script>
 {#            <button style="border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 16px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;" onclick="vshow()">版本更新</button>#}
             <div class="form-submit" >
-                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 15px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="Try Me" onclick="vshow()">
+                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 320px;width:87px;height: 50px;background: #f5ab35;font-size: 12pt;font-weight: bold;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="Try Me" onclick="vshow()">
             </div>
                 <script type="text/javascript">
                     function vshow() {
@@ -449,7 +449,7 @@
                     }
                 </script>
             <div class="form-submit" >
-                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 415px;width:87px;height: 50px;background: #f5ab35;font-size: 15px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="武汉加油" onclick="towuhan()">
+                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 385px;width:87px;height: 50px;background: #f5ab35;font-size: 12pt;font-weight: bold;color: #333333  ;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="武汉加油" onclick="towuhan()">
             </div>
             <script type="text/javascript">
                 function towuhan() {
@@ -457,8 +457,8 @@
                         title: '武汉加油',
                         width: 500,
                         text: '',
-                        {#confirmButtonColor: "#1aad19",#}
-                        confirmButtonText: "确定",
+                        imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580557485291&di=6dd4c20d90a607c61e4d610f5ecfdd60&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fq_70%2Cc_zoom%2Cw_640%2Fimages%2F20200130%2F4a4fcdcb7d7c40c2b15029ee5ab2685d.jpeg',
+                        confirmButtonText: "查看全国疫情分布",
                     }).then((result) =>{
                         if(result.value){
                             window.open('https://www.guanacossj.com/china-wuhan')
