@@ -6,6 +6,16 @@
 	<title>Register For ArithmeticJia</title>
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/my-login.css">
+    <style type="text/css">
+        input {
+            outline: none;
+        }
+        input.form-control:focus {
+            border-color: #f5ab35;
+            outline: none;
+            box-shadow:none;
+        }
+    </style>
 </head>
 <body class="my-login-page">
 	<section class="h-100">
@@ -54,12 +64,12 @@
 {#								</div>#}
 
 								<div class="form-group no-margin">
-									<button type="submit" class="btn btn-primary btn-block">
+									<button type="submit" class="btn btn-primary btn-block" style="background: #f5ab35;border-color: #f5ab35">
 										Register
 									</button>
 								</div>
-								<div class="margin-top20 text-center">
-									Already have an account? <a href="/JiaBlog/login">Login</a>
+								<div class="margin-top20 text-center" >
+									Already have an account? <a href="/JiaBlog/login" style="color: #f5ab35">Login</a>
 								</div>
 							</form>
 						</div>

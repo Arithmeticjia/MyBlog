@@ -10,9 +10,9 @@ $(function() {
 		});
 		$this.after($("<div/>", {
 			html: 'Show',
-			class: 'btn btn-primary btn-sm',
+			class: 'btn btn-info btn-sm',
 			id: 'passeye-toggle-'+i,
-			style: 'position:absolute;right:10px;top:50%;transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;'
+			style: 'position:absolute;right:10px;top:50%;transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;background: #f5ab35;border-color: #f5ab35'
 		}));
 		$this.after($("<input/>", {
 			type: 'hidden',
