@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from JiaBlog import views
 from channels.routing import ProtocolTypeRouter
+from django.views.static import serve
 import debug_toolbar
 
 # from django.views import static
@@ -29,21 +30,58 @@ application = ProtocolTypeRouter({
     # Empty for now (http->django views is added by default)
 })
 
-urlpatterns = [
-    url(r'^$', views.blog_index),
-    url(r'^baidu_verify_iYpMqoGJf4.html/$', views.baiduyz),
-    path('admin/', admin.site.urls),
-    path('JiaBlog/', include('JiaBlog.urls', namespace="JiaBlog")),
-    path('activemq/', include('activemq.urls', namespace="activemq")),
-    path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
-    path('mdeditor/', include('mdeditor.urls')),
-    path('china-wuhan/', views.china_wuhan),
-    path('china-wuhan/virusdata', views.china_wuhan_virus),
-    url(r'', include('social_django.urls', namespace='social')),
-    # url(r'^oauth/', include('social_django.urls', namespace='social')),
-    # url(r'^search/', include('haystack.urls')),                   # old way
-    url(r'^search/', views.MySeachView(), name='haystack_search'),  # new way
-    path(r"__debug__/", include(debug_toolbar.urls)),
-    # url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}, name='static'),
-    # url(r'^media/(?P<path>.*)$',  serve, {"document_root": MEDIA_ROOT}),
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns = [
+        url(r'^$', views.blog_index),
+        url(r'^baidu_verify_iYpMqoGJf4.html/$', views.baiduyz),
+        path('admin/', admin.site.urls),
+        path('JiaBlog/', include('JiaBlog.urls', namespace="JiaBlog")),
+        path('activemq/', include('activemq.urls', namespace="activemq")),
+        path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
+        path('mdeditor/', include('mdeditor.urls')),
+        path('china-wuhan/', views.china_wuhan),
+        path('china-wuhan/virusdata', views.china_wuhan_virus),
+        url(r'', include('social_django.urls', namespace='social')),
+        # url(r'^oauth/', include('social_django.urls', namespace='social')),
+        # url(r'^search/', include('haystack.urls')),                   # old way
+        url(r'^search/', views.MySeachView(), name='haystack_search'),  # new way
+        path(r"__debug__/", include(debug_toolbar.urls)),
+    ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+else:
+    urlpatterns = [
+        url(r'^$', views.blog_index),
+        url(r'^baidu_verify_iYpMqoGJf4.html/$', views.baiduyz),
+        path('admin/', admin.site.urls),
+        path('JiaBlog/', include('JiaBlog.urls', namespace="JiaBlog")),
+        path('activemq/', include('activemq.urls', namespace="activemq")),
+        path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
+        path('mdeditor/', include('mdeditor.urls')),
+        path('china-wuhan/', views.china_wuhan),
+        path('china-wuhan/virusdata', views.china_wuhan_virus),
+        url(r'', include('social_django.urls', namespace='social')),
+        # url(r'^oauth/', include('social_django.urls', namespace='social')),
+        # url(r'^search/', include('haystack.urls')),                   # old way
+        url(r'^search/', views.MySeachView(), name='haystack_search'),  # new way
+        url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}, name='static'),
+        url(r'^media/(?P<path>.*)$',  serve, {"document_root": settings.MEDIA_ROOT}),
+    ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# urlpatterns = [
+#     url(r'^$', views.blog_index),
+#     url(r'^baidu_verify_iYpMqoGJf4.html/$', views.baiduyz),
+#     path('admin/', admin.site.urls),
+#     path('JiaBlog/', include('JiaBlog.urls', namespace="JiaBlog")),
+#     path('activemq/', include('activemq.urls', namespace="activemq")),
+#     path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
+#     path('mdeditor/', include('mdeditor.urls')),
+#     path('china-wuhan/', views.china_wuhan),
+#     path('china-wuhan/virusdata', views.china_wuhan_virus),
+#     url(r'', include('social_django.urls', namespace='social')),
+#     # url(r'^oauth/', include('social_django.urls', namespace='social')),
+#     # url(r'^search/', include('haystack.urls')),                   # old way
+#     url(r'^search/', views.MySeachView(), name='haystack_search'),  # new way
+#     path(r"__debug__/", include(debug_toolbar.urls)),
+#     # url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}, name='static'),
+#     # url(r'^media/(?P<path>.*)$',  serve, {"document_root": MEDIA_ROOT}),
+# ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

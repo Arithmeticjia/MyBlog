@@ -611,10 +611,10 @@ def login_view(request):
 
         except:
             message = "用户不存在！"
-        return render(request, 'login.html', locals())
+        return render(request, 'jialogin.html', locals())
     else:
         next_url = request.GET.get("next", '')
-        return render(request, "login.html", {'next_url': next_url},locals())
+        return render(request, "jialogin.html", {'next_url': next_url}, locals())
 
 
 def register_view(request):
@@ -632,16 +632,16 @@ def register_view(request):
             # sex = register_form.cleaned_data['sex']
             if password1 != password2:  # 判断两次密码是否相同
                 message = "两次输入的密码不同！"
-                return render(request, 'register.html', locals())
+                return render(request, 'jiaregister.html', locals())
             else:
                 same_name_user = models.BlogUser.objects.filter(name=username)
                 if same_name_user:  # 用户名唯一
                     message = '用户已经存在，请重新选择用户名！'
-                    return render(request, 'register.html', locals())
+                    return render(request, 'jiaregister.html', locals())
                 same_email_user = models.BlogUser.objects.filter(email=email)
                 if same_email_user:  # 邮箱地址唯一
                     message = '该邮箱地址已被注册，请使用别的邮箱！'
-                    return render(request, 'register.html', locals())
+                    return render(request, 'jiaregister.html', locals())
 
                 # 当一切都OK的情况下，创建新用户
 
@@ -655,9 +655,9 @@ def register_view(request):
                 new_user.save()
                 new_user = BlogUser.objects.get(name=username)
                 new_user.role.add(new_role)
-                return render(request, 'login.html', locals())
+                return render(request, 'jialogin.html', locals())
     register_form = RegisterForm()
-    return render(request, 'register.html', locals())
+    return render(request, 'jiaregister.html', locals())
 
 
 class LogoutView(View):

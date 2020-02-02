@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^greats/$',views.greats),
     url(r'^admin/$', views.admininndex),
     url(r'^admincharts/$', views.admincharts),
-    url(r'^login/$', views.login_view,name='login'),
+    url(r'^login/$', views.login_view, name='login'),
     url(r'^logout/$', views.LogoutView.as_view()),
     url(r'^register/$', views.register_view),
     url(r'^search/$', views.search),
