@@ -189,12 +189,27 @@
             {name: '澳门', value: 2}
         ];
         var myChart = echarts.init(document.getElementById('main'));
-        myChart.setOption({
+        function randomValue() {
+            return Math.round(Math.random()*1000);
+        }
+        function virus(num){
+            if (num === 0){
+                return 0;
+            }else if(num >= 1 && num <= 9){
+                return 2;
+            }else if(num >=10 && num <= 100){
+                return 3;
+            }else if(num > 100){
+                return 4;
+            }else
+                return 1;
+        }
+        option = {
             backgroundColor: '#404a59',
             title:  {
-                text: '新型冠状病毒全国分布图',
+                text: '武汉疫情',
                 x: 'center',
-                textStyle: {
+                textStyle: {//主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
                     fontSize:28,
                     color: '#fff'
                 },
@@ -202,30 +217,41 @@
             tooltip: {
                 formatter:function(params,ticket, callback){
                     return params.seriesName+'<br />'+params.name+'：'+params.value
-                    }//数据格式化
+                }//数据格式化
             },
             visualMap: {
                 min: 0,
-                max: 10000,
-                pieces: [
-                    {gte: 1000},            // (1500, Infinity]
-                    {gte: 100, lte: 999},  // (310, 1000]
-                    {gte: 10, lte: 99},   // (200, 300]
-                    {gte: 1, lte: 9},       // (10, 200]
-                ],
-                textStyle: {
-                    color: '#fff'
-                },
+                max: 50,
                 align: 'auto',
-                type: 'piecewise',    //是否连续
+                {#type: 'piecewise',    //是否连续#}
                 left: 'left',
                 top: 'bottom',
                 text: ['高','低'],    //取值范围的文字
+                {#categories: [#}
+                {#    '0','1','2','3','4','5','6','7','8','9','10','14','16','32','444',#}
+                {#],#}
                 inRange: {
-                    color: ['#fcffde','#f0a23f','#dd3f37','#742B33',],
+                    {#color: ['#fdfff8','#f0a23f','#dd5340','#dd292f','#DD2020'],#}
+                    color: ['#fdfff8','#f0a23f','#DD7931','#dd5340','#dd292f','#DD3E1B','#DD2020','#742B33',],
+                    {#color: {#}
+                    {#    '0':'#fcffde',#}
+                    {#    '1':'#ffaa2a',#}
+                    {#    '2':'#ffaa2a',#}
+                    {#    '3':'#ffaa2a',#}
+                    {#    '4':'#ffaa2a',#}
+                    {#    '5':'#ffaa2a',#}
+                    {#    '6':'#ffaa2a',#}
+                    {#    '7':'#ffaa2a',#}
+                    {#    '8':'#ffaa2a',#}
+                    {#    '9':'#ffaa2a',#}
+                    {#    '10':'#f06a5c',#}
+                    {#    '14':'#f06a5c',#}
+                    {#    '16':'#f06a5c',#}
+                    {#    '32':'#f06a5c',#}
+                    {#    '444':'#dd292f',#}
+                    //取值范围的颜色
                 },
-                show:true, //图注
-                showLabel: true
+                show:false//图注
             },
             geo: {
                 map: 'china',
@@ -236,7 +262,8 @@
                         show: true,
                         fontSize:'10',
                         color: 'rgba(0,0,0,0.7)'
-                    }},
+                    }
+                },
                 itemStyle: {
                     normal:{
                         borderColor: 'rgba(0, 0, 0, 0.2)'
@@ -256,65 +283,14 @@
                     name: '确诊人数',
                     type: 'map',
                     geoIndex: 0,
-                    data: []
+                    data: datavirus
                 }
             ]
+        };
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+            alert(params.name+"确诊人数"+params.data['value']);
         });
-
-        myChart.showLoading();
-        function randomValue() {
-            return Math.round(Math.random()*1000);
-        }
-        function virus(num){
-            if (num === 0){
-                return 0;
-            }else if(num >= 1 && num <= 9){
-                return 2;
-            }else if(num >=10 && num <= 100){
-                return 3;
-            }else if(num > 100){
-                return 4;
-            }else
-                return 1;
-        }
-        var statisticsData = [];                //这是我自己建的空数组，为了把异步拿到的数据push进去
-        $.ajax({
-            type : "get",
-            async : true,                       //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-            url : "/china-wuhan/virusdata",     //请求发送到相应的servlet
-            dataType : "json",
-            success : function(data){
-                if (data) {
-                    var dataStage = data;
-                    for(var i in dataStage) {
-                        var statisticsObj = {name:'',value:''};   //因为ECharts里边需要的的数据格式是这样的
-                        statisticsObj.name = i;
-                        statisticsObj.value = dataStage[i];
-                        statisticsData.push(statisticsObj);   //把拿到的异步数据push进我自己建的数组里
-                    }
-                    console.log(statisticsData);
-                    myChart.hideLoading();
-                    myChart.setOption({
-                        series: [{
-                            name: '确诊人数',
-                            type: 'map',
-                            geoIndex: 0,
-                            data: statisticsData
-                        }]
-                    });
-                    myChart.on('click', function (params) {
-                        Swal.fire(
-                            params.name+"确诊人数"+params.data['value']+"人",
-                            '',
-                        )
-                    });
-                }
-                else {
-                    alert("图表请求数据失败!");
-                }
-            }
-        });
-
 
       /*  setTimeout(function () {
             myChart.setOption({
