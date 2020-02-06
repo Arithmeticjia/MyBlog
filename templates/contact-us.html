@@ -257,10 +257,68 @@
 								<!-- Comment list of the page end -->
 							    </section>
 
+                                <section class="section comments wow fadeInUp" style="background: rgba(24,24,24,0.91);" data-wow-delay="0.4s">
+								    <header class="header">
+									    <h2 style="color: white">Message Board</h2>
+									    <p></p>
+								    </header>
+                                    <div class="commentlist" style="height: 300px;" id="messagecloud"></div>
+                                        <script>
+                                            $(function(){
+                                                messageechartsCloud();
+                                            });
+                                            function messageechartsCloud(){
+                                                var myChart = echarts.init(document.getElementById('messagecloud'));
+                                                myChart.setOption({
+                                                title: {
+                                                    text: ''
+                                                },
+                                                tooltip: {},
+                                                series: [{
+                                                    type : 'wordCloud',  //类型为字符云
+                                                        shape:'smooth',  //平滑
+                                                        gridSize : 8, //网格尺寸
+                                                        size : ['50%','50%'],
+                                                        //sizeRange : [ 50, 100 ],
+                                                        rotationRange : [-45, 0, 45, 90], //旋转范围
+                                                        textStyle : {
+                                                            normal : {
+                                                                fontFamily:'微软雅黑',
+                                                                color: function() {
+                                                                    return 'rgb(' +
+                                                                        Math.round(Math.random() * 255) +
+                                                                        ', ' + Math.round(Math.random() * 255) +
+                                                                        ', ' + Math.round(Math.random() * 255) + ')'
+                                                                    }
+                                                            },
+                                                            emphasis : {
+                                                                shadowBlur : 5,  //阴影距离
+                                                                shadowColor : '#333'  //阴影颜色
+                                                            }
+                                                        },
+                                                        left: 'center',
+                                                        top: 'center',
+                                                        right: null,
+                                                        bottom: null,
+                                                        width:'100%',
+                                                        height:'100%',
+                                                        data: [
+                                                            {% for i in messages %}
+                                                                {value:100 , name:'{{ i.content }}'},
+                                                            {% endfor %}
+                                                            ]
+                                                        }]
+                                                    });
+                                                // 异步加载数据
+                                                }
+                                        </script>
+								<!-- Comment list of the page end -->
+							    </section>
+
 								<!-- Comment respond of the page -->
                                 <section class="section comments wow fadeInUp" data-wow-delay="0.4s">
 								    <header class="header">
-									    <h2>Messages on this post</h2>
+									    <h2>Messages on me</h2>
 									    <p>{{ messages.count }} messages</p>
 								    </header>
 								<!-- Comment list of the page -->
