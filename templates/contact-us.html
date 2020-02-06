@@ -180,18 +180,17 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12 col-md-8">
-                                <section class="section comments wow fadeInUp" data-wow-delay="0.4s">
+                                <section class="section comments wow fadeInUp" style="background: rgba(24,24,24,0.91);" data-wow-delay="0.4s">
 								    <header class="header">
-									    <h2>About Me</h2>
+									    <h2 style="color: white">About Me</h2>
 									    <p></p>
 								    </header>
-                                    <div class="commentlist" style="height: 300px" id="mycloud"></div>
+                                    <div class="commentlist" style="height: 300px;" id="mycloud"></div>
                                         <script>
                                             $(function(){
-                                                echartsCloud();//初始化echarts图
+                                                echartsCloud();
                                             });
                                             function echartsCloud(){
-                                                    // 基于准备好的dom，初始化echarts实例
                                                 var myChart = echarts.init(document.getElementById('mycloud'));
                                                 myChart.setOption({
                                                 title: {
@@ -228,14 +227,18 @@
                                                         height:'100%',
                                                         data:[
                                                             {"name": "帅","value": "756"},
+                                                            {"name": "太帅了","value": "701"},
                                                             {"name": "超级帅","value": "622"},
                                                             {"name": "超级无敌帅","value": "579"},
                                                             {"name": "请叫我算术嘉","value": "525"},
                                                             {"name": "python3.6","value": "479"},
+                                                            {"name": "Tensorflow2.0","value": "443"},
                                                             {"name": "Django2.2","value": "386"},
                                                             {"name": "Spring Boot","value": "345"},
                                                             {"name": "单身狗","value": "327"},
                                                             {"name": "天才和小可爱","value": "298"},
+                                                            {"name": "Pytorch1.0","value": "256"},
+                                                            {"name": "Casio","value": "213"},
                                                             {"name": "波霸奶茶少冰七分糖","value": "188"},
                                                             {"name": "Nginx","value": "178"},
                                                             {"name": "可口可乐","value": "171"},
@@ -244,7 +247,7 @@
                                                             {"name": "请叫我算术嘉","value": "98"},
                                                             {"name": "清风抽纸","value": "75"},
                                                             {"name": "python","value": "46"},
-                                                            {"name": "Suning","value": "38"},
+                                                            {"name": "NJUPT","value": "38"},
                                                             {"name": "ArithmeticJia","value": "26"}],
                                                         }]
                                                     });
@@ -674,12 +677,12 @@
 {#    <script src="/static/js/jquery-3.4.1.min.js"></script>#}
     <script src="/static/js/jquery.min.js"></script>
 	<script src="/static/JiaBlog/js/jquery.js"></script>
-    <script src="/static/JiaBlog/js/echarts.js"></script>
-    <script src="/static/js/worldcloud.js"></script>
+{#    <script src="/static/JiaBlog/js/echarts.js"></script>#}
+    <script src="/static/echarts-3/echarts.js"></script>
+{#    <script src="/static/js/worldcloud.js"></script>#}
+    <script src="/static/js/echarts-wordcloud.min.js"></script>
 	<!-- include jQuery -->
     <script src="/static/JiaBlog/js/plugins.js"></script>
-    <script src="/static/js/d3.layout.cloud.js"></script>
-    <script src="/static/js/d3.min.js"></script>
 
     <!-- include jQuery -->
     <script src="/static/JiaBlog/js/jquery.main.js"></script>
