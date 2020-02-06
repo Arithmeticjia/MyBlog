@@ -888,13 +888,11 @@ def make_blog_user(hits):
 def blog_info(request, article_id, slug):
     change_info(request)
     login_name = request.session.get('user_name')
-    print(login_name)
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
         d_user_id = AuthUser.objects.get(username=name).id
         try:
-            #            SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             #            oauth2_info = oauth2login.extra_data
             oauth2_from = oauth2login.provider
@@ -903,10 +901,13 @@ def blog_info(request, article_id, slug):
         except:
             # oauth2_name = ' '
             oauth2_from = 'Django'
+    # noinspection PyBroadException
     try:
         thisarticle = get_object_or_404(Articles, id=article_id, status='有效')
+        if thisarticle.url_slug != slug:
+            return render(request, '404.html')
         thisarticle.increase_views()
-    except:
+    except Exception as e:
         return render(request, '404.html')
     try:
         if login_name != None:
