@@ -531,7 +531,6 @@ def check_login(f):
     @wraps(f)
     def inner(request, *arg, **kwargs):
         next_url = request.path_info
-        print(next_url)
         if request.session.get('is_login') == True:
             return f(request, *arg, **kwargs)
         else:

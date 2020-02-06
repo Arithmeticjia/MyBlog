@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^index/$', views.blog_index),
     url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.blog_info),
     url(r'^list/$',views.blog_list),
-    url(r'^article/(?P<article_id>[0-9]+)/comment/(?P<cid>.+)',views.comment_view,name='comment'),
+    url(r'^article/(?P<article_id>[0-9]+)/comment/(?P<cid>.+)', views.comment_view,name='comment'),
     url(r'^contact-us/$',views.contact),
     url(r'^savemessage/$',views.savemessage),
     url(r'^articles/(.+)/$', views.blog_category),
@@ -63,7 +63,7 @@ urlpatterns = [
     url(r'^getweatherinfo/', csrf_exempt(views.GetWeatherInfo.as_view()),name='getweatherinfo'),
     url('api/', include(route.urls)),
     url(r'^collect/$', views.collect),
-    url(r'^comments/(?P<article_id>[0-9]+)$',views.comments),
+    url(r'^comments/(?P<article_id>[0-9]+)$', views.comments),
 
 ]
 
