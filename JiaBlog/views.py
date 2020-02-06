@@ -1075,54 +1075,6 @@ def blog_list(request):
     return render(request, 'archive.html', context=context)
 
 
-def aboutme(request):
-    change_info(request)
-    if request.method == 'GET':
-        # 取出当前在models表中所有的留言信息 ,返回到前端
-        allmessage = Message.objects.all()
-        count = Articles.objects.count()
-        blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:10]  # 点击排行
-        blog_list_greats = Articles.objects.filter(status="有效").order_by('-greats')[0:10]  # 猜你喜欢
-        blog_list_comments = Articles.objects.filter(status="有效").order_by('-comments')[0:10]  # 博主推荐
-        note = Note.objects.get(id=str(random.randint(1, Note.objects.count())))
-        tags = Tag.objects.all()
-        view = []
-        for ids in range(1, count + 1):
-            article = get_object_or_404(Articles, id=str(ids))
-            ccc = article.all_comments.count()
-            print(ccc)
-            view.append(article.increase_views())
-        maxview = int(view.index(max(view))) + 1
-        maxarticle = Articles.objects.filter(id=maxview)
-        comment_list = Comment.objects.count()
-        categorys = Category.objects.all()
-        context = {
-            'blog_list_views': blog_list_views,
-            'maxview': maxarticle,
-            'blog_list_greats': blog_list_greats,
-            'blog_list_comments': blog_list_comments,
-            "messages": allmessage,
-            'tags': tags,
-            'note': note,
-            'comment_list': comment_list,
-            'count': count,
-            'categorys': categorys,
-        }
-        return render(request, "about.html", context=context)
-    return render_to_response('about.html')
-
-
-
-
-
-def file_down(request):
-    file = open('./static/download/0简易教学管理系统需求.doc', 'rb')
-    response = FileResponse(file)
-    response['request-Type'] = 'application/octet-stream'
-    response['request-Disposition'] = 'attachment;filename="0简易教学管理系统需求.doc"'
-    return response
-
-
 def getlocalweather(request):
     url = "https://restapi.amap.com/v3/weather/weatherInfo"
     key = '9bae4d790cfacdf4b54188b7758edf23'
