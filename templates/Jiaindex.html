@@ -42,6 +42,44 @@
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <meta name="baidu-site-verification" content="iYpMqoGJf4" />
+    <style>
+        #tryme{
+            z-index: 10;
+            border-radius:4px;
+            border: none;
+            display: block;
+            position: fixed;
+            left: 10px;
+            top: 320px;
+            width:87px;
+            height: 50px;
+            background: #f5ab35;
+            font-size: 15px;
+            font-weight: bold;
+            color: white;
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin:0 auto;
+            text-align: center;
+        }
+        #wuhan{
+            z-index: 10;
+            border-radius:4px;
+            display: block;
+            position: fixed;
+            left: 10px;
+            top: 385px;
+            width:87px;
+            height: 50px;
+            background: #f5ab35;
+            font-size: 15px;
+            font-weight: bold;
+            color: #444444;
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin:0 auto;
+            text-align: center;
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <script type="text/javascript">
@@ -333,7 +371,7 @@
             </script>
 {#            <button style="border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 16px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;" onclick="vshow()">版本更新</button>#}
             <div class="form-submit" >
-                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 320px;width:87px;height: 50px;background: #f5ab35;font-size: 12pt;font-weight: bold;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="Try Me" onclick="vshow()">
+                <input type="button" id="tryme" value="Try Me" onclick="vshow()">
             </div>
                 <script type="text/javascript">
                     function vshow() {
@@ -460,7 +498,7 @@
                     }
                 </script>
             <div class="form-submit" >
-                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 385px;width:87px;height: 50px;background: #f5ab35;font-size: 12pt;font-weight: bold;color: #444444;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="武汉加油" onclick="towuhan()">
+                <input type="button" id="wuhan" value="武汉加油" onclick="towuhan()">
             </div>
             <script type="text/javascript">
                 function towuhan() {
