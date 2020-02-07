@@ -33,6 +33,11 @@
     <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <style>
+        p{
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+    </style>
 </head>
 <body class="version-ii">
 	<div class="loader-holder">
@@ -217,7 +222,7 @@
 							<!-- Posts Blocks of the page -->
                             <div class="cols-holder">
                                 <article class="post fluid text-center wow fadeInUp" data-wow-delay="0.6s">
-                                    <div  class="post fluid text-center wow fadeInUp" id="myechart" style="width: 100%;height:450px;position: relative"></div>
+                                    <div  class="post fluid text-center wow fadeInUp" id="myechart" style="width: 100%;height:430px;position: relative"></div>
                                         <script type="text/javascript" src="/static/JiaBlog/js/echarts.js">
                                             //app.title = '环形图';
                                             var myChart = echarts.init(document.getElementById('myechart'));
@@ -587,8 +592,9 @@
 									</a>
 								</div>
 								<h3>{{ user.name }}<!--a href="#"><img src="/static/JiaBlog/images/text-jhon-aston.png" alt="jhon aston"></a--></h3>
-                                <p id="briefcontent">{{ user.brief }}</p>
-                                <span class="iconfont icon-write_fill" id="briefcontent"></span>
+                                <div>
+                                    <p style="display:inline-block;" id="briefcontent">{{ user.brief }}</p>&nbsp;&nbsp;&nbsp;<span class="iconfont icon-write_fill" style="display:inline-block;"></span>
+                                </div>
                                 <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
                                 <script>
                                 $(function(){
