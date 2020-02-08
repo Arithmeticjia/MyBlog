@@ -246,12 +246,25 @@ CRONJOBS = (
             ('*/1 * * * *', 'JiaBlog.views.collect_cpu'),
 )
 
-# cache
+# memcached
 # CACHES = {
 #     'default': {
 #         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
 #         'LOCATION': [
 #             '127.0.0.1:11211',
 #         ]
+#     }
+# }
+
+# redis
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#             "CONNECTION_POOL_KWARGS": {"max_connections": 10, "decode_responses": True},
+#             # "PASSWORD": ""
+#         }
 #     }
 # }
