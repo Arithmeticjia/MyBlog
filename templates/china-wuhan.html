@@ -199,6 +199,17 @@
                     color: '#fff'
                 },
             },
+            toolbox: {
+                show: true,
+　　             feature: {
+                    saveAsImage: {
+                        show:true,
+                        excludeComponents :['toolbox'],
+                    pixelRatio: 2
+                    }
+　　              }
+
+            },
             tooltip: {
                 formatter:function(params,ticket, callback){
                     return params.seriesName+'<br />'+params.name+'：'+params.value
