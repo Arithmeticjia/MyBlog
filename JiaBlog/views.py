@@ -3,14 +3,16 @@ from django.db import connection
 from django.db import models
 from django.forms.models import model_to_dict
 from django.utils.decorators import method_decorator
+from django.contrib.syndication.views import Feed
 from django.http import FileResponse
 from django.utils.safestring import mark_safe
 from django.views import View
 from django.shortcuts import HttpResponseRedirect
-from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.shortcuts import render_to_response, redirect, get_object_or_404, reverse
 from django.http import JsonResponse
 from JiaBlog.models import Articles, Message, Tag, Category, Note, Comment, BlogUser, VisitNumber, Recruitment, \
-    Recruinfo, Movie, JiaFile, Jia, BlogRole, Paper, Graduation, Honour, Teacher, Project,Version,BlogUserCollect,SocialAuthUsersocialauth,AuthUser,Hits
+    Recruinfo, Movie, JiaFile, Jia, BlogRole, Paper, Graduation, Honour, Teacher, Project, Version, BlogUserCollect, \
+    SocialAuthUsersocialauth, AuthUser, Hits
 from django.contrib.auth import logout
 import time
 import requests
@@ -41,6 +43,8 @@ from haystack.views import SearchView
 from dwebsocket.decorators import accept_websocket
 from django.utils.safestring import mark_safe
 from django.views.decorators.cache import cache_page
+
+
 # Create your views here.
 
 
@@ -191,7 +195,7 @@ class Resume(View):
 class MySeachView(SearchView):
     # 重载extra_context来添加额外的context内容
     def extra_context(self):
-        context = super(MySeachView,self).extra_context()
+        context = super(MySeachView, self).extra_context()
         categorys = Category.objects.all()
         blog_list_greats = Articles.objects.filter(status="有效").order_by('-greats')[0:10]
         blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
@@ -203,7 +207,7 @@ class MySeachView(SearchView):
             versions = [item[key] for item in version for key in item][0].split(";")
         except IndexError as err:
             version = Version.objects.order_by('-version_time')[0:1].values('version_content')
-            #all()[0:1].values('version_content')
+            # all()[0:1].values('version_content')
             versions = [item[key] for item in version for key in item][0].split(";")
         context['categorys'] = categorys
         context['blog_list_greats'] = blog_list_greats
@@ -225,7 +229,7 @@ def cancelcollect(request, article_id, slug):
         # thisarticle.increase_views()
         data = {}
 
-        if BlogUserCollect.objects.filter(blogid=blog_id,userid=name_id).count() >= 1:
+        if BlogUserCollect.objects.filter(blogid=blog_id, userid=name_id).count() >= 1:
             try:
                 collect_obj = BlogUserCollect.objects.get(blogid=blog_id, userid=name_id)
                 collect_obj.delete()
@@ -834,18 +838,19 @@ def blog_index(request):
         'jia': jia,
         'year_month_number': year_month_number,
         # 'oauth2':oauth2_name,
-        'oauth2_from':oauth2_from
+        'oauth2_from': oauth2_from
     }
     return render(request, 'Jiaindex.html', context=context)  # 返回Jiaindex.html页面
 
 
-def comments(request,article_id):
+def comments(request, article_id):
     thisarticle = get_object_or_404(Articles, id=article_id, status='有效')
     comment_list = thisarticle.comment_set.all()
     context = {
         'comment_list': comment_list
     }
     return render(request, 'comment.html', context=context)
+
 
 comment_list = [
     (1, '111', None),
@@ -858,16 +863,16 @@ comment_list = [
 ]
 
 ncomment_list = [
-    (171, 1,'1524126437@qq.com','111', datetime.datetime(2019, 11, 21, 21, 38, 40, 661000),15,None),
+    (171, 1, '1524126437@qq.com', '111', datetime.datetime(2019, 11, 21, 21, 38, 40, 661000), 15, None),
     # (172, 1,'1524126437@qq.com','555', datetime.datetime(2019, 11, 21, 21, 38, 50, 746073),15,171),
     # (173, 1,'1524126437@qq.com','222',datetime.datetime(2019, 11, 21, 21, 39, 6, 283034), 15, None)
 ]
 
 blog_recommend = {
-    "0": [1,2,3,4],
-    "1": [2,3,5],
-    "2": [1,4,5,7],
-    "3": [9,1,3,5]
+    "0": [1, 2, 3, 4],
+    "1": [2, 3, 5],
+    "2": [1, 4, 5, 7],
+    "3": [9, 1, 3, 5]
 }
 
 
@@ -879,7 +884,7 @@ def make_blog_user(hits):
     print(users)
     hitsdict = {}
     for j in tmp:
-        hitsdict.update({'user%d' %int(j): []})
+        hitsdict.update({'user%d' % int(j): []})
     for i in hits:
         print(model_to_dict(i))
     print(hitsdict)
@@ -990,7 +995,7 @@ def blog_info(request, article_id, slug):
         'jia': jia,
         'year_month_number': year_month_number,
         'toc': md.toc,
-        'collect_flag':collect_flag,
+        'collect_flag': collect_flag,
         'oauth2_from': oauth2_from
 
     }
@@ -1352,7 +1357,8 @@ def comment_view(request, article_id, cid):
                 data['comment_time'] = comment.created_time.strftime('%Y-%m-%d %H:%M:%S')
                 data['text'] = comment.text
                 data['email'] = comment.email
-                userpic = [item[key] for item in BlogUser.objects.filter(name=name).values('userpic') for key in item][0]
+                userpic = [item[key] for item in BlogUser.objects.filter(name=name).values('userpic') for key in item][
+                    0]
                 data['userpic'] = userpic
                 comments = Comment.objects.filter(post_id=article_id).count()
                 data['comments'] = comments
@@ -1361,7 +1367,7 @@ def comment_view(request, article_id, cid):
                     data['pid'] = ''
                 else:
                     data['pid'] = comment.parentcomment_id
-                print('ooookkkk',data)
+                print('ooookkkk', data)
             except:
                 data['status'] = 'Error'
                 data['message'] = "Error!"
@@ -1418,8 +1424,8 @@ def savemessage(request):
             except Exception as e:
                 data['status'] = '500'
             else:
-                thismessage = Message.objects.get(id=message.id)            # 刚入库的留言
-                usernames = models.BlogUser.objects.all().values('name')    # 用户表所有name
+                thismessage = Message.objects.get(id=message.id)  # 刚入库的留言
+                usernames = models.BlogUser.objects.all().values('name')  # 用户表所有name
                 usernames = [item[key] for item in usernames for key in item]
                 if message.username in usernames:
                     thismessage.messpic = BlogUser.objects.get(name=thismessage.username).userpic.url
@@ -1665,8 +1671,8 @@ def mylist(request):
         'javascript': javascript,
         'categorydic': categorydic,
         'catcharts': catcharts,
-        'my_collects':my_collects,
-        'oauth2_from':oauth2_from
+        'my_collects': my_collects,
+        'oauth2_from': oauth2_from
     }
     # print((maxarticle))
     return render(request, 'editorlist.html', context=context)
@@ -1734,7 +1740,7 @@ def mylist_para(request, article_status):
             'mycategorys': mycategorys,
             'article_status': article_status,
             'catcharts': catcharts,
-            'my_collects':my_collects
+            'my_collects': my_collects
         }
     elif article_status == 'draft':
         blog_list = Articles.objects.filter(status="DRAFT").filter(authorname__name__exact=username).order_by(
@@ -1793,7 +1799,7 @@ def mylist_para(request, article_status):
             'mycategorys': mycategorys,
             'article_status': article_status,
             'catcharts': catcharts,
-            'my_collects':my_collects
+            'my_collects': my_collects
         }
     return render(request, 'editorlist.html', context=context)
 
@@ -1817,7 +1823,7 @@ def article_save(request, article_id, slug):
             article.body = body
             article.status = status
             article.category_id = Category.objects.get(name=category).id
-            articlebodybrief = body.replace('```', '').replace('`','')
+            articlebodybrief = body.replace('```', '').replace('`', '')
             # if '```' in body[0:300]:
             #     pass
             # else:
@@ -1872,7 +1878,7 @@ def article_create_save(request):
         name = request.session.get('user_name')
         title = request.POST.get('title')
         body = request.POST.get('body')
-        articlebodybrief = body.replace('```', '').replace('`','')
+        articlebodybrief = body.replace('```', '').replace('`', '')
         category = request.POST.get('category')
         category = Category.objects.get(name=category)
         tags = request.POST.getlist('tags')
@@ -1946,7 +1952,6 @@ def editor_userbrief(request):
     if request.method == 'POST':
         name = request.session.get('user_name')
         user = get_object_or_404(BlogUser, name=name)
-        newuserbrief = request.POST.get('briefcontent')
         data = {}
         try:
             user.brief = request.POST.get('briefcontent')
@@ -1962,7 +1967,6 @@ def editor_userbrief(request):
 
 @accept_websocket
 def my_admin(request):
-
     change_info(request)
     if request.is_websocket():
         print('websocket')
@@ -1980,11 +1984,10 @@ def my_admin(request):
     return render(request, 'myadmin.html')
 
 
-def server(request,room_name):
+def server(request, room_name):
     return render(request, 'chat.html', {
         'room_name_json': mark_safe(json.dumps(room_name))
     })
-
 
 
 def collect_cpu():
@@ -2182,7 +2185,6 @@ def filecheck(request):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 
-
 @csrf_exempt
 def collect(request):
     if request.method == "POST":
@@ -2200,7 +2202,7 @@ def collect(request):
             if BlogUserCollect.objects.filter(blogid=blog_id).count() >= 1:
                 data["result"] = "fail"
             else:
-                obj = BlogUserCollect(blogid=blog_id,userid=name_id)
+                obj = BlogUserCollect(blogid=blog_id, userid=name_id)
                 obj.save()
                 data["result"] = "success"
             return HttpResponse(json.dumps(data), content_type='application/json')
@@ -2263,13 +2265,12 @@ def china_wuhan(request):
     except:
         data = {}
 
-
-    protocols = ["南海诸岛",'北京','天津','上海','重庆','河南',
-                 '云南','辽宁','黑龙江','湖南','安徽','山东',
-                 '新疆','江苏','浙江', '江西','湖北','广西',
-                 '甘肃', '山西', '内蒙古','吉林', '福建','贵州',
-                 '广东','青海','西藏', '四川','宁夏','海南',
-                 '台湾','香港','澳门'
+    protocols = ["南海诸岛", '北京', '天津', '上海', '重庆', '河南',
+                 '云南', '辽宁', '黑龙江', '湖南', '安徽', '山东',
+                 '新疆', '江苏', '浙江', '江西', '湖北', '广西',
+                 '甘肃', '山西', '内蒙古', '吉林', '福建', '贵州',
+                 '广东', '青海', '西藏', '四川', '宁夏', '海南',
+                 '台湾', '香港', '澳门'
                  ]
 
     context = {
@@ -2321,4 +2322,26 @@ def china_wuhan_virus(request):
         return JsonResponse(data, json_dumps_params={'ensure_ascii': False})
 
 
+class RssFeed(Feed):
+    # 标题
+    title = 'arithmeticjia的个人博客'
+    # 描述
+    description = 'https://www.guanacossj.com'
+    # 链接
+    link = "/"
 
+    def items(self):
+        # 返回所有文章
+        return Articles.objects.all()
+
+    def item_title(self, item):
+        # 返回文章标题
+        return item.title
+
+    def item_description(self, item):
+        # 返回文章内容
+        return item.body[:30]
+
+    def item_link(self, item):
+        # 返回文章详情页的路由
+        return reverse('JiaBlog:article', args=(item.id, item.url_slug))

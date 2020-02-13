@@ -3,6 +3,7 @@ from JiaBlog import views
 from rest_framework import routers
 from django.views.decorators.csrf import csrf_exempt
 
+
 app_name = 'JiaBlog'
 
 # 定义restfulapi的路由地址
@@ -16,9 +17,9 @@ urlpatterns = [
     url('^$', views.index, name='index'),
     url(r'^search/', views.MySeachView(), name='haystack_search'),
     url(r'^index/$', views.blog_index),
-    url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.blog_info),
+    url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.blog_info, name='article'),
     url(r'^list/$',views.blog_list),
-    url(r'^article/(?P<article_id>[0-9]+)/comment/(?P<cid>.+)', views.comment_view,name='comment'),
+    url(r'^article/(?P<article_id>[0-9]+)/comment/(?P<cid>.+)', views.comment_view, name='comment'),
     url(r'^contact-us/$',views.contact),
     url(r'^savemessage/$',views.savemessage),
     url(r'^articles/(.+)/$', views.blog_category),
@@ -61,9 +62,10 @@ urlpatterns = [
     url(r'^resume/', views.Resume.as_view()),
     # url(r'^getweatherinfo/', views.GetWeatherInfo.as_view()),
     url(r'^getweatherinfo/', csrf_exempt(views.GetWeatherInfo.as_view()),name='getweatherinfo'),
-    url('api/', include(route.urls)),
+    url(r'^api/', include(route.urls)),
     url(r'^collect/$', views.collect),
     url(r'^comments/(?P<article_id>[0-9]+)$', views.comments),
+    url(r'^rss/$', views.RssFeed(), name='rss'),
 
 ]
 
