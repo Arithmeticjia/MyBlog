@@ -2033,7 +2033,6 @@ def run_code(code):
 @require_POST
 def api(request):
     code = request.POST.get('code')
-    print('ss', code)
     output = run_code(code)
     return JsonResponse(data={'output': output})
 
