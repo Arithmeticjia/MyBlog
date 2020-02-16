@@ -114,8 +114,8 @@
                                             <li><a href="/blog/file/" target="_blank">File</a></li>
                                             <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
                                             {% if request.session.is_login %}
-                                                <li><a href="/JiaBlog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
-                                                <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                                <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
+                                                <li><a href="/blog/logout/">Logout</a></li>
                                             {% elif request.user.is_authenticated %}
                                                 <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
                                                 <li><a href="/blog/logout/">Logout</a></li>
