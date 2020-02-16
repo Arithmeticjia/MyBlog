@@ -181,7 +181,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="main-header">
-                                <strong class="title"><a style="text-decoration: none;" href="/JiaBlog/article/editor/create/" target="_blank">Create</a></strong>
+                                <strong class="title"><a style="text-decoration: none;" href="/blog/article/editor/create/" target="_blank">Create</a></strong>
 							</div>
 						</div>
 					</div>
@@ -310,10 +310,10 @@
                             <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
 									<div class="post-holder" style="">
 										<div class="img-holder">
-											<a href="/JiaBlog/article/{{ i.id }}/" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
+											<a href="/blog/article/{{ i.id }}/" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
 										</div>
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}/" target="_blank">{{ i.title }}</a></h2>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}/" target="_blank">{{ i.title }}</a></h2>
 										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
 {#										<a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#}
                                         <a href="javascript:void(0);" class="read-more" style="color: red;text-decoration: none;" type="button" article_id="{{ i.id }}" article_url_slug="{{ i.url_slug }}" onclick=CancelCollect(this)>Cancel</a>
@@ -333,7 +333,7 @@
                                                     }).then(function(value) {
                                                         if(value.value){
                                                      $.ajax({
-                                                        url: "/JiaBlog/article/" + article_id + "/" + article_url_slug + "/cancelcollect/",
+                                                        url: "/blog/article/" + article_id + "/" + article_url_slug + "/cancelcollect/",
                                                         type: 'POST',
                                                         data: {
                                                             csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
@@ -382,11 +382,11 @@
                                 <strong class="title" style="color: #f5ab35">My Articles</strong>
 							</div>
                             {% if article_status == 'active' %}
-                            <h3><a  style="display: inline;color: #f5ab35" href="/JiaBlog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;" href="/JiaBlog/mylist/draft/">Draft</a></h3>
+                            <h3><a  style="display: inline;color: #f5ab35" href="/blog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;" href="/blog/mylist/draft/">Draft</a></h3>
                             {% elif article_status == 'draft' %}
-                            <h3><a  style="display: inline;" href="/JiaBlog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;color: #f5ab35" href="/JiaBlog/mylist/draft/">Draft</a></h3>
+                            <h3><a  style="display: inline;" href="/blog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;color: #f5ab35" href="/blog/mylist/draft/">Draft</a></h3>
                             {% else %}
-                            <h3><a  style="display: inline;" href="/JiaBlog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;" href="/JiaBlog/mylist/draft/">Draft</a></h3>
+                            <h3><a  style="display: inline;" href="/blog/mylist/active/">Active</a>&nbsp;&nbsp;&nbsp;<a  style="display: inline;" href="/blog/mylist/draft/">Draft</a></h3>
                             {% endif %}
 							<section class="posts-blocks">
 								<!-- Post Block of the page -->
@@ -394,12 +394,12 @@
 								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
 									<div class="post-holder" style="">
 										<div class="img-holder">
-											<a href="/JiaBlog/article/{{ i.id }}/" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
+											<a href="/blog/article/{{ i.id }}/" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
 										</div>
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
 										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
-                                        <a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more"><span class="iconfont icon-bianji" style="cursor: pointer;"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="/blog/article/{{ i.id }}/editor/" target="_blank" class="read-more"><span class="iconfont icon-bianji" style="cursor: pointer;"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 {#										<a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more" style="text-decoration: none;">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#}
 {#                                        <a href="javascript:void(0);" class="read-more" style="color: red;text-decoration: none;" type="button" article_id="{{ i.id }}" onclick=Delete(this)>Delete</a>#}
                                         <span class="iconfont icon-shanchu" style="cursor: pointer;" article_id="{{ i.id }}" article_url_slug="{{ i.url_slug }}" onclick=Delete(this)>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -419,7 +419,7 @@
                                                     }).then(function(value) {
                                                         if(value.value){
                                                      $.ajax({
-                                                        url: "/JiaBlog/article/" + article_id + "/" +  article_url_slug + "/editor/delete/",
+                                                        url: "/blog/article/" + article_id + "/" +  article_url_slug + "/editor/delete/",
                                                         type: 'POST',
                                                         data: {
                                                             csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
@@ -613,7 +613,7 @@
                                         $('input').blur(function(){
                                             var nextxt=$(this).val();
                                             $.ajax({
-                                                url:"/JiaBlog/editor/userbrief/",
+                                                url:"/blog/editor/userbrief/",
                                                 type:'POST',
                                                 data:{
                                                     csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
@@ -823,7 +823,7 @@
 								<ol>
                                     {% for i in blog_list_three %}
 									<li>
-										<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+										<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 										<span class="post-tag">
 											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 											<strong class="tag hot">HOT</strong>
@@ -859,7 +859,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
@@ -899,7 +899,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
@@ -961,7 +961,7 @@
 								</header>
 								<ul>
                                     {% for i in categorys %}
-									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/JiaBlog/articles/{{ i.name }}">- {{ i.name }}---({{ i.catcount }})</a></span></li>
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/blog/articles/{{ i.name }}">- {{ i.name }}---({{ i.catcount }})</a></span></li>
 									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
 									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
 									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>

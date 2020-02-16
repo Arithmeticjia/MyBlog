@@ -84,7 +84,7 @@
 					<div class="row holder">
 						<div class="col-xs-3 col-sm-2">
 							<!-- Logo of the page -->
-							<div class="logo"><a href="/JiaBlog/index/"><img src="/static/JiaBlog/images/logonew.png" alt="dot"></a></div>
+							<div class="logo"><a href="/blog/index/"><img src="/static/JiaBlog/images/logonew.png" alt="dot"></a></div>
 							<!-- Logo of the page end -->
 						</div>
 						<div class="col-xs-9 col-sm-10 nav-holder">
@@ -104,21 +104,20 @@
 								<!-- Collapse of the page -->
 								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 									<ul class="nav navbar-nav navbar-right">
-										<li><a href="/JiaBlog/index/">Home</a></li>
-                                        <li><a href="/JiaBlog/list/">Archive</a></li>
-										<!--li><a href="single.html">Single</a></li-->
-										<li><a href="/JiaBlog/contact-us">Contact</a></li>
-                                        <li><a href="/JiaBlog/JiaFile/" target="_blank">File</a></li>
-                                        <li><a href="/JiaBlog/onlineeditor" target="_blank">OnlineExplain</a></li>
+										<li><a href="/blog/index/">Home</a></li>
+                                        <li><a href="/blog/list/">Archive</a></li>
+										<li><a href="/blog/contact-us">Contact</a></li>
+                                        <li><a href="/blog/JiaFile/" target="_blank">File</a></li>
+                                        <li><a href="/blog/onlineeditor" target="_blank">OnlineExplain</a></li>
                                         {% if request.session.is_login %}
-                                            <li><a href="/JiaBlog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
-                                            <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                            <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
+                                            <li><a href="/blog/logout/">Logout</a></li>
                                         {% elif request.user.is_authenticated %}
-                                            <li><a href="/JiaBlog/mylist" target="_blank">{{  request.user.username }}(Github)</a></li>
-                                            <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                            <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}(Github)</a></li>
+                                            <li><a href="/blog/logout/">Logout</a></li>
                                         {% else %}
-                                            <li><a href="/JiaBlog/mylist/">Tourist</a></li>
-                                            <li><a href="/JiaBlog/login/">Login</a></li>
+                                            <li><a href="/blog/mylist/">Tourist</a></li>
+                                            <li><a href="/blog/login/">Login</a></li>
                                         {% endif %}
 									</ul>
 								</div>
@@ -165,7 +164,7 @@
 							<div class="col-xs-12">
 								<h1>Editor-Modify</h1>
 								<ol class="breadcrumb">
-									<li><a href="/JiaBlog/index">Home</a></li>
+									<li><a href="/blog/index">Home</a></li>
 									<li class="active">Editor</li>
 								</ol>
 							</div>
@@ -177,7 +176,7 @@
                         <header style="text-align: center">
                             <h2 style="color: black">Welcome {{ request.session.user_name }}</h2>
                         </header>
-                <form method="POST" id="editorform"  action="/JiaBlog/article/{{ article.id }}/{{ article.url_slug }}/editor/save/" enctype="multipart/form-data" onsubmit="return checkvalue()">
+                <form method="POST" id="editorform"  action="/blog/article/{{ article.id }}/{{ article.url_slug }}/editor/save/" enctype="multipart/form-data" onsubmit="return checkvalue()">
                     {% csrf_token %}
 					<div class="container" style="border: 1px solid #cccccc">
                         </br>
