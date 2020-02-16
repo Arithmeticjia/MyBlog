@@ -399,7 +399,7 @@
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
 										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
-                                        <a href="/blog/article/{{ i.id }}/editor/" target="_blank" class="read-more"><span class="iconfont icon-bianji" style="cursor: pointer;"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="/blog/article/{{ i.id }}/{{ i.url_slug }}/editor/" target="_blank" class="read-more"><span class="iconfont icon-bianji" style="cursor: pointer;"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 {#										<a href="/JiaBlog/article/{{ i.id }}/editor/" target="_blank" class="read-more" style="text-decoration: none;">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#}
 {#                                        <a href="javascript:void(0);" class="read-more" style="color: red;text-decoration: none;" type="button" article_id="{{ i.id }}" onclick=Delete(this)>Delete</a>#}
                                         <span class="iconfont icon-shanchu" style="cursor: pointer;" article_id="{{ i.id }}" article_url_slug="{{ i.url_slug }}" onclick=Delete(this)>&nbsp;&nbsp;&nbsp;&nbsp;</span>
