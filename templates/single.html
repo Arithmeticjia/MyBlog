@@ -183,21 +183,21 @@
 									<!-- Collapse of the page -->
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
-											<li><a href="/JiaBlog/index/">Home</a></li>
-											<li><a href="/JiaBlog/list/">Archive</a></li>
+											<li><a href="/blog/index/">Home</a></li>
+											<li><a href="/blog/list/">Archive</a></li>
 											<!--li><a href="single.html">Single</a></li-->
-											<li><a href="/JiaBlog/contact-us">Contact</a></li>
-                                            <li><a href="/JiaBlog/JiaFile/" target="_blank">File</a></li>
+											<li><a href="/blog/contact-us">Contact</a></li>
+                                            <li><a href="/blog/file/" target="_blank">File</a></li>
                                             <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
                                             {% if request.session.is_login %}
-                                                <li><a href="/JiaBlog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
-                                                <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                                <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
+                                                <li><a href="/blog/logout/">Logout</a></li>
                                             {% elif request.user.is_authenticated %}
-                                                <li><a href="/JiaBlog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
-                                                <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                                <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                                <li><a href="/blog/logout/">Logout</a></li>
                                             {% else %}
-                                                <li><a href="/JiaBlog/mylist/">Tourist</a></li>
-                                                <li><a href="/JiaBlog/login/">Login</a></li>
+                                                <li><a href="/blog/mylist/">Tourist</a></li>
+                                                <li><a href="/blog/login/">Login</a></li>
                                             {% endif %}
 										</ul>
 									</div>
@@ -246,7 +246,7 @@
 								<h1>{{ blog_list.title }}</h1>
                                 <script type="text/css"></script>
 								<ol class="breadcrumb">
-									<li><a href="/JiaBlog/index/">Home</a></li>
+									<li><a href="/blog/index/">Home</a></li>
 									<li class="active">Single Blog</li>
 								</ol>
 							</div>
@@ -291,7 +291,7 @@
                                             function greats() {
                                                 var article_id = {{ blog_list.id }};
                                                 $.ajax({
-                                                    url:"/JiaBlog/greats/",
+                                                    url:"/blog/greats/",
                                                     type:'POST',
                                                     data:{
                                                         csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
@@ -398,7 +398,7 @@
 											<a href=""><img alt="image description" src="{{ i.pic.url }}"></a>
 										</div>
 										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
-										<h2><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
                                         <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
 									</div>
 								</div>
@@ -584,7 +584,7 @@
                                     else $.ajax({
                                         cache: false,
                                         type: "POST",
-                                        url: "/JiaBlog/article/{{ blog_list.id }}/comment/"+cid,
+                                        url: "/blog/article/{{ blog_list.id }}/comment/"+cid,
                                         data: $('#commentform').serialize(),
                                         //data:{},
                                         beforeSend: function (xhr, settings) {
@@ -716,7 +716,7 @@
 								<ol>
                                     {% for i in blog_list_three %}
 									<li>
-										<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+										<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 										<span class="post-tag">
 											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 											<strong class="tag hot">HOT</strong>
@@ -752,7 +752,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
@@ -792,7 +792,7 @@
 													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
-													<h4><a href="/JiaBlog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
 														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 													</span>
@@ -837,7 +837,7 @@
 								</header>
 								<ul>
                                     {% for i in year_month_number %}
-									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/JiaBlog/list/{{ i.0 }}/{{ i.1 }}" target="_blank">- {{ i.0 }}年{{ i.1 }}月---({{ i.2 }})</a></span></li>
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/blog/list/{{ i.0 }}/{{ i.1 }}" target="_blank">- {{ i.0 }}年{{ i.1 }}月---({{ i.2 }})</a></span></li>
 									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
 									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
 									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
@@ -869,7 +869,7 @@
 								</header>
 								<ul>
                                     {% for i in categorys %}
-									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/JiaBlog/articles/{{ i.name }}" target="_blank">- {{ i.name }}---({{ i.catcount }})</a></span></li>
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/blog/articles/{{ i.name }}" target="_blank">- {{ i.name }}---({{ i.catcount }})</a></span></li>
 									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
 									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
 									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
@@ -968,16 +968,16 @@
 							<h3>Important Links</h3>
 							<ul>
                                 <li><a href="#">Home</a></li>
-                                <li><a href="/JiaBlog/list">Archive</a></li>
-								<li><a href="/JiaBlog/contact-us" target="_blank">About me</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
 							</ul>
 						</nav>
                         <nav class="col footer-nav">
 							<h3>Popular Links</h3>
 							<ul>
                                 <li><a href="#">Home</a></li>
-                                <li><a href="/JiaBlog/list">Archive</a></li>
-								<li><a href="/JiaBlog/contact-us" target="_blank">About me</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
 							</ul>
 						</nav>
 						<!-- Footer Nav of the page end -->

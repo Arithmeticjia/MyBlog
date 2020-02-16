@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^register/$', views.register_view),
     url(r'^search/$', views.search),
     url(r'^upload_file/$', views.upload_file),
-    url(r'^JiaFile/$', views.Jiafile),
+    url(r'^file/$', views.Jiafile),
     url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/editor/$', views.usereditor),
     url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/editor/save/$', views.article_save),
     url(r'^mylist/$', views.mylist),

@@ -169,10 +169,6 @@ class Yun(View):
         return render(request, 'yunindex.html', context=context)
 
 
-def baiduyz(request):
-    return render_to_response('baidu_verify_iYpMqoGJf4.html')
-
-
 def index(request):
     change_info(request)
     return redirect('/JiaBlog/index/')

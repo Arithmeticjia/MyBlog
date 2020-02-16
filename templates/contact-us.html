@@ -106,21 +106,21 @@
 								<!-- Collapse of the page -->
 								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 									<ul class="nav navbar-nav navbar-right">
-										<li><a href="/JiaBlog/index/">Home</a></li>
-                                        <li><a href="/JiaBlog/list/">Archive</a></li>
+										<li><a href="/blog/index/">Home</a></li>
+                                        <li><a href="/blog/list/">Archive</a></li>
 										<!--li><a href="single.html">Single</a></li-->
-										<li><a href="/JiaBlog/contact-us">Contact</a></li>
-                                        <li><a href="/JiaBlog/JiaFile/" target="_blank">File</a></li>
+										<li><a href="/blog/contact-us">Contact</a></li>
+                                        <li><a href="/blog/file/" target="_blank">File</a></li>
                                         <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
                                         {% if request.session.is_login %}
-                                            <li><a href="/JiaBlog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
-                                            <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                            <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
+                                            <li><a href="/blog/logout/">Logout</a></li>
                                         {% elif request.user.is_authenticated %}
-                                            <li><a href="/JiaBlog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
-                                            <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                            <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                            <li><a href="/blog/logout/">Logout</a></li>
                                         {% else %}
-                                            <li><a href="/JiaBlog/mylist/">Tourist</a></li>
-                                            <li><a href="/JiaBlog/login/">Login</a></li>
+                                            <li><a href="/blog/mylist/">Tourist</a></li>
+                                            <li><a href="/blog/login/">Login</a></li>
                                         {% endif %}
 									</ul>
 								</div>
@@ -167,7 +167,7 @@
 							<div class="col-xs-12">
 								<h1>Contact Me</h1>
 								<ol class="breadcrumb">
-									<li><a href="/JiaBlog/index">Home</a></li>
+									<li><a href="/blog/index">Home</a></li>
 									<li class="active">Contact</li>
 								</ol>
 							</div>
@@ -487,7 +487,7 @@
                                     else $.ajax({
                                         cache: false,
                                         type: "POST",
-                                        url: "/JiaBlog/savemessage/",
+                                        url: "/blog/savemessage/",
                                         data: $('#messageform').serialize(),
                                         beforeSend: function (xhr, settings) {
                                             xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
@@ -563,7 +563,7 @@
 										<br>
 {#                                        {% endfor %}#}
 {#                                        {% for i in articles %}#}
-                                        <span class="iconfont icon-wenzhang"></span><a href="/JiaBlog/list" target="_blank">{{ articles }}</a>
+                                        <span class="iconfont icon-wenzhang"></span><a href="/blog/list" target="_blank">{{ articles }}</a>
                                         <br>
 {#                                        {% endfor %}#}
 {#                                        {% for i in allvisits %}#}
@@ -686,16 +686,16 @@
 							<h3>Important Links</h3>
 							<ul>
                                 <li><a href="#">Home</a></li>
-                                <li><a href="/JiaBlog/list">Archive</a></li>
-								<li><a href="/JiaBlog/contact-us" target="_blank">About me</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
 							</ul>
 						</nav>
                         <nav class="col footer-nav">
 							<h3>Popular Links</h3>
 							<ul>
                                 <li><a href="#">Home</a></li>
-                                <li><a href="/JiaBlog/list">Archive</a></li>
-								<li><a href="/JiaBlog/contact-us" target="_blank">About me</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
 							</ul>
 						</nav>
 						<!-- Footer Nav of the page end -->
