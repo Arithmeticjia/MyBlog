@@ -23,21 +23,34 @@
 	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
 	<!-- include the site stylesheet -->
 	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_c5936x81jmd.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_g8vm0a3stgk.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_cxy0cuyzhbe.css">
     <script src="/static/JiaBlog/js/jquery.js"></script>
 {#    <script src="/static/js/jquery-3.4.1.min.js"></script>#}
     <script src="/static/JiaBlog/js/echarts.js"></script>
     <script src="/static/js/worldcloud.js"></script>
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.css">
+    <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
     <link rel="stylesheet" href="/static/editor.md-master/css/editormd.css" />
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <style>
+        .container{
+            width: auto;
+            margin-left: 25px;
+            margin-right: 25px;
+            {#background: #a9a9a9;#}
+            {#border: 1px solid #cccccc#}
+        }
+        .editorfont{
+            font-size: 16px;
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 600;
+            color: #f5ab35;
+        }
+    </style>
 </head>
 <body class="version-ii">
 	<div class="loader-holder">
@@ -173,20 +186,19 @@
 				</header>
 				<!-- Page head of the page end -->
                 <div class="contact-sec">
-                        <header style="text-align: center">
-                            <h2 style="color: black">Welcome {{ request.session.user_name }}</h2>
-                        </header>
+                    <header style="text-align: center">
+                        <h2 style="color: black">Welcome {{ request.session.user_name }}</h2>
+                    </header>
                 <form method="POST" id="editorform"  action="/blog/article/{{ article.id }}/{{ article.url_slug }}/editor/save/" enctype="multipart/form-data" onsubmit="return checkvalue()">
                     {% csrf_token %}
-					<div class="container" style="border: 1px solid #cccccc">
-                        </br>
+					<div class="container">
                         <div>
-                            <span style="font-size: 16px;color: black;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 600">*title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="editorfont">*title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <input type="text" id="title" name="title" size="20" style="width:300px;height:30px;" aria-required="true" value={{ article.title }} oninput="if(value.length>150)value=value.slice(0,150)">&nbsp;&nbsp;&nbsp;
                         </div>
                         </br>
                         <div>
-                            <span style="font-size: 16px;color: black;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 600">*status:&nbsp;&nbsp;&nbsp;</span>
+                            <span class="editorfont">*status:&nbsp;&nbsp;&nbsp;</span>
                             <select name="status">
                                 {% if article.status == '有效' %}
                                     <option selected>有效</option>
@@ -205,7 +217,7 @@
                         </div>
                         </br>
                         <div>
-                            <span style="font-size: 16px;color: black;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 600">*picture:&nbsp;&nbsp;&nbsp;</span>
+                            <span class="editorfont">*picture:&nbsp;&nbsp;&nbsp;</span>
                                 <input type="file" id='pic' name="pic">
                                 current:<a id="piccurrent" href={{ article.pic.url }}>{{ article.pic.url }}</a>
                             <!--input type="text" id="author" name="category" size="30" aria-required="true"-->
@@ -255,7 +267,7 @@
                         </div>
                         </br>
                         <div>
-                            <span style="font-size: 16px;color: black;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 600">*category:&nbsp;&nbsp;&nbsp;</span>
+                            <span class="editorfont">*category:&nbsp;&nbsp;&nbsp;</span>
                             <select name="category" id="category">
                                 {% for j in categorys %}
                                     {% if  j.name == article.category.name %}
@@ -268,7 +280,7 @@
                         </div>
                         </br>
                         <div>
-                            <span style="font-size: 16px;color: black;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 600">*tags:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="editorfont">*tags:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <select multiple="multiple" name="tags" id="tags">
                                 {% for j in tags %}
                                     {% if j.name in tag_name %}
@@ -283,7 +295,7 @@
                         </div>
                         </br>
                         <div>
-                            <span style="font-size: 16px;color: black;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 600">
+                            <span class="editorfont">
                                 Last Editor Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </span>
                             {{ article.last_edit_timestamp }}
