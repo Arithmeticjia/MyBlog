@@ -171,7 +171,7 @@ class Yun(View):
 
 def index(request):
     change_info(request)
-    return redirect('/JiaBlog/index/')
+    return redirect('/blog/index/')
 
 
 def admininndex(request):
