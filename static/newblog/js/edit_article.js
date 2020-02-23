@@ -340,8 +340,8 @@ $(document).ready(function () {
         }
     });
 
-    // console.log(vm.article.selected);
-    // console.log(vm.categories);
+    // console.logs(vm.article.selected);
+    // console.logs(vm.categories);
 
     var thumbdropzone = $('.dropzone');
 

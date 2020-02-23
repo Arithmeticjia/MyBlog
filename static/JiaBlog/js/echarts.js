@@ -10652,9 +10652,9 @@ ZRender.prototype = {
         this._needsRefresh = false;
         // var end = new Date();
 
-        // var log = document.getElementById('log');
-        // if (log) {
-        //     log.innerHTML = log.innerHTML + '<br>' + (end - start);
+        // var logs = document.getElementById('logs');
+        // if (logs) {
+        //     logs.innerHTML = logs.innerHTML + '<br>' + (end - start);
         // }
     },
 
@@ -12180,7 +12180,7 @@ function cubicProjectPoint(
         out[0] = cubicAt(x0, x1, x2, x3, t);
         out[1] = cubicAt(y0, y1, y2, y3, t);
     }
-    // console.log(interval, i);
+    // console.logs(interval, i);
     return mathSqrt$2(d);
 }
 
@@ -12374,7 +12374,7 @@ function quadraticProjectPoint(
         out[0] = quadraticAt(x0, x1, x2, t);
         out[1] = quadraticAt(y0, y1, y2, t);
     }
-    // console.log(interval, i);
+    // console.logs(interval, i);
     return mathSqrt$2(d);
 }
 
@@ -16580,11 +16580,11 @@ function animateOrSetProps(isUpdate, el, props, animatableModel, dataIndex, cb) 
  * @example
  *     graphic.updateProps(el, {
  *         position: [100, 100]
- *     }, seriesModel, dataIndex, function () { console.log('Animation done!'); });
+ *     }, seriesModel, dataIndex, function () { console.logs('Animation done!'); });
  *     // Or
  *     graphic.updateProps(el, {
  *         position: [100, 100]
- *     }, seriesModel, function () { console.log('Animation done!'); });
+ *     }, seriesModel, function () { console.logs('Animation done!'); });
  */
 function updateProps(el, props, animatableModel, dataIndex, cb) {
     animateOrSetProps(true, el, props, animatableModel, dataIndex, cb);
@@ -24852,7 +24852,7 @@ Scale.prototype.unionExtent = function (other) {
     var extent = this._extent;
     other[0] < extent[0] && (extent[0] = other[0]);
     other[1] > extent[1] && (extent[1] = other[1]);
-    // not setExtent because in log axis it may transformed to power
+    // not setExtent because in logs axis it may transformed to power
     // this.setExtent(extent[0], extent[1]);
 };
 
@@ -25841,7 +25841,7 @@ function createScaleByModel(model, axisType) {
                 );
             case 'value':
                 return new IntervalScale();
-            // Extended scale, like time and log
+            // Extended scale, like time and logs
             default:
                 return (Scale.getClass(axisType) || IntervalScale).create(model);
         }
@@ -29138,7 +29138,7 @@ var Axis2D = function (dim, scale, coordExtent, axisType, position) {
      *  - 'category'
      *  - 'value'
      *  - 'time'
-     *  - 'log'
+     *  - 'logs'
      * @type {string}
      */
     this.type = axisType || 'value';
@@ -31067,7 +31067,7 @@ function makeAxisPointerModel(
     );
 
     // category axis do not auto snap, otherwise some tick that do not
-    // has value can not be hovered. value/time/log axis default snap if
+    // has value can not be hovered. value/time/logs axis default snap if
     // triggered from tooltip and trigger tooltip.
     volatileOption.snap = axis.type !== 'category' && !!triggerTooltip;
 
@@ -33752,7 +33752,7 @@ function IndicatorAxis(dim, scale, radiusExtent) {
      *  - 'category'
      *  - 'value'
      *  - 'time'
-     *  - 'log'
+     *  - 'logs'
      * @type {string}
      */
     this.type = 'value';
@@ -44942,7 +44942,7 @@ var ParallelAxis = function (dim, scale, coordExtent, axisType, axisIndex) {
      *  - 'category'
      *  - 'value'
      *  - 'time'
-     *  - 'log'
+     *  - 'logs'
      * @type {string}
      */
     this.type = axisType || 'value';
@@ -51810,7 +51810,7 @@ var SingleAxis = function (dim, scale, coordExtent, axisType, position) {
      * - 'category'
      * - 'value'
      * - 'time'
-     * - 'log'
+     * - 'logs'
      * @type {string}
      */
     this.type = axisType || 'value';
@@ -54768,7 +54768,7 @@ registerVisual(themeRiverVisual);
 registerProcessor(curry(dataFilter, 'themeRiver'));
 
 function dataToCoordSize(dataSize, dataItem) {
-    // dataItem is necessary in log axis.
+    // dataItem is necessary in logs axis.
     dataItem = dataItem || [0, 0];
     return map(['x', 'y'], function (dim, dimIdx) {
         var axis = this.getAxis(dim);
@@ -54830,7 +54830,7 @@ var prepareGeo = function (coordSys) {
 };
 
 function dataToCoordSize$2(dataSize, dataItem) {
-    // dataItem is necessary in log axis.
+    // dataItem is necessary in logs axis.
     var axis = this.getAxis();
     var val = dataItem instanceof Array ? dataItem[0] : dataItem;
     var halfSize = (dataSize instanceof Array ? dataSize[0] : dataSize) / 2;
@@ -54858,7 +54858,7 @@ var prepareSingleAxis = function (coordSys) {
 };
 
 function dataToCoordSize$3(dataSize, dataItem) {
-    // dataItem is necessary in log axis.
+    // dataItem is necessary in logs axis.
     return map(['Radius', 'Angle'], function (dim, dimIdx) {
         var axis = this['get' + dim + 'Axis']();
         var val = dataItem[dimIdx];
@@ -58600,7 +58600,7 @@ function RadiusAxis(scale, radiusExtent) {
      *  - 'category'
      *  - 'value'
      *  - 'time'
-     *  - 'log'
+     *  - 'logs'
      * @type {string}
      */
     this.type = 'category';
@@ -58635,7 +58635,7 @@ function AngleAxis(scale, angleExtent) {
      *  - 'category'
      *  - 'value'
      *  - 'time'
-     *  - 'log'
+     *  - 'logs'
      * @type {string}
      */
     this.type = 'category';
@@ -65285,7 +65285,7 @@ function prepareVisualMeta(ecModel) {
             }
         });
 
-        // console.log(JSON.stringify(visualMetaList.map(a => a.stops)));
+        // console.logs(JSON.stringify(visualMetaList.map(a => a.stops)));
         seriesModel.getData().setVisual('visualMeta', visualMetaList);
     });
 }
@@ -69588,7 +69588,7 @@ var TimelineAxis = function (dim, scale, coordExtent, axisType) {
      *  - 'category'
      *  - 'value'
      *  - 'time'
-     *  - 'log'
+     *  - 'logs'
      * @type {string}
      */
     this.type = axisType || 'value';

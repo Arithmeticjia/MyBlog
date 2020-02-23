@@ -183,20 +183,58 @@ EMAIL_FROM = '1524126437@qq.com'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
-    'filters': {
+    # 配置中定义了两个格式化器
+    'formatters': {
+        # 详细的格式化器，依次输出：消息级别、发生时间、抛出模块、进程ID、线程ID、提示信息
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
     },
+    # 过滤器-仅在debug=True时生效
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    # 处理器
     'handlers': {
+        # 处理INFO以上级别消息，输出简要信息到命令行中；此处理器仅在调试模式生效
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        # 处理ERROR以上级别消息，输出详细信息到Email中
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html': False,
-        }
-    },
-    'loggers': {
-
-        'django.request': {
-            'handlers': ['mail_admins'],
+        },
+        # 处理WARNING以上级别消息，输出详细信息到文件中
+        'file': {
             'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
+        },
+    },
+    # django产生的所有消息转交给console处理器
+    # 将网络请求相关消息转交给file、mail_admins这两个处理器
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['file', 'mail_admins'],
+            'level': 'DEBUG',
+            # 'propagate': False使得此记录器处理过的消息就不再让django记录器再次处理了
             'propagate': False,
         }
     }

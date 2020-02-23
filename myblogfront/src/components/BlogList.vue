@@ -46,7 +46,7 @@ export default {
             this.bookList = res['list']
           } else {
             this.$message.error('查询书籍失败');
-            // console.log(res['msg'])
+            // console.logs(res['msg'])
           }
         })
     }

@@ -1,0 +1,416 @@
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.031) SHOW FULL TABLES; args=None
+(0.005) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.001) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`expire_date` > '2020-02-23 16:01:09.245021' AND `django_session`.`session_key` = 'lugt4spl2uxktquhp4gipb1rqgq5jzlt'); args=('2020-02-23 16:01:09.245021', 'lugt4spl2uxktquhp4gipb1rqgq5jzlt')
+(0.001) SELECT `blog_visitnumber`.`id`, `blog_visitnumber`.`count` FROM `blog_visitnumber` WHERE `blog_visitnumber`.`id` = 1; args=(1,)
+(0.001) UPDATE `blog_visitnumber` SET `count` = 51469 WHERE `blog_visitnumber`.`id` = 1; args=(51469, 1)
+(0.004) SELECT `blog_userip`.`id`, `blog_userip`.`ip`, `blog_userip`.`count` FROM `blog_userip` WHERE `blog_userip`.`ip` = '127.0.0.1'; args=('127.0.0.1',)
+(0.001) UPDATE `blog_userip` SET `ip` = '127.0.0.1', `count` = 999 WHERE `blog_userip`.`id` = 27; args=('127.0.0.1', 999, 27)
+(0.001) SELECT `blog_daynumber`.`id`, `blog_daynumber`.`day`, `blog_daynumber`.`count` FROM `blog_daynumber` WHERE `blog_daynumber`.`day` = '2020-02-23'; args=('2020-02-23',)
+(0.000) UPDATE `blog_daynumber` SET `day` = '2020-02-23', `count` = 3 WHERE `blog_daynumber`.`id` = 337; args=('2020-02-23', 3, 337)
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`id` = 12; args=(12,)
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`username` = 'Arithmeticjia'; args=('Arithmeticjia',)
+(0.001) SELECT `social_auth_usersocialauth`.`id`, `social_auth_usersocialauth`.`provider`, `social_auth_usersocialauth`.`uid`, `social_auth_usersocialauth`.`extra_data`, `social_auth_usersocialauth`.`user_id` FROM `social_auth_usersocialauth` WHERE `social_auth_usersocialauth`.`user_id` = 12; args=(12,)
+(0.006) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效'; args=('有效',)
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles`; args=()
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_comment`; args=()
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_note`; args=()
+(0.000) SELECT `blog_note`.`id`, `blog_note`.`content`, `blog_note`.`created_time`, `blog_note`.`noteimage` FROM `blog_note` WHERE `blog_note`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category`; args=()
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 1 AND `blog_articles`.`status` = '有效'); args=(1, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 2 AND `blog_articles`.`status` = '有效'); args=(2, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 3 AND `blog_articles`.`status` = '有效'); args=(3, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 4 AND `blog_articles`.`status` = '有效'); args=(4, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 5 AND `blog_articles`.`status` = '有效'); args=(5, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 6 AND `blog_articles`.`status` = '有效'); args=(6, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 7 AND `blog_articles`.`status` = '有效'); args=(7, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 8 AND `blog_articles`.`status` = '有效'); args=(8, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 9 AND `blog_articles`.`status` = '有效'); args=(9, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 1 AND `blog_articles`.`status` = '有效'); args=(1, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 2 AND `blog_articles`.`status` = '有效'); args=(2, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 3 AND `blog_articles`.`status` = '有效'); args=(3, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 4 AND `blog_articles`.`status` = '有效'); args=(4, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 5 AND `blog_articles`.`status` = '有效'); args=(5, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 6 AND `blog_articles`.`status` = '有效'); args=(6, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 7 AND `blog_articles`.`status` = '有效'); args=(7, '有效')
+(0.001) SELECT `blog_visitnumber`.`id`, `blog_visitnumber`.`count` FROM `blog_visitnumber` ORDER BY `blog_visitnumber`.`id` ASC  LIMIT 1; args=()
+(0.001) SELECT `blog_jia`.`id`, `blog_jia`.`name`, `blog_jia`.`brief`, `blog_jia`.`pic` FROM `blog_jia` WHERE `blog_jia`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_version`.`version_content` FROM `blog_version` WHERE `blog_version`.`version_time` = '2020-02-23'; args=('2020-02-23',)
+(0.001) SELECT `blog_version`.`version_content` FROM `blog_version` ORDER BY `blog_version`.`version_time` DESC  LIMIT 1; args=()
+(0.001) SELECT `social_auth_usersocialauth`.`id`, `social_auth_usersocialauth`.`user_id`, `social_auth_usersocialauth`.`provider`, `social_auth_usersocialauth`.`uid`, `social_auth_usersocialauth`.`extra_data` FROM `social_auth_usersocialauth` WHERE `social_auth_usersocialauth`.`user_id` = 12; args=(12,)
+Exception while resolving variable 'is_login' in template 'blog/index.html'.
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+KeyError: 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'SessionStore' object has no attribute 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [is_login] in <django.contrib.sessions.backends.db.SessionStore object at 0x11d26dba8>
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE (`blog_articles`.`status` = '有效' AND `blog_articles`.`istop` = '1') ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 5; args=('有效', '1')
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE (`blog_articles`.`status` = '有效' AND `blog_articles`.`istop` = '2') ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 4; args=('有效', '2')
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 6; args=(6,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 2; args=(2,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`comments` DESC  LIMIT 2; args=('有效',)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 1; args=('有效',)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`greats` DESC  LIMIT 2; args=('有效',)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 2; args=(2,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 3; args=(3,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 10; args=('有效',)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`comments` DESC  LIMIT 10; args=('有效',)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`greats` DESC  LIMIT 10; args=('有效',)
+(0.002) SELECT `blog_tag`.`id`, `blog_tag`.`name` FROM `blog_tag`; args=()
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Django' AND `blog_articles`.`status` = '有效'); args=('Django', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Python' AND `blog_articles`.`status` = '有效'); args=('Python', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Leetcode' AND `blog_articles`.`status` = '有效'); args=('Leetcode', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Mysql' AND `blog_articles`.`status` = '有效'); args=('Mysql', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Other' AND `blog_articles`.`status` = '有效'); args=('Other', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Java' AND `blog_articles`.`status` = '有效'); args=('Java', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'JavaScript' AND `blog_articles`.`status` = '有效'); args=('JavaScript', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Vue.js' AND `blog_articles`.`status` = '有效'); args=('Vue.js', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Collectd' AND `blog_articles`.`status` = '有效'); args=('Collectd', '有效')
+"GET / HTTP/1.1" 200 119910
+"GET /static/echarts-4 HTTP/1.1" 404 1640
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`expire_date` > '2020-02-23 16:01:13.012482' AND `django_session`.`session_key` = 'lugt4spl2uxktquhp4gipb1rqgq5jzlt'); args=('2020-02-23 16:01:13.012482', 'lugt4spl2uxktquhp4gipb1rqgq5jzlt')
+(0.000) SELECT `blog_visitnumber`.`id`, `blog_visitnumber`.`count` FROM `blog_visitnumber` WHERE `blog_visitnumber`.`id` = 1; args=(1,)
+(0.000) UPDATE `blog_visitnumber` SET `count` = 51470 WHERE `blog_visitnumber`.`id` = 1; args=(51470, 1)
+(0.003) SELECT `blog_userip`.`id`, `blog_userip`.`ip`, `blog_userip`.`count` FROM `blog_userip` WHERE `blog_userip`.`ip` = '127.0.0.1'; args=('127.0.0.1',)
+(0.000) UPDATE `blog_userip` SET `ip` = '127.0.0.1', `count` = 1000 WHERE `blog_userip`.`id` = 27; args=('127.0.0.1', 1000, 27)
+(0.001) SELECT `blog_daynumber`.`id`, `blog_daynumber`.`day`, `blog_daynumber`.`count` FROM `blog_daynumber` WHERE `blog_daynumber`.`day` = '2020-02-23'; args=('2020-02-23',)
+(0.000) UPDATE `blog_daynumber` SET `day` = '2020-02-23', `count` = 4 WHERE `blog_daynumber`.`id` = 337; args=('2020-02-23', 4, 337)
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`id` = 12; args=(12,)
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`username` = 'Arithmeticjia'; args=('Arithmeticjia',)
+(0.001) SELECT `social_auth_usersocialauth`.`id`, `social_auth_usersocialauth`.`provider`, `social_auth_usersocialauth`.`uid`, `social_auth_usersocialauth`.`extra_data`, `social_auth_usersocialauth`.`user_id` FROM `social_auth_usersocialauth` WHERE `social_auth_usersocialauth`.`user_id` = 12; args=(12,)
+(0.006) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效'; args=('有效',)
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles`; args=()
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_comment`; args=()
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_note`; args=()
+(0.000) SELECT `blog_note`.`id`, `blog_note`.`content`, `blog_note`.`created_time`, `blog_note`.`noteimage` FROM `blog_note` WHERE `blog_note`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category`; args=()
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 1 AND `blog_articles`.`status` = '有效'); args=(1, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 2 AND `blog_articles`.`status` = '有效'); args=(2, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 3 AND `blog_articles`.`status` = '有效'); args=(3, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 4 AND `blog_articles`.`status` = '有效'); args=(4, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 5 AND `blog_articles`.`status` = '有效'); args=(5, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 6 AND `blog_articles`.`status` = '有效'); args=(6, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 7 AND `blog_articles`.`status` = '有效'); args=(7, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 8 AND `blog_articles`.`status` = '有效'); args=(8, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 9 AND `blog_articles`.`status` = '有效'); args=(9, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 1 AND `blog_articles`.`status` = '有效'); args=(1, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 2 AND `blog_articles`.`status` = '有效'); args=(2, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 3 AND `blog_articles`.`status` = '有效'); args=(3, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 4 AND `blog_articles`.`status` = '有效'); args=(4, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 5 AND `blog_articles`.`status` = '有效'); args=(5, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 6 AND `blog_articles`.`status` = '有效'); args=(6, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 7 AND `blog_articles`.`status` = '有效'); args=(7, '有效')
+(0.001) SELECT `blog_visitnumber`.`id`, `blog_visitnumber`.`count` FROM `blog_visitnumber` ORDER BY `blog_visitnumber`.`id` ASC  LIMIT 1; args=()
+(0.001) SELECT `blog_jia`.`id`, `blog_jia`.`name`, `blog_jia`.`brief`, `blog_jia`.`pic` FROM `blog_jia` WHERE `blog_jia`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_version`.`version_content` FROM `blog_version` WHERE `blog_version`.`version_time` = '2020-02-23'; args=('2020-02-23',)
+(0.000) SELECT `blog_version`.`version_content` FROM `blog_version` ORDER BY `blog_version`.`version_time` DESC  LIMIT 1; args=()
+Exception while resolving variable 'is_login' in template 'blog/index.html'.
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+KeyError: 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'SessionStore' object has no attribute 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [is_login] in <django.contrib.sessions.backends.db.SessionStore object at 0x11fe74b70>
+(0.003) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE (`blog_articles`.`status` = '有效' AND `blog_articles`.`istop` = '1') ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 5; args=('有效', '1')
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE (`blog_articles`.`status` = '有效' AND `blog_articles`.`istop` = '2') ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 4; args=('有效', '2')
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 6; args=(6,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 2; args=(2,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`comments` DESC  LIMIT 2; args=('有效',)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 1; args=('有效',)
+(0.002) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`greats` DESC  LIMIT 2; args=('有效',)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 2; args=(2,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 3; args=(3,)
+(0.003) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 10; args=('有效',)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`comments` DESC  LIMIT 10; args=('有效',)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`greats` DESC  LIMIT 10; args=('有效',)
+(0.001) SELECT `blog_tag`.`id`, `blog_tag`.`name` FROM `blog_tag`; args=()
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Django' AND `blog_articles`.`status` = '有效'); args=('Django', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Python' AND `blog_articles`.`status` = '有效'); args=('Python', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Leetcode' AND `blog_articles`.`status` = '有效'); args=('Leetcode', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Mysql' AND `blog_articles`.`status` = '有效'); args=('Mysql', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Other' AND `blog_articles`.`status` = '有效'); args=('Other', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Java' AND `blog_articles`.`status` = '有效'); args=('Java', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'JavaScript' AND `blog_articles`.`status` = '有效'); args=('JavaScript', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Vue.js' AND `blog_articles`.`status` = '有效'); args=('Vue.js', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Collectd' AND `blog_articles`.`status` = '有效'); args=('Collectd', '有效')
+"GET / HTTP/1.1" 200 110540
+"GET /static/images/%E5%86%99%E5%8D%9A%E5%AE%A2.png HTTP/1.1" 200 9842
+"GET /static/QPlayer/music/%E8%B5%B5%E9%9B%B7-%E8%AE%A9%E6%88%91%E5%81%B7%E5%81%B7%E7%9C%8B%E4%BD%A0.mp3 HTTP/1.1" 200 3899392
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.026) SHOW FULL TABLES; args=None
+(0.006) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.033) SHOW FULL TABLES; args=None
+(0.006) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.002) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`expire_date` > '2020-02-23 16:24:04.015866' AND `django_session`.`session_key` = 'lugt4spl2uxktquhp4gipb1rqgq5jzlt'); args=('2020-02-23 16:24:04.015866', 'lugt4spl2uxktquhp4gipb1rqgq5jzlt')
+(0.001) SELECT `blog_visitnumber`.`id`, `blog_visitnumber`.`count` FROM `blog_visitnumber` WHERE `blog_visitnumber`.`id` = 1; args=(1,)
+(0.001) UPDATE `blog_visitnumber` SET `count` = 51471 WHERE `blog_visitnumber`.`id` = 1; args=(51471, 1)
+(0.004) SELECT `blog_userip`.`id`, `blog_userip`.`ip`, `blog_userip`.`count` FROM `blog_userip` WHERE `blog_userip`.`ip` = '127.0.0.1'; args=('127.0.0.1',)
+(0.001) UPDATE `blog_userip` SET `ip` = '127.0.0.1', `count` = 1001 WHERE `blog_userip`.`id` = 27; args=('127.0.0.1', 1001, 27)
+(0.001) SELECT `blog_daynumber`.`id`, `blog_daynumber`.`day`, `blog_daynumber`.`count` FROM `blog_daynumber` WHERE `blog_daynumber`.`day` = '2020-02-23'; args=('2020-02-23',)
+(0.000) UPDATE `blog_daynumber` SET `day` = '2020-02-23', `count` = 5 WHERE `blog_daynumber`.`id` = 337; args=('2020-02-23', 5, 337)
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`id` = 12; args=(12,)
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`username` = 'Arithmeticjia'; args=('Arithmeticjia',)
+(0.001) SELECT `social_auth_usersocialauth`.`id`, `social_auth_usersocialauth`.`provider`, `social_auth_usersocialauth`.`uid`, `social_auth_usersocialauth`.`extra_data`, `social_auth_usersocialauth`.`user_id` FROM `social_auth_usersocialauth` WHERE `social_auth_usersocialauth`.`user_id` = 12; args=(12,)
+(0.007) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效'; args=('有效',)
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles`; args=()
+(0.002) SELECT COUNT(*) AS `__count` FROM `blog_comment`; args=()
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_note`; args=()
+(0.000) SELECT `blog_note`.`id`, `blog_note`.`content`, `blog_note`.`created_time`, `blog_note`.`noteimage` FROM `blog_note` WHERE `blog_note`.`id` = 2; args=(2,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category`; args=()
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 1 AND `blog_articles`.`status` = '有效'); args=(1, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 2 AND `blog_articles`.`status` = '有效'); args=(2, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 3 AND `blog_articles`.`status` = '有效'); args=(3, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 4 AND `blog_articles`.`status` = '有效'); args=(4, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 5 AND `blog_articles`.`status` = '有效'); args=(5, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 6 AND `blog_articles`.`status` = '有效'); args=(6, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 7 AND `blog_articles`.`status` = '有效'); args=(7, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 8 AND `blog_articles`.`status` = '有效'); args=(8, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 9 AND `blog_articles`.`status` = '有效'); args=(9, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 1 AND `blog_articles`.`status` = '有效'); args=(1, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 2 AND `blog_articles`.`status` = '有效'); args=(2, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 3 AND `blog_articles`.`status` = '有效'); args=(3, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 4 AND `blog_articles`.`status` = '有效'); args=(4, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 5 AND `blog_articles`.`status` = '有效'); args=(5, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 6 AND `blog_articles`.`status` = '有效'); args=(6, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 7 AND `blog_articles`.`status` = '有效'); args=(7, '有效')
+(0.001) SELECT `blog_visitnumber`.`id`, `blog_visitnumber`.`count` FROM `blog_visitnumber` ORDER BY `blog_visitnumber`.`id` ASC  LIMIT 1; args=()
+(0.004) SELECT `blog_jia`.`id`, `blog_jia`.`name`, `blog_jia`.`brief`, `blog_jia`.`pic` FROM `blog_jia` WHERE `blog_jia`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_version`.`version_content` FROM `blog_version` WHERE `blog_version`.`version_time` = '2020-02-23'; args=('2020-02-23',)
+(0.000) SELECT `blog_version`.`version_content` FROM `blog_version` ORDER BY `blog_version`.`version_time` DESC  LIMIT 1; args=()
+(0.001) SELECT `social_auth_usersocialauth`.`id`, `social_auth_usersocialauth`.`user_id`, `social_auth_usersocialauth`.`provider`, `social_auth_usersocialauth`.`uid`, `social_auth_usersocialauth`.`extra_data` FROM `social_auth_usersocialauth` WHERE `social_auth_usersocialauth`.`user_id` = 12; args=(12,)
+Exception while resolving variable 'is_login' in template 'blog/index.html'.
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+KeyError: 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'SessionStore' object has no attribute 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [is_login] in <django.contrib.sessions.backends.db.SessionStore object at 0x11669a7f0>
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE (`blog_articles`.`status` = '有效' AND `blog_articles`.`istop` = '1') ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 5; args=('有效', '1')
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE (`blog_articles`.`status` = '有效' AND `blog_articles`.`istop` = '2') ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 4; args=('有效', '2')
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 6; args=(6,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 2; args=(2,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`comments` DESC  LIMIT 2; args=('有效',)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 1; args=('有效',)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`greats` DESC  LIMIT 2; args=('有效',)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 2; args=(2,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 3; args=(3,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 10; args=('有效',)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`comments` DESC  LIMIT 10; args=('有效',)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`greats` DESC  LIMIT 10; args=('有效',)
+(0.001) SELECT `blog_tag`.`id`, `blog_tag`.`name` FROM `blog_tag`; args=()
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Django' AND `blog_articles`.`status` = '有效'); args=('Django', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Python' AND `blog_articles`.`status` = '有效'); args=('Python', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Leetcode' AND `blog_articles`.`status` = '有效'); args=('Leetcode', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Mysql' AND `blog_articles`.`status` = '有效'); args=('Mysql', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Other' AND `blog_articles`.`status` = '有效'); args=('Other', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Java' AND `blog_articles`.`status` = '有效'); args=('Java', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'JavaScript' AND `blog_articles`.`status` = '有效'); args=('JavaScript', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Vue.js' AND `blog_articles`.`status` = '有效'); args=('Vue.js', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Collectd' AND `blog_articles`.`status` = '有效'); args=('Collectd', '有效')
+"GET / HTTP/1.1" 200 119910
+"GET /static/echarts-4 HTTP/1.1" 404 1640
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`expire_date` > '2020-02-23 16:24:07.729148' AND `django_session`.`session_key` = 'lugt4spl2uxktquhp4gipb1rqgq5jzlt'); args=('2020-02-23 16:24:07.729148', 'lugt4spl2uxktquhp4gipb1rqgq5jzlt')
+(0.000) SELECT `blog_visitnumber`.`id`, `blog_visitnumber`.`count` FROM `blog_visitnumber` WHERE `blog_visitnumber`.`id` = 1; args=(1,)
+(0.001) UPDATE `blog_visitnumber` SET `count` = 51472 WHERE `blog_visitnumber`.`id` = 1; args=(51472, 1)
+(0.003) SELECT `blog_userip`.`id`, `blog_userip`.`ip`, `blog_userip`.`count` FROM `blog_userip` WHERE `blog_userip`.`ip` = '127.0.0.1'; args=('127.0.0.1',)
+(0.000) UPDATE `blog_userip` SET `ip` = '127.0.0.1', `count` = 1002 WHERE `blog_userip`.`id` = 27; args=('127.0.0.1', 1002, 27)
+(0.001) SELECT `blog_daynumber`.`id`, `blog_daynumber`.`day`, `blog_daynumber`.`count` FROM `blog_daynumber` WHERE `blog_daynumber`.`day` = '2020-02-23'; args=('2020-02-23',)
+(0.002) UPDATE `blog_daynumber` SET `day` = '2020-02-23', `count` = 6 WHERE `blog_daynumber`.`id` = 337; args=('2020-02-23', 6, 337)
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`id` = 12; args=(12,)
+(0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`username` = 'Arithmeticjia'; args=('Arithmeticjia',)
+(0.001) SELECT `social_auth_usersocialauth`.`id`, `social_auth_usersocialauth`.`provider`, `social_auth_usersocialauth`.`uid`, `social_auth_usersocialauth`.`extra_data`, `social_auth_usersocialauth`.`user_id` FROM `social_auth_usersocialauth` WHERE `social_auth_usersocialauth`.`user_id` = 12; args=(12,)
+(0.006) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效'; args=('有效',)
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles`; args=()
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_comment`; args=()
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_note`; args=()
+(0.000) SELECT `blog_note`.`id`, `blog_note`.`content`, `blog_note`.`created_time`, `blog_note`.`noteimage` FROM `blog_note` WHERE `blog_note`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category`; args=()
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 1 AND `blog_articles`.`status` = '有效'); args=(1, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 2 AND `blog_articles`.`status` = '有效'); args=(2, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 3 AND `blog_articles`.`status` = '有效'); args=(3, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 4 AND `blog_articles`.`status` = '有效'); args=(4, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 5 AND `blog_articles`.`status` = '有效'); args=(5, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 6 AND `blog_articles`.`status` = '有效'); args=(6, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 7 AND `blog_articles`.`status` = '有效'); args=(7, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 8 AND `blog_articles`.`status` = '有效'); args=(8, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 9 AND `blog_articles`.`status` = '有效'); args=(9, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 1 AND `blog_articles`.`status` = '有效'); args=(1, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 2 AND `blog_articles`.`status` = '有效'); args=(2, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 3 AND `blog_articles`.`status` = '有效'); args=(3, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 4 AND `blog_articles`.`status` = '有效'); args=(4, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 5 AND `blog_articles`.`status` = '有效'); args=(5, '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 6 AND `blog_articles`.`status` = '有效'); args=(6, '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` WHERE (`blog_articles`.`category_id` = 7 AND `blog_articles`.`status` = '有效'); args=(7, '有效')
+(0.001) SELECT `blog_visitnumber`.`id`, `blog_visitnumber`.`count` FROM `blog_visitnumber` ORDER BY `blog_visitnumber`.`id` ASC  LIMIT 1; args=()
+(0.001) SELECT `blog_jia`.`id`, `blog_jia`.`name`, `blog_jia`.`brief`, `blog_jia`.`pic` FROM `blog_jia` WHERE `blog_jia`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_version`.`version_content` FROM `blog_version` WHERE `blog_version`.`version_time` = '2020-02-23'; args=('2020-02-23',)
+(0.001) SELECT `blog_version`.`version_content` FROM `blog_version` ORDER BY `blog_version`.`version_time` DESC  LIMIT 1; args=()
+Exception while resolving variable 'is_login' in template 'blog/index.html'.
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+KeyError: 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'SessionStore' object has no attribute 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'is_login'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [is_login] in <django.contrib.sessions.backends.db.SessionStore object at 0x118c7f668>
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE (`blog_articles`.`status` = '有效' AND `blog_articles`.`istop` = '1') ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 5; args=('有效', '1')
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE (`blog_articles`.`status` = '有效' AND `blog_articles`.`istop` = '2') ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 4; args=('有效', '2')
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 6; args=(6,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 2; args=(2,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`comments` DESC  LIMIT 2; args=('有效',)
+(0.000) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.001) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 1; args=('有效',)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 1; args=(1,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`greats` DESC  LIMIT 2; args=('有效',)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 2; args=(2,)
+(0.001) SELECT `blog_category`.`id`, `blog_category`.`name` FROM `blog_category` WHERE `blog_category`.`id` = 3; args=(3,)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`timestamp` DESC  LIMIT 10; args=('有效',)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`comments` DESC  LIMIT 10; args=('有效',)
+(0.002) SELECT `blog_articles`.`id`, `blog_articles`.`title`, `blog_articles`.`body`, `blog_articles`.`timestamp`, `blog_articles`.`authorname_id`, `blog_articles`.`views`, `blog_articles`.`category_id`, `blog_articles`.`greats`, `blog_articles`.`comments`, `blog_articles`.`status`, `blog_articles`.`brief`, `blog_articles`.`pic`, `blog_articles`.`istop`, `blog_articles`.`articlebodybrief`, `blog_articles`.`last_edit_timestamp`, `blog_articles`.`url_slug` FROM `blog_articles` WHERE `blog_articles`.`status` = '有效' ORDER BY `blog_articles`.`greats` DESC  LIMIT 10; args=('有效',)
+(0.001) SELECT `blog_tag`.`id`, `blog_tag`.`name` FROM `blog_tag`; args=()
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Django' AND `blog_articles`.`status` = '有效'); args=('Django', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Python' AND `blog_articles`.`status` = '有效'); args=('Python', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Leetcode' AND `blog_articles`.`status` = '有效'); args=('Leetcode', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Mysql' AND `blog_articles`.`status` = '有效'); args=('Mysql', '有效')
+(0.001) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Other' AND `blog_articles`.`status` = '有效'); args=('Other', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Java' AND `blog_articles`.`status` = '有效'); args=('Java', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'JavaScript' AND `blog_articles`.`status` = '有效'); args=('JavaScript', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Vue.js' AND `blog_articles`.`status` = '有效'); args=('Vue.js', '有效')
+(0.000) SELECT COUNT(*) AS `__count` FROM `blog_articles` INNER JOIN `blog_category` ON (`blog_articles`.`category_id` = `blog_category`.`id`) WHERE (`blog_category`.`name` = 'Collectd' AND `blog_articles`.`status` = '有效'); args=('Collectd', '有效')
+"GET / HTTP/1.1" 200 110540
+"GET /static/images/%E5%86%99%E5%8D%9A%E5%AE%A2.png HTTP/1.1" 200 9842
+"GET /static/QPlayer/music/%E8%B5%B5%E9%9B%B7-%E8%AE%A9%E6%88%91%E5%81%B7%E5%81%B7%E7%9C%8B%E4%BD%A0.mp3 HTTP/1.1" 200 3899392
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.019) SHOW FULL TABLES; args=None
+(0.010) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.022) SHOW FULL TABLES; args=None
+(0.003) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.021) SHOW FULL TABLES; args=None
+(0.005) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.018) SHOW FULL TABLES; args=None
+(0.004) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.005) SHOW FULL TABLES; args=None
+(0.003) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()

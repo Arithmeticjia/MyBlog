@@ -419,7 +419,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                     "in out inout"),
     blockKeywords: words("for while do if else struct"),
     builtin: words("radians degrees sin cos tan asin acos atan " +
-                    "pow exp log exp2 sqrt inversesqrt " +
+                    "pow exp logs exp2 sqrt inversesqrt " +
                     "abs sign floor ceil fract mod min max clamp mix step smoothstep " +
                     "length distance dot cross normalize ftransform faceforward " +
                     "reflect refract matrixCompMult " +

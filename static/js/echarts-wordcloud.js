@@ -1934,7 +1934,7 @@ function cubicProjectPoint(x0, y0, x1, y1, x2, y2, x3, y3, x, y, out) {
   if (out) {
     out[0] = cubicAt(x0, x1, x2, x3, t);
     out[1] = cubicAt(y0, y1, y2, y3, t);
-  } // console.log(interval, i);
+  } // console.logs(interval, i);
 
 
   return mathSqrt(d);
@@ -2133,7 +2133,7 @@ function quadraticProjectPoint(x0, y0, x1, y1, x2, y2, x, y, out) {
   if (out) {
     out[0] = quadraticAt(x0, x1, x2, t);
     out[1] = quadraticAt(y0, y1, y2, t);
-  } // console.log(interval, i);
+  } // console.logs(interval, i);
 
 
   return mathSqrt(d);
@@ -10077,11 +10077,11 @@ function animateOrSetProps(isUpdate, el, props, animatableModel, dataIndex, cb) 
  * @example
  *     graphic.updateProps(el, {
  *         position: [100, 100]
- *     }, seriesModel, dataIndex, function () { console.log('Animation done!'); });
+ *     }, seriesModel, dataIndex, function () { console.logs('Animation done!'); });
  *     // Or
  *     graphic.updateProps(el, {
  *         position: [100, 100]
- *     }, seriesModel, function () { console.log('Animation done!'); });
+ *     }, seriesModel, function () { console.logs('Animation done!'); });
  */
 
 
