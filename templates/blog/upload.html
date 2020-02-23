@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<!-- set the encoding of your site -->
+{#    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">#}
+    <link rel="shortcut icon" href="/static/images/写博客.png">
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>File</title>
+	<!-- include the site stylesheet -->
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CPoppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/font-awesome.min.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/bootstrap.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/animate.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/style.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_dycynze6id6.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_oyyrvpk63p.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_07f5zbdbyf9q.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_xmpmtbu3qm.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_2jx8jr9khtj.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_h5pzyznynb7.css">
+{#    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>#}
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
+    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <style>
+        p{
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif
+        }
+        .readme{
+            background: #ec6149;
+            border-radius: 20px;
+            border: none;
+            width: 80px;
+            height: 30px;
+            font-size: 10px;
+            font-weight: bold;
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: white
+        }
+        .search-box{
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            transform: translate(-0%,-0%);
+            background: #2f3640;
+            border-radius: 40px;
+            padding: 10px;
+        }
+        .search-box:hover>.search-txt{
+            width: 240px;
+            padding: 0 6px;
+        }
+        .search-box:hover>.search-btn{
+           background: white;
+        }
+        .search-btn{
+            border: none;
+            color: #e84118;
+            float:right ;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2f3640;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search-txt{
+            border: none;
+            background: none;
+            outline: none;
+            float: left;
+            padding: 0;
+            color: white;
+            font-size: 16px;
+            transition: 0.4s;
+            line-height: 40px;
+            width: 0px;
+        }
+    </style>
+</head>
+<body class="version-ii">
+	<div class="loader-holder">
+		<div class="loader">
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+		</div>
+	</div>
+	<!-- main container of all the page elements -->
+	<div id="wrapper">
+		<!-- w1 of the page -->
+		<div class="w1">
+			<!-- header of the page -->
+			<header id="header" class="version-ii">
+				<div class="container">
+					<div class="row top-bar">
+						<!-- Top Nav of the page -->
+						<nav class="col-xs-12 col-sm-6 policy-nav">
+							<ul>
+								<li><a href="#">sitemap</a></li>
+								<li><a href="#">privacy policy</a></li>
+								<li><a href="#">support</a></li>
+							</ul>
+						</nav>
+						<!-- Top Nav of the page end -->
+						<div class="col-xs-12 col-sm-6 pull-right hidden-xs">
+							<!-- Social Network of the page -->
+							<ul class="social-networks">
+								<li><a href="#"><span class="ico-facebook"></span></a></li>
+								<li><a href="#"><span class="ico-twitter"></span></a></li>
+								<li><a href="#"><span class="ico-google-plus"></span></a></li>
+								<li><a href="#"><span class="ico-linkedin"></span></a></li>
+								<li><a href="#"><span class="ico-pinterest"></span></a></li>
+							</ul>
+							<!-- Social Network of the page end -->
+						</div>
+					</div>
+				</div>
+				<div class="stick-holder">
+					<div class="container">
+						<div class="row holder">
+							<div class="col-xs-3 col-sm-2">
+								<!-- Logo of the page -->
+								<div class="logo"><a href="/blog/index"><img src="/static/JiaBlog/images/logonew.png" alt="dot"></a></div>
+								<!-- Logo of the page end -->
+							</div>
+							<div class="col-xs-9 col-sm-10 nav-holder">
+								<!-- Nav of the page -->
+								<nav id="nav" class="navbar navbar-default">
+									<!-- Navbar Header of the page -->
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+									</div>
+									<!-- Navbar Header of the page end -->
+									<a href="#" class="pull-right icon-menu"><span class="ico-menu"></span></a>
+									<!-- Collapse of the page -->
+									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+										<ul class="nav navbar-nav navbar-right">
+											<li><a href="/blog/index/">Home</a></li>
+											<li><a href="/blog/list/">Archive</a></li>
+											<!--li><a href="single.html">Single</a></li-->
+											<li><a href="/blog/contact-us">Contact</a></li>
+                                            <li><a href="/blog/file/" target="_blank">File</a></li>
+                                            <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
+                                            {% if request.session.is_login %}
+                                                <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
+                                                <li><a href="/blog/logout/">Logout</a></li>
+                                            {% elif request.user.is_authenticated %}
+                                                <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                                <li><a href="/blog/logout/">Logout</a></li>
+                                            {% else %}
+                                                <li><a href="/blog/mylist/">Tourist</a></li>
+                                                <li><a href="/blog/login/">Login</a></li>
+                                            {% endif %}
+										</ul>
+									</div>
+									<!-- Collapse of the page end -->
+								</nav>
+								<!-- Nav of the page -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Side Nav of the page -->
+				<nav class="side-nav">
+					<a href="#" class="close"><i class="fa fa-times"></i></a>
+					<!-- Widget of the page -->
+					<h2>About me</h2>
+					<section class="widget profile-widget">
+						<div class="profile-pic">
+                            <a href="#">
+                                <img src="{{ jia.pic.url }}" alt="ArithmeticJia">
+                            </a>
+                        </div>
+                        <h3><a href="#">{{ jia.name }}</a></h3>
+                        <p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ jia.brief }}</p>
+						<!-- Social Network of the page -->
+						<ul class="social-networks">
+							<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+							<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+							<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+							<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+							<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+						</ul>
+						<!-- Social Network of the page end -->
+					</section>
+					<!-- Widget of the page end -->
+				</nav>
+				<!-- Side Nav of the page end -->
+			</header>
+			<!-- Header of the page end -->
+			<!-- Main of the page -->
+			<main id="main" role="main">
+				<!-- Page head of the page -->
+				<header class="page-head wow fadeInUp" data-wow-delay="0.6s" style="background-color: #2a2d34">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<h1>File Page</h1>
+								<ol class="breadcrumb">
+									<li><a href="/blog/index">Home</a></li>
+									<li class="active">File</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</header>
+				<!-- Page head of the page end -->
+				<div id="twocolumns" class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="main-header">
+								<strong class="title">Files</strong>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<!-- Content of the page -->
+						<div id="content" class="col-xs-12 col-md-8">
+							<!-- Widget of the page -->
+							<div class="widget widget_search hidden-md hidden-lg">
+								<form method="get" class="search-form" action="/blog/search">
+									<fieldset>
+										<input type="search" name="q" placeholder="Type to search here">
+										<button type="button" class="ico-search"></button>
+									</fieldset>
+								</form>
+							</div>
+							<!-- Widget of the page end -->
+							<!-- Widget of the page -->
+							<section class="widget profile-widget version-ii hidden-lg hidden-md">
+								<div class="profile-pic">
+									<a href="#">
+										<img src="/static/JiaBlog/images/head.jpg" alt="John Aston">
+									</a>
+								</div>
+								<h3>{{ jia.name }}</h3>
+								<p>{{ jia.brief }}</p>
+								<!-- Social Network of the page -->
+								<ul class="social-networks">
+									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+									<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+									<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+									<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+									<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+								</ul>
+								<!-- SOcial Network of the page end -->
+							</section>
+							<!-- Widget of the page end -->
+							<!-- Posts Blocks of the page -->
+							<section class="comment-respond wow fadeInUp" data-wow-delay="0.4s">
+								<header class="header">
+									<h3 id="reply-title" class="comment-reply-title">Upload Files</h3>
+                                    <button class="readme" onclick="show()">README</button>
+                                    <script>
+                                        function show() {
+                                            swal(
+                                            '最大支持1000M文件！',
+                                            '',
+                                            'info'
+                                        )}
+                                    </script>
+									<!--p>it’s easy to upload or download files here</p-->
+								</header>
+								<form method="POST" id="commentform"  class="comment-form" enctype="multipart/form-data">
+                                    {% csrf_token %}
+									<div class="wrap">
+										<input id='fileupload' class="form-submit" type='file' name="file">
+										<div class="form-submit">
+										    <input type="button" name="submit" value="Upload" onclick="checkfile()">
+									    </div>
+									</div>
+                                    <script type="text/javascript">
+                                        function checkfile(){
+                                            var obj_file = document.getElementById("fileupload");
+                                            if(obj_file.value==""){
+                                                swal(
+                                                    "Please select a file! ",
+                                                    "",
+                                                    "warning"
+                                                );
+                                                return false;
+                                            }else{
+                                                var form_data = new FormData();
+                                                var file_info = $('#fileupload')[0].files[0];
+                                                form_data.append('file',file_info);
+                                                console.log(form_data);
+                                                $.ajax({
+                                                        url:"/JiaBlog/ajfileupload/",
+                                                        type:'POST',
+                                                        contentType: false,
+                                                        {#async: false,#}
+                                                        processData: false,
+                                                        data: form_data,
+                                                        success:function (upresult) {
+                                                           var upstatus = upresult.result;
+                                                           if (upstatus == 'success'){
+                                                               swal(
+                                                                   'Upload Successfully！',
+                                                                   '',
+                                                                   'success'
+                                                            ).then(function (result) {
+                                                                if(result.value){
+                                                                setTimeout(function () {
+                                                                window.location.reload()
+                                                                    }, 1000);
+                                                               }
+                                                                setTimeout(function () {
+                                                                window.location.reload()
+                                                                    }, 1000);
+                                                            });
+                                                           }else {
+                                                               swal(
+                                                                   'Upload Failed! ',
+                                                                   '',
+                                                                   "error"
+                                                               )
+                                                           }
+                                                       }
+                                                    })
+                                                }
+                                            };
+                                    </script>
+									<p class="form-allowed-tags hidden">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a
+							 href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt;
+							&lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del
+							datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt;
+							&lt;strong&gt; </code></p>
+								</form>
+							</section>
+                            <section class="comment-respond wow fadeInUp" data-wow-delay="0.4s">
+								<header class="header">
+                                    <div>
+									    <h3 id="reply-title" class="comment-reply-title">Download Files</h3>
+                                        <div style="display: inline;float: right">
+                                            <form method="get" action="/blog/searchfile">
+                                                <div class="search-box">
+                                                    <input class="search-txt" type="text" name="q" placeholder="Type to search file">
+                                                    <button class="search-btn">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+									<!--p>it’s easy to upload or download files here</p-->
+								</header>
+                                {% for i in jiafiles %}
+{#                                    /static/Jia_File/{{ i.file_name }}#}
+                                        <div class="comment-form"><a style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" name="{{ i.file_name }}" href="javascript:void(0);" onclick="checkdown(this)">{{ i }}</a><a href="javascript:void(0);" style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;float:right;color: #f5ab35" id="{{ i.id }}" onclick="checkdelete(this)">Delete</a></div>
+
+                                <script type="text/javascript">
+                                    function checkdelete(obj) {
+                                        //var file_name = "{{ i }}";
+                                        var file_id = $(obj).attr("id");
+                                        console.log($(obj).attr("file_id"));
+                                        swal({
+                                            title: 'Enter your password to Delete',
+                                            input: 'password',
+                                            inputAttributes: {
+                                                'maxlength': 10,
+                                                'autocapitalize': 'off',
+                                                'autocorrect': 'off'
+                                            }
+                                        }).then(function(result) {
+                                            if (result.value) {
+                                                $.ajax({
+                                                    url: "/blog/deletefile/",
+                                                    type: 'POST',
+                                                    data: {
+                                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                                        file_id: file_id,
+                                                        password: result.value
+                                                    },
+                                                    success: function (result) {
+                                                        var status = result.result;
+                                                        if (status == 'success') {
+                                                            swal(
+                                                                'Delete successfully！',
+                                                                '',
+                                                                'success'
+                                                            ).then(function (result) {
+                                                                if(result.value){
+                                                                setTimeout(function () {
+                                                                     window.location.reload()
+                                                                });
+                                                            }
+                                                                setTimeout(function () {
+                                                                    window.location.reload()
+                                                                })
+                                                            });
+                                                        } else {
+                                                            swal(
+                                                                'Wrong password！',
+                                                                '',
+                                                                "error"
+                                                            );           //后端删除失败
+                                                        }
+                                                    },
+                                                })
+                                            }
+                                    })
+                                    }
+                                    function checkdown(obj) {
+                                        var file_name = $(obj).attr("name");
+                                        console.log(file_name);
+                                        swal({
+                                            title: 'Enter your password to Download',
+                                            input: 'password',
+                                            inputAttributes: {
+                                                'maxlength': 10,
+                                                'autocapitalize': 'off',
+                                                'autocorrect': 'off'
+                                            }
+                                        }).then(function(result) {
+                                            if (result.value) {
+                                                $.ajax({
+                                                    url: "/blog/filecheck/",
+                                                    type: 'POST',
+                                                    data: {
+                                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                                        password: result.value
+                                                    },
+                                                    success: function (result) {
+                                                        var status = result.result;
+                                                        if (status == 'success') {
+                                                            swal(
+                                                                'Start Downloading! ',
+                                                                '',
+                                                                'success'
+                                                            ).then(function (result) {
+                                                                if(result.value){
+                                                                    {#window.open("/static/Jia_File/{{ i.file_name }}")#}
+                                                                    window.open('/static/Jia_File/'+file_name+'')
+                                                            }
+                                                            });
+                                                        } else {
+                                                            swal(
+                                                                'Wrong Password! ',
+                                                                '',
+                                                                "error"
+                                                            );           //后端删除失败
+                                                        }
+                                                    },
+                                                })
+                                            }
+                                    })
+                                    }
+                                </script>
+                                {% endfor %}
+							</section>
+							<!-- Posts Blocks of the page end -->
+							<!-- Navigation of the page -->
+							<nav role="navigation" class="navigation pagination">
+								<div class="nav-links">
+									<!--a href="#" class="prev page-numbers">Prev post.</a>
+									<a href="#" class="page-numbers">1</a>
+									<span class="page-numbers current">2</span>
+									<span class="page-numbers dots hidden">…</span>
+									<a href="#" class="page-numbers">3</a>
+									<a href="#" class="next page-numbers">NEXT post.</a-->
+								</div>
+							</nav>
+							<!-- Navigation of the page end -->
+						</div>
+						<!-- Sidebar of the page -->
+						<aside id="sidebar" class="col-xs-12 col-md-4">
+							<!-- Widget of the page -->
+							<section class="widget profile-widget version-ii hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
+								<div class="profile-pic">
+									<a href="#">
+										<img src="{{ jia.pic.url }}" alt="ArithmeticJia">
+									</a>
+								</div>
+								<h3>{{ jia.name }}</h3>
+								<p>{{ jia.brief }}</p>
+								<!-- Social Network of the page -->
+								<ul class="social-networks">
+									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+									<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+									<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+									<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+									<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+								</ul>
+								<!-- Social Network of the page end -->
+							</section>
+							<!-- Widget of the page -->
+							<div class="widget widget_search hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
+								<form method="get" class="search-form" action="/blog/search/">
+									<fieldset>
+										<input type="search" name="q" placeholder="Type to search here">
+										<button type="submit" class="ico-search"></button>
+									</fieldset>
+								</form>
+							</div>
+							<!-- Widget of the page end -->
+							<!-- Widget of the page -->
+							<section class="widget recent-posts-widget version-ii wow fadeInUp" data-wow-delay="0.6s">
+								<header class="tab-head">
+									<h3><a class="active" href="#tab1">Recent Posts</a></h3>
+									<h3><a href="#tab2">Popular Posts</a></h3>
+								</header>
+								<div class="tab-content">
+									<div id="tab1">
+										<ul>
+	                                     {% for i in blog_list_comments %}
+											<li>
+												<div class="alignleft">
+													<img src="/media/{{ i.pic }}" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+													</span>
+												</div>
+
+											</li>
+                                            {% endfor %}
+											<!--li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img28.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">I get up in the morning looking <br>for an adventure.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img29.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">Holiday is awesome when loved <br>one beside me.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li-->
+										</ul>
+									</div>
+									<div id="tab2">
+										<ul>
+		                                    {% for i in blog_list_greats %}
+											<li>
+												<div class="alignleft">
+													<img src="/media/{{ i.pic }}" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+													</span>
+												</div>
+											</li>
+                                            {% endfor %}
+											<!--li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img27.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">Traveling is awesome if you <br>can enjoy.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img28.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">I get up in the morning looking <br>for an adventure.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li-->
+										</ul>
+									</div>
+								</div>
+							</section>
+							<!-- Widget of the page end -->
+							<!-- Widget of the page 广告-->
+							<!--div class="widget promo-widget">
+								<a href="#"><img src="/static/JiaBlog/images/ad-placeholder.jpg" alt="“Place your Advertisement here”"></a>
+							</div-->
+							<!-- Widget of the page end -->
+							<!-- Widget of the page -->
+
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Tags</h3>
+								</header>
+								<ul>
+                                    {% for i in tags %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="#">- {{ i.name }}</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+							</div>
+
+							<div class="widget widget_categories tabs wow fadeInUp" data-wow-delay="0.6s">
+								<header class="widget-head">
+									<h3>Category</h3>
+								</header>
+								<ul>
+                                    {% for i in categorys %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/blog/articles/{{ i.name }}">- {{ i.name }}---({{ i.catcount }})</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+							</div>
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Version Updates</h3>
+								</header>
+								<ul>
+                                    {% for i in versions %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="#">- {{ i }}</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+							</div>
+
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Domain Info</h3>
+								</header>
+                                <ul>
+                                    <li class="cat-item cat-item-1">- 苏ICP备19007197号</li>
+                                    <li class="cat-item cat-item-1">- Copyright &copy; 2019.Company name All &nbsp;&nbsp;&nbsp;rights reserved.arithmeticjia</li>
+                                </ul>
+                            </div>
+							<!-- Widget of the page end -->
+						</aside>
+						<!-- Sidebar of the page end -->
+					</div>
+				</div>
+				<!-- Instagram Slider of the page -->
+				<div class="instagram-slider version-ii container-fluid wow fadeInUp" data-wow-delay="0.6s">
+					<div class="row">
+						<div class="mask">
+							<div class="slideset">
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img30.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img31.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img35.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img32.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img33.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img36.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img34.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img30.jpg" alt="image description"></a>
+								</div>
+								<div class="slide">
+									<a href="#"><img src="/static/JiaBlog/images/img31.jpg" alt="image description"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Instagram Slider of the page end -->
+			</main>
+			<!-- Main of the page end -->
+			<!-- Aside of the page -->
+			<aside class="aside version-ii container">
+				<div class="row">
+					<div class="col-xs-12 holder">
+						<div class="col">
+							<div class="logo"><a href="#"><img src="/static/JiaBlog/images/logo2.png" alt="dot"></a></div>
+							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.</p>
+							<!-- Social Network of the page -->
+							<ul class="social-networks">
+								<li><a href="#"><span class="ico-facebook"></span></a></li>
+								<li><a href="#"><span class="ico-twitter"></span></a></li>
+								<li><a href="#"><span class="ico-google-plus"></span></a></li>
+								<li><a href="#"><span class="ico-linkedin"></span></a></li>
+								<li><a href="#"><span class="ico-pinterest"></span></a></li>
+							</ul>
+							<!-- Social Network of the page end -->
+						</div>
+						<!-- Footer Nav of the page -->
+						<nav class="col footer-nav">
+							<h3>Important Links</h3>
+							<ul>
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Sitemap</a></li>
+								<li><a href="#">Support</a></li>
+							</ul>
+						</nav>
+						<!-- Footer Nav of the page end -->
+						<!-- Footer Nav of the page -->
+						<nav class="col footer-nav">
+							<h3>Popular Links</h3>
+							<ul>
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Sitemap</a></li>
+								<li><a href="#">Support</a></li>
+							</ul>
+						</nav>
+						<!-- Footer Nav of the page end -->
+						<div class="col">
+							<h3>Subscribe to Newsletter</h3>
+							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie.</p>
+							<!-- subscribe form of the page -->
+							<form action="#" class="subscribe-form">
+								<div class="form-group">
+									<input type="email" class="form-control" placeholder="Enter your email here">
+									<button type="button" class="ico-send"></button>
+								</div>
+							</form>
+							<!-- subscribe form of the page end -->
+						</div>
+					</div>
+				</div>
+			</aside>
+			<!-- Aside of the page end -->
+			<!-- Footer of the page -->
+			<footer id="footer" class="container version-ii">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<!-- Social Network of the page -->
+						<ul class="social-networks">
+							<li><a href="#"><span class="ico-facebook"></span></a></li>
+							<li><a href="#"><span class="ico-twitter"></span></a></li>
+							<li><a href="#"><span class="ico-google-plus"></span></a></li>
+							<li><a href="#"><span class="ico-linkedin"></span></a></li>
+							<li><a href="#"><span class="ico-pinterest"></span></a></li>
+						</ul>
+						<!-- Social Network of the page end -->
+					</div>
+				</div>
+			</footer>
+			<!-- Footer of the page end -->
+			<!-- Back Top of the page -->
+	    	<span id="back-top" class="fa fa-angle-up"></span>
+	    	<!-- Style Changer of the page -->
+	    	<div id="style-changer" data-src="inc/style-changer.html"></div>
+		</div>
+	</div>
+	<!-- include jQuery -->
+	<script src="/static/JiaBlog/js/jquery.js"></script>
+	<!-- include jQuery -->
+    <script src="/static/JiaBlog/js/plugins.js"></script>
+    <!-- include jQuery -->
+    <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script src="/static/JiaBlog/js/fontawesome.js"></script>
+    <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
+</body>
+</html>
+

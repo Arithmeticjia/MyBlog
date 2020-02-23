@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>南京邮电大学-计算机学院、软件学院、网络空间安全学院、李云</title>
+    <link rel="stylesheet" href="/static/Yun/css/base.css" />
+    <link rel="stylesheet" href="/static/Yun/css/swiper.min.css" />
+    <link rel="stylesheet" href="/static/Yun/css/content.css" />
+    <link rel="stylesheet" href="/static/Yun/css/media.css" />
+
+    <!--[if lt IE 9]>
+<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header ">
+        <div class="menuBtn"></div>
+        <div class="wid clearfix">
+            <div class="inside fl">
+                <div class="flex-row">
+                    <div class="logo"> <a href="index.html"><img src="/static/Yun/images/logo.png" /></a></div>
+                    <div class="logo-info">
+                        <p class="logo-info-tit">计算机学院&nbsp;&nbsp;&nbsp;软件学院</p>
+                        <p class="logo-info-tit space-words">网络空间安全学院</p>
+                        <p class="logo-info-en">School of Computer Science</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="flex-row fr clearfix">
+                <div class="nav fl">
+                    <ul class="clearfix">
+                        <li class="active"><a href="http://cs.njupt.edu.cn">学院主页</a></li>
+                        <li><a href="http://mail.njupt.edu.cn">教育邮箱</a></li>
+                    </ul>
+                </div>
+                <!--
+                <div class="login-btn fl">
+                    <a href="">登录</a>
+                </div>
+                -->
+               
+            </div>
+        </div>
+
+    </div>
+    <!-- header-end -->
+    <!-- banner -->
+    <div class="banner det-banner">
+
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide swiper-no-swiping" style="background-image: url(/static/Yun/images/det_banner.png)">
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- arrow -->
+        <div class="teacher-head">
+            <div class="te-img"> <img src="/static/Yun/images/liyun.png" /></div>
+            <div class="te-con">
+                <h4>{{ liyun.name }}</h4>
+                <p>{{ liyun.brief }}</p>
+            </div>
+        </div>
+    </div>
+    <!--banner-end-->
+    <!--主体-->
+    <div class="main-det wid">
+        <div class="det-contact">
+            <ul class="flex-row-center">
+                <li>
+                    <i class="icon"><img src="/static/Yun/images/icon_address.png" /></i><span class="blue">办公地址：</span><span
+                        class="words">{{ liyun.office_address }}</span>
+                </li>
+                <li>
+                    <i class="icon"><img src="/static/Yun/images/icon_email.png" /></i><span class="blue">邮箱：</span><span
+                        class="words">{{ liyun.email }}</span>
+                </li>
+                <li>
+                    <i class="icon"><img src="/static/Yun/images/icon_phone.png" /></i><span class="blue">手机：</span><span
+                        class="words">{{ liyun.personal_phone }}</span>
+                </li>
+                <li>
+                    <i class="icon"><img src="/static/Yun/images/icon_tel.png" /></i><span class="blue">系办公室电话：</span><span
+                        class="words">{{ liyun.office_phone }}(计算机科学系)</span>
+                </li>
+            </ul>
+        </div>
+        <div class="det-tabs">
+            <a href="javascript:;" class="active">个人信息</a><a href="javascript:;">教育信息</a><a href="javascript:;">获得荣誉</a><a href="javascript:;">项目</a><a href="javascript:;">论文</a><a
+                href="javascript:;">其他</a>
+        </div>
+
+        <div class="det-wrap">
+            <div class="det-item" style="display: block">   <!--个人简介-->
+                <article class="det-txt">
+                    <p><b>{{ liyun.name }}</b>，{{ liyun.info }}
+                    </p>
+                    <br>
+                    <p><b>研究方向：</b>机器学习和数据挖掘的理论、算法及应用，特别关注高维复杂数据的维数约简、大规模数据的学习、安全机器学习和未标记数据的利用问题</p><br>
+                    <br>
+                   
+                </article>
+            </div>
+            <div class="det-item">  <!--教育背景-->
+                <article class="det-txt">
+
+                    <p><b>教育背景：</b></p>
+{#                    <p>#}
+{#                        2005年7月毕业于重庆大学计算机学院，获得计算机软件与理论专业博士学位</br>#}
+{#                        2005年7月到2007年9月，在上海交通大学计算机科学与技术流动站从事博士后研究，主要在上海交通大学仿脑计算与机器智能研究中心进行机器学习和模式识别的研究</br>#}
+{#                        2007年10月来南京邮电大学计算机学院工作至今。在此期间于2012年8月到2013年7月在美国亚利桑那州立大学访学</br>#}
+{#                        </p>#}
+{#                    <br>#}
+                    {% for i in graduation %}
+                        <p>{{ i.text }}</p></br>
+                    {% endfor %}
+                   
+                </article>
+            </div>
+            <div class="det-item">  <!--奖励-->
+                <article class="det-txt">
+{#                    <p>  1.	IEEE会员</p>#}
+{#                    <p>  2.	ACM会员</p>#}
+{#                    <p>  3.	中国计算机学会会员</p>#}
+{#                    <p>  4.	江苏省计算机学会人工智能专委会委员</p>#}
+{#                    <p>  5.	中国人工智能学会机器学习专委会通讯委员</p>#}
+{#                    <p>  6.	中国计算机学会人工智能与模式识别专委会通讯委员</p>#}
+{#                    <p>  7.国际智能系统与知识工程会议ISKE2017程序委员会共同主席</p>#}
+{#                    <p>  7.国际神经信息处理会议ICONIP2011的共同出版主席</p>#}
+                    {% for i in honour %}
+                        <p>{{ i.text }}</p>
+                    {% endfor %}
+                </article>
+            </div>
+            <div class="det-item">   <!--项目-->
+                <article class="det-txt">
+                    {% for i in project %}
+                        <p>{{ i.text }}</p>
+                    {% endfor %}
+
+                </article>
+            </div>
+            <div class="det-item">   <!--论文-->
+                <article class="det-txt">
+{#                    <p>   [1] Yun Li, Jennie Si, Guojing Zhou, Shasha Huang and Songcan Chen. “FREL:A stable feature selection algorithm”. IEEE Trans. Neural Networks and Learning Systems, vol.26, pp.1388-1402, 2015.</p>#}
+{#                    <p>   [2] Yun Li, Suyan Gao and Songcan Chen. “Ensemble feature weighting based on local learning and diversity”. Twenty-Sixth Conf. Artificial Intelligence (AAAI), vol.2, pp.1019-1025, Toronto, Canada, 2012.</p>#}
+{#                    <p>   [3] Yun Li and Bao-Liang Lu. “Feature selection based on loss-margin of nearest neighbor classification”. Pattern Recognition, vol.42, pp.1914-1921, 2009. </p>#}
+{#                    <p>   [4] Yun Li and Zhong-Fu Wu. “Fuzzy feature selection based on min-max learning rule and extension matrix”. Pattern Recognition, vol.41, pp. 217-226, 2008. </p>#}
+{#                    <p>   [5] Yun Li, Jun Yang, Wei Ji. Local learning-based feature weighting with privacy preservation. Neurocomputing, vol. 174, pp. 1107-1115, 2016.</p>#}
+                    {% for i in paper %}
+                        <p>{{ i.text }}</p>
+                    {% endfor %}
+                </article>
+            </div>
+            <div class="det-item">  <!--其他-->
+                <article class="det-txt">
+                    <p>其他待添加</p>
+                </article>
+            </div>
+        </div>
+    
+    </div>
+
+    <!-- 主体-end -->
+    <footer class="pg-footer">
+        <div class="wid">
+            版权所有 ©南京邮电大学计算机学院、软件学院、网络空间安全学院 
+        </div>
+    </footer>
+    <script src="/static/Yun/js/jquery.min.js"></script>
+    <script src="/static/Yun/js/swiper.min.js"></script>
+    <script src="/static/Yun/js/common.js"></script>
+
+</body>
+
+</html>

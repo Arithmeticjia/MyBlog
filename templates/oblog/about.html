@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+<head>
+<link rel="shortcut icon" href="/static/images/favicon.ico">
+<meta charset="utf-8">
+<title>关于我-请叫我算术嘉的博客</title>
+<meta name="keywords" content="blog" />
+<meta name="description" content="blog" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/base.css" rel="stylesheet">
+<link href="/static/css/m.css" rel="stylesheet">
+<script src="/static/js/jquery-1.8.3.min.js" ></script>
+<script src="/static/js/comm.js"></script>
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body style="background: black">
+<!--top begin-->
+<header id="header">
+  <div class="navbox">
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <div class="logo"><a href="/Blog/index">请叫我算术嘉的博客 | ArithmeticJia</a></div>
+    <nav>
+      <ul id="starlist">
+        <li><a href="/oblog/index">首页</a></li>
+        <li><a href="/oblog/list">所有博客</a></li>
+        <li class="menu"><a href="list2.html">博客分类</a>
+          <ul class="sub">
+              {% for i in categorys %}
+                <li><a href="/oblog/articles/{{ i.name }}" target="_blank">{{ i.name }}</a></li>
+              {% endfor %}
+            <!--li><a href="https://blog.csdn.net/ssjdoudou/article/category/8257580" target="_blank">python</a></li>
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8233140" target="_blank">Django</a></li>
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8246887" target="_blank">leetcode</a></li>
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8282251" target="_blank">java</a></li>
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8332147" target="_blank">selenium</a></li>
+              <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8240204" target="_blank">机器学习</a></li-->
+          </ul>
+          <span></span></li>
+        <li><a href="list3.html"></a></li>
+        <li><a href="daohang.html"></a></li>
+        <li><a href="/oblog/about">我的简介</a></li>
+        <li class="menu"><a href="/oblog/weather">更多功能</a>
+          <ul class="sub">
+                <li><a href="/oblog/weather" target="_blank">我的天气</a></li>
+                <li><a href="/oblog/document" target="_blank">我的下载</a></li>
+                <li><a href="/oblog/inputtranslate" target="_blank">在线翻译</a></li>
+          </ul>
+        </li>
+<script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+<script>tpwidget("init", {
+    "flavor": "bubble",
+    "location": "WX4FBXXFKE4F",
+    "geolocation": "enabled",
+    "position": "top-left",
+    "margin": "300px 10px",
+    "language": "zh-chs",
+    "unit": "c",
+    "theme": "chameleon",
+    "uid": "U2D9B077BB",
+    "hash": "c25dba4c45793e2cadff6ee42856d99f"
+});
+tpwidget("show");</script>
+            <span></span></li>
+          <!--iframe name="weather_inc" width="200" scrolling="no" height="50" frameborder="0" allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=12&color=%23FFFFFF&icon=1&num=1&site=12"></iframe-->
+      </ul>
+    </nav>
+    <div class="searchico"></div>
+  </div>
+</header>
+<div class="searchbox">
+  <div class="search">
+    <form action="/oblog/search" method="get" name="searchform" id="searchform">
+      <label><input name="q" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text"></label>
+      <!--input name="show" value="title" type="hidden">
+      <input name="tempid" value="1" type="hidden">
+      <input name="tbname" value="news" type="hidden"-->
+      <input name="Submit" class="input_submit" value="搜索" type="submit">
+    </form>
+  </div>
+  <div class="searchclose"></div>
+</div>
+<!--top end-->
+<article>
+    <div class="lbox">
+        <div class="whitebg about">
+            <div class="ab_box"> <i class="avatar_pic"><img src="/static/images/myhead.jpg"></i>
+                <h3>请叫我算术嘉&nbsp;|&nbsp;ArithmeticJia</h3>
+                <!--p>一个python程序猿</p-->
+                <strong><p>CSDN：<a style="color: #666" href="https://blog.csdn.net/ssjdoudou" target="_blank">https://blog.csdn.net/ssjdoudou</a></p></strong>
+                <strong><p>Github：<a style="color: #666" href="https://github.com/Arithmeticjia/MyBlog" target="_blank">https://github.com/Arithmeticjia/MyBlog</a></p></strong>
+            </div>
+            <h2 class="gd_title">我的技术栈</h2>
+            <p class="ab_dubai"></p>
+            <p>一个懂一点（只会瞎jb改)前端的稍微懂一点算法的机器学习菜鸟后端python自动化测试工程师？</p>
+            <br>
+            <h2 class="gd_title">我的留言板</h2>
+      <ul>
+          <form id="comment_form" class="bootstrap-frm" action="/oblog/savemessage/" method="post">
+            {% csrf_token %}
+                <br>
+                <label for="id_body">
+                    <textarea class="qingshuru"style="width: 500px;height: 150px;font-size: 15px" id="id_body" name="content" placeholder="每一点进步都离不开你的帮助，请注意文明用语喔~🙂"></textarea>
+                </label>
+                <style>
+                    textarea[class="qingshuru"]::-webkit-input-placeholder{font-family: "Microsoft YaHei";color: #ff8614;}
+                </style>
+                <br>
+                <br>
+            <p style="margin-left: 30px" id="body_error"></p>
+                <label for="id_user_name" class="input-group" style="width: 50%">
+                    <input id="title" type="text" class="form-control" name = "title" style="width: 200px; height: 25px" placeholder="请输入标题" aria-describedby="basic-addon2">
+                </label>
+                <br>
+                <br>
+                <label>
+                    <input id="username" type="text" class="form-control" name="username" style="width: 200px; height: 25px"   placeholder="请输入你的昵称" aria-describedby="basic-addon2">
+                </label>
+                <br>
+                <br>
+                <label>
+                    <input id="email" type="text" class="form-control" name="email" style="width: 200px; height: 25px"   placeholder="请输入你的邮箱" aria-describedby="basic-addon2">
+                </label>
+                <span id="name_error"></span>
+                <input class="ly_button" style="color: white;font-size: 15px" type="submit" value="留言"/>
+              <!--span class="ly_button" style="color: white" type="submit" onclick="document.getElementById('comment_form').submit();">留言</span-->
+          </form>
+          <!--script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+                 data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+            });
+        $('#comment_form').submit(function(){
+                var text = $("#id_body").val();                 //获得form中用户输入的name 注意这里的id_name 与你html中的id一致
+                var name = $("#id_user_name").val();    //同上
+
+                $.ajax({
+                    type:"POST",
+                    data: {body:text, user_name:name},
+                    url: "article/{{ blog_list.id }}/comment", //后台处理函数的url 这里用的是static url 需要与urls.py中的name一致#}
+                    cache: false,
+                    dataType: "html",
+                    success: function(result, statues, xml) {
+                        if (result) {
+                            var jsonData = JSON.parse(result);
+                            $("#body_error").html(jsonData['body_error']);
+                            $("#name_error").html(jsonData['username_error'])
+                        }else{
+                            $("#id_body").val("Send Message To Me");
+                            $('#id_user_name').val('请输入名字')
+                            window.location.reload()   //提交表单后强行刷新页面
+                        }
+                    },
+                    error: function(result){
+                        alert(result);
+                    }
+                });
+                return false;
+            });
+
+        });
+</script-->
+
+
+          </ul>
+            <!--ul-- class="xinlu">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+                <tr class="danger">
+                    <th>留言时间</th>
+                    <th>&nbsp;&nbsp;&nbsp;留言者</th>
+                    <th>&nbsp;&nbsp;&nbsp;标题</th>
+                    <th>&nbsp;&nbsp;&nbsp;内容</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if messages %}
+                    {% for message in messages %}
+                        <tr class="{% cycle 'active' 'success' 'warning' 'info' %}">
+                            <td>{{ message.publish|date:'Y-m-d H:i:s' }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;{{ message.username }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;{{ message.title }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;{{ message.content }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">无数据</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </ul-->
+        <ul>
+          {% for message in messages %}
+              <br class="comment-item">
+              <div style="background: #f6f6f6">
+                <br>
+                <div>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From:&nbsp;&nbsp;&nbsp;{{ message.username }}&nbsp;&nbsp;&nbsp;{{ message.publish|date:'Y-m-d H:i:s' }}</span>
+                </div>
+              <br>
+                <div>
+                    <span class="nickname">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ message.title }}</span>
+                </div>
+              <br>
+                <div class="text">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ message.content }}
+                </div>
+              <br>
+                <!--div class="text">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From:&nbsp;&nbsp;&nbsp;{{ message.username }}
+                </div-->
+              </div>
+
+                {% empty %}
+                暂无评论
+                {% endfor %}
+
+      </ul>
+    <!--h2 class="gd_title">联系我</h2>
+    <ul class="qq_join">
+      <li>
+        <section><img src="/static/images/ssjwx.jpg">
+          <p>我的微信号</p>
+          <p>18351922995</p>
+        </section>
+      </li>
+      <li>
+        <section><img src="/static/images/ssjqq.jpg">
+          <p>我的qq号</p>
+          <p>1524126437</p>
+        </section>
+      </li-->
+      <!--li>
+        <section><img src="/static/images/joinwx.png">
+          <p>关注官方<b>微信</b>公众号</p>
+          <p>掌握最新的模板信息！</p>
+        </section>
+      </li>
+      <li>
+        <section><img src="/static/images/joinwxqun.png">
+          <p>网页设计交流<b>微信群</b></p>
+          <p>目前只接受群主拉进群</p>
+        </section>
+      </li>
+    </ul-->
+  </div>
+    </div>
+<div class="rbox">
+   <div class="card" align="center">
+      <br/>
+       <!--img class="avatar_pic" align="center" src="/static/images/myhead.jpg"-->
+        <img align="center" src="/static/images/111548578057_.pic_hd.png">
+      <h2 style="text-align: center;color: white;letter-spacing:1px">请叫我算术嘉</h2>
+        <div align="left">
+      <p><a href="https://github.com/Arithmeticjia/MyBlog" style="font-size: 12px;color: #d0d2d4" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;https://github.com/Arithmeticjia/MyBlog</a></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;现居：&nbsp;&nbsp;江苏省-南京市</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;Email：1524126437@qq.com</p>
+        </div>
+      <ul class="linkmore">
+        <li><a href="https://blog.csdn.net/ssjdoudou" target="_blank" class="iconfont icon-zhuye" title="网站地址"></a></li>
+        <li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=HHh9cn95b3F1cHVye1xtbTJ-c3E" target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
+          <li id="weixin"><a href="http://wpa.qq.com/msgrd?v=3&uin=476847113&site=qq&menu=yes" target="_blank" class="iconfont icon---" title="QQ联系我"></a><<i><img src="/static/images/ssjqq.jpg"></i></li>
+        <li id="weixin"><a href="#" target="_blank" class="iconfont icon-weixin" title="关注我的微信"></a><i><img src="/static/images/ssjwx.jpg"></i></li>
+      </ul>
+    </div>
+    <div class="whitebg notice">
+      <h2 class="htitle">网站公告</h2>
+      <ul>
+        <li style="background: #f6f6f6"><a style="font-size: larger" href="/">本博客部署于阿里云</a></li>
+        <li style="background: #f6f6f6"><a style="font-size: larger" href="/">Ubuntu+Nginx+uwsgi</a></li>
+        <li style="background: #f6f6f6"><a style="font-size: larger" href="/">后台Django</a></li>
+        <li style="background: #f6f6f6"><a style="font-size: larger" href="/">未完待续</a></li>
+      </ul>
+    </div>
+    <div class="whitebg paihang">
+      <h2 class="htitle">点击排行</h2>
+    {% for view in maxview %}
+      <section class="topnews imgscale"><a href="/oblog/article/{{ view.id }}"><img src="/static/images/dianjipaihang.jpg"><span>{{ view.title }}</span></a></section>
+    {% endfor %}
+      <ul>
+          {% for blog in blog_list_views %}
+        <li><i></i><a href="/oblog/article/{{ blog.id }}">{{ blog.title }}</a></li>
+            {% endfor %}
+      </ul>
+    </div>
+    <div class="whitebg cloud">
+      <h2 class="htitle">标签云</h2>
+      <ul>
+          {% for tag in tags %}
+        <a href="" target="_blank">{{ tag.name }}</a>
+            {% endfor %}
+      </ul>
+    </div>
+    <div class="whitebg tuijian">
+      <h2 class="htitle">博主推荐</h2>
+        {% for i in blog_list_comments_top %}
+            <section class="topnews imgscale"><a href="/"><img src="/static/images/benlantuijian.jpg"><span>{{ i.title }}</span></a></section>
+        {% endfor %}
+      <ul>
+          {% for blog in blog_list_comments %}
+        <li><a href="/"><i><img src="/static/images/blog{{ blog.id }}pic1.jpg"></i>
+          <p>{{ blog.title }}</p>
+          </a></li>
+          {% endfor %}
+      </ul>
+    </div>
+    <div class="ad whitebg imgscale">
+      <ul>
+          <section class="topnews imgscale"><a href="/"><img src="{{ MEDIA_URL }}{{ note.noteimage }}"><span>{{ note.content }}</span></a></section>
+      </ul>
+    </div>
+    <div class="whitebg wenzi">
+      <h2 class="htitle">猜你喜欢</h2>
+      <ul>
+          {% for blog in blog_list_greats %}
+            <li><a href="/oblog/article/{{ blog.id }}" target="_blank">{{ blog.title }}</a></li>
+          {% endfor %}
+      </ul>
+    </div>
+    <div class="ad whitebg imgscale">
+      <ul>
+        <a href="/"><img src="/static/images/newad02.jpg"></a>
+      </ul>
+    </div>
+    <div class="whitebg tongji">
+      <h2 class="htitle">站点信息</h2>
+      <ul>
+        <li><b>建站时间</b>：2018-11-26</li>
+        <li><b>网站程序</b>：Django</li>
+        <li><b>文章统计</b>：{{ count }}条</li>
+        <li><b>文章评论</b>：{{ comment_list }}条</li>
+        <li><b>统计数据</b>：<a href="#">本站统计</a></li>
+        <li><b>微信号</b>：扫描二维码，关注我</li>
+        <img src="/static/images/ssjwx.jpg" class="tongji_gzh">
+      </ul>
+    </div>
+    <div class="links whitebg">
+      <h2 class="htitle"><span class="sqlink"></span>友情链接</h2>
+      <ul>
+        <li><a href="https://blog.csdn.net/ssjdoudou" target="_blank">我的csdn博客</a></li>
+      </ul>
+    </div>
+  </div>
+</article>
+<footer>
+  <div class="box">
+    <div class="wxbox">
+      <ul>
+        <li><img src="/static/images/ssjwx.jpg"><span>我的微信</span></li>
+        <li><img src="/static/images/ssjqq.jpg"><span>我的QQ</span></li>
+      </ul>
+    </div>
+    <div class="endnav">
+      <p><b>站点声明：</b></p>
+      <p>1、本站个人博客模板，均为杨青青本人设计，个人可以使用，但是未经许可不得用于任何商业目的。</p>
+      <p>2、所有文章未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=HHh9cn95b3F1cHVye1xtbTJ-c3E" target="_blank">dacesmiling@qq.com</a></p>
+      <p>Copyright © <a href="http://www.yangqq.com" target="_blank">www.yangqq.com</a> All Rights Reserved. 备案号：<a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备11002373号-1</a></p>
+    </div>
+  </div>
+  <a href="#">
+  <div class="top"></div>
+  </a> </footer>
+</body>
+</html>

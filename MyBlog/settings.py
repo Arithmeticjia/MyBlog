@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'MyBlog.settings'
 import logging
 import django_crontab
@@ -20,7 +21,6 @@ from django.core.mail import send_mail
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['*']
 # debug-toolbar
 INTERNAL_IPS = ['127.0.0.1']
 
-# AUTH_USER_MODEL = "JiaBlog.BlogUser"
+# AUTH_USER_MODEL = "blog.BlogUser"
 
 
 # Application definition
@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dwebsocket',
-    'JiaBlog',
+    'oblog',
+    'blog',
     'mdeditor',
     'django_crontab',
     'social_django',
@@ -79,14 +80,17 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'MyBlog.urls'
 
 TEMPLATES = [
@@ -111,7 +115,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MyBlog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -120,13 +123,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'MyBlog',
         'USER': 'root',
-        'PASSWORD': 'D980612ssj$',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {'charset': 'utf8mb4'}
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -146,11 +148,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -159,6 +160,16 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
+
+LANGUAGES = (
+    ('en', ('English')),
+    ('zh-hans', ('中文简体')),
+    ('zh-hant', ('中文繁體')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),  # 翻译文件所在目录
+)
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # SERVER_EMAIL ='1524126437@qq.com'
@@ -199,12 +210,12 @@ STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),  # 加/
-    os.path.join(BASE_DIR, 'media'),   # 加/
+    os.path.join(BASE_DIR, 'media'),  # 加/
     # os.path.join(os.path.dirname(__file__), '../static/').replace('\\', '/'),
 )
 
 # 文件上传的路径
-MEDIA_URL = '/media/'   # 访问资源的地址如 http://127.0.0.1:5000/media/1.jpg
+MEDIA_URL = '/media/'  # 访问资源的地址如 http://127.0.0.1:5000/media/1.jpg
 # 写相对路径也可以
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
@@ -218,13 +229,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 WEBSOCKET_FACTORY_CLASS = 'dwebsocket.backends.uwsgi.factory.uWsgiWebSocketFactory'
 
 AUTHENTICATION_BACKENDS = (
-                           'django.contrib.auth.backends.ModelBackend',     # django默认的backend
-                           'social_core.backends.facebook.FacebookOAuth2',  # facebook
-                           'social_core.backends.weibo.WeiboOAuth2',        # weibo
-                           'social_core.backends.google.GoogleOpenId',
-                           'social_core.backends.google.GoogleOAuth2',
-                           'social_core.backends.google.GoogleOAuth',
-                           'social_core.backends.github.GithubOAuth2',      # github_login
+    'django.contrib.auth.backends.ModelBackend',  # django默认的backend
+    'social_core.backends.facebook.FacebookOAuth2',  # facebook
+    'social_core.backends.weibo.WeiboOAuth2',  # weibo
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.github.GithubOAuth2',  # github_login
 )
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
@@ -235,15 +246,15 @@ SOCIAL_AUTH_FACEBOOK_KEY = '2513272488741954'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ee2679d8ec7c0f0acaf4a28593540bb9'
 SOCIAL_AUTH_GITHUB_KEY = 'a795f2ab426bd61fa09d'
 SOCIAL_AUTH_GITHUB_SECRET = '492ccf3eaa79722cc54ab9f534a98a80a2d7df88'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY= '284016272164-42v8drgc58o2gl0m09r4mgqckr10ieo1.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '284016272164-42v8drgc58o2gl0m09r4mgqckr10ieo1.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '8xIY0aZmzeSwse9DactvxKdT'
 SOCIAL_AUTH_GITHUB_USE_OPENID_AS_USERNAME = True
 SOCIAL_AUTH_FACEBOOK_USE_OPENID_AS_USERNAME = True
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/JiaBlog/index/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/blog/index/'
 
 CRONJOBS = (
-            ('*/1 * * * *', 'JiaBlog.views.collect_cpu'),
+    ('*/1 * * * *', 'blog.views.collect_cpu'),
 )
 
 # memcached
@@ -270,18 +281,20 @@ CRONJOBS = (
 # }
 
 MDEDITOR_CONFIGS = {
-    'default':{
+    'default': {
         'width': '95% ',  # Custom edit box width  宽度，整个页面的百分之多少
-        'heigth': 500,    # Custom edit box height   高度，单位为px
+        'heigth': 500,  # Custom edit box height   高度，单位为px
         'toolbar': ["undo", "redo", "|",
                     "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
                     "h1", "h2", "h3", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime"
-                    "emoji", "html-entities", "pagebreak", "goto-line", "|",
+                                                                                                           "emoji",
+                    "html-entities", "pagebreak", "goto-line", "|",
                     "help", "info",
                     "||", "preview", "watch", "fullscreen"],  # custom edit box toolbar   工具栏
-        'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],  # image upload format type  允许上传的图片 的格式，不在这个里面的格式将不允许被上传
+        'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+        # image upload format type  允许上传的图片 的格式，不在这个里面的格式将不允许被上传
         'image_floder': 'editor',  # image save the folder name   上传图片后存放的目录，BASE_DIR/MEDIA_ROOT/editor
         'theme': 'default',  # edit box theme, dark / default  mdeditor主题，dark/default两种
         'preview_theme': 'default',  # Preview area theme, dark / default  内容显示区主题 dark/default
@@ -295,4 +308,3 @@ MDEDITOR_CONFIGS = {
         'watch': True,  # Live preview
     }
 }
-

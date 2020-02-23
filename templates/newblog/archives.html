@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="${meta_keywords()}"/>
+    <meta name="description" content="${meta_description()}"/>
+    <meta content="${_csrf_token}" name="csrf_token"/>
+    <link rel="shortcut icon" href="/static/newblogdefault/img/favicon.png"/>
+    <link rel="apple-touch-icon" href="/static/newblogdefault/img/apple-touch-icon.png"/>
+    <title>请叫我算术嘉-首页</title>
+    <link href="/static/newblogdefault/css/default.min.css" rel="stylesheet">
+    <link href="/static/newblogdefault/css/style.min.css" rel="stylesheet">
+{#    #if(allow_cloud_CDN() == "true")#}
+{#    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>#}
+{#    #else#}
+    <script src="/static/newblog/plugins/jquery/3.2.1/jquery.min.js"></script>
+{#    #end#}
+
+    <script src="/static/newblogdefault/js/highlight.min.js"></script>
+    <script src="/static/newblogdefault/js/instantclick.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="bg-grey">
+<!--[if lt IE 8]>
+<div class="browsehappy" role="dialog">
+    当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。
+</div>
+<![endif]-->
+<header id="header" class="header bg-white">
+    <div class="navbar-container">
+        <a href="${site_url()}" class="navbar-logo">
+{#            #if(theme_option('logo_url') == "")#}
+{#            <img src="${theme_url('/static/img/logo.png')}" alt="${site_title()}"/>#}
+{#            #else#}
+            <img src="/static/JiaBlog/images/logonew.png" alt="Jia"/>
+{#            #end#}
+        </a>
+        <div class="navbar-menu">
+            <a href="/blog/new/index">首页</a>
+            <a href="/blog/new/list">归档</a>
+            <a href="/blog/index">友链</a>
+            <a href="/blog/contact-us">关于</a>
+        </div>
+        <div class="navbar-search">
+            <button type="submit" onclick="goSearch()">
+                <span class="icon-search"></span>
+            </button>
+            <form role="search" method="get" action="/blog/new/search">
+                <span class="search-box">
+                    <input type="text" id="search-inp" class="input" name="q" placeholder="搜索..." maxlength="30"
+                           autocomplete="off">
+                </span>
+            </form>
+            <script>
+                function goSearch() {
+                    var search = document.getElementById('search-inp').value;
+                    window.location.href="/blog/new/search/?q="+search+""
+                }
+            </script>
+        </div>
+        <div class="navbar-mobile-menu" onclick="">
+            <span class="icon-menu cross"><span class="middle"></span></span>
+            <ul>
+                <li><a href="/JiaBlog/list">归档</a></li>
+                <li><a href="">友链</a></li>
+                <li><a href="/JiaBlog/contact-us">关于</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="main-content archive-page clearfix">
+    <div class="categorys-item">
+        <div class="post-lists">
+            <div class="post-lists-body">
+                {% for i in contacts %}
+                <div class="post-list-item">
+                    <div class="post-list-item-container">
+                        <div class="item-label">
+                            <div class="item-title">
+                                <a href="/blog/post/{{ i.id }}/{{ i.url_slug }}">{{ i.title }}</a>
+                            </div>
+                            <div class="item-meta clearfix">
+                                <div class="item-meta-date">发布于 {{ i.timestamp }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="post-bottom-bar" class="post-bottom-bar">
+    <div class="bottom-bar-inner">
+        <div class="bottom-bar-items right">
+            {% if contacts.has_previous %}
+                <a href="?page={{ contacts.previous_page_number }}" class="prev page-numbers">上一页</a>
+            {% endif %}
+            <span>
+                {% for pagelist in contacts.paginator.page_range %}
+                    <a href="?page={{ pagelist }}" class="page-numbers"><b>{{ pagelist }}</b></a>&nbsp;
+                {% endfor %}
+            </span>
+            <span class="page-numbers current">
+                第 {{ contacts.number }}&nbsp;/&nbsp;{{ contacts.paginator.num_pages }}&nbsp;页
+            </span>
+            {% if contacts.has_next %}
+                <a href="?page={{ contacts.next_page_number }}" class="next page-numbers">下一页</a>
+            {% endif %}
+                <span class="bottom-bar-item"><a href="javascript:void(0)" onclick="goBottom()">↓</a></span>
+            <span class="bottom-bar-item"><a href="javascript:void(0)" onclick="goTop()">↑</a></span>
+            <script>
+                function goBottom() {
+                    window.scrollTo(0, document.documentElement.scrollHeight-document.documentElement.clientHeight);
+                }
+                function goTop() {
+                    $('html, body').animate({scrollTop:0}, 'slow');
+                }
+            </script>
+        </div>
+    </div>
+</div>
+</div>
+</body>

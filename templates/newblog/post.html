@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="${meta_keywords()}"/>
+    <meta name="description" content="${meta_description()}"/>
+    <meta content="${_csrf_token}" name="csrf_token"/>
+    <link rel="shortcut icon" href="/static/newblogdefault/img/favicon.png"/>
+    <link rel="apple-touch-icon" href="/static/newblogdefault/img/apple-touch-icon.png"/>
+    <title>请叫我算术嘉-{{ post.title }}</title>
+    <link href="/static/newblogdefault/css/default.min.css" rel="stylesheet">
+    <link href="/static/newblogdefault/css/style.min.css" rel="stylesheet">
+{#    #if(allow_cloud_CDN() == "true")#}
+{#    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>#}
+{#    #else#}
+    <script src="/static/newblog/plugins/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+{#    #end#}
+
+    <script src="/static/newblogdefault/js/highlight.min.js"></script>
+    <script src="/static/newblogdefault/js/instantclick.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/tango.css">
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="bg-grey">
+<!--[if lt IE 8]>
+<div class="browsehappy" role="dialog">
+    当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。
+</div>
+<![endif]-->
+<header id="header" class="header bg-white">
+    <div class="navbar-container">
+        <a href="${site_url()}" class="navbar-logo">
+            <img src="/static/JiaBlog/images/logonew.png" alt="Jia"/>
+        </a>
+        <div class="navbar-menu">
+            <a href="/blog/new/index">首页</a>
+            <a href="/blog/new/list">归档</a>
+            <a href="/blog/index">友链</a>
+            <a href="/blog/contact-us">关于</a>
+        </div>
+{#        <div class="navbar-search" onclick="">#}
+{#            <span class="icon-search"></span>#}
+{#            <form role="search" onsubmit="return false;">#}
+{#                <span class="search-box">#}
+{#                    <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30"#}
+{#                           autocomplete="off">#}
+{#                </span>#}
+{#            </form>#}
+{#        </div>#}
+        <div class="navbar-search">
+            <button type="submit" onclick="goSearch()">
+                <span class="icon-search"></span>
+            </button>
+            <form role="search" method="get" action="/blog/new/search">
+                <span class="search-box">
+                    <input type="text" id="search-inp" class="input" name="q" placeholder="搜索..." maxlength="30"
+                           autocomplete="off">
+                </span>
+            </form>
+            <script>
+                function goSearch() {
+                    var search = document.getElementById('search-inp').value;
+                    window.location.href="/blog/new/search/?q="+search+""
+                }
+            </script>
+        </div>
+        <div class="navbar-mobile-menu" onclick="">
+            <span class="icon-menu cross"><span class="middle"></span></span>
+            <ul>
+                <li><a href="/blog/list">归档</a></li>
+                <li><a href="#">友链</a></li>
+                <li><a href="/blog/contact-us">关于</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<body>
+<article class="main-content page-page" itemscope itemtype="http://schema.org/Article">
+    <div class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            <a href="${permalink()}">{{ post.title }}</a>
+        </h1>
+        <div class="post-data">
+            <time datetime="${created('yyyy-MM-dd')}" itemprop="datePublished">发布于 {{ post.timestamp|date:"Y-m-d H:i:s" }}</time>
+            / {{ category.name }} / <a href="#comments">{{ post.all_comments.count }}条评论</a> /
+            {{ post.views }}浏览
+        </div>
+    </div>
+    <div id="post-content" class="post-content" itemprop="articleBody">
+        <p class="post-tags">
+            {% for i in tag %}
+                {{ i }}
+            {% endfor %}
+        </p>
+        <p>{{ post.body|safe}}</p>
+        <script>
+            var clipboard = new Clipboard('.copybtn');
+            clipboard.on('success', function(e) {
+                console.log(e)
+            });
+            clipboard.on('error', function(e) {
+                console.log(e);p
+            });
+        </script>
+        <p class="post-info">
+            本文由 <a href="">{{ post.authorname }}</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
+                                               rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:
+            {{ post.last_edit_timestamp }}
+        </p>
+    </div>
+</article>
+<div id="post-bottom-bar" class="post-bottom-bar">
+    <div class="bottom-bar-inner">
+        <div class="bottom-bar-items social-share left">
+            <span class="bottom-bar-item">Share : </span>
+            <span class="bottom-bar-item bottom-bar-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=${permalink()}" target="_blank" title="${title()}" rel="nofollow">facebook</a></span>
+            <span class="bottom-bar-item bottom-bar-twitter"><a href="https://twitter.com/intent/tweet?url=${permalink()}&text=${title()}" target="_blank" title="${title()}" rel="nofollow">Twitter</a></span>
+            <span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=${permalink()}&amp;title=${title()}" target="_blank" title="${title()}" rel="nofollow">Weibo</a></span>
+            <span class="bottom-bar-item bottom-bar-qrcode"><a href="https://cli.im/api/qrcode/code?text=${permalink()}&mhid=50eWDQu6nc0hMHcrKtNXPKo" target="_blank" rel="nofollow">QRcode</a></span>
+        </div>
+        <div class="bottom-bar-items right">
+{#            <span class="bottom-bar-item">${thePrev('→')}</span>#}
+{#            <span class="bottom-bar-item">${theNext('←')}</span>#}
+            <span class="bottom-bar-item"><a href="javascript:void(0)" onclick="goBottom()">↓</a></span>
+            <span class="bottom-bar-item"><a href="javascript:void(0)" onclick="goTop()">↑</a></span>
+            <script>
+                function goBottom() {
+                    window.scrollTo(0, document.documentElement.scrollHeight-document.documentElement.clientHeight);
+                }
+                function goTop() {
+                    $('html, body').animate({scrollTop:0}, 'slow');
+                }
+            </script>
+        </div>
+    </div>
+</div>
+</body>
+<div id="${article.cid ?! 0}" class="comment-container">
+    <div id="comments" class="clearfix">
+{#        #if(article.allowComment)#}
+        {% if request.session.is_login %}
+        <span class="response">Hi，<a href="${login_user.homeUrl}" data-no-instant>{{ request.session.user_name }}</a>
+            如果你想 <a href="/blog/logout" title="注销" data-no-instant>注销</a></span>
+        {% endif %}
+        <form method="post" id="comment-form" class="comment-form" onsubmit="return TaleComment.subComment();">
+            <input type="hidden" name="coid" id="coid"/>
+            <input type="hidden" name="cid" id="cid" value="${article.cid}"/>
+            <input type="hidden" name="csrf_token" value="${csrf_token}"/>
+            <input name="author" maxlength="12" id="author" class="form-control input-control clearfix"
+                   placeholder="姓名 (*)" value={{ request.session.user_name }}>
+            <input type="email" name="mail" id="mail" class="form-control input-control clearfix" placeholder="邮箱 (*)"
+                   value="">
+            <input type="url" name="url" id="url" class="form-control input-control clearfix" placeholder="网址 (http://)"
+                   value="">
+            <textarea name="content" id="textarea" class="form-control" placeholder="基佬，留下你的评论." required minlength="5" maxlength="2000"></textarea>
+
+{#            ${_csrf_token_input}#}
+
+            <button class="submit" id="misubmit">提交</button>
+        </form>
+
+{#        #else#}
+{#        <span class="response">评论已关闭.</span>#}
+{#        #end#}
+
+{#        #set( comments = comments(6) )#}
+
+{#        #if(!is_empty(comments))#}
+        <ol class="comment-list">
+            {% for i in comment_list %}
+                {% if i.parentcomment %}
+            <li id="li-comment-${comment.coid}" class="comment-body comment-parent comment-odd">
+                <div id="comment-${comment.coid}">
+                    <div class="comment-view" onclick="">
+                        <div class="comment-header">
+                            <img class="avatar" src="/media/{{ i.parentcomment.name.userpic }}" width="80" height="80">
+                            <span class="comment-author">
+                                <a href="${comment.url}" target="_blank" rel="external nofollow">{{ i.parentcomment.name }}</a>
+                            </span>
+                        </div>
+                        <div class="comment-content">
+                            <span class="comment-author-at"></span>
+                            <p>{{ i.parentcomment.text }}</p>
+                        </div>
+                        <div class="comment-meta">
+                            <time class="comment-time">{{ i.parentcomment.created_time }}</time>
+                            <span class="comment-reply">
+                                <a rel="nofollow" onclick="TaleComment.reply('${comment.coid}');">回复</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-children">
+                    <ol class="comment-list">
+                        <li id="li-comment-${child.coid}"
+                            class="comment-body comment-child comment-level-odd comment-odd">
+                            <div id="comment-${child.coid}">
+                                <div class="comment-view">
+                                    <div class="comment-header">
+                                        <img class="avatar" src="/media/{{ i.name.userpic }}" width="80" height="80">
+                                        <span class="comment-author comment-by-author">
+                                            <a href="${child.url}" target="_blank" rel="external nofollow">{{ i.name }}</a>
+                                        </span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <span class="comment-author-at">
+{#                                            ${comment_at(child.parent)}#}
+                                            @{{ i.parentcomment.name }}
+                                        </span>
+                                        <p>{{ i.text }}</p>
+                                    </div>
+                                    <div class="comment-meta">
+                                        <time class="comment-time">{{ i.created_time|date:"Y-m-d H:i:s" }}</time>
+                                        <span class="comment-reply">
+{#                                            <a rel="nofollow" onclick="TaleComment.reply('${child.coid}');">回复</a>#}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+{#                        #end#}
+                    </ol>
+                </div>
+            </li>
+{#                #if(comment.levels > 0)#}
+                {% elif i.ifnochild == 0 %}
+                <li id="li-comment-${comment.coid}" class="comment-body comment-parent comment-odd">
+                <div id="comment-${comment.coid}">
+                    <div class="comment-view" onclick="">
+                        <div class="comment-header">
+                            <img class="avatar" src="/media/{{ i.name.userpic }}" width="80" height="80">
+                            <span class="comment-author">
+                                <a href="${comment.url}" target="_blank" rel="external nofollow">{{ i.name }}</a>
+                            </span>
+                        </div>
+                        <div class="comment-content">
+                            <span class="comment-author-at"></span>
+                            <p>{{ i.text }}</p>
+                        </div>
+                        <div class="comment-meta">
+                            <time class="comment-time">{{ i.created_time }}</time>
+                            <span class="comment-reply">
+                                <a rel="nofollow" onclick="TaleComment.reply('${comment.coid}');">回复</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                {% else%}
+                {% endif %}
+                {% endfor %}
+            </li>
+{#            #end#}
+        </ol>
+        <div class="lists-navigator clearfix">
+            <ol class="page-navigator">
+{#                #if(comments.hasPrevPage)#}
+{#                <li class="prev"><a href="?cp=${comments.prevPage}#comments">←</a></li>#}
+{#                #end#}
+{#                #for(navIndex : comments.navPageNums)#}
+{#                <li #if(comments.pageNum == navIndex) class="current" #end><a href="?cp=${navIndex}#comments">${navIndex}</a></li>#}
+{#                #end#}
+{#                #if(comments.hasNextPage)#}
+{#                <li class="next"><a href="?cp=${comments.nextPage}#comments">→</a></li>#}
+{#                #end#}
+            </ol>
+
+        </div>
+        #end
+    </div>
+</div>

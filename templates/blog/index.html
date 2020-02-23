@@ -1,0 +1,1331 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<!-- set the encoding of your site -->
+{#    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">#}
+    <link rel="shortcut icon" href="/static/images/写博客.png">
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ARITHMETICJIA</title>
+	<!-- include the site stylesheet -->
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CPoppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/font-awesome.min.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/bootstrap.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/slick.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/animate.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/style.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
+    <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.css">
+    <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
+{#    <script src="/static/JiaBlog/js/echarts.js"></script>#}
+    <script src="/static/echarts-4"></script>
+	<script src="/static/JiaBlog/js/jquery.js"></script>
+	<!-- include jQuery -->
+    <script src="/static/JiaBlog/js/plugins.js"></script>
+    <!-- include jQuery -->
+    <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
+
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <meta name="baidu-site-verification" content="iYpMqoGJf4" />
+    <style>
+        #tryme{
+            z-index: 10;
+            border-radius:4px;
+            border: none;
+            display: block;
+            position: fixed;
+            left: 10px;
+            top: 320px;
+            width:87px;
+            height: 50px;
+            background: #f5ab35;
+            font-size: 15px;
+            font-weight: bold;
+            color: white;
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin:0 auto;
+            text-align: center;
+        }
+        #wuhan{
+            z-index: 10;
+            border-radius:4px;
+            display: block;
+            position: fixed;
+            left: 10px;
+            top: 385px;
+            width:87px;
+            height: 50px;
+            background: #f5ab35;
+            font-size: 15px;
+            font-weight: bold;
+            color: #444444;
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin:0 auto;
+            text-align: center;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            let timerInterval;
+            Swal.fire({
+                {#title: '🧨祝大家2020鼠年大吉🧨',#}
+                title: '武汉加油，与你同在',
+                html: 'I will close in <b></b> seconds.',
+                {#imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579615243295&di=7bedc214cea751b6ad4fcdcb465d3f7c&imgtype=0&src=http%3A%2F%2Fwww.banbijiang.com%2Fuploads%2Fallimg%2F200120%2F155H52331-0.jpg%3FimageView2%2F2%2Fw%2F750%2Fq%2F80%2Fformat%2Fjpeg',#}
+                {#imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579764445442&di=fbcd15c19cba591d14a2ca33fbe99c9e&imgtype=0&src=http%3A%2F%2Fhimg2.huanqiucdn.cn%2Fattachment2010%2F2020%2F0122%2F16%2F35%2F20200122043523570.png',#}
+                imageUrl: 'https://www.guanacossj.com/media/jiablogimages/wuhan.jpg',
+                timer: 5000,
+                timerProgressBar: true,
+                width: 500,
+                {#showCancelButton: true,#}
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                    timerInterval = setInterval(() => {
+                        const content = Swal.getContent();
+                        if (content) {
+                            const b = content.querySelector('b');
+                        if (b) {
+                            b.textContent = parseInt(Swal.getTimerLeft() / 1000)
+                            }
+                        }
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        });
+    </script>
+	<div class="loader-holder">
+		<div class="loader">
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+		</div>
+	</div>
+	<!-- main container of all the page elements -->
+	<div id="wrapper">
+		<!-- header of the page -->
+		<header id="header" class="version-i">
+			<div class="stick-holder">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-3 col-sm-2">
+							<!-- logo of the page -->
+							<div class="logo"><a href="/blog/index/"><img src="/static/JiaBlog/images/logonew.png" alt="dot"></a></div>
+							<!-- logo of the page end -->
+						</div>
+						<div class="col-xs-9 col-sm-10 nav-holder">
+							<!-- Nav of the page -->
+							<nav id="nav" class="navbar navbar-default">
+								<!-- Navbar header of the page -->
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+								<!-- Navbar header of the page end -->
+								<!-- Collapse navbar collapse of the page -->
+								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+									<ul class="nav navbar-nav navbar-right">
+										<li><a href="/blog/index/">Home</a></li>
+										<li><a href="/blog/list/">Archive</a></li>
+										<!--li><a href="single.html">Single</a></li-->
+										<li><a href="/blog/contact-us">Contact</a></li>
+                                        <li><a href="/blog/file/" target="_blank">File</a></li>
+                                        <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
+                                        {% if request.session.is_login %}
+                                            <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
+                                            <li><a href="/blog/logout/">Logout</a></li>
+                                        {% elif request.user.is_authenticated %}
+                                            <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                            <li><a href="/blog/logout/">Logout</a></li>
+                                        {% else %}
+                                            <li><a href="/blog/mylist/">Tourist</a></li>
+                                            <li><a href="/blog/login/">Login</a></li>
+                                        {% endif %}
+									</ul>
+								</div>
+								<!-- Collapse navbar collapse of the page end -->
+							</nav>
+							<!-- Nav of the page end -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- header of the page end -->
+		<!-- main of the page -->
+		<main id="main" role="main">
+			<div class="home-box">
+				<section class="slideshow">
+					<!-- slide of the page -->
+					<div class="slide" style="background-image: url(/static/JiaBlog/images/img101.jpg);">
+						<div class="align-holder">
+							<div class="align">
+								<div class="container">
+									<div class="row">
+										<header class="header col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+											<div class="title-box"><strong class="title">Welcome</strong></div>
+											<h1>Welcome<br>To<br>ArithmeticJia's Blog</h1>
+											<a href="/blog/contact-us/" target="_blank">contact us</a>
+										</header>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- slide of the page end -->
+					<!-- slide of the page -->
+					<div class="slide" style="background-image: url(/static/JiaBlog/images/img01.jpg);">
+						<div class="align-holder">
+							<div class="align">
+								<div class="container">
+									<div class="row">
+										<header class="header col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+											<div class="title-box"><strong class="title">Author</strong></div>
+											<h1>All Designed <br>By<br>ArithmeticJia</h1>
+											<a href="/blog/contact-us/" target="_blank">contact us</a>
+										</header>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- slide of the page end -->
+					<!-- slide of the page -->
+					<div class="slide" style="background-image: url(/static/JiaBlog/images/img74.jpg);">
+						<div class="align-holder">
+							<div class="align">
+								<div class="container">
+									<div class="row">
+										<header class="header col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+											<div class="title-box"><strong class="title">Framework</strong></div>
+											<h1>Django<br>Version 2.1<br>Python 3.6</h1>
+											<a href="/blog/contact-us/" target="_blank">contact us</a>
+										</header>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- slide of the page end -->
+					<!-- slide of the page -->
+					<div class="slide" style="background-image: url(/static/JiaBlog/images/img75.jpg);">
+						<div class="align-holder">
+							<div class="align">
+								<div class="container">
+									<div class="row">
+										<header class="header col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+											<div class="title-box"><strong class="title">Support</strong></div>
+											<h1>Deployed<br>In<br>Alibaba Cloud Computing</h1>
+											<a href="/blog/contact-us/" target="_blank">contact us</a>
+										</header>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- slide of the page end -->
+					<!-- slide of the page -->
+					<div class="slide" style="background-image: url(/static/JiaBlog/images/img100.png);">
+						<div class="align-holder">
+							<div class="align">
+								<div class="container">
+									<div class="row">
+										<header class="header col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+											<div class="title-box"><strong class="title">Enjoy</strong></div>
+											<h1>Life is an adventure, <br>it’s not a package tour.<br>Happy Single!</h1>
+											<a href="/blog/contact-us/" target="_blank">contact us</a>
+										</header>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- slide of the page end -->
+				</section>
+				<!-- switcher of the page -->
+				<div class="switcher">
+					<div class="center-block">
+						<!-- switcher mask of the page -->
+						<div class="switcher-mask">
+							<!-- switcher slide of the page -->
+                            {% for i in blog_list_five %}
+							<div class="slide">
+								<div class="switcher-slide">
+									<div class="slide-holder">
+										<div class="img-holder">
+											<img src="{{ i.pic.url }}" alt="image description">
+										</div>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title|slice:"18" }}...</a></h2>
+										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+							<!-- switcher slide of the page end -->
+							<!-- switcher slide of the page -->
+							<!--div class="slide">
+								<div class="switcher-slide">
+									<div class="slide-holder">
+										<div class="img-holder">
+											<img src="/static/JiaBlog/images/img03.jpg" alt="image description">
+										</div>
+										<h2><a href="single-post.html">Letter from the desk of an <br>unsuccessful designer</a></h2>
+										<time datetime="2011-01-12"><a href="#">2nd january, 2016</a></time>
+									</div>
+								</div>
+							</div-->
+							<!-- switcher slide of the page end -->
+							<!-- switcher slide of the page -->
+							<!--div class="slide">
+								<div class="switcher-slide">
+									<div class="slide-holder">
+										<div class="img-holder">
+											<img src="/static/JiaBlog/images/img04.jpg" alt="image description">
+										</div>
+										<h2><a href="single-post.html">Letter from the desk of an <br>unsuccessful designer</a></h2>
+										<time datetime="2011-01-12"><a href="#">2nd january, 2016</a></time>
+									</div>
+								</div>
+							</div-->
+							<!-- switcher slide of the page end -->
+							<!-- switcher slide of the page -->
+							<!--div class="slide">
+								<div class="switcher-slide">
+									<div class="slide-holder">
+										<div class="img-holder">
+											<img src="/static/JiaBlog/images/img05.jpg" alt="image description">
+										</div>
+										<h2><a href="single-post.html">Letter from the desk of an <br>unsuccessful designer</a></h2>
+										<time datetime="2011-01-12"><a href="#">2nd january, 2016</a></time>
+									</div>
+								</div>
+							</div-->
+							<!-- switcher slide of the page end -->
+							<!-- switcher slide of the page -->
+							<!--div class="slide">
+								<div class="switcher-slide">
+									<div class="slide-holder">
+										<div class="img-holder">
+											<img src="/static/JiaBlog/images/img02.jpg" alt="image description">
+										</div>
+										<h2><a href="single-post.html">Letter from the desk of an <br>unsuccessful designer</a></h2>
+										<time datetime="2011-01-12"><a href="#">2nd january, 2016</a></time>
+									</div>
+								</div>
+							</div-->
+							<!-- switcher slide of the page end -->
+						</div>
+						<!-- switcher mask of the page end -->
+					</div>
+				</div>
+				<!-- slide of the page end -->
+			</div>
+			<!-- twocolumns of the page -->
+            <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script><script>tpwidget("init", {
+                "flavor": "bubble",
+                "location": "WX4FBXXFKE4F",
+                "geolocation": "enabled",
+                "position": "top-left",
+                "margin": "250px 10px",
+                "language": "zh-chs",
+                "unit": "c",
+                "theme": "chameleon",
+                "uid": "U2D9B077BB",
+                "hash": "c25dba4c45793e2cadff6ee42856d99f"
+                });
+                tpwidget("show");
+            </script>
+{#            <button style="border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 16px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;" onclick="vshow()">版本更新</button>#}
+            <div class="form-submit" >
+                <input type="button" id="tryme" value="Try Me" onclick="vshow()">
+            </div>
+                <script type="text/javascript">
+                    function vshow() {
+                        swal.setDefaults({
+                            confirmButtonText: 'Next',
+                            showCancelButton: true,
+                            animation: false,
+                            width: 500,
+                        });
+
+                        var steps = [
+                            {
+                                title: 'ArithmeticJia网站一轮测试完成，Debug模式关闭!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563091194033_gaitubao_800x450.jpg',
+                            },
+                            {
+                                title: '欢迎来到全新的支持HTTPS的Blog!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1571586753049_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '欢迎注册登录开始你的创作!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563090869675_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '令人兴奋的全新的文章创作和编辑界面!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563090609515_gaitubao_800x450.jpg',
+                            },
+                            {
+                                title: '支持全文haystack搜索!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563091876432_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '支持上传多张图片!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563091413884_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '支持点赞，新增打赏功能!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563091754038_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '支持点赞，新增打赏功能!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1581059062241_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '支持代码块tango样式高亮!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1581073443680_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增后端Redis缓存，更快速的响应!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1581142736192_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增文章详情目录预览!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1564847139337_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增viewer.js配图预览查看!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1579701171558_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增editor.md文章编辑功能!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563090609515_gaitubao_800x450.jpg',
+                            },
+                            {
+                                title: '新增全文高亮检索!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563091876432_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增博客时间归档!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563626397522_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增博客收藏功能!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1571586551374_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增个人词云展示!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1580995957427_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增文件上传下载密码校验!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563092377345_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增文件删除校验!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563092511349_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增编辑文章自动裁切配图!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1563092957559_gaitubao_800x450.jpg'
+                            },
+                            {
+                                title: '新增Github第三方登录!',
+                                text: '',
+                                imageUrl: '/media/jiablogimages/1580995654984_gaitubao_800x450.jpg'
+                            },
+                        ];
+
+                        swal.queue(steps).then(function () {
+                            swal({
+                                title: 'All done!',
+                                confirmButtonText: 'OK',
+                                imageUrl: '/media/jiablogimages/IMG_0323.JPG',
+                                showCancelButton: false
+                            });
+                        }).finally(function () {
+                            swal.resetDefaults();
+                        })
+                    }
+                </script>
+            <div class="form-submit" >
+                <input type="button" id="wuhan" value="武汉加油" onclick="towuhan()">
+            </div>
+            <script type="text/javascript">
+                function towuhan() {
+                    Swal.fire({
+                        title: '武汉加油',
+                        width: 500,
+                        text: '',
+                        imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580557485291&di=6dd4c20d90a607c61e4d610f5ecfdd60&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fq_70%2Cc_zoom%2Cw_640%2Fimages%2F20200130%2F4a4fcdcb7d7c40c2b15029ee5ab2685d.jpeg',
+                        confirmButtonText: "查看全国疫情分布",
+                    }).then((result) =>{
+                        if(result.value){
+                            window.open('https://www.guanacossj.com/china-wuhan')
+                        }
+                    })
+                }
+            </script>
+{#            <div class="form-submit" >#}
+{#                <input type="button" style="z-index: 10;border-radius:4px;display: block; position: fixed; left: 10px; top: 450px;width:87px;height: 50px;background: #f5ab35;font-size: 12pt;font-weight: bold;color: #444444;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;text-align: center;" value="打赏" onclick="dashang()">#}
+{#            </div>#}
+{#            <script type="text/javascript">#}
+{#                function dashang() {#}
+{#                    Swal.fire({#}
+{#                        title: '谢谢好心人🙏',#}
+{#                        width: 500,#}
+{#                        text: '',#}
+{#                        imageUrl: '/static/images/newpay.jpg',#}
+{#                        confirmButtonText: "OK",#}
+{#                    })#}
+{#                }#}
+{#            </script>#}
+            <link type="text/css" rel="stylesheet" href="/static/QPlayer/css/player.css">
+            <div id="QPlayer"  style="position: fixed; z-index: 999">
+            <div id="pContent">
+            	<div id="player">
+            		<span class="cover"></span>
+            		<div class="ctrl">
+            			<div class="musicTag marquee">
+            				<strong>歌名</strong>
+            				<span> - </span>
+            				<span class="artist">歌手</span>
+            			</div>
+            			<div class="progress">
+            				<div class="timer left">0:00</div>
+            				<div class="contr">
+            					<div class="rewind icon"></div>
+            					<div class="playback icon"></div>
+            					<div class="fastforward icon"></div>
+            				</div>
+            				<div class="right">
+            					<div class="liebiao icon"></div>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+            	<div class="ssBtn">
+            	        <div class="adf"></div>
+                </div>
+            </div>
+            <ol id="playlist"></ol>
+            </div>
+            <script type="text/javascript" src="/static/QPlayer/js/jquery.min.js"></script>
+            <script type="text/javascript" src="/static/QPlayer/js/jquery.marquee.min.js"></script>
+            <script>
+            	var	playlist = [
+                    {title:"让我偷偷看看你",artist:"赵雷",mp3:"/static/QPlayer/music/赵雷-让我偷偷看你.mp3",cover:"/static/QPlayer/musicpic/1572674856916.jpg",},
+                    {title:"医生",artist:"许嵩",mp3:"/static/QPlayer/music/许嵩-医生.mp3",cover:"/static/QPlayer/musicpic/1572678461964.jpg",},
+                    ];
+                var isRotate = true;
+                var autoplay = false;
+            </script>
+            <script type="text/javascript" src="/static/QPlayer/js/player.js"></script>
+            <script>
+                function bgChange(){
+            	    var lis= $('.lib');
+            	    for(var i=0; i<lis.length; i+=2)
+            	    lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+                }
+                window.onload = bgChange;
+            </script>
+			<div id="twocolumns">
+				<div class="container">
+					<div class="row">
+						<!-- Content of the page -->
+						<div id="content" class="col-xs-12 col-md-8">
+							<!-- widget of the page -->
+							<section class="widget profile-widget style1 hidden-md hidden-lg">
+								<div class="profile-pic">
+									<a href="#">
+										<img src="{{ jia.pic.url }}" alt="ArithmeticJia">
+									</a>
+								</div>
+								<h3><a href="/blog/contact-us" target="_blank">{{ jia.name }}</a></h3>
+								<p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ jia.brief }}</p>
+                                <h5>Total Visits:&nbsp;&nbsp;{{ allvisit }}</h5>
+								<!-- Social networks of the page -->
+								<ul class="social-networks justify">
+									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+									<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+									<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+									<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+									<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+								</ul>
+								<!-- Social networks of the page end -->
+							</section>
+							<!-- widget of the page end -->
+							<!-- cols holder of the page -->
+							<div class="cols-holder">
+                                <article class="post fluid text-center wow fadeInUp" data-wow-delay="0.6s">
+                                    <div  class="post fluid text-center wow fadeInUp" id="myechart" style="width: 100%;height:480px;position: relative"></div>
+                                        <script type="text/javascript" src="/static/JiaBlog/js/echarts.js">
+
+                                            // 基于准备好的dom，初始化echarts实例
+                                            var myChart = echarts.init(document.getElementById('myechart'));
+
+                                            // 指定图表的配置项和数据
+
+                                            var option = {
+                                                backgroundColor: '#2c343c',
+
+                                                title: {
+                                                    text: 'Category Counting',
+                                                    left: 'center',
+                                                    top: 15,
+                                                    textStyle: {
+                                                        color: '#ccc'
+                                                    }
+                                                },
+
+                                                tooltip: {
+                                                    trigger: 'item',
+                                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                                },
+
+                                                visualMap: {
+                                                    show: false,
+                                                    min: 80,
+                                                    max: 600,
+                                                    inRange: {
+                                                        colorLightness: [0, 1]
+                                                    }
+                                                },
+                                                series: [
+                                                    {
+                                                        name: '访问来源',
+                                                        type: 'pie',
+                                                        radius: '68%',
+                                                        center: ['50%', '50%'],
+                                                        data: [
+                                                            {value: 335, name: 'Django'},
+                                                            {value: 310, name: 'Python'},
+                                                            {value: 274, name: 'Mysql'},
+                                                            {value: 335, name: 'Leetcode'},
+                                                            {value: 400, name: 'Other'}
+                                                        ].sort(function (a, b) {
+                                                            return a.value - b.value;
+                                                        }),
+                                                        roseType: 'radius',
+                                                        label: {
+                                                            normal: {
+                                                                textStyle: {
+                                                                    color: 'rgba(255, 255, 255, 0.3)'
+                                                                }
+                                                            }
+                                                        },
+                                                        labelLine: {
+                                                            normal: {
+                                                                lineStyle: {
+                                                                    color: 'rgba(255, 255, 255, 0.3)'
+                                                                },
+                                                                smooth: 0.2,
+                                                                length: 10,
+                                                                length2: 20
+                                                            }
+                                                        },
+                                                        itemStyle: {
+                                                            normal: {
+                                                                color: '#c23531',
+                                                                shadowBlur: 200,
+                                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                            }
+                                                        },
+
+                                                        animationType: 'scale',
+                                                        animationEasing: 'elasticOut',
+                                                        animationDelay: function (idx) {
+                                                            return Math.random() * 200;
+                                                        }
+                                                    }
+                                                ]
+                                            };
+                                                       // 使用刚指定的配置项和数据显示图表。
+                                                       myChart.setOption(option);
+                                        </script>
+                                        <div class="text-wrap text-center">
+                                            <h2>Ariticle Counts</h2>
+                                             <p><a href="https://echarts.baidu.com/" target="_blank">Created by Echarts</a></p>
+                                        </div>
+                                </article>
+                            </div>
+                            <div class="cols-holder">
+								<!-- post of the page -->
+                                {% for i in blog_list_up %}
+								<article class="post wow fadeInLeft" data-wow-delay="0.6s">
+									<div class="img-holder"><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
+									<div class="text-wrap">
+										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
+										<p>{{ i.body|safe|slice:"150" }}</p>
+										<a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank" class="link-more">Read more</a>
+									</div>
+								</article>
+                                {% endfor %}
+								<!-- post of the page end -->
+								<!-- post of the page -->
+								<!--article class="post wow fadeInRight" data-wow-delay="0.6s">
+									<div class="img-holder"><a href="single-post.html"><img src="/static/JiaBlog/images/img07.jpg" alt="image description"></a></div>
+									<div class="text-wrap">
+										<time datetime="2011-01-12">25th May - <a href="#">Travel</a></time>
+										<h2><a href="single-post.html">Letter from the desk of an unsuccessful designer.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="link-more">Read more</a>
+									</div>
+								</article-->
+								<!-- post of the page end -->
+							</div>
+							<!-- cols holder of the page end -->
+							<!-- cols holder of the page -->
+							<div class="cols-holder">
+								<!-- post of the page -->
+								<article class="post fluid text-center wow fadeInUp" data-wow-delay="0.6s">
+									<div class="video-holder">
+										<a href="/static/film/阳光电影www.ygdy8.com.复仇者联盟3：无限战争.BD.720p.国英双语双字.mp4" class="ico-play lightbox fancybox.iframe"></a>
+										<img src="/static/JiaBlog/images/film.jpg" alt="image description">
+									</div>
+									<div class="text-wrap text-center">
+										<time datetime="2011-01-12">19th may - <a href="#">film</a></time>
+										<h2><a href="">Avengers: Infinity War</a></h2>
+										<p>Avengers: Infinity War is a 2018 American superhero film based on the Marvel Comics superhero team the Avengers, produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures.</p>
+										<a href="" class="link-more">read more</a>
+									</div>
+								</article>
+								<!-- post of the page end -->
+							</div>
+							<!-- cols-holder of the page end -->
+							<div class="cols-holder">
+								<!-- post of the page -->
+                                {% for i in blog_list_middel %}
+								<article class="post wow fadeInLeft" data-wow-delay="0.6s">
+									<div class="img-holder"><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
+									<div class="text-wrap">
+										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
+										<p>{{ i.body|safe|slice:"150" }}</p>
+										<a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank" class="link-more">Read more</a>
+									</div>
+								</article>
+                                {% endfor %}
+								<!-- post of the page end -->
+								<!-- post of the page -->
+								<!--article class="post wow fadeInRight" data-wow-delay="0.6s">
+									<div class="img-holder"><a href="single-post.html"><img src="/static/JiaBlog/images/img09.jpg" alt="image description"></a></div>
+									<div class="text-wrap">
+										<time datetime="2011-01-12">25th May - <a href="#">Life</a></time>
+										<h2><a href="single-post.html">The bitter truth that you should know.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="link-more">Read more</a>
+									</div>
+								</article-->
+								<!-- post of the page -->
+							</div>
+							<!-- cols holder of the page end -->
+							<!-- col holder of the page -->
+							<div class="cols-holder">
+								<!-- post of the page -->
+								<article class="post fluid text-center wow fadeInUp" data-wow-delay="0.6s">
+                                    {% for i in blog_list_large %}
+									<ul class="list-unstyled carousel">
+										<li>
+											<div class="slide">
+												<img src="{{ i.pic.url }}" alt="image description">
+											</div>
+										</li>
+										<!--li>
+											<div class="slide">
+												<img src="/static/JiaBlog/images/img72.jpg" alt="image description">
+											</div>
+										</li-->
+									</ul>
+									<div class="text-wrap text-center">
+
+										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
+										<p>{{ i.body|safe|slice:"150" }}</p>
+										<a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank" class="link-more">read more</a>
+                                        {% endfor %}
+									</div>
+								</article>
+								<!-- post of the page end -->
+							</div>
+							<!-- cols holder of the page end -->
+							<!-- cols holder of the page -->
+							<div class="cols-holder">
+								<!-- post of the page -->
+                                {% for i in blog_list_down %}
+								<article class="post wow fadeInLeft" data-wow-delay="0.6s">
+									<div class="img-holder"><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="{{ i.pic.url }}" alt="image description"></a></div>
+									<div class="text-wrap">
+										<time datetime="2011-01-12">{{ i.timestamp }} - <a href="#">{{ i.category.name }}</a></time>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
+										<p>{{ i.body|safe|slice:"150" }}</p>
+										<a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank" class="link-more">Read more</a>
+									</div>
+								</article>
+                                {% endfor %}
+								<!-- post of the page end -->
+								<!-- post of the page -->
+								<!--article class="post wow fadeInRight" data-wow-delay="0.6s">
+									<div class="img-holder"><a href="single-post.html"><img src="/static/JiaBlog/images/img07.jpg" alt="image description"></a></div>
+									<div class="text-wrap">
+										<time datetime="2011-01-12">21st May - <a href="#">Travel</a></time>
+										<h2><a href="single-post.html">Letter from the desk of an unsuccessful designer.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="link-more">Read more</a>
+									</div>
+								</article-->
+								<!-- post of the page end -->
+							</div>
+							<!-- cols holder of the page end -->
+							<!-- Navigation of the page -->
+							<!--nav role="navigation" class="navigation pagination">
+								<div class="nav-links">
+									<a href="#" class="prev page-numbers">Prev post.</a>
+									<a href="#" class="page-numbers">1</a>
+									<span class="page-numbers current">2</span>
+									<span class="page-numbers dots hidden">…</span>
+									<a href="#" class="page-numbers">3</a>
+									<a href="#" class="next page-numbers">NEXT post.</a>
+								</div>
+							</nav-->
+							<!-- Navigation of the page end -->
+						</div>
+						<!-- Content of the page end -->
+						<!-- Sidebar of the page -->
+						<aside id="sidebar" class="col-xs-12 col-md-4">
+							<!-- Widget of the page -->
+							<section class="widget profile-widget style1 hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
+								<div class="profile-pic">
+									<a href="#">
+										<img src="{{ jia.pic.url }}" alt="ArithmeticJia">
+									</a>
+								</div>
+								<h3><a href="/blog/contact-us" target="_blank">{{ jia.name }}</a></h3>
+								<p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ jia.brief }}</p>
+                                <h5>Total Visits:&nbsp;&nbsp;{{ allvisit }}</h5>
+                                    </br>
+								<!-- Social network of the page -->
+								<ul class="social-networks justify">
+									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+									<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+									<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+									<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+									<!--li><a href="#"><span class="icon ico-pinterest"></span></a></li-->
+								</ul>
+								<!-- Social network of the page end -->
+							</section>
+                            <div class="widget widget_search hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.4s">
+								<form method="get" class="search-form" action="/blog/search/">
+									<fieldset>
+										<input type="search" name="q" placeholder="Type to search here">
+										<button type="submit" class="ico-search"></button>
+									</fieldset>
+								</form>
+							</div>
+							<!-- Widget of the page end -->
+							<!-- Widget of the page -->
+							<section class="widget recent-posts-widget wow fadeInUp" data-wow-delay="0.6s">
+								<header class="widget-head">
+									<h3>Recent Posts</h3>
+									<p>post those are very recent in Dot</p>
+								</header>
+								<ol>
+                                    {% for i in blog_list_three %}
+									<li>
+										<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+											<strong class="tag hot">HOT</strong>
+										</span>
+									</li>
+                                    {% endfor %}
+									<!--li>
+										<h4><a href="single-post.html">Letter from the desk of an <br>unsuccessful designer.</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">25th may</a></time>
+											<strong class="tag">trending</strong>
+										</span>
+									</li-->
+									<!--li>
+										<h4><a href="single-post.html">Exploring the unknow truth about myself - My Story.</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">25th may</a></time>
+										</span>
+									</li-->
+								</ol>
+							</section>
+                            <section class="widget recent-posts-widget version-ii wow fadeInUp" data-wow-delay="0.6s">
+								<header class="tab-head">
+									<h3><a class="active" href="#tab1">Recent Posts</a></h3>
+									<h3><a href="#tab2">Popular Posts</a></h3>
+								</header>
+								<div class="tab-content">
+									<div id="tab1">
+										<ul>
+	                                     {% for i in blog_list_comments %}
+											<li>
+												<div class="alignleft">
+													<img src="{{ i.pic.url }}" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+													</span>
+												</div>
+
+											</li>
+                                            {% endfor %}
+											<!--li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img28.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">I get up in the morning looking <br>for an adventure.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img29.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">Holiday is awesome when loved <br>one beside me.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li-->
+										</ul>
+									</div>
+									<div id="tab2">
+										<ul>
+		                                    {% for i in blog_list_greats %}
+											<li>
+												<div class="alignleft">
+													<img src="{{ i.pic.url }}" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+													</span>
+												</div>
+											</li>
+                                            {% endfor %}
+											<!--li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img27.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">Traveling is awesome if you <br>can enjoy.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li>
+											<li>
+												<div class="alignleft">
+													<img src="/static/JiaBlog/images/img28.jpg" alt="image description">
+												</div>
+												<div class="descr">
+													<h4><a href="single-post.html">I get up in the morning looking <br>for an adventure.</a></h4>
+													<span class="post-tag">
+														<time datetime="2011-01-12"><a href="#">25th may</a></time>
+													</span>
+												</div>
+											</li-->
+										</ul>
+									</div>
+								</div>
+							</section>
+							<!-- Widget of the page end -->
+							<!-- Widget of the page 广告-->
+
+                            <!--div class="widget widget_categories version-ii wow fadeInUp" id="myechart" style="width: 600px;height: 500px"></div-->
+                                <script type="text/javascript">
+
+                                    // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('myechart'));
+
+                                    // 指定图表的配置项和数据
+                                var option = {
+                                    backgroundColor: '#2c343c',
+
+                                    title: {
+                                        text: 'Category Counting',
+                                        left: 'center',
+                                        top: 15,
+                                        textStyle: {
+                                            color: '#ccc'
+                                        }
+                                    },
+
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                    },
+
+                                    visualMap: {
+                                        show: false,
+                                        min: {{ min }},
+                                        max: {{ max }},
+                                        inRange: {
+                                        colorLightness: [0, 1]
+                                        }
+                                    },
+                                    series : [
+                                        {
+                                            name:'article category',
+                                            type:'pie',
+                                            radius : '68%',
+                                            center: ['50%', '55%'],
+                                            data:[
+                                                {% for key,value in catcharts.items %}
+                                                    {value:{{ value }},name:"{{ key }}"},
+                                                {% endfor %}
+                                            ].sort(function (a, b) { return a.value - b.value; }),
+                                            roseType: 'radius',
+                                            label: {
+                                                normal: {
+                                                textStyle: {
+                                                    color: 'rgba(255, 255, 255, 0.3)',
+                                                    fontSize:16,
+                                                    }
+                                                }
+                                            },
+                                            labelLine: {
+                                                normal: {
+                                                lineStyle: {
+                                                    color: 'rgba(255, 255, 255, 0.3)'
+                                                    },
+                                                    smooth: 0.2,
+                                                    length: 10,
+                                                    length2: 20
+                                                }
+                                            },
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#c23531',
+                                                    shadowBlur: 200,
+                                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                }
+                                            },
+
+                                            animationType: 'scale',
+                                            animationEasing: 'elasticOut',
+                                            animationDelay: function (idx) {
+                                            return Math.random() * 200;
+                                            }
+                                        }
+                                    ]
+                                };
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
+                                </script>
+							<!-- Widget of the page end -->
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Time</h3>
+								</header>
+								<ul>
+                                    {% for i in year_month_number %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/blog/list/{{ i.0 }}/{{ i.1 }}" target="_blank">- {{ i.0 }}年{{ i.1 }}月---({{ i.2 }})</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+                                <!--div class="rss">
+                                    <a href="/JiaBlog/rss/" target="_blank"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                                </div-->
+							</div>
+							<!-- Widget of the page -->
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Tags</h3>
+								</header>
+								<ul>
+                                    {% for i in tags %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="#">- {{ i.name }}</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+                                <!--div class="rss">
+                                    <a href="/JiaBlog/rss/" target="_blank"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                                </div-->
+							</div>
+
+							<div class="widget widget_categories tabs wow fadeInUp" data-wow-delay="0.6s">
+								<header class="widget-head">
+									<h3>Category</h3>
+									<p>browse all your favourite categories</p>
+								</header>
+								<div class="lists-holder">
+									<ul>
+                                        {% for i in categorys %}
+										<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/blog/articles/{{ i.name }}" target="_blank">- {{ i.name }}---({{ i.catcount }})</a></span></li>
+										<!--li class="cat-item cat-item-1"><a href="#">Movie </a> (02)</li>
+										<li class="cat-item cat-item-1"><a href="#">Travel </a> (11)</li>
+										<li class="cat-item cat-item-1"><a href="#">Sports </a> (05)</li>
+										<li class="cat-item cat-item-1"><a href="#">Music </a> (01)</li-->
+                                        {% endfor %}
+									</ul>
+									<!--ul>
+										<li class="cat-item cat-item-1"><a href="#">Education </a> (15)</li>
+										<li class="cat-item cat-item-1"><a href="#">International </a> (09)</li>
+										<li class="cat-item cat-item-1"><a href="#">Design </a> (26)</li>
+										<li class="cat-item cat-item-1"><a href="#">News </a> (01)</li>
+										<li class="cat-item cat-item-1"><a href="#">Review </a> (14)</li>
+									</ul-->
+								</div>
+							</div>
+
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Version Updates</h3>
+								</header>
+								<ul>
+                                    {% for i in versions %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="#">- {{ i }}</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+							</div>
+
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Domain Info</h3>
+								</header>
+                                <ul>
+                                    <li class="cat-item cat-item-1">- 苏ICP备19007197号</li>
+                                    <li class="cat-item cat-item-1">- Copyright &copy; 2019.Company name All &nbsp;&nbsp;&nbsp;rights reserved.arithmeticjia</li>
+                                </ul>
+                            </div>
+							<!-- Widget of the page end -->
+						</aside>
+						<!-- Sidebar of the page end -->
+					</div>
+				</div>
+			</div>
+			<!-- twocolumns of the page end -->
+			<!-- Instagram Slider of the page -->
+			<div class="instagram-slider container-fluid">
+				<div class="row">
+					<div class="mask">
+						<div class="slideset">
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img30.jpg" alt="image description"></a>
+							</div>
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img31.jpg" alt="image description"></a>
+							</div>
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img35.jpg" alt="image description"></a>
+							</div>
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img32.jpg" alt="image description"></a>
+							</div>
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img33.jpg" alt="image description"></a>
+							</div>
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img36.jpg" alt="image description"></a>
+							</div>
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img34.jpg" alt="image description"></a>
+							</div>
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img30.jpg" alt="image description"></a>
+							</div>
+							<div class="slide">
+								<a href="#"><img src="/static/JiaBlog/images/img31.jpg" alt="image description"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Instagram Slider of the page end -->
+		</main>
+		<!-- main of the page end -->
+		<!-- aside of the page -->
+		<aside class="aside version-ii container">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 holder">
+						<div class="col">
+							<!-- logo of the page -->
+							<div class="logo">
+								<a href="#">
+									<img src="/media/jia/IMG_0323.JPG" alt="dot">
+								</a>
+							</div>
+							<!-- logo of the page end -->
+							<p>Created By ArithmeticJia</p>
+                            <p>Nanjing University Of Posts & Telecommunications</p>
+							<!-- Social Network of the page -->
+							<ul class="social-networks">
+								<li><a href="#"><span class="ico-facebook"></span></a></li>
+								<li><a href="#"><span class="ico-twitter"></span></a></li>
+								<li><a href="#"><span class="ico-google-plus"></span></a></li>
+								<li><a href="#"><span class="ico-linkedin"></span></a></li>
+								<li><a href="#"><span class="ico-pinterest"></span></a></li>
+							</ul>
+							<!-- Social Network of the page -->
+						</div>
+						<!-- footer nav of the page -->
+						<nav class="col footer-nav">
+							<h3>Important Links</h3>
+							<ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
+							</ul>
+						</nav>
+                        <nav class="col footer-nav">
+							<h3>Popular Links</h3>
+							<ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
+							</ul>
+						</nav>
+						<!-- footer nav of the page end -->
+						<!-- Widget holder of the page -->
+{#						<div class="col widget-holder">#}
+{#							<h3>Popular Posts</h3>#}
+{#							<div class="widget recent-posts-widget">#}
+{#								<ol>#}
+{#									<li>#}
+{#										<h4><a href="single-post.html">I get up in the morning looking <br>for an adventure.</a></h4>#}
+{#										<span class="post-tag">#}
+{#											<time datetime="2011-01-12"><a href="#">21st Jan</a></time>#}
+{#										</span>#}
+{#									</li>#}
+{#									<li>#}
+{#										<h4><a href="single-post.html">I get up in the morning looking <br>for an adventure.</a></h4>#}
+{#										<span class="post-tag">#}
+{#											<time datetime="2011-01-12"><a href="#">21st Jan</a></time>#}
+{#										</span>#}
+{#									</li>#}
+{#								</ol>#}
+{#							</div>#}
+{#						</div>#}
+						<!-- Widget holder of the page end -->
+						<div class="col">
+							<h3>Subscribe to Newsletter</h3>
+							<p></p>
+							<!-- subscribe form of the page -->
+							<form action="#" class="subscribe-form">
+								<div class="form-group">
+									<input type="email" class="form-control" placeholder="Enter your email here">
+									<button type="button" class="ico-send"></button>
+								</div>
+							</form>
+							<!-- subscribe form of the page end -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</aside>
+		<!-- aside of the page end -->
+		<!-- footer of the page -->
+		<footer id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<p>Copyright &copy; 2019.Company name All rights reserved.苏ICP备19007197号<a target="_blank" href=""></a></p>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- footer of the page end -->
+		<!-- Back Top of the page -->
+    	<span id="back-top" class="fa fa-angle-up"></span>
+    	<!-- Style Changer of the page -->
+    	<!--div id="style-changer" data-src="inc/style-changer.html"></div-->
+
+	</div>
+	<!-- include jQuery -->
+{#    <script src="/static/JiaBlog/js/echarts.js"></script>#}
+    <script src="/static/echarts-4/echarts.js"></script>
+	<script src="/static/JiaBlog/js/jquery.js"></script>
+	<!-- include jQuery -->
+    <script src="/static/JiaBlog/js/plugins.js"></script>
+    <!-- include jQuery -->
+    <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.js"></script>
+    <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
+
+    <!--script src="/static/js/echarts.js"></script-->
+    <!--script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script-->
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="${meta_keywords()}"/>
+    <meta name="description" content="${meta_description()}"/>
+    <meta content="${_csrf_token}" name="csrf_token"/>
+    <link rel="shortcut icon" href="/static/newblogdefault/img/favicon.png"/>
+    <link rel="apple-touch-icon" href="/static/newblogdefault/img/apple-touch-icon.png"/>
+    <title>请叫我算术嘉-首页</title>
+    <link href="/static/newblogdefault/css/default.min.css" rel="stylesheet">
+    <link href="/static/newblogdefault/css/style.min.css" rel="stylesheet">
+{#    #if(allow_cloud_CDN() == "true")#}
+{#    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>#}
+{#    #else#}
+    <script src="/static/newblog/plugins/jquery/3.2.1/jquery.min.js"></script>
+{#    #end#}
+
+    <script src="/static/newblogdefault/js/highlight.min.js"></script>
+    <script src="/static/newblogdefault/js/instantclick.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="bg-grey">
+<!--[if lt IE 8]>
+<div class="browsehappy" role="dialog">
+    当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。
+</div>
+<![endif]-->
+<header id="header" class="header bg-white">
+    <div class="navbar-container">
+        <a href="${site_url()}" class="navbar-logo">
+{#            #if(theme_option('logo_url') == "")#}
+{#            <img src="${theme_url('/static/img/logo.png')}" alt="${site_title()}"/>#}
+{#            #else#}
+            <img src="/static/JiaBlog/images/logonew.png" alt="Jia"/>
+{#            #end#}
+        </a>
+        <div class="navbar-menu">
+            <a href="/blog/new/index">首页</a>
+            <a href="/blog/new/list">归档</a>
+            <a href="/blog/index">友链</a>
+            <a href="/blog/contact-us">关于</a>
+        </div>
+{#        <div class="navbar-search" onclick="">#}
+{#            <span class="icon-search"></span>#}
+{#            <form role="search" onsubmit="return false;">#}
+{#                <span class="search-box">#}
+{#                    <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30"#}
+{#                           autocomplete="off">#}
+{#                </span>#}
+{#            </form>#}
+{#        </div>#}
+        <div class="navbar-search">
+            <button type="submit" onclick="goSearch()">
+                <span class="icon-search"></span>
+            </button>
+            <form role="search" method="get" action="/blog/new/search">
+                <span class="search-box">
+                    <input type="text" id="search-inp" class="input" name="q" placeholder="搜索..." maxlength="30"
+                           autocomplete="off">
+                </span>
+            </form>
+            <script>
+                function goSearch() {
+                    var search = document.getElementById('search-inp').value;
+                    window.location.href="/blog/new/search/?q="+search+""
+                }
+            </script>
+        </div>
+        <div class="navbar-mobile-menu" onclick="">
+            <span class="icon-menu cross"><span class="middle"></span></span>
+            <ul>
+                <li><a href="/JiaBlog/list">归档</a></li>
+                <li><a href="#">友链</a></li>
+                <li><a href="/JiaBlog/contact-us">关于</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<body>
+<div class="main-content index-page clearfix">
+    <div class="post-lists">
+        <div class="post-lists-body">
+            {% for i in blog_list %}
+            <div class="post-list-item">
+                <div class="post-list-item-container">
+                    <div class="item-thumb bg-deepgrey" style="background-image:url('{{ i.pic.url }}');"></div>
+                    <a href="${permalink()}">
+                        <div class="item-desc">
+                            <p>{{ i.articlebodybrief }}...</p>
+                        </div>
+                    </a>
+                    <div class="item-slant reverse-slant bg-deepgrey"></div>
+                    <div class="item-slant"></div>
+                    <div class="item-label">
+                        <div class="item-title"><a href="/blog/post/{{ i.id }}/{{ i.url_slug }}">{{ i.title }}</a>
+                        </div>
+                        <div class="item-meta clearfix">
+                            <div class="item-meta-ico ${show_icon()}"
+                                 style="background: url(/static/newblogdefault/img/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                            <div class="item-meta-cat">
+{#                                ${show_categories()}#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="lists-navigator clearfix">
+    </div>
+</div>
+</body>
+<footer id="footer" class="footer bg-white">
+    <div class="footer-social">
+        <div class="footer-container clearfix">
+        </div>
+    </div>
+    <div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="${site_url()}" class="info-logo">
+                        <img src="/static/JiaBlog/images/logonew.png" alt="Jia"/>
+                    </a>
+                    <div class="info-text">
+                        <p>一生有所追求.</p>
+                        <p>Powered by <a href="https://github.com/otale/tale" target="_blank" rel="nofollow">Tale</a>
+                        </p>
+                        <p>&copy; 2017 <a href="https://github.com/biezhi">biezhi</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">最新文章</h3>
+                {% for i in blog_list_views %}
+                <li>
+                    <a href="/JiaBlog/article/{{ i.id }}">{{ i.title }}</a>
+                </li>
+                {% endfor %}
+            </div>
+
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新评论</h3>
+{#                #for(comm : recent_comments(8))#}
+                <li>
+                    <a href="${site_url('/article/')}${comm.cid}#comment-${comm.coid}"></a>
+                </li>
+{#                #end#}
+            </div>
+        </div>
+    </div>
+</footer>

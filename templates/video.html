@@ -1,0 +1,240 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<link rel="shortcut icon" href="/static/images/favicon.ico">
+<meta charset="utf-8">
+<title>首页-请叫我算术嘉的博客</title>
+<meta name="keywords" content="blog" />
+<meta name="description" content="blog" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/base.css" rel="stylesheet">
+<link href="/static/css/m.css" rel="stylesheet" >
+<link rel="stylesheet" href="../static/vide7.1.0/css/video-js.min.css">
+<script src="../static/vide7.1.0/js/video.min.js"></script>
+<script src="../static/vide7.1.0/js/videojs-ie8.min.js"></script>
+<script src="/static/js/jquery-1.8.3.min.js" ></script>
+<script src="/static/js/comm.js"></script>
+<!--[if lt IE 9]>
+<script src="/static/js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body style="background:black">
+<!--top begin-->
+<header id="header">
+  <div class="navbox">
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <div class="logo"><a href="/Blog/index">请叫我算术嘉的博客 | ArithmeticJia</a></div>
+    <nav>
+      <ul id="starlist">
+        <li><a href="/Blog/index">首页</a></li>
+       <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+<script>tpwidget("init", {
+    "flavor": "bubble",
+    "location": "WX4FBXXFKE4F",
+    "geolocation": "enabled",
+    "position": "top-left",
+    "margin": "300px 10px",
+    "language": "zh-chs",
+    "unit": "c",
+    "theme": "chameleon",
+    "uid": "U2D9B077BB",
+    "hash": "c25dba4c45793e2cadff6ee42856d99f"
+});
+tpwidget("show");</script>
+	<li><a href="list.html">所有博客</a></li>
+        <li class="menu"><a href="list2.html">博客分类</a>
+          <ul class="sub">
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8257580" target="_blank">python</a></li>
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8233140" target="_blank">Django</a></li>
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8246887" target="_blank">leetcode</a></li>
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8282251" target="_blank">java</a></li>
+            <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8332147" target="_blank">selenium</a></li>
+              <li><a href="https://blog.csdn.net/ssjdoudou/article/category/8240204" target="_blank">机器学习</a></li>
+          </ul>
+          <span></span></li>
+        <li><a href="list3.html"></a></li>
+        <li><a href="daohang.html"></a></li>
+        <li><a href="/Blog/about">我的简介</a></li>
+        <li class="menu"><a href="/Blog/weather">更多功能</a>
+          <ul class="sub">
+                <li><a href="/Blog/weather" target="_blank">我的天气</a></li>
+                <li><a href="/Blog/document" target="_blank">我的下载</a></li>
+                <li><a href="/Blog/inputtranslate" target="_blank">在线翻译</a></li>
+          </ul>
+            <span></span></li>
+      </ul>
+    </nav>
+    <div class="searchico"></div>
+  </div>
+</header>
+<div class="searchbox">
+  <div class="search">
+    <form action="/Blog/search" method="get" name="searchform" id="searchform">
+      <label><input name="q" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text"></label>
+      <!--input name="show" value="title" type="hidden">
+      <input name="tempid" value="1" type="hidden">
+      <input name="tbname" value="news" type="hidden"-->
+      <input name="Submit" class="input_submit" value="搜索" type="submit">
+    </form>
+  </div>
+  <div class="searchclose"></div>
+</div>
+<!--top end-->
+<article>
+  <!--lbox begin-->
+  <div class="lbox">
+    <!--banbox begin-->
+
+    <!--banbox end-->
+
+    <!--headline begin-->
+
+    <!--headline end-->
+      <div class="clearblank"></div>
+    <!--tab_box end-->
+    <div class="whitebg bloglist">
+      <h2 class="htitle"><span class="con_nav">您现在的位置是：<a href="/Blog/index">网站首页</a>><a href="/Blog/document">我的电影</a></span>我的电影</h2>
+        <ul>
+        <!--多图模式 置顶设计-->
+            <li>
+            {% for file in files%}
+                    <p>{{ file }} <button><a href="/Blog/videoplayer/{{ file }}" target="_blank">播放</a></button></p>
+                <br></br>
+            {% endfor %}
+        </li>
+
+        </ul>
+
+    </div>
+    <!--bloglist end-->
+  </div>
+  <div class="rbox">
+    <div class="card">
+      <h2>请叫我算术嘉</h2>
+      <p>职业：苏宁易购数据中心最帅的测试</p>
+      <p>现居：江苏省-南京市</p>
+      <p>Email：1524126437@qq.com</p>
+      <ul class="linkmore">
+        <li><a href="https://blog.csdn.net/ssjdoudou" target="_blank" class="iconfont icon-zhuye" title="网站地址"></a></li>
+        <li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=HHh9cn95b3F1cHVye1xtbTJ-c3E" target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=476847113&site=qq&menu=yes" target="_blank" class="iconfont icon---" title="QQ联系我"></a></li>
+        <li id="weixin"><a href="#" target="_blank" class="iconfont icon-weixin" title="关注我的微信"></a><i><img src="/static/images/ssjwx.jpg"></i></li>
+      </ul>
+    </div>
+    <div class="whitebg notice" style="background: rgba(3,1,1,0.7)">
+      <h2 class="htitle" style="color: white" >网站公告</h2>
+      <ul>
+        <li><a href="/">本博客部署于阿里云</a></li>
+        <li><a href="/">Ubuntu+Nginx+uwsgi</a></li>
+        <li><a href="/">后台Django</a></li>
+        <li><a href="/">未完待续</a></li>
+      </ul>
+    </div>
+    <div class="whitebg paihang">
+      <h2 class="htitle">点击排行</h2>
+      <section class="topnews imgscale"><a href="/"><img src="/static/images/h1.jpg"><span>6条网页设计配色原则,让你秒变配色高手</span></a></section>
+      <ul>
+        <li><i></i><a href="/">十条设计原则教你学会如何设计网页布局!</a></li>
+        <li><i></i><a href="/">用js+css3来写一个手机栏目导航</a></li>
+        <li><i></i><a href="/">6条网页设计配色原则,让你秒变配色高手</a></li>
+        <li><i></i><a href="/">三步实现滚动条触动css动画效果</a></li>
+ style="background: #f6f6f6"><a style="font-size: larger" href="/">本博客部署于阿里云</a></li>
+        <li style="background: #f6f6f6"><a style="font-size: larger" href="/">Ubuntu+Nginx+uwsgi</a></li>
+        <li style="background: #f6f6f6"><a style="font-size: larger" href="/">后台Django</a></li>
+        <li style="background: #f6f6f6"><a style="font-size: larger" href="/">未完待续</a></li>
+	<li><i></i><a href="/">个人博客，属于我的小世界！</a></li>
+        <li><i></i><a href="/">安静地做一个爱设计的女子</a></li>
+        <li><i></i><a href="/">个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
+        <li><i></i><a href="/">做个人博客如何用帝国cms美化留言增加头像选择</a></li>
+      </ul>
+    </div>
+    <div class="whitebg tuijian">
+      <h2 class="htitle">站长推荐</h2>
+      <section class="topnews imgscale"><a href="/"><img src="/static/images/h2.jpg"><span>6条网页设计配色原则,让你秒变配色高手</span></a></section>
+      <ul>
+        <li><a href="/"><i><img src="/static/images/text01.jpg"></i>
+          <p>十条设计原则教你学会如何设计网页布局!</p>
+          </a></li>
+        <li><a href="/"><i><img src="/static/images/text02.jpg"></i>
+          <p>用js+css3来写一个手机栏目导航</p>
+          </a></li>
+        <li><a href="/"><i><img src="/static/images/text03.jpg"></i>
+          <p>6条网页设计配色原则,让你秒变配色高手</p>
+          </a></li>
+        <li><a href="/"><i><img src="/static/images/text04.jpg"></i>
+          <p>三步实现滚动条触动css动画效果</p>
+          </a></li>
+        <li><a href="/"><i><img src="/static/images/text05.jpg"></i>
+          <p>个人博客，属于我的小世界！</p>
+          </a></li>
+        <li><a href="/"><i><img src="/static/images/text06.jpg"></i>
+          <p>安静地做一个爱设计的女子</p>
+          </a></li>
+        <li><a href="/"><i><img src="/static/images/text07.jpg"></i>
+          <p>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</p>
+          </a></li>
+      </ul>
+    </div>
+    <div class="ad whitebg imgscale">
+      <ul>
+        <a href="/"><img src="/static/images/ad.jpg"></a>
+      </ul>
+    </div>
+    <div class="whitebg wenzi">
+      <h2 class="htitle">猜你喜欢</h2>
+      <ul>
+        <li><a href="/">十条设计原则教你学会如何设计网页布局!</a></li>
+        <li><a href="/">用js+css3来写一个手机栏目导航</a></li>
+        <li><a href="/">6条网页设计配色原则,让你秒变配色高手</a></li>
+        <li><a href="/">三步实现滚动条触动css动画效果</a></li>
+        <li><a href="/">个人博客，属于我的小世界！</a></li>
+        <li><a href="/">安静地做一个爱设计的女子</a></li>
+        <li><a href="/">个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
+        <li><a href="/">做个人博客如何用帝国cms美化留言增加头像选择</a></li>
+      </ul>
+    </div>
+    <div class="ad whitebg imgscale">
+      <ul>
+        <a href="/"><img src="/static/images/ad02.jpg"></a>
+      </ul>
+    </div>
+    <div class="whitebg tongji">
+      <h2 class="htitle">站点信息</h2>
+      <ul>
+        <li><b>建站时间</b>：2018-11-26</li>
+        <li><b>网站程序</b>：Django</li>
+        <li><b>主题模板</b>：<a href="http://www.yangqq.com" target="_blank">《今夕何夕》</a></li>
+        <li><b>文章统计</b>：299条</li>
+        <li><b>文章评论</b>：490条</li>
+        <li><b>统计数据</b>：<a href="/">百度统计</a></li>
+        <li><b>微信号</b>：扫描二维码，关注我</li>
+        <img src="/static/images/ssjwx.jpg" class="tongji_gzh">
+      </ul>
+    </div>
+    <div class="links whitebg">
+      <h2 class="htitle"><span class="sqlink"><a href="/">申请链接</a></span>友情链接</h2>
+      <ul>
+        <li><a href="https://blog.csdn.net/ssjdoudou" target="_blank">我的csdn博客</a></li>
+      </ul>
+    </div>
+  </div>
+</article>
+<footer>
+  <div class="box">
+    <div class="wxbox">
+      <ul>
+        <li><img src="/static/images/ssjwx.jpg"><span>我的微信</span></li>
+        <li><img src="/static/images/ssjqq.jpg"><span>我的qq</span></li>
+      </ul>
+    </div>
+    <div class="endnav">
+      <p><b>站点声明：</b></p>
+      <p>1、本站个人博客模板，均为杨青青本人设计，个人可以使用，但是未经许可不得用于任何商业目的。</p>
+      <p>2、所有文章未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=HHh9cn95b3F1cHVye1xtbTJ-c3E" target="_blank">dacesmiling@qq.com</a></p>
+      <p>Copyright © <a href="http://www.yangqq.com" target="_blank">www.yangqq.com</a> All Rights Reserved. 备案号：<a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备11002373号-1</a></p>
+    </div>
+  </div>
+  <a href="#">
+  <div class="top"></div>
+  </a> </footer>
+</body>
+</html>

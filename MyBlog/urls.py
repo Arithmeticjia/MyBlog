@@ -19,7 +19,7 @@ from django.conf.urls import url
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from JiaBlog import views
+from blog import views
 from channels.routing import ProtocolTypeRouter
 from django.views.static import serve
 import debug_toolbar
@@ -34,7 +34,8 @@ if settings.DEBUG:
     urlpatterns = [
         url(r'^$', views.blog_index),
         path('admin/', admin.site.urls),
-        path('blog/', include('JiaBlog.urls', namespace="JiaBlog")),
+        path('oblog/', include('oblog.urls', namespace="oblog")),
+        path('blog/', include('blog.urls', namespace="blog")),
         path('activemq/', include('activemq.urls', namespace="activemq")),
         path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
         path('mdeditor/', include('mdeditor.urls')),
@@ -42,8 +43,8 @@ if settings.DEBUG:
         path('china-wuhan/virusdata', views.china_wuhan_virus),
         url(r'', include('social_django.urls', namespace='social')),
         # url(r'^oauth/', include('social_django.urls', namespace='social')),
-        # url(r'^search/', include('haystack.urls')),                   # old way
-        # url(r'^search/', views.MySeachView(), name='haystack_search'),  # new way
+        # url(r'^search/', include('haystack.urls')),                       # old way
+        # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
         path(r"__debug__/", include(debug_toolbar.urls)),
     ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -51,7 +52,8 @@ else:
     urlpatterns = [
         url(r'^$', views.blog_index),
         path('admin/', admin.site.urls),
-        path('blog/', include('JiaBlog.urls', namespace="JiaBlog")),
+        path('oblog/', include('oblog.urls', namespace="oblog")),
+        path('blog/', include('blog.urls', namespace="blog")),
         path('activemq/', include('activemq.urls', namespace="activemq")),
         path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
         path('mdeditor/', include('mdeditor.urls')),
@@ -59,16 +61,16 @@ else:
         path('china-wuhan/virusdata', views.china_wuhan_virus),
         url(r'', include('social_django.urls', namespace='social')),
         # url(r'^oauth/', include('social_django.urls', namespace='social')),
-        # url(r'^search/', include('haystack.urls')),                   # old way
-        # url(r'^search/', views.MySeachView(), name='haystack_search'),  # new way
-        url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}, name='static'),
+        # url(r'^search/', include('haystack.urls')),                       # old way
+        # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
+        url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
         url(r'^media/(?P<path>.*)$',  serve, {"document_root": settings.MEDIA_ROOT}),
     ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns = [
 #     url(r'^$', views.blog_index),
 #     path('admin/', admin.site.urls),
-#     path('JiaBlog/', include('JiaBlog.urls', namespace="JiaBlog")),
+#     path('blog/', include('blog.urls', namespace="blog")),
 #     path('activemq/', include('activemq.urls', namespace="activemq")),
 #     path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
 #     path('mdeditor/', include('mdeditor.urls')),

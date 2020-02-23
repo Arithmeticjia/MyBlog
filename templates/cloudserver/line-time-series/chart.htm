@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>SERVER INFO</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+
+    <script src="/static/Highcharts-7.2.0/code/highcharts.js"></script>
+    <script src="/static/Highcharts-7.2.0/code/modules/data.js"></script>
+    <script src="/static/Highcharts-7.2.0/code/modules/exporting.js"></script>
+    <script src="/static/Highcharts-7.2.0/code/modules/export-data.js"></script>
+    <script src="/static/Highcharts-7.2.0/code/themes/dark-unica.js"></script>
+    <script src="/static/JiaBlog/js/jquery.js"></script>
+
+    <div id="container" style="min-width: 310px; height: 320px; margin: 0 auto"></div>
+    <div id="container2" style="min-width: 310px; height: 320px; margin: 0 auto"></div>
+
+
+    <script type="text/javascript">
+        Highcharts.setOptions({ global: { useUTC: false } });
+        function request_cpu_Data() {
+            $.ajax({
+              {#url: 'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json',#}
+              url: '/cloudserver/server_cpu_json',
+              type: 'GET',
+              success: function(point) {
+                var series = chart.series[0],
+                  shift = series.data.length > 20; // 当数据点数量超过 20 个，则指定删除第一个点
+                // 新增点操作
+                //具体的参数详见：https://api.hcharts.cn/highcharts#Series.addPoint
+                  console.log(point);
+                  for(var i=0;i<2;i++) {
+                      chart.series[0].addPoint(point[i], true, shift);
+                  }
+                // 一秒后继续调用本函数
+                setTimeout(request_cpu_Data, 1000);
+              },
+              cache: false
+            });
+        }
+        function request_mem_Data() {
+            $.ajax({
+              {#url: 'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json',#}
+              url: '/cloudserver/server_mem_json',
+              type: 'GET',
+              success: function(point) {
+                var series = chart2.series[0],
+                  shift = series.data.length > 20; // 当数据点数量超过 20 个，则指定删除第一个点
+                // 新增点操作
+                //具体的参数详见：https://api.hcharts.cn/highcharts#Series.addPoint
+                  console.log(point);
+                  for(var i=0;i < 2; i++) {
+                      chart2.series[0].addPoint(point[i], true, shift);
+                  }
+                // 一秒后继续调用本函数
+                setTimeout(request_mem_Data, 1000);
+              },
+              cache: false
+            });
+        }
+        var chart = null; // 定义全局变量
+        var chart2  = null;
+        $(document).ready(function() {
+          chart = Highcharts.chart('container', {
+                chart: {
+                    zoomType: 'x',
+                    events: {
+                        load: request_cpu_Data() // 图表加载完毕后执行的回调函数
+                    }
+                },
+                title: {
+                    text: 'The CPU info chart'
+                },
+                subtitle: {
+                    text: document.ontouchstart === undefined ?
+                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Exchange rate'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    area: {
+                        fillColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, Highcharts.getOptions().colors[0]],
+                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                            ]
+                        },
+                        marker: {
+                            radius: 2
+                        },
+                        lineWidth: 1,
+                        states: {
+                            hover: {
+                                lineWidth: 1
+                            }
+                        },
+                        threshold: null
+                    }
+                },
+
+                series: [{
+                    type: 'area',
+                    name: 'USD to EUR',
+                    data: []
+                }]
+            });
+          chart2 = Highcharts.chart('container2', {
+                chart: {
+                    zoomType: 'x',
+                    events: {
+                        load: request_mem_Data // 图表加载完毕后执行的回调函数
+                    }
+                },
+                title: {
+                    text: 'The MEM info chart'
+                },
+                subtitle: {
+                    text: document.ontouchstart === undefined ?
+                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Exchange rate'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    area: {
+                        fillColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, Highcharts.getOptions().colors[0]],
+                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                            ]
+                        },
+                        marker: {
+                            radius: 2
+                        },
+                        lineWidth: 1,
+                        states: {
+                            hover: {
+                                lineWidth: 1
+                            }
+                        },
+                        threshold: null
+                    }
+                },
+
+                series: [{
+                    type: 'area',
+                    name: 'USD to EUR',
+                    data: []
+                }]
+            });
+        });
+    </script>
+	</body>
+</html>
