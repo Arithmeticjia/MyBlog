@@ -2314,6 +2314,7 @@ class JiaPost(View):
                                   '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
         comment_list = thisarticle.comment_set.all()
         # thisarticle.body = md.convert(thisarticle.body)
+        print(thisarticle.body)
         tag_name = thisarticle.tags.values('name')
         tag_name = [item[key] for item in tag_name for key in item]
         tag = (" ".join(tag_name)).split(" ")

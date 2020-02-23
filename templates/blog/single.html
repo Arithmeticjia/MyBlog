@@ -636,7 +636,7 @@
 
                                 {% else %}
                                 <div class="form-submit">
-                                    <a href="/JiaBlog/login/?next=/JiaBlog/article/{{ blog_list.id }}/"><input type="button" name="submit" value="Leave a comment" onclick="DoLogin()"></a>
+                                    <a href="/blog/login/?next=/blog/article/{{ blog_list.id }}/{{ blog_list.url_slug }}"><input type="button" name="submit" value="Leave a comment" onclick="DoLogin()"></a>
                                     <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID">
                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                  </div>
