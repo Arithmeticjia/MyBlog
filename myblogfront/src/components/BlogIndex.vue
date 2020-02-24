@@ -67,7 +67,7 @@
 
   <el-container>
     <el-main>
-      <el-table :data="bookList" height="100%">
+      <el-table height="100%" :data="blogList.slice((currentPage-1)*pagesize,currentPage*pagesize)">
         <el-table-column prop="date" label="序号" width="50">
           <template scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
@@ -91,9 +91,12 @@
     <el-footer style="text-align: center">
       <el-pagination
         background
+        :page-sizes="[5, 10, 20, 40]"
+        :page-size="pagesize"
+        @size-change="handleSizeChange"
+        :total="blogList.length"
         @current-change="handleCurrentChange"
-        layout="prev, pager, next"
-        :total="1000">
+        layout="prev, pager, next">
       </el-pagination>
     </el-footer>
     </el-container>
@@ -119,8 +122,10 @@ export default {
   data () {
     return {
       input: '',
-      bookList: [],
-      searchInfo: ''
+      currentPage:1,
+      pagesize:10,
+      searchInfo: '',
+      blogList: []
     }
   },
   mounted: function () {
@@ -131,7 +136,11 @@ export default {
        this.currentPage = currentPage;
        console.log(this.currentPage)  //点击第几页
      },
-    open(title,body) {
+     handleSizeChange: function (size) {
+       this.pagesize = size;
+       console.log(this.pagesize)  //每页下拉显示数据
+     },
+     open(title,body) {
         this.$alert(body.substr(1,100)+'...', title, {
           confirmButtonText: '确定',
           // callback: action => {
@@ -149,9 +158,9 @@ export default {
       this.$http.get('https://www.guanacossj.com/blog/showarticles/')
         .then((response) => {
           var res = JSON.parse(response.bodyText);
-          console.log(res);
+          console.log(res.list.length);
           if (res.error_num === 0) {
-            this.bookList = res['list']
+            this.blogList = res['list']
           } else {
             this.$message.error('查询书籍失败');
             // console.logs(res['msg'])

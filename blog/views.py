@@ -2243,7 +2243,7 @@ from django.core import serializers
 def show_books(request):
     response = {}
     try:
-        articles = Articles.objects.filter()[:20]
+        articles = Articles.objects.filter(status="有效").order_by("id")
         response['list'] = json.loads(serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'
         response['error_num'] = 0
