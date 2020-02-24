@@ -107,21 +107,21 @@
 									<!-- Collapse of the page -->
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
-											<li><a href="/JiaBlog/index/">Home</a></li>
-											<li><a href="/JiaBlog/list/">Archive</a></li>
+											<li><a href="/blog/index/">Home</a></li>
+											<li><a href="/blog/list/">Archive</a></li>
 											<!--li><a href="single.html">Single</a></li-->
-											<li><a href="/JiaBlog/contact-us">Contact</a></li>
-                                            <li><a href="/JiaBlog/JiaFile/" target="_blank">File</a></li>
+											<li><a href="/blog/contact-us">Contact</a></li>
+                                            <li><a href="/blog/file/" target="_blank">File</a></li>
                                             <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
                                             {% if request.session.is_login %}
-                                                <li><a href="/JiaBlog/mylist/" target="_blank">{{  request.session.user_name }}</a></li>
-                                                <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                                <li><a href="/blog/mylist/" target="_blank">{{  request.session.user_name }}</a></li>
+                                                <li><a href="/blog/logout/">Logout</a></li>
                                             {% elif request.user.is_authenticated %}
-                                                <li><a href="/JiaBlog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
-                                                <li><a href="/JiaBlog/logout/">Logout</a></li>
+                                                <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                                <li><a href="/blog/logout/">Logout</a></li>
                                             {% else %}
-                                                <li><a href="/JiaBlog/mylist/">Tourist</a></li>
-                                                <li><a href="/JiaBlog/login/">Login</a></li>
+                                                <li><a href="/blog/mylist/">Tourist</a></li>
+                                                <li><a href="/blog/login/">Login</a></li>
                                             {% endif %}
 										</ul>
 									</div>

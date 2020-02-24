@@ -19,7 +19,7 @@
     <ul>
       <li>
         <a
-          href="http://101.132.70.184:8090/#/bloglist"
+          href="http://blog.guanacossj.com/#/bloglist"
           target="_blank"
         >
           bloglist
