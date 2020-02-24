@@ -129,7 +129,7 @@ export default {
     }
   },
   mounted: function () {
-    this.showBooks()
+    this.showBlogs()
   },
   methods: {
      handleCurrentChange: function(currentPage){
@@ -154,7 +154,7 @@ export default {
     skip(url){
       location.href = url
     },
-    showBooks () {
+    showBlogs () {
       this.$http.get('https://www.guanacossj.com/blog/showarticles/')
         .then((response) => {
           var res = JSON.parse(response.bodyText);
