@@ -74,7 +74,7 @@
 
   <el-container>
     <el-main>
-      <el-table height="100%" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+      <el-table height="100%" v-loading="loading" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" label="序号" width="50">
           <template scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
@@ -137,7 +137,8 @@ export default {
       originblogList: [],
       searchinfo: '',
       filterTableDataEnd: [],
-      flag:false
+      flag:false,
+      loading: true,
     }
   },
   mounted: function () {
@@ -224,11 +225,16 @@ export default {
         })
     },
     showBlogs () {
-      this.$http.get('https://www.guanacossj.com/blog/showarticles/')
-        .then((response) => {
+      this.$http.get('https://www.guanacossj.com/blog/showarticles/',{
+          _timeout:3000,
+          onTimeout :(request) => {
+              this.$message.error('请求超时');
+              this.loading = false
+            }
+          }).then((response) => {
           var res = JSON.parse(response.bodyText);
-          console.log(res.list.length);
           if (res.error_num === 0) {
+            this.loading = false;
             this.blogList = res['list'];
             this.totalItems = this.blogList.length;
           } else {
