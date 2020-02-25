@@ -2,8 +2,14 @@
 <el-container style="height: 600px; border: 1px solid #eee">
   <el-header style="text-align: right; font-size: 12px">
     <el-input
-	    suffix-icon="el-icon-search" clearable v-model="searchInfo" placeholder="搜索" size="medium" style="width:180px;margin-right: 20px;">
+	    clearable
+      type="text"
+      v-model="searchinfo"
+      placeholder="搜索"
+      size="medium"
+      style="width:180px;">
     </el-input>
+    <el-button type="primary" size="medium" icon="el-icon-search" style="margin-right: 20px;" @click="doFilter"></el-button>
     <el-dropdown>
         <i class="el-icon-caret-bottom" style="margin-right: 5px"></i>
         <el-dropdown-menu slot="dropdown">
@@ -67,7 +73,7 @@
 
   <el-container>
     <el-main>
-      <el-table height="100%" :data="blogList.slice((currentPage-1)*pagesize,currentPage*pagesize)">
+      <el-table height="100%" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" label="序号" width="50">
           <template scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
@@ -91,12 +97,13 @@
     <el-footer style="text-align: center">
       <el-pagination
         background
-        :page-sizes="[5, 10, 20, 40]"
-        :page-size="pagesize"
         @size-change="handleSizeChange"
-        :total="blogList.length"
         @current-change="handleCurrentChange"
-        layout="prev, pager, next">
+        :current-page="currentPage"
+        :page-sizes="[1, 2, 3, 4]"
+        :page-size="pageSize"
+        :total="totalItems"
+        layout="prev, pager, next, total">
       </el-pagination>
     </el-footer>
     </el-container>
@@ -121,24 +128,70 @@ export default {
   name: 'home',
   data () {
     return {
-      input: '',
       currentPage:1,
-      pagesize:10,
+      totalItems:0,
+      pageSize:10,
       searchInfo: '',
-      blogList: []
+      blogList: [],
+      originblogList: [],
+      searchinfo: '',
+      filterTableDataEnd: [],
+      flag:false
     }
   },
   mounted: function () {
-    this.showBlogs()
+    this.showBlogs();
+    this.askBlogs()
   },
   methods: {
-     handleCurrentChange: function(currentPage){
-       this.currentPage = currentPage;
-       console.log(this.currentPage)  //点击第几页
+     doFilter: function() {
+       if (this.searchinfo === "") {
+         this.$message.warning("查询条件不能为空！");
+         return;
+       }
+       this.filterTableDataEnd=[];
+       this.originblogList.forEach((value, index) => {
+         if(value.fields.title){
+           if(value.fields.title.indexOf(this.searchinfo)>=0){
+             this.filterTableDataEnd.push(value);
+           }
+         }
+       });
+       //页面数据改变重新统计数据数量和当前页
+        this.currentPage=1;
+        this.totalItems=this.filterTableDataEnd.length;
+        //渲染表格,根据值
+        this.currentChangePage(this.filterTableDataEnd);
+        //页面初始化数据需要判断是否检索过
+        this.flag=true
      },
-     handleSizeChange: function (size) {
-       this.pagesize = size;
-       console.log(this.pagesize)  //每页下拉显示数据
+     handleSizeChange(val) {
+        this.pageSize = val;
+        this.handleCurrentChange(this.currentPage);
+      },
+     handleCurrentChange: function(currentPage){
+        this.currentPage = currentPage;
+        if(this.flag) {
+          this.blogList = this.filterTableDataEnd
+        }
+     },
+     currentChangePage(list) {
+        let from = (this.currentPage - 1) * this.pageSize;
+        let to = this.currentPage * this.pageSize;
+        this.blogList = [];
+        if (to > list.length){
+          for (; from < list.length; from++) {
+            if (list[from]) {
+              this.blogList.push(list[from]);
+            }
+          }
+        }else {
+          for (; from < to; from++) {
+            if (list[from]) {
+              this.blogList.push(list[from]);
+            }
+          }
+        }
      },
      open(title,body) {
         this.$alert(body.substr(1,100)+'...', title, {
@@ -154,16 +207,28 @@ export default {
     skip(url){
       location.href = url
     },
+    askBlogs(){
+       this.$http.get('https://www.guanacossj.com/blog/showarticles/')
+      .then((response) => {
+          var res = JSON.parse(response.bodyText);
+          if (res.error_num === 0) {
+            this.originblogList = res['list'];
+            this.totalItems = this.originblogList.length;
+          } else {
+            this.$message.error('查询博客列表失败');
+          }
+        })
+    },
     showBlogs () {
       this.$http.get('https://www.guanacossj.com/blog/showarticles/')
         .then((response) => {
           var res = JSON.parse(response.bodyText);
           console.log(res.list.length);
           if (res.error_num === 0) {
-            this.blogList = res['list']
+            this.blogList = res['list'];
+            this.totalItems = this.blogList.length;
           } else {
-            this.$message.error('查询书籍失败');
-            // console.logs(res['msg'])
+            this.$message.error('查询博客列表失败');
           }
         })
     }
