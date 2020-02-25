@@ -9,7 +9,8 @@
       size="medium"
       style="width:180px;">
     </el-input>
-    <el-button type="primary" size="medium" icon="el-icon-search" style="margin-right: 20px;" @click="doFilter"></el-button>
+    <el-button type="primary" size="medium" icon="el-icon-search"  @click="doFilter"></el-button>
+    <el-button type="text" circle icon="el-icon-refresh" @click="reFresh"></el-button>
     <el-dropdown>
         <i class="el-icon-caret-bottom" style="margin-right: 5px"></i>
         <el-dropdown-menu slot="dropdown">
@@ -144,6 +145,9 @@ export default {
     this.askBlogs()
   },
   methods: {
+     reFresh: function() {
+       window.location.reload();
+     },
      doFilter: function() {
        if (this.searchinfo === "") {
          this.$message.warning("查询条件不能为空！");
