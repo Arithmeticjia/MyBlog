@@ -9,8 +9,17 @@
       size="medium"
       style="width:180px;">
     </el-input>
-    <el-button type="primary" size="medium" icon="el-icon-search"  @click="doFilter"></el-button>
-    <el-button type="text" circle icon="el-icon-refresh" @click="reFresh"></el-button>
+    <el-button type="primary" size="medium" icon="el-icon-search" @click="doFilter" style="margin-right: 10px"></el-button>
+    <el-popover
+      placement="top-start"
+      v-model="visible"
+      trigger="hover">
+      <p>点击刷新页面</p>
+      <div style="text-align: right; margin: 0">
+    <el-button type="primary" size="mini" @click="visible = false">我知道了</el-button>
+  </div>
+    <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
+    </el-popover>
     <el-dropdown>
         <i class="el-icon-caret-bottom" style="margin-right: 5px"></i>
         <el-dropdown-menu slot="dropdown">
@@ -129,6 +138,7 @@ export default {
   name: 'home',
   data () {
     return {
+      visible: false,
       currentPage:1,
       totalItems:0,
       pageSize:10,
@@ -213,7 +223,7 @@ export default {
     },
     showBlogs () {
       this.$http.get('https://www.guanacossj.com/blog/showarticles/',{
-          _timeout:3000,
+          _timeout:5000,
           onTimeout :(request) => {
               this.$message.error('请求超时');
               this.loading = false
