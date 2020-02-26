@@ -143,7 +143,6 @@ export default {
   },
   mounted: function () {
     this.showBlogs();
-    this.askBlogs()
   },
   methods: {
      reFresh: function() {
@@ -212,18 +211,6 @@ export default {
     skip(url){
       location.href = url
     },
-    askBlogs(){
-       this.$http.get('https://www.guanacossj.com/blog/showarticles/')
-      .then((response) => {
-          var res = JSON.parse(response.bodyText);
-          if (res.error_num === 0) {
-            this.originblogList = res['list'];
-            this.totalItems = this.originblogList.length;
-          } else {
-            this.$message.error('查询博客列表失败');
-          }
-        })
-    },
     showBlogs () {
       this.$http.get('https://www.guanacossj.com/blog/showarticles/',{
           _timeout:3000,
@@ -237,6 +224,7 @@ export default {
             this.loading = false;
             this.blogList = res['list'];
             this.totalItems = this.blogList.length;
+            this.originblogList = this.blogList;
           } else {
             this.$message.error('查询博客列表失败');
           }
