@@ -1,13 +1,14 @@
 <template>
 <el-container style="height: 600px; border: 1px solid #eee">
-  <el-header style="text-align: right; font-size: 12px">
+  <el-backtop target="#app" :visibility-height="100"></el-backtop>
+  <el-header>
     <el-input
 	    clearable
       type="text"
       v-model="searchinfo"
       placeholder="搜索"
       size="medium"
-      style="width:180px;">
+      style="width:160px;">
     </el-input>
     <el-button type="primary" size="medium" icon="el-icon-search" @click="doFilter" style="margin-right: 10px"></el-button>
     <el-popover
@@ -31,7 +32,7 @@
   </el-header>
   <el-container>
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-    <el-menu :default-openeds="['1', '3']">
+    <el-menu :default-openeds="['1', '2']">
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-message"></i>文章</template>
         <el-menu-item-group>
@@ -80,7 +81,6 @@
     </el-menu>
   </el-aside>
 
-
   <el-container>
     <el-main>
       <el-table height="100%" v-loading="loading" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
@@ -92,6 +92,9 @@
         </el-table-column>
         <el-table-column prop="address" label="分类" width="width: 100%">
           <template scope="scope"> {{ scope.row.fields.category }} </template>
+        </el-table-column>
+        <el-table-column prop="address" label="标签" width="width: 100%">
+          <template scope="scope"> {{ scope.row.fields.tags }} </template>
         </el-table-column>
         <el-table-column prop="address" label="作者" width="width: 100%">
           <template scope="scope"> {{ scope.row.fields.authorname }} </template>
@@ -122,14 +125,35 @@
 </template>
 
 <style>
+  .el-header, .el-footer {
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  .el-main {
+    color: #333;
+    text-align: center;
+  }
   .el-header {
     background-color: #B3C0D1;
     color: #333;
     line-height: 60px;
+    text-align: right;
+    font-size: 12px
   }
-
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
   .el-aside {
     color: #333;
+    background-color: #D3DCE6;
   }
 </style>
 
@@ -138,6 +162,7 @@ export default {
   name: 'home',
   data () {
     return {
+      isCollapse: true,
       visible: false,
       currentPage:1,
       totalItems:0,
