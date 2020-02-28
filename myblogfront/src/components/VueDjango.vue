@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <div id="mywordcloud" :style="{width: '1000px', height: '120px'}" :data="worddata" style="margin: 0 auto;"></div>
     <div id="app">
       <img src="../assets/logo.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <img src="../assets/django_logo.png">
@@ -56,14 +57,102 @@
 </template>
 
 <script>
+  import echarts from "echarts";
+  import "echarts-wordcloud/dist/echarts-wordcloud";
+  import "echarts-wordcloud/dist/echarts-wordcloud.min";
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to My Vue.js & Django App',
-      dialogVisible: false
+      dialogVisible: false,
+      worddata: [
+            {
+              name: "Django",
+              value: 10000
+            },
+            {
+              name: "Vue.js",
+              value: 9000
+            },{
+              name: "python",
+              value: 7800
+            },
+            {
+              name: "java",
+              value: 7500
+            },
+            {
+              name: "Echarts",
+              value: 6500
+            },
+            {
+              name: "WordCloud",
+              value: 6300
+            },
+            {
+              name: "leetcode",
+              value: 5700
+            },
+            {
+              name: "帅",
+              value: 5500
+            },
+            {
+              name: "SpringBoot",
+              value: 4500
+            },
+            {
+              name: "南京邮电大学",
+              value: 4000
+            },
+            {
+              name: "可口可乐",
+              value: 4000
+            },
+            {
+              name: "arithmeticjia",
+              value: 3000
+            },
+            {
+              name: "从严治党",
+              value: 1500
+            },
+            {
+              name: "两学一做",
+              value: 1800
+            },
+            {
+              name: "爱党爱国",
+              value: 1700
+            },
+            {
+              name: "伟大复兴中国梦",
+              value: 1500
+            },
+            {
+              name: "中国特色社会主义",
+              value: 1100
+            },
+            {
+              name: "Hello",
+              value: 900
+            },
+            {
+              name: "一国两制",
+              value: 800
+            },
+            {
+              name: "Flask",
+              value: 700
+            },
+          ]
     };
   },
+  mounted(){
+        // this.drawLine();
+        this.initChart();
+      },
   methods: {
     handleClose(done) {
         this.$confirm('确认关闭？')
@@ -82,7 +171,67 @@ export default {
             });
           }
         });
-      }
+      },
+    initChart() {
+          this.chart = echarts.init(document.getElementById("mywordcloud"));
+          console.log('lll');
+          const option = {
+            title: {
+              // text: "热爱祖国",
+              x: "center"
+            },
+            backgroundColor: "#fff",
+            // tooltip: {
+            //   pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+            // },
+            series: [
+              {
+                type: "wordCloud",
+                //用来调整词之间的距离
+                gridSize: 10,
+                shape:'smooth',  //平滑
+                //用来调整字的大小范围
+                // Text size range which the value in data will be mapped to.
+                // Default to have minimum 12px and maximum 60px size.
+                sizeRange: [14, 60],
+                // Text rotation range and step in degree. Text will be rotated randomly in range [-90,                                                                             90] by rotationStep 45
+                //用来调整词的旋转方向，，[0,0]--代表着没有角度，也就是词为水平方向，需要设置角度参考注释内容
+                // rotationRange: [-45, 0, 45, 90],
+                // rotationRange: [ 0,90],
+                rotationRange: [0, 0],
+                //随机生成字体颜色
+                // maskImage: maskImage,
+                textStyle: {
+                  normal: {
+                    color: function() {
+                      return (
+                        "rgb(" +
+                        Math.round(Math.random() * 255) +
+                        ", " +
+                        Math.round(Math.random() * 255) +
+                        ", " +
+                        Math.round(Math.random() * 255) +
+                        ")"
+                      );
+                    }
+                  }
+                },
+                //位置相关设置
+                // Folllowing left/top/width/height/right/bottom are used for positioning the word cloud
+                // Default to be put in the center and has 75% x 80% size.
+                left: "center",
+                top: "center",
+                right: null,
+                bottom: null,
+                width: "200%",
+                height: "200%",
+                //数据
+                data: this.worddata
+              }
+            ]
+          };
+          this.chart.setOption(option);
+        },
   }
 }
 </script>
