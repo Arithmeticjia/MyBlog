@@ -1,7 +1,14 @@
 <template>
-  <div class="hello">
-    <div id="mywordcloud" :style="{width: '1000px', height: '120px'}" :data="worddata" style="margin: 0 auto;"></div>
-    <div id="app">
+    <div id="appvuedjango">
+      <div id="mywordcloud" :style="{width: '1000px', height: '120px'}" :data="worddata" style="margin: 0 auto;"></div>
+      <el-row class="demo-avatar demo-basic">
+        <el-col :span="12">
+          <div class="sub-title"></div>
+          <div class="demo-basic--circle">
+            <div class="block"><el-avatar :size="50" :fit="fit" :src="circleUrl"></el-avatar></div>
+          </div>
+        </el-col>
+      </el-row>
       <img src="../assets/logo.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <img src="../assets/django_logo.png">
     <h1>{{ msg }}</h1>
@@ -53,7 +60,6 @@
         </span>
       </el-dialog>
   </div>
-    </div>
 </template>
 
 <script>
@@ -64,6 +70,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
+      circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
       msg: 'Welcome to My Vue.js & Django App',
       dialogVisible: false,
       worddata: [
@@ -150,7 +157,6 @@ export default {
     };
   },
   mounted(){
-        // this.drawLine();
         this.initChart();
       },
   methods: {
@@ -241,6 +247,13 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
+.el-row{
+  float: right;
+  display: inline;
+  position:absolute;
+  top:15px;
+  right:40px;
+}
 ul {
   list-style-type: none;
   padding: 0;
@@ -252,7 +265,7 @@ li {
 a {
   color: #42b983;
 }
-#app {
+#appvuedjango {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
