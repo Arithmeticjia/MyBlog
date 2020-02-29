@@ -1,0 +1,12 @@
+{
+    "server":"0.0.0.0",
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "port_password": {
+        "8080": "dsgjdhg5kd54her3t",
+        "8081": "tonvx4ck5jhkhtnw2",
+        "50013": "3vdui4nnhji2fmpoq"
+    },
+    "timeout":600,
+    "method":"aes-256-cfb"
+}

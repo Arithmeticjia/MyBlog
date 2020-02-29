@@ -1,11 +1,11 @@
 <template>
     <div id="appvuedjango">
-      <div id="mywordcloud" :style="{width: '1000px', height: '120px'}" :data="worddata" style="margin: 0 auto;"></div>
+      <div id="mywordcloud" :style="{width: '1000px', height: '125px'}" :data="worddata" style="margin: 0 auto"></div>
       <el-row class="demo-avatar demo-basic">
         <el-col :span="12">
           <div class="sub-title"></div>
           <div class="demo-basic--circle">
-            <div class="block"><el-avatar :size="50" :fit="fit" :src="circleUrl"></el-avatar></div>
+            <div class="block"><el-avatar :size="50" :src="circleUrl"></el-avatar></div>
           </div>
         </el-col>
       </el-row>
@@ -76,11 +76,11 @@ export default {
       worddata: [
             {
               name: "Django",
-              value: 10000
+              value: 15000
             },
             {
               name: "Vue.js",
-              value: 9000
+              value: 8700
             },{
               name: "python",
               value: 7800
@@ -90,12 +90,20 @@ export default {
               value: 7500
             },
             {
+              name: "Hola",
+              value: 7200
+            },
+            {
+              name: "中华民族",
+              value: 6700
+            },
+            {
               name: "Echarts",
-              value: 6500
+              value: 6400
             },
             {
               name: "WordCloud",
-              value: 6300
+              value: 6000
             },
             {
               name: "leetcode",
@@ -107,7 +115,7 @@ export default {
             },
             {
               name: "SpringBoot",
-              value: 4500
+              value: 4600
             },
             {
               name: "南京邮电大学",
@@ -115,43 +123,155 @@ export default {
             },
             {
               name: "可口可乐",
-              value: 4000
+              value: 3800
+            },
+            {
+              name: "十九大",
+              value: 3600
+            },
+            {
+              name: "团结一致",
+              value: 3300
             },
             {
               name: "arithmeticjia",
               value: 3000
             },
             {
+              name: "实事求是",
+              value: 2900
+            },
+            {
+              name: "Google",
+              value: 2500
+            },
+            {
+              name: "Wechat",
+              value: 2200
+            },
+            {
+              name: "Microsoft",
+              value: 2000
+            },
+            {
               name: "从严治党",
-              value: 1500
+              value: 1900
             },
             {
               name: "两学一做",
-              value: 1800
+              value: 1900
             },
             {
               name: "爱党爱国",
-              value: 1700
+              value: 1800
             },
             {
               name: "伟大复兴中国梦",
-              value: 1500
+              value: 1700
             },
             {
               name: "中国特色社会主义",
+              value: 1500
+            },
+            {
+              name: "武汉加油",
+              value: 1250
+            },
+            {
+              name: "与你同在",
+              value: 1200
+            },
+            {
+              name: "薛定谔的猫",
               value: 1100
             },
             {
-              name: "Hello",
+              name: "love",
+              value: 1080
+            },
+            {
+              name: "双缝干涉",
+              value: 1000
+            },
+            {
+              name: "天才和小可爱",
+              value: 940
+            },
+            {
+              name: "HelloWorld",
               value: 900
             },
             {
               name: "一国两制",
+              value: 860
+            },
+            {
+              name: "Pycharm",
+              value: 840
+            },
+            {
+              name: "lidata",
+              value: 810
+            },
+            {
+              name: "429",
               value: 800
             },
             {
               name: "Flask",
+              value: 790
+            },
+            {
+              name: "Windows10",
+              value: 780
+            },
+            {
+              name: "MacOS",
+              value: 770
+            },
+            {
+              name: "tornado",
+              value: 730
+            },
+            {
+              name: "深度学习",
+              value: 710
+            },
+            {
+              name: "Tensorflow",
               value: 700
+            },
+            {
+              name: "facebook",
+              value: 650
+            },
+            {
+              name: "Pytorch",
+              value: 600
+            },
+            {
+              name: "CentOS",
+              value: 580
+            },
+            {
+              name: "Keras",
+              value: 500
+            },
+            {
+              name: "Marval",
+              value: 480
+            },
+            {
+              name: "Nike",
+              value: 470
+            },
+            {
+              name: "Ubuntu",
+              value: 430
+            },
+            {
+              name: "AWS",
+              value: 400
             },
           ]
     };
@@ -179,27 +299,28 @@ export default {
         });
       },
     initChart() {
-          this.chart = echarts.init(document.getElementById("mywordcloud"));
-          console.log('lll');
+          let chart = echarts.init(document.getElementById("mywordcloud"));
+          let maskImage = new Image;
+          maskImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOUAAACCCAYAAAC5OA/0AAAEC0lEQVR4Xu3TsW0bURRE0c/ADShUH+7DBbgUFaFSVJVT5Y4MBgIEOBpwL8DgLKDscYc44r0dDwECTyVwe6pv48sQIHBE6UdA4MkERPlk/xBfh8BXlD/OOe8Bx+s559e39/4553wEO15JoBT4ec65/30999/w/bd89fN2zvn8HuXfqxe8jwCBSeBFlJOXYwK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU3gvyh/b593TYDAxQIf55zP28Uv9ToCBB4UEOWDgD5O4GoBUV4t6n0EHhT4Bx4T+oMmQXEtAAAAAElFTkSuQmCC";
           const option = {
             title: {
-              // text: "热爱祖国",
+              text: "",
               x: "center"
             },
             backgroundColor: "#fff",
-            // tooltip: {
-            //   pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
-            // },
+            tooltip: {
+              show: true
+            },
             series: [
               {
                 type: "wordCloud",
                 //用来调整词之间的距离
-                gridSize: 10,
+                gridSize: 8,
                 shape:'smooth',  //平滑
                 //用来调整字的大小范围
                 // Text size range which the value in data will be mapped to.
                 // Default to have minimum 12px and maximum 60px size.
-                sizeRange: [14, 60],
+                sizeRange: [11, 50],
                 // Text rotation range and step in degree. Text will be rotated randomly in range [-90,                                                                             90] by rotationStep 45
                 //用来调整词的旋转方向，，[0,0]--代表着没有角度，也就是词为水平方向，需要设置角度参考注释内容
                 // rotationRange: [-45, 0, 45, 90],
@@ -236,7 +357,13 @@ export default {
               }
             ]
           };
-          this.chart.setOption(option);
+          chart.setOption(option);
+          // maskImage.onload = function () {
+          //   chart.setOption(option);
+          // };
+          window.addEventListener("resize",function(){
+            chart.resize();
+          });
         },
   }
 }
