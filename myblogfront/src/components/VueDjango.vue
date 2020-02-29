@@ -1,6 +1,6 @@
 <template>
     <div id="appvuedjango">
-      <div id="mywordcloud" :style="{width: '1000px', height: '125px'}" :data="worddata" style="margin: 0 auto"></div>
+      <div id="mywordcloud" :style="{width: '1000px', height: '120px'}" :data="worddata" style="margin: 0 auto"></div>
       <el-row class="demo-avatar demo-basic">
         <el-col :span="12">
           <div class="sub-title"></div>
@@ -235,7 +235,7 @@ export default {
             },
             {
               name: "深度学习",
-              value: 710
+              value: 720
             },
             {
               name: "Tensorflow",
@@ -247,11 +247,11 @@ export default {
             },
             {
               name: "Pytorch",
-              value: 600
+              value: 630
             },
             {
               name: "CentOS",
-              value: 580
+              value: 620
             },
             {
               name: "Keras",
@@ -271,7 +271,7 @@ export default {
             },
             {
               name: "AWS",
-              value: 400
+              value: 60
             },
           ]
     };
