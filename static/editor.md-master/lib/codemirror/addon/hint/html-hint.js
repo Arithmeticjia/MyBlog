@@ -153,7 +153,7 @@
         height: null, list: null, max: null, maxlength: null, min: null,
         name: null, pattern: null, placeholder: null, size: null, src: null,
         step: null, value: null, width: null,
-        accept: ["audio/*", "video/*", "image/*"],
+        accept: ["audio/*", "itube/*", "image/*"],
         autocomplete: ["on", "off"],
         autofocus: ["", "autofocus"],
         checked: ["", "checked"],
