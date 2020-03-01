@@ -80,10 +80,10 @@ export default {
             },
             {
               name: "Vue.js",
-              value: 8700
+              value: 9700
             },{
               name: "python",
-              value: 7800
+              value: 8600
             },
             {
               name: "java",
@@ -95,7 +95,7 @@ export default {
             },
             {
               name: "中华民族",
-              value: 6700
+              value: 6300
             },
             {
               name: "Echarts",
@@ -107,11 +107,11 @@ export default {
             },
             {
               name: "leetcode",
-              value: 5700
+              value: 9000
             },
             {
               name: "帅",
-              value: 5500
+              value: 8200
             },
             {
               name: "Ubuntu",
@@ -123,15 +123,15 @@ export default {
             },
             {
               name: "南京邮电大学",
-              value: 4000
+              value: 4200
             },
             {
               name: "可口可乐",
-              value: 3800
+              value: 4000
             },
             {
               name: "十九大",
-              value: 3700
+              value: 3900
             },
             {
               name: "团结一致",
@@ -144,6 +144,10 @@ export default {
             {
               name: "实事求是",
               value: 3100
+            },
+            {
+              name: "Hexo",
+              value: 3150
             },
             {
               name: "Google",
@@ -167,15 +171,23 @@ export default {
             },
             {
               name: "Tensorflow",
-              value: 2450
+              value: 2550
+            },
+            {
+              name: "Chrome",
+              value: 2100
+            },
+            {
+              name: "Pycharm",
+              value: 2050
             },
             {
               name: "从严治党",
-              value: 1900
+              value: 3000
             },
             {
               name: "两学一做",
-              value: 1900
+              value: 3900
             },
             {
               name: "爱党爱国",
@@ -183,15 +195,15 @@ export default {
             },
             {
               name: "伟大复兴中国梦",
-              value: 1750
+              value: 4650
             },
             {
               name: "中国特色社会主义",
-              value: 1600
+              value: 5300
             },
             {
               name: "武汉加油",
-              value: 1350
+              value: 1300
             },
             {
               name: "与你同在",
@@ -207,67 +219,87 @@ export default {
             },
             {
               name: "双缝干涉",
-              value: 1000
+              value: 1070
             },
             {
               name: "天才和小可爱",
-              value: 980
+              value: 1060
             },
             {
               name: "HelloWorld",
-              value: 940
+              value: 3040
             },
             {
               name: "一国两制",
-              value: 890
+              value: 1000
             },
             {
-              name: "Pycharm",
-              value: 840
+              name: "apple music",
+              value: 1010
+            },
+            {
+              name: "mojave",
+              value: 980
+            },
+            {
+              name: "catalina",
+              value: 970
             },
             {
               name: "lidata",
-              value: 830
+              value: 930
             },
             {
               name: "429",
-              value: 800
+              value: 900
             },
             {
               name: "Windows10",
-              value: 780
+              value: 980
             },
             {
               name: "MacOS",
-              value: 770
+              value: 1980
             },
             {
               name: "tornado",
-              value: 730
+              value: 990
             },
             {
               name: "facebook",
-              value: 650
+              value: 1000
             },
             {
               name: "CentOS",
-              value: 620
+              value: 760
             },
             {
               name: "Keras",
-              value: 580
+              value: 880
             },
             {
               name: "Marval",
-              value: 540
+              value: 860
             },
             {
               name: "Nike",
-              value: 470
+              value: 820
             },
             {
-              name: "AWS",
-              value: 400
+              name: "Bing",
+              value: 810
+            },
+            {
+              name: "Visual Studio Code",
+              value: 800
+            },
+            {
+              name: "Xcode",
+              value: 790
+            },
+            {
+              name: "世界杯",
+              value: 700
             },
           ]
     };
