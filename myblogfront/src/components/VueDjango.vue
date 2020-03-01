@@ -1,5 +1,6 @@
 <template>
     <div id="appvuedjango">
+<!--      <p>当前时间：{{nowTime}}</p>-->
       <div id="mywordcloud" :style="{width: '1000px', height: '120px'}" :data="worddata" style="margin: 0 auto"></div>
       <el-row class="demo-avatar demo-basic">
         <el-col :span="12">
@@ -305,9 +306,23 @@ export default {
               name: "世界杯",
               value: 719
             },
-          ]
+          ],
+      randomworddata: [
+            {
+              name: "Xcode",
+              value: this.randomValue()
+            },
+            {
+              name: "世界杯",
+              value: this.randomValue()
+            },
+      ],
+      nowTime: ""
     };
   },
+  created(){
+			this.getTime();
+		},
   mounted(){
         // 定时刷新页面
         this.initChart();
@@ -325,6 +340,16 @@ export default {
     clearInterval(this.timer)
   },
   methods: {
+    getTime() {
+				setInterval(()=>{
+					//new Date() new一个data对象，当前日期和时间
+					//toLocaleString() 方法可根据本地时间把 Date 对象转换为字符串，并返回结果。
+					this.nowTime = new Date().toLocaleString();
+				},1000);
+    },
+    randomValue() {
+      return Math.round(Math.random()*1000);
+    },
     handleClose(done) {
         this.$confirm('确认关闭？')
           .then(_ => {
@@ -354,6 +379,7 @@ export default {
               x: "center"
             },
             backgroundColor: "#fff",
+            // backgroundColor: "#B3C0D1",
             tooltip: {
               show: true
             },
@@ -399,7 +425,8 @@ export default {
                 width: "100%",
                 // height: "100%",
                 //数据
-                data: this.worddata
+                data: this.worddata,
+                // data: this.randomworddata
               }
             ]
           };
@@ -408,9 +435,9 @@ export default {
           // maskImage.onload = function () {
           //   chart.setOption(option);
           // };
-          window.addEventListener("resize",function(){
-            this.chart.resize();
-          });
+          // window.addEventListener("resize",function(){
+          //   this.chart.resize();
+          // });
         },
   }
 }
