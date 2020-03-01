@@ -305,8 +305,21 @@ export default {
     };
   },
   mounted(){
+        // 定时刷新页面
         this.initChart();
+        if (this.timer) {
+          clearInterval(this.timer)
+        }else {
+          this.timer = setInterval(()=>{
+            this.initChart();
+            },5000
+          )
+        }
+        // this.initChart();
       },
+  destroyed() {
+    clearInterval(this.timer)
+  },
   methods: {
     handleClose(done) {
         this.$confirm('确认关闭？')
@@ -327,6 +340,7 @@ export default {
         });
       },
     initChart() {
+          // this.chart = echarts.init(document.getElementById("mywordcloud"));
           let chart = echarts.init(document.getElementById("mywordcloud"));
           let maskImage = new Image;
           maskImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOUAAACCCAYAAAC5OA/0AAAEC0lEQVR4Xu3TsW0bURRE0c/ADShUH+7DBbgUFaFSVJVT5Y4MBgIEOBpwL8DgLKDscYc44r0dDwECTyVwe6pv48sQIHBE6UdA4MkERPlk/xBfh8BXlD/OOe8Bx+s559e39/4553wEO15JoBT4ec65/30999/w/bd89fN2zvn8HuXfqxe8jwCBSeBFlJOXYwK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU3gvyh/b593TYDAxQIf55zP28Uv9ToCBB4UEOWDgD5O4GoBUV4t6n0EHhT4Bx4T+oMmQXEtAAAAAElFTkSuQmCC";
@@ -385,12 +399,13 @@ export default {
               }
             ]
           };
+          // this.chart.setOption(option);
           chart.setOption(option);
           // maskImage.onload = function () {
           //   chart.setOption(option);
           // };
           window.addEventListener("resize",function(){
-            chart.resize();
+            this.chart.resize();
           });
         },
   }
