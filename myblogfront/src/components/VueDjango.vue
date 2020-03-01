@@ -99,7 +99,7 @@ export default {
             },
             {
               name: "Echarts",
-              value: 6400
+              value: 6396
             },
             {
               name: "WordCloud",
@@ -119,7 +119,7 @@ export default {
             },
             {
               name: "SpringBoot",
-              value: 4600
+              value: 4580
             },
             {
               name: "南京邮电大学",
@@ -139,19 +139,19 @@ export default {
             },
             {
               name: "arithmeticjia",
-              value: 3400
+              value: 3570
             },
             {
               name: "实事求是",
-              value: 3100
+              value: 3149
             },
             {
               name: "Hexo",
-              value: 3150
+              value: 3190
             },
             {
               name: "Google",
-              value: 3000
+              value: 3039
             },
             {
               name: "Wechat",
@@ -171,11 +171,11 @@ export default {
             },
             {
               name: "Tensorflow",
-              value: 2550
+              value: 2699
             },
             {
               name: "Chrome",
-              value: 2100
+              value: 2402
             },
             {
               name: "Pycharm",
@@ -187,7 +187,7 @@ export default {
             },
             {
               name: "两学一做",
-              value: 3900
+              value: 4060
             },
             {
               name: "爱党爱国",
@@ -203,7 +203,7 @@ export default {
             },
             {
               name: "武汉加油",
-              value: 1300
+              value: 1329
             },
             {
               name: "与你同在",
@@ -227,7 +227,7 @@ export default {
             },
             {
               name: "HelloWorld",
-              value: 3040
+              value: 3099
             },
             {
               name: "一国两制",
@@ -243,7 +243,7 @@ export default {
             },
             {
               name: "catalina",
-              value: 970
+              value: 980
             },
             {
               name: "lidata",
@@ -271,7 +271,11 @@ export default {
             },
             {
               name: "CentOS",
-              value: 760
+              value: 710
+            },
+            {
+              name: "IDEA",
+              value: 697
             },
             {
               name: "Keras",
@@ -279,7 +283,7 @@ export default {
             },
             {
               name: "Marval",
-              value: 860
+              value: 869
             },
             {
               name: "Nike",
@@ -295,11 +299,11 @@ export default {
             },
             {
               name: "Xcode",
-              value: 790
+              value: 800
             },
             {
               name: "世界杯",
-              value: 700
+              value: 719
             },
           ]
     };
