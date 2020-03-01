@@ -76,7 +76,7 @@ export default {
       worddata: [
             {
               name: "Django",
-              value: 15000
+              value: 14000
             },
             {
               name: "Vue.js",
@@ -114,6 +114,10 @@ export default {
               value: 5500
             },
             {
+              name: "Ubuntu",
+              value: 5000
+            },
+            {
               name: "SpringBoot",
               value: 4600
             },
@@ -127,31 +131,43 @@ export default {
             },
             {
               name: "十九大",
-              value: 3600
+              value: 3700
             },
             {
               name: "团结一致",
-              value: 3300
+              value: 3500
             },
             {
               name: "arithmeticjia",
-              value: 3000
+              value: 3400
             },
             {
               name: "实事求是",
-              value: 2900
+              value: 3100
             },
             {
               name: "Google",
-              value: 2500
+              value: 3000
             },
             {
               name: "Wechat",
-              value: 2200
+              value: 2900
             },
             {
               name: "Microsoft",
-              value: 2000
+              value: 2800
+            },
+            {
+              name: "Flask",
+              value: 2600
+            },
+            {
+              name: "Pytorch",
+              value: 2500
+            },
+            {
+              name: "Tensorflow",
+              value: 2450
             },
             {
               name: "从严治党",
@@ -167,19 +183,19 @@ export default {
             },
             {
               name: "伟大复兴中国梦",
-              value: 1700
+              value: 1750
             },
             {
               name: "中国特色社会主义",
-              value: 1500
+              value: 1600
             },
             {
               name: "武汉加油",
-              value: 1250
+              value: 1350
             },
             {
               name: "与你同在",
-              value: 1200
+              value: 1300
             },
             {
               name: "薛定谔的猫",
@@ -195,15 +211,15 @@ export default {
             },
             {
               name: "天才和小可爱",
-              value: 940
+              value: 980
             },
             {
               name: "HelloWorld",
-              value: 900
+              value: 940
             },
             {
               name: "一国两制",
-              value: 860
+              value: 890
             },
             {
               name: "Pycharm",
@@ -211,15 +227,11 @@ export default {
             },
             {
               name: "lidata",
-              value: 810
+              value: 830
             },
             {
               name: "429",
               value: 800
-            },
-            {
-              name: "Flask",
-              value: 790
             },
             {
               name: "Windows10",
@@ -234,20 +246,8 @@ export default {
               value: 730
             },
             {
-              name: "深度学习",
-              value: 720
-            },
-            {
-              name: "Tensorflow",
-              value: 700
-            },
-            {
               name: "facebook",
               value: 650
-            },
-            {
-              name: "Pytorch",
-              value: 630
             },
             {
               name: "CentOS",
@@ -255,23 +255,19 @@ export default {
             },
             {
               name: "Keras",
-              value: 500
+              value: 580
             },
             {
               name: "Marval",
-              value: 480
+              value: 540
             },
             {
               name: "Nike",
               value: 470
             },
             {
-              name: "Ubuntu",
-              value: 430
-            },
-            {
               name: "AWS",
-              value: 60
+              value: 400
             },
           ]
     };
@@ -315,7 +311,7 @@ export default {
               {
                 type: "wordCloud",
                 //用来调整词之间的距离
-                gridSize: 8,
+                gridSize: 6,
                 shape:'smooth',  //平滑
                 //用来调整字的大小范围
                 // Text size range which the value in data will be mapped to.
@@ -350,8 +346,8 @@ export default {
                 top: "center",
                 right: null,
                 bottom: null,
-                width: "200%",
-                height: "200%",
+                width: "100%",
+                // height: "100%",
                 //数据
                 data: this.worddata
               }
