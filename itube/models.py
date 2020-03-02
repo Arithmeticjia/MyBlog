@@ -40,6 +40,10 @@ class Video(models.Model):
     tags = models.ManyToManyField('itube.Tag', blank=True, null=True)
     videopic = models.ImageField(upload_to='videopic', blank=True, null=True)
     videocontent = models.FileField(upload_to='video', blank=True, null=True)
+    uploadtime = models.DateTimeField()
+    view = models.PositiveIntegerField(default=0)
+    like = models.PositiveIntegerField(default=0)
+    unlike = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title

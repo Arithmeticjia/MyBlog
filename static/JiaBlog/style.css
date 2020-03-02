@@ -20,7 +20,7 @@ Primary use:  HTML Template for dot
 10. Switcher / .switcher
 11. Cols Holder / .cols-holder
 12. Link More / .link-more
-13. Video Holder / .video-holder
+13. Video Holder / .itube-holder
 14. Carousel / .carousel
 15. Navigation / .navigation
 16. Social Network / .social-network
@@ -2076,7 +2076,7 @@ h2 {
 }
 
 /*------------------------------------------------------------------
-13. Video Holder / .video-holder
+13. Video Holder / .itube-holder
 -------------------------------------------------------------------*/
 
 .video-holder {

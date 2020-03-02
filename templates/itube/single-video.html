@@ -615,7 +615,7 @@
                                 uk-toggle="target: #video-box ; cls: video-resized-hedden uk-animation-slide-left"></span>
 
                             <div class="embed-video">
-                                <iframe src="https://www.guanacossj.com/static/film/%E9%98%B3%E5%85%89%E7%94%B5%E5%BD%B1www.ygdy8.com.%E5%A4%8D%E4%BB%87%E8%80%85%E8%81%94%E7%9B%9F3%EF%BC%9A%E6%97%A0%E9%99%90%E6%88%98%E4%BA%89.BD.720p.%E5%9B%BD%E8%8B%B1%E5%8F%8C%E8%AF%AD%E5%8F%8C%E5%AD%97.mp4" frameborder="0"
+                                <iframe src="/media/{{ video.videocontent }}" frameborder="0"
                                     uk-video="automute: true" allowfullscreen uk-responsive></iframe>
                             </div>
                         </div>
@@ -624,19 +624,18 @@
 
                             <!-- video title -->
                             <div class="video-info-title">
-                                <h1> Course developed by Mike Dane. Check out his YouTube channel for more great
-                                    programming </h1>
+                                <h1>{{ video.title }}</h1>
                             </div>
 
                             <div class="uk-flex uk-flex-between">
 
                                 <div class="video-info-details">
-                                    <span>60,723,169 views </span>
+                                    <span>{{ video.view }} views </span>
                                 </div>
                                 <div class="video-likes">
                                     <div class="like-btn" uk-tooltip="I like it">
                                         <i class="uil-thumbs-up"></i>
-                                        <span class="likes">21</span>
+                                        <span class="likes">{{ video.like }}</span>
                                     </div>
                                     <div class="video-info-element">
                                         <div class="views-bar"></div>
@@ -644,7 +643,7 @@
                                     </div>
                                     <div class="like-btn" uk-tooltip="I Hate it">
                                         <i class="uil-thumbs-down"></i>
-                                        <span class="likes">14</span>
+                                        <span class="likes">{{ video.unlike }}</span>
                                     </div>
                                 </div>
 
@@ -779,7 +778,7 @@
                                 </li>
 
                                 <li>
-                                    <div class="avatar"><img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                    <div class="avatar"><img src="/static/itube/assets/images/avatars/avatar-4.jpg" alt="">
                                     </div>
                                     <div class="comment-content">
 
@@ -806,7 +805,7 @@
                             <h4>Your Comment </h4>
                             <ul>
                                 <li>
-                                    <div class="avatar"><img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                    <div class="avatar"><img src="/static/itube/assets/images/avatars/avatar-2.jpg" alt="">
                                     </div>
                                     <div class="comment-content">
                                         <form class="uk-grid-small" uk-grid>
@@ -895,12 +894,12 @@
                                         <span class="video-post-count">2.7k</span>
                                         <span class="video-post-time">40:00</span>
                                         <span class="play-btn-trigger"></span>
-                                        <img src="assets/images/video-thumbal/1.png" alt="">
+                                        <img src="/static/itube/assets/images/video-thumbal/1.png" alt="">
                                     </div>
                                     <!-- Blog Post Content -->
                                     <div class="video-post-content">
                                         <h3> Learn how to create a PHP singleton class </h3>
-                                        <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                        <img src="/static/itube/assets/images/avatars/avatar-2.jpg" alt="">
                                         <span class="video-post-user">Stella Johnson</span>
                                         <span class="video-post-views">938k views</span>
                                         <span class="video-post-date"> 3 weeks ago </span>
@@ -928,12 +927,12 @@
                                         <span class="video-post-count">2.3M</span>
                                         <span class="video-post-time">14:00</span>
                                         <span class="play-btn-trigger"></span>
-                                        <img src="assets/images/video-thumbal/3.png" alt="">
+                                        <img src="/static/itube/assets/images/video-thumbal/3.png" alt="">
                                     </div>
                                     <!-- Blog Post Content -->
                                     <div class="video-post-content">
                                         <h3> Learn how to Create Laravel Package and .. </h3>
-                                        <img src="assets/images/avatars/avatar-5.jpg" alt="">
+                                        <img src="/static/itube/assets/images/avatars/avatar-5.jpg" alt="">
                                         <span class="video-post-user">Alex Dolgove</span>
                                         <span class="video-post-views">531k views</span>
                                         <span class="video-post-date"> 2 weeks ago </span>
@@ -961,12 +960,12 @@
                                         <span class="video-post-count">1.4M</span>
                                         <span class="video-post-time">23:00</span>
                                         <span class="play-btn-trigger"></span>
-                                        <img src="assets/images/video-thumbal/4.png" alt="">
+                                        <img src="/static/itube/assets/images/video-thumbal/4.png" alt="">
                                     </div>
                                     <!-- Blog Post Content -->
                                     <div class="video-post-content">
                                         <h3> Learn how to upload files using Laravel and .. </h3>
-                                        <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                        <img src="/static/itube/assets/images/avatars/avatar-4.jpg" alt="">
                                         <span class="video-post-user">Adrian Mohani</span>
                                         <span class="video-post-views">531k views</span>
                                         <span class="video-post-date"> 2 weeks ago </span>
@@ -995,13 +994,13 @@
                                         <span class="video-post-count">1.4M</span>
                                         <span class="video-post-time">23:00</span>
                                         <span class="play-btn-trigger"></span>
-                                        <img src="assets/images/video-thumbal/img-1.png" alt="">
+                                        <img src="/static/itube/assets/images/video-thumbal/img-1.png" alt="">
                                     </div>
 
                                     <!-- Blog Post Content -->
                                     <div class="video-post-content">
                                         <h3> Learn How-To Design & Prototype in Adobe XD Tutorial </h3>
-                                        <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                        <img src="/static/itube/assets/images/avatars/avatar-3.jpg" alt="">
                                         <span class="video-post-user">Jonathan Madano</span>
                                         <span class="video-post-views">531k views</span>
                                         <span class="video-post-date"> 2 weeks ago </span>
@@ -1029,12 +1028,12 @@
                                         <span class="video-post-count">2.7k</span>
                                         <span class="video-post-time">40:00</span>
                                         <span class="play-btn-trigger"></span>
-                                        <img src="assets/images/video-thumbal/img-3.png" alt="">
+                                        <img src="/static/itube/assets/images/video-thumbal/img-3.png" alt="">
                                     </div>
                                     <!-- Blog Post Content -->
                                     <div class="video-post-content">
                                         <h3> Learn How to Prototype Faster with Mockplus! in 2020 </h3>
-                                        <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                        <img src="/static/itube/assets/images/avatars/avatar-2.jpg" alt="">
                                         <span class="video-post-user">Stella Johnson</span>
                                         <span class="video-post-views">938k views</span>
                                         <span class="video-post-date"> 3 weeks ago </span>
@@ -1062,12 +1061,12 @@
                                         <span class="video-post-count">2.3M</span>
                                         <span class="video-post-time">14:00</span>
                                         <span class="play-btn-trigger"></span>
-                                        <img src="assets/images/video-thumbal/img-4.png" alt="">
+                                        <img src="/static/itube/assets/images/video-thumbal/img-4.png" alt="">
                                     </div>
                                     <!-- Blog Post Content -->
                                     <div class="video-post-content">
                                         <h3> Adobe XD Design Tutorial Website Landing Page </h3>
-                                        <img src="assets/images/avatars/avatar-5.jpg" alt="">
+                                        <img src="/static/itube/assets/images/avatars/avatar-5.jpg" alt="">
                                         <span class="video-post-user">Alex Dolgove</span>
                                         <span class="video-post-views">531k views</span>
                                         <span class="video-post-date"> 2 weeks ago </span>
@@ -1095,12 +1094,12 @@
                                         <span class="video-post-count">1.4M</span>
                                         <span class="video-post-time">23:00</span>
                                         <span class="play-btn-trigger"></span>
-                                        <img src="assets/images/video-thumbal/img-5.png" alt="">
+                                        <img src="/static/itube/assets/images/video-thumbal/img-5.png" alt="">
                                     </div>
                                     <!-- Blog Post Content -->
                                     <div class="video-post-content">
                                         <h3> Learn UI/UX Designing Latest Website In Adobe XD </h3>
-                                        <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                        <img src="/static/itube/assets/images/avatars/avatar-4.jpg" alt="">
                                         <span class="video-post-user">Adrian Mohani</span>
                                         <span class="video-post-views">531k views</span>
                                         <span class="video-post-date"> 2 weeks ago </span>

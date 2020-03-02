@@ -673,6 +673,49 @@
 
                     <ul class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-3@s uk-grid">
 
+                        {% for i in channels %}
+                            <li>
+                            <a href="/itube/video/single/{{ i.id }}" class="video-post">
+                                <!-- Blog Post Thumbnail -->
+                                <div class="video-post-thumbnail">
+                                    <span class="video-post-count">1.4M</span>
+                                    <span class="video-post-time">23:00</span>
+                                    <span class="play-btn-trigger"></span>
+                                    <!-- option menu -->
+                                    <span class="btn-option">
+                                        <i class="icon-feather-more-vertical"></i>
+                                    </span>
+                                    <div class="dropdown-option-nav"
+                                        uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
+                                        <ul>
+                                            <li>
+                                                <span> <i class="uil-history"></i> Watch Later</span>
+                                            </li>
+                                            <li>
+                                                <span> <i class="uil-bookmark"></i> Add Bookmark</span>
+                                            </li>
+                                            <li>
+                                                <span> <i class="uil-share-alt"></i> Share Your Friends</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <img src="/static/itube/assets/images/video-thumbal/2.png" alt="">
+
+                                </div>
+
+                                <!-- Blog Post Content -->
+                                <div class="video-post-content">
+                                    <h3>{{ i.title }}</h3>
+                                    <img src="/static/itube/assets/images/avatars/avatar-3.jpg" alt="">
+                                    <span class="video-post-user">Jonathan Madano</span>
+                                    <span class="video-post-views">531k views</span>
+                                    <span class="video-post-date"> 2 weeks ago </span>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+
                         <li>
                             <a href="single-video.html" class="video-post">
                                 <!-- Blog Post Thumbnail -->

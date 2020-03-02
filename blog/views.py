@@ -317,7 +317,7 @@ def blog_time(request, year, month):
         'year_month_number': year_month_number,
         'this_year_month': this_year_month,
     }
-    return render(request, 'archive.html', context=context)
+    return render(request, 'blog/archive.html', context=context)
 
 
 '''def login(request):
@@ -866,7 +866,7 @@ def blog_info(request, article_id, slug):
         'oauth2_from': oauth2_from
 
     }
-    return render(request, 'blog/single.html', context=context)  # 返回info.html页面
+    return render(request, 'blog/single.html', context=context)
 
 
 def blog_list(request):
