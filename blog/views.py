@@ -2240,7 +2240,8 @@ def show_books(request):
     response = {}
     try:
         articles = Articles.objects.filter(status="有效").order_by("id")
-        response['list'] = json.loads(serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['list'] = json.loads(
+            serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'
         response['error_num'] = 0
     except Exception as e:
@@ -2251,8 +2252,8 @@ def show_books(request):
 
 class JiaIndex(View):
     def get(self, request):
-        blog_lists = Articles.objects.filter(status="有效").order_by("-timestamp")[0:9]       # 获取所有数据
-        blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:5]     # 点击排行
+        blog_lists = Articles.objects.filter(status="有效").order_by("-timestamp")[0:9]  # 获取所有数据
+        blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:5]  # 点击排行
         context = {
             'blog_list': blog_lists,
             'blog_list_views': blog_list_views
@@ -2302,15 +2303,24 @@ class JiaPost(View):
             # TocExtension(slugify=slugify)
         ])
         n = thisarticle.body.count('<div class="codehilite">', 0, len(thisarticle.body))
+        m = thisarticle.body.count('<code>', 0, len(thisarticle.body))
         for i in range(n):
-            thisarticle.body = re.sub(r'<div class="codehilite">',
-                                  '&nbsp;&nbsp;<button id="ecodecopy" style="float: right;z-index:10" class="copybtn" '
-                                  'data-clipboard-action="copy" '
-                                  'data-clipboard-target="#code{}">复制</button> '
-                                  '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
+            thisarticle.body = re.sub(r'<span></span>',
+                                       '&nbsp;&nbsp;<button id="ecodecopy" style="float: right;z-index:10" class="copybtn" '
+                                       'data-clipboard-action="copy" '
+                                       'data-clipboard-target="#code{}">复制</button> '
+                                       '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
+        # for i in range(n):
+        #     thisarticle.body = re.sub(r'<div class="codehilite">',
+        #                                '&nbsp;&nbsp;<button id="ecodecopy" style="float: right;z-index:10" class="copybtn" '
+        #                                'data-clipboard-action="copy" '
+        #                                'data-clipboard-target="#code{}">复制</button> '
+        #                                '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
+        for i in range(m):
+            thisarticle.body = re.sub(r'<code>',
+                                      '<code style="background: rgba(205,205,205,0.51)">', thisarticle.body, 1)
         comment_list = thisarticle.comment_set.all()
         # thisarticle.body = md.convert(thisarticle.body)
-        print(thisarticle.body)
         tag_name = thisarticle.tags.values('name')
         tag_name = [item[key] for item in tag_name for key in item]
         tag = (" ".join(tag_name)).split(" ")
