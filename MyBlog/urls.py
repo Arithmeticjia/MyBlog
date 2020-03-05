@@ -57,6 +57,7 @@ else:
         path('blog/', include('blog.urls', namespace="blog")),
         path('itube/', include('itube.urls', namespace="itube")),
         path('activemq/', include('activemq.urls', namespace="activemq")),
+        path('cloudserver/', include('cloudserver.urls')),
         path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
         path('mdeditor/', include('mdeditor.urls')),
         path('china-wuhan/', views.china_wuhan),
