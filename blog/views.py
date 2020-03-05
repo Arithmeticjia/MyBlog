@@ -814,8 +814,6 @@ def blog_info(request, article_id, slug):
         TocExtension(slugify=slugify)
     ])
     thisarticle.body = md.convert(thisarticle.body)
-    comments = Comment.objects.count()
-    note = Note.objects.get(id=str(random.randint(1, Note.objects.count())))
     categorys = Category.objects.all()
     jia = Jia.objects.get(id=1)
     related_blog = Articles.objects.filter(status="有效").filter(category=thisarticle.category).filter(~Q(id=article_id))[
@@ -854,9 +852,7 @@ def blog_info(request, article_id, slug):
         'greats': greats,
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
-        'comments': comments,
         'categorys': categorys,
-        'note': note,
         'related_blog': related_blog,
         'versions': versions,
         'jia': jia,
