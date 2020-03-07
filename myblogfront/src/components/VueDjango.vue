@@ -11,7 +11,7 @@
         </el-col>
       </el-row>
       <img src="../assets/logo.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <img src="../assets/django_logo.png">
+<!--      <img src="../assets/django_logo.png">-->
     <h1>{{ msg }}</h1>
     <div>
         <span><i class="el-icon-school">&nbsp;</i>南京邮电大学-本科-通信工程</span>
@@ -35,15 +35,10 @@
             </li>
           </ul>
         </li>
-        <li><h2>Demo Show</h2>
+        <li><h2>Start</h2>
           <ul>
             <li>
-              <a
-                href="http://blog.guanacossj.com/#/bloglist"
-                target="_blank"
-              >
-                bloglist
-              </a>
+              <router-link to="/home">Home</router-link>
             </li>
           </ul>
         </li>

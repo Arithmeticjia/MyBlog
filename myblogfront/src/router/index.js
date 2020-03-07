@@ -5,7 +5,8 @@ import HelloWorld from '@/components/HelloWorld'
 import VueDjango from '@/components/VueDjango'
 import BlogList from '@/components/BlogList'
 import BlogIndex from '@/components/BlogIndex'
-import VueWordCloud from '@/components/VueWordCloud'
+import Archive from '@/components/Archive'
+import Home from '@/components/Home'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '../assets/iconfont/iconfont.css'
@@ -20,13 +21,13 @@ export default new Router({
   routes: [
     {
       path: '/blogindex',
-      name: 'BlogList',
-      component: BlogList
+      name: 'BlogIndex',
+      component: BlogIndex
     },
     {
       path: '/bloglist',
-      name: 'BlogIndex',
-      component: BlogIndex
+      name: 'BlogList',
+      component: BlogList
     },
     {
       path: '/',
@@ -34,9 +35,14 @@ export default new Router({
       component: VueDjango
     },
     {
-      path: '/vuewordcloud',
-      name: 'VueDjango',
-      component: VueWordCloud
+      path: '/home',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/archive',
+      name: 'archive',
+      component: Archive
     },
   ]
 })

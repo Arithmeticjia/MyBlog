@@ -74,41 +74,21 @@
         </el-menu-item>
     </el-menu>
     </el-aside>
-      <el-main>
-        <el-button type="primary" size="medium" icon="el-icon-search" @click="doFilter" style="float:right;"></el-button>
-        <el-input
-	        clearable
-          type="text"
-          v-model="searchinfo"
-          placeholder="搜索"
-          size="medium"
-          style="width:160px;float: right;margin-right:10px">
-        </el-input>
-      <el-table height="550" v-loading="loading" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-        <el-table-column prop="date" label="序号" width="50">
-          <template scope="scope"> {{ scope.row.pk }} </template>
-        </el-table-column>
-        <el-table-column prop="name" label="标题" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.title }}</template>
-        </el-table-column>
-        <el-table-column prop="address" label="分类" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.category }} </template>
-        </el-table-column>
-        <el-table-column prop="address" label="标签" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.tags }} </template>
-        </el-table-column>
-        <el-table-column prop="address" label="作者" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.authorname }} </template>
-        </el-table-column>
-        <el-table-column prop="address" label="操作" width="width: 100%">
-        <template slot-scope="scope">
-          <el-button type="text" @click="open(scope.row.fields.title,scope.row.fields.body)" size="small">查看</el-button>
-          <el-button @click="skip('https://www.guanacossj.com/blog/article/'+scope.row.pk+'/'+scope.row.fields.url_slug)" type="text" size="small">查看详情</el-button>
-        </template>
-        </el-table-column>
-      </el-table>
+    <el-main>
+      <div id="appvuedjango" v-loading="loading" >
+        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+            <el-row type="flex" class="row-bg" justify="space-around">
+              <el-col :span="20">
+                <div class="grid-content bg-puprple-light">
+                  <h1>{{ value.fields.title }}</h1>
+                  <h4>{{ value.fields.timestamp }}</h4>
+                  <p>{{ value.fields.body.substring(0,100)+'......' }}</p>
+                </div>
+              </el-col>
+            </el-row>
+        </div>
+      </div>
       <el-footer>
-<!--        <p></p>-->
         </br>
         </br>
         <el-pagination
@@ -133,48 +113,22 @@
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
-            isCollapse: true,
-            visible: false,
+            blogList: [],
             currentPage:1,
             totalItems:0,
             pageSize:10,
-            searchInfo: '',
-            blogList: [],
-            originblogList: [],
-            searchinfo: '',
-            filterTableDataEnd: [],
-            flag:false,
             loading: true,
+          }
+        },
+        computed: {
+          reverseblogList() {
+            return this.blogList.reverse();
           }
         },
         mounted: function () {
           this.showBlogs();
         },
         methods: {
-          reFresh: function() {
-            window.location.reload();
-          },
-          doFilter: function() {
-            if (this.searchinfo === "") {
-              this.$message.warning("查询条件不能为空！");
-              return;
-            }
-            this.filterTableDataEnd=[];
-            this.originblogList.forEach((value, index) => {
-              if(value.fields.title){
-                if(value.fields.title.indexOf(this.searchinfo)>=0){
-                  this.filterTableDataEnd.push(value);
-                }
-              }
-            });
-            //页面数据改变重新统计数据数量和当前页
-             this.currentPage=1;
-             this.totalItems=this.filterTableDataEnd.length;
-             //渲染表格,根据值
-             this.currentChangePage(this.filterTableDataEnd);
-             //页面初始化数据需要判断是否检索过
-             this.flag=true
-          },
           handleSizeChange(val) {
              this.pageSize = val;
              this.handleCurrentChange(this.currentPage);
@@ -185,35 +139,26 @@
                this.blogList = this.filterTableDataEnd
              }
           },
-          currentChangePage(list) {
-             let from = (this.currentPage - 1) * this.pageSize;
-             let to = this.currentPage * this.pageSize;
-             this.blogList = [];
-             if (to > list.length){
-               for (; from < list.length; from++) {
-                 if (list[from]) {
-                   this.blogList.push(list[from]);
-                 }
-               }
-             }else {
-               for (; from < to; from++) {
-                 if (list[from]) {
-                   this.blogList.push(list[from]);
-                 }
-               }
-             }
+          showBlogs () {
+            this.$http.get('https://www.guanacossj.com/blog/showarticles/',{
+                _timeout:5000,
+                onTimeout :(request) => {
+                    this.$message.error('请求超时');
+                    this.loading = false
+                  }
+                }).then((response) => {
+                var res = JSON.parse(response.bodyText);
+                if (res.error_num === 0) {
+                  this.loading = false;
+                  this.blogList = res['list'];
+                  console.log(this.blogList);
+                  this.totalItems = this.blogList.length;
+                  this.originblogList = this.blogList;
+                } else {
+                  this.$message.error('查询博客列表失败');
+                }
+              })
           },
-          open(title,body) {
-             this.$alert(body.substr(1,100)+'...', title, {
-               confirmButtonText: '确定',
-               // callback: action => {
-               //   this.$message({
-               //     type: 'info',
-               //     message: `action: ${ action }`
-               //   });
-               // }
-             });
-          }     ,
           skip(url){
            window.open(url, target='_blank')
           },
@@ -231,42 +176,53 @@
               }
             });
           },
-          showBlogs () {
-            this.$http.get('https://www.guanacossj.com/blog/showarticles/',{
-                _timeout:5000,
-                onTimeout :(request) => {
-                    this.$message.error('请求超时');
-                    this.loading = false
-                  }
-                }).then((response) => {
-                var res = JSON.parse(response.bodyText);
-                if (res.error_num === 0) {
-                  this.loading = false;
-                  this.blogList = res['list'];
-                  this.totalItems = this.blogList.length;
-                  this.originblogList = this.blogList;
-                } else {
-                  this.$message.error('查询博客列表失败');
-                }
-              })
-          }
         }
-
     }
 </script>
 
 <style scoped>
-  .el-main{
-    margin-right: 100px;
-  }
   .el-footer {
     color: #333;
     text-align: center;
     line-height: 20px;
   }
-  .el-main {
-    color: #333;
-    text-align: center;
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+  }
+  .el-main{
+    margin-right: 100px;
+  }
+  #appvuedjango {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 0;
   }
   #myblogname{
     text-align: center;
