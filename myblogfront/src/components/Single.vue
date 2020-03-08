@@ -47,14 +47,9 @@
       text-color="#fff"
       style="height: 315px">
         </br>
-        <el-menu-item id="myname">
-          <div>
-            <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
-          </div>
-        </el-menu-item>
-        </br>
-        </br>
-        </br>
+        <div id="myname">
+          <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
+        </div>
         <el-menu-item id="myname">
           <span slot="title">请叫我算术嘉</span>
         </el-menu-item>
