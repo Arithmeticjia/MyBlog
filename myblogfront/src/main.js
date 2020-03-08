@@ -4,7 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import echarts from 'echarts'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+import './assets/articlemarkdown.css'
 
+Vue.use(mavonEditor)
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 

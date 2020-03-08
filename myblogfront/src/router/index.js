@@ -7,6 +7,7 @@ import BlogList from '@/components/BlogList'
 import BlogIndex from '@/components/BlogIndex'
 import Archive from '@/components/Archive'
 import Home from '@/components/Home'
+import Single from '@/components/Single'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '../assets/iconfont/iconfont.css'
@@ -43,6 +44,11 @@ export default new Router({
       path: '/archive',
       name: 'archive',
       component: Archive
+    },
+    {
+      path: '/single/:id',
+      name: 'single',
+      component: Single
     },
   ]
 })

@@ -248,7 +248,7 @@ export default {
       location.href = url
     },
     showBlogs () {
-      this.$http.get('https://www.guanacossj.com/blog/showarticles/',{
+      this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
           _timeout:5000,
           onTimeout :(request) => {
               this.$message.error('请求超时');

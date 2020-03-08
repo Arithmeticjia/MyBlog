@@ -13,29 +13,29 @@
           请叫我算术嘉の博客
         </el-menu-item>
 <!--        </br>-->
-      <el-menu-item index="1">
+      <el-menu-item index="1" @click="skiplocal('/#/home')">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span style="font-weight: bold" @click="skiplocal('/#/home')">首页</span>
 <!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
         </template>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item index="2" @click="skiplocal('/#/archive')">
         <template slot="title">
         <i class="el-icon-document"></i>
         <span style="font-weight: bold" @click="skiplocal('/#/archive')">归档</span>
 <!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
         </template>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="3" @click="notfinishalert">
         <i class="el-icon-menu"></i>
         <span slot="title" style="font-weight: bold" @click="notfinishalert">分类</span>
       </el-menu-item>
-        <el-menu-item index="4">
+      <el-menu-item index="4" @click="skiplocal('/#/bloglist')">
         <i class="el-icon-search"></i>
         <span slot="title" style="font-weight: bold" @click="skiplocal('/#/bloglist')">搜索</span>
       </el-menu-item>
-      <el-menu-item index="5">
+      <el-menu-item index="5" @click="notfinishalert">
         <i class="el-icon-user"></i>
         <span slot="title" style="font-weight: bold" @click="notfinishalert">关于我</span>
       </el-menu-item>
@@ -232,7 +232,7 @@
             });
           },
           showBlogs () {
-            this.$http.get('https://www.guanacossj.com/blog/showarticles/',{
+            this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
                 _timeout:5000,
                 onTimeout :(request) => {
                     this.$message.error('请求超时');
@@ -256,6 +256,9 @@
 </script>
 
 <style scoped>
+  .el-menu{
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
+  }
   .el-main{
     margin-right: 100px;
   }

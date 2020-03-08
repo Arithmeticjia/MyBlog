@@ -2236,13 +2236,37 @@ from django.core import serializers
 
 
 @require_http_methods(["GET"])
-def show_books(request):
+def get_article_all(request):
     response = {}
     try:
         articles = Articles.objects.filter(status="有效").order_by("id")
         response['list'] = json.loads(
             serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'
+        response['error_num'] = 0
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return HttpResponse(json.dumps(response, ensure_ascii=False))
+
+
+@require_http_methods(["GET"])
+def get_article_single(request, article_id):
+    response = {}
+    try:
+        article = Articles.objects.filter(status="有效").filter(id=article_id)
+        single_article = get_object_or_404(Articles, id=article_id, status="有效")
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            # 'markdown.extensions.toc',
+            TocExtension(slugify=slugify)
+        ])
+        single_article.body = md.convert(single_article.body)
+        response['list'] = json.loads(
+            serializers.serialize("json", article, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['msg'] = 'success'
+        response['markdown'] = single_article.body
         response['error_num'] = 0
     except Exception as e:
         response['msg'] = str(e)
