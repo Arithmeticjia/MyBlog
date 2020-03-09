@@ -1,43 +1,43 @@
 <template>
   <el-container style="height: 693px">
-    <el-aside width="220px" style="margin-left: 100px">
+    <el-aside width="220px" style="margin-left: 130px">
       <el-menu
-      class="el-menu-vertical-demo"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-      style="height: 355px">
+        default-active="4"
+        class="el-menu-vertical-demo"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+        style="height: 370x">
 <!--        </br>-->
-        <p></p>
-        <el-menu-item id="myblogname">
-          请叫我算术嘉の博客
-        </el-menu-item>
-<!--        </br>-->
+        <div class="blogtitlebox">
+          <div class="blogtitle">请叫我算术嘉の博客</div>
+        </div>
+        </br>
       <el-menu-item index="1" @click="skiplocal('/#/home')">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span style="font-weight: bold" @click="skiplocal('/#/home')">首页</span>
+          <span style="font-weight: bold">首页</span>
 <!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
         </template>
       </el-menu-item>
       <el-menu-item index="2" @click="skiplocal('/#/archive')">
         <template slot="title">
         <i class="el-icon-document"></i>
-        <span style="font-weight: bold" @click="skiplocal('/#/archive')">归档</span>
+        <span style="font-weight: bold">归档</span>
 <!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
         </template>
       </el-menu-item>
       <el-menu-item index="3" @click="notfinishalert">
         <i class="el-icon-menu"></i>
-        <span slot="title" style="font-weight: bold" @click="notfinishalert">分类</span>
+        <span slot="title" style="font-weight: bold">分类</span>
       </el-menu-item>
       <el-menu-item index="4" @click="skiplocal('/#/bloglist')">
         <i class="el-icon-search"></i>
-        <span slot="title" style="font-weight: bold" @click="skiplocal('/#/bloglist')">搜索</span>
+        <span slot="title" style="font-weight: bold">搜索</span>
       </el-menu-item>
-      <el-menu-item index="5" @click="notfinishalert">
+      <el-menu-item index="5" @click="skiplocal('/#/about')">
         <i class="el-icon-user"></i>
-        <span slot="title" style="font-weight: bold" @click="notfinishalert">关于我</span>
+        <span slot="title" style="font-weight: bold">关于我</span>
       </el-menu-item>
     </el-menu>
       <p></p>
@@ -45,26 +45,35 @@
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
-      style="height: 315px">
+      style="height: 295px">
         </br>
-        <div id="myname">
-          <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
-        </div>
-        <el-menu-item id="myname">
-          <i></i>
+        <div class="mypic">
+            <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
+          </div>
+        <p></p>
+        <div class="myname">
           <span slot="title">请叫我算术嘉</span>
-        </el-menu-item>
-        <el-menu-item id="tag-sign">
+        </div>
+        <p></p>
+        <div id="tag-sign">
           <span>雨纷纷</span>
             <el-divider direction="vertical"></el-divider>
           <span>旧故里</span>
             <el-divider direction="vertical"></el-divider>
           <span>草木深</span>
-        </el-menu-item>
+        </div>
+<!--        <el-menu-item id="tag-sign">-->
+<!--          <span>雨纷纷</span>-->
+<!--            <el-divider direction="vertical"></el-divider>-->
+<!--          <span>旧故里</span>-->
+<!--            <el-divider direction="vertical"></el-divider>-->
+<!--          <span>草木深</span>-->
+<!--        </el-menu-item>-->
+        <p></p>
         <el-menu-item id="tag-github">
-          <el-link icon="el-icon-link" type="primary" href="https://github.com/Arithmeticjia" target="_blank" :underline="false">github</el-link>
+          <el-link icon="el-icon-link" style="color: #ffd04b" type="primary" href="https://github.com/Arithmeticjia" target="_blank" :underline="false">github</el-link>
             <el-divider direction="vertical"></el-divider>
-          <el-link icon="el-icon-message" type="primary" href="https://github.com/Arithmeticjia" target="_blank" :underline="false">mail</el-link>
+          <el-link icon="el-icon-message" style="color: #ffd04b" type="primary" href="mailto:1524126437@qq.com" target="_blank" :underline="false">mail</el-link>
 <!--          <el-button icon="el-icon-message" @click="skip('https://www.guanacossj.com/')" type="text">mail</el-button>-->
         </el-menu-item>
     </el-menu>
@@ -79,23 +88,40 @@
           size="medium"
           style="width:160px;float: right;margin-right:10px">
         </el-input>
-      <el-table height="550" v-loading="loading" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-        <el-table-column prop="date" label="序号" width="50">
+        <el-popover
+          placement="top-start"
+          v-model="visible"
+          trigger="hover"
+          style="float: right">
+          <p>点击刷新页面</p>
+          <div style="text-align: right; margin: 0">
+            <el-button type="primary" size="mini" @click="visible = false">我知道了</el-button>
+          </div>
+          <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
+        </el-popover>
+      <el-table height="553" v-loading="loading" element-loading-text="拼命加载中" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+        <el-table-column prop="date" label="编号" width="50">
           <template scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
-        <el-table-column prop="name" label="标题" width="width: 100%">
+        <el-table-column prop="name" label="标题" width="240">
           <template scope="scope"> {{ scope.row.fields.title }}</template>
         </el-table-column>
-        <el-table-column prop="address" label="分类" width="width: 100%">
+        <el-table-column prop="address" label="分类" width="100">
           <template scope="scope"> {{ scope.row.fields.category }} </template>
         </el-table-column>
-        <el-table-column prop="address" label="标签" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.tags }} </template>
+        <el-table-column prop="address" label="标签" width="130">
+          <template scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>
         </el-table-column>
-        <el-table-column prop="address" label="作者" width="width: 100%">
+        <el-table-column prop="address" label="浏览量" width="80">
+          <template scope="scope"> {{ scope.row.fields.views }} </template>
+        </el-table-column>
+        <el-table-column prop="address" label="作者" width="120">
           <template scope="scope"> {{ scope.row.fields.authorname }} </template>
         </el-table-column>
-        <el-table-column prop="address" label="操作" width="width: 100%">
+        <el-table-column prop="address" label="发布时间" width="200">
+          <template scope="scope"> {{ scope.row.fields.timestamp | formatDate }} </template>
+        </el-table-column>
+        <el-table-column prop="address" label="操作" width="150" fixed="right">
         <template slot-scope="scope">
           <el-button type="text" @click="open(scope.row.fields.title,scope.row.fields.body)" size="small">查看</el-button>
           <el-button @click="skip('https://www.guanacossj.com/blog/article/'+scope.row.pk+'/'+scope.row.fields.url_slug)" type="text" size="small">查看详情</el-button>
@@ -122,8 +148,9 @@
 </template>
 
 <script>
+    import moment from "moment";
     export default {
-        name: "Me",
+        name: "BlogList",
         data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
@@ -132,7 +159,7 @@
             visible: false,
             currentPage:1,
             totalItems:0,
-            pageSize:10,
+            pageSize:15,
             searchInfo: '',
             blogList: [],
             originblogList: [],
@@ -144,6 +171,14 @@
         },
         mounted: function () {
           this.showBlogs();
+        },
+        filters: {
+	        tagsFilter(data) {
+	        	return data.toString().replace('[','');
+	        },
+          formatDate:function(date) {
+	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
+	        }
         },
         methods: {
           reFresh: function() {
@@ -210,7 +245,7 @@
              });
           }     ,
           skip(url){
-           window.open(url, target='_blank')
+            window.open(url, '_blank')
           },
           skiplocal(url){
             location.href = url
@@ -254,9 +289,6 @@
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
-  .el-main{
-    margin-right: 100px;
-  }
   .el-footer {
     color: #333;
     text-align: center;
@@ -265,20 +297,46 @@
   .el-main {
     color: #333;
     text-align: center;
+    margin-right: 130px;
   }
-  #myblogname{
+  .blogtitlebox {
     text-align: center;
     font-size: larger;
     font-weight: bold;
+    color: white;
+    height: 75px;
+    background-color: #292929;
+    /*align-items: center;*/
+    /*top:50%;*/
+    /*position: absolute;*/
+    line-height: 75px;
   }
-  #myname{
+  .blogtitle {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .myname {
     text-align: center;
     font-size: 16px;
     font-weight: bold;
+    color: white;
+  }
+  .mypic {
+    text-align: center;
   }
   #tag-sign{
     text-align: center;
     font-size: small;
+    color: #cdcdcd;
+  }
+  .el-link{
+    color: #ffd04b;
+  }
+  .el-menu-item.is-active {
+    background: rgb(67, 74, 80) !important;
+  }
+  .el-submenu__title.is-active {
+    background: #6db6ff !important;
   }
 
 </style>
