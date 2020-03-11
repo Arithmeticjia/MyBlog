@@ -69,13 +69,15 @@
 <!--            <el-divider direction="vertical"></el-divider>-->
 <!--          <span>草木深</span>-->
 <!--        </el-menu-item>-->
-        <p></p>
-        <el-menu-item id="tag-github">
-          <el-link icon="el-icon-link" style="color: #ffd04b" type="primary" href="https://github.com/Arithmeticjia" target="_blank" :underline="false">github</el-link>
-            <el-divider direction="vertical"></el-divider>
-          <el-link icon="el-icon-message" style="color: #ffd04b" type="primary" href="mailto:1524126437@qq.com" target="_blank" :underline="false">mail</el-link>
+        </br>
+        <div class="tag-links">
+<!--          &nbsp;-->
+          <el-link icon="el-icon-link" style="color: white" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">github</el-link>
+          <el-divider direction="vertical"></el-divider>
+<!--          &nbsp;-->
+          <el-link icon="el-icon-message" style="color: white" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">e-mail</el-link>
 <!--          <el-button icon="el-icon-message" @click="skip('https://www.guanacossj.com/')" type="text">mail</el-button>-->
-        </el-menu-item>
+        </div>
     </el-menu>
     </el-aside>
       <el-main>
@@ -329,8 +331,28 @@
     font-size: small;
     color: #cdcdcd;
   }
-  .el-link{
-    color: #ffd04b;
+  .tag-links{
+    height: 45px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 45px;
+    width: 100%;
+    color: #fff !important;
+    /*margin: 0 auto;*/
+  }
+  .el-link-github {
+    color: #fff !important;
+    font-size: 14px;
+  }
+  .el-link-github:hover {
+    color: #ffd04b !important;
+  }
+  .el-link-email {
+    font-size: 14px;
+    color: #fff !important;
+  }
+  .el-link-email:hover {
+    color: #ffd04b !important;
   }
   .el-menu-item.is-active {
     background: rgb(67, 74, 80) !important;
