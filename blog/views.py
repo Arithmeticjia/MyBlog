@@ -458,7 +458,6 @@ def login_view(request):
         password = request.POST.get("password")
         # 在前端传回时也将跳转链接传回来
         next_url = request.POST.get("next_url")
-        print(next_url)
         # 对用户进行验证
         try:
             user = models.BlogUser.objects.get(name=username)
