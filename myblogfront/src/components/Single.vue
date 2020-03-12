@@ -97,6 +97,20 @@
                 </div>
               </el-col>
             </el-row>
+            <div class="prev-next">
+              <div class="prev-article">
+<!--                <i class="el-icon-back"></i>-->
+<!--                <i class="el-icon-d-arrow-left"></i>-->
+                <i class="el-icon-caret-left"></i>
+              </div>
+              <router-link :to="'/single/'+prev_article_id"><div class="prev-article" v-html="prev_article_title"></div></router-link>
+              <div class="next-article">
+<!--                <i class="el-icon-right"></i>-->
+<!--                <i class="el-icon-d-arrow-right"></i>-->
+                <i class="el-icon-caret-right"></i>
+              </div>
+              <router-link :to="'/single/'+next_article_id"><div class="next-article" v-html="next_article_title"></div></router-link>
+            </div>
         </div>
       </div>
     </el-main>
@@ -113,7 +127,11 @@
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             singleId: 1,
             singleblog: [],
-            markdownhtml: ""
+            markdownhtml: "",
+            prev_article_title: "已经是第一篇了",
+            next_article_title: "已经是最后一篇了",
+            prev_article_id: 0,
+            next_article_id: 0,
           }
         },
         created: function () {
@@ -166,6 +184,14 @@
                 if (res.error_num === 0) {
                   this.loading = false;
                   this.markdownhtml = res.markdown;
+                  if (res.prev_article_title !== ""){
+                    this.prev_article_id = res.prev_article_id;
+                    this.prev_article_title = res.prev_article_title;
+                  }
+                  if (res.next_article_title !== ""){
+                    this.next_article_id = res.next_article_id;
+                    this.next_article_title = res.next_article_title;
+                  }
                   this.singleblog = res['list'];
                 } else {
                   this.$message.error('查询博客详情失败');
@@ -278,6 +304,23 @@
   }
   .el-submenu__title.is-active {
     background: #6db6ff !important;
+  }
+  .prev-next{
+    display: inline;
+  }
+  .next-article {
+    color: #4D4D4D;
+    float: right;
+    display: inline;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .prev-article {
+    color: #4D4D4D;
+    float: left;
+    display: inline;
+    font-size: 15px;
+    font-weight: bold;
   }
 
 

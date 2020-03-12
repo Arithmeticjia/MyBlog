@@ -9,6 +9,7 @@ import Archive from '@/components/Archive'
 import Home from '@/components/Home'
 import Single from '@/components/Single'
 import About from '@/components/About'
+import NotFound from '@/components/NotFound'
 import ElementUI from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
 import '../assets/element-#545C64/index.css'
@@ -56,6 +57,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '*',
+      name: 'notfound',
+      component: NotFound
     },
   ]
 })

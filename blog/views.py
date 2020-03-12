@@ -2253,8 +2253,22 @@ def get_article_all(request):
 @require_http_methods(["GET"])
 def get_article_single(request, article_id):
     response = {}
+    next_article_title = ""
+    prev_article_title = ""
+    next_article_id = 0
+    prev_article_id = 0
     try:
         article = Articles.objects.filter(status="有效").filter(id=article_id)
+        try:
+            prev_article_id = Articles.objects.filter(id__lt=article_id).last().id
+            prev_article_title = Articles.objects.filter(id__lt=article_id).last().title
+        except Exception as e:
+            pass
+        try:
+            next_article_id = Articles.objects.filter(id__gt=article_id).first().id
+            next_article_title = Articles.objects.filter(id__gt=article_id).first().title
+        except Exception as e:
+            pass
         single_article = get_object_or_404(Articles, id=article_id, status="有效")
         md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
@@ -2268,6 +2282,10 @@ def get_article_single(request, article_id):
         response['msg'] = 'success'
         response['markdown'] = single_article.body
         response['error_num'] = 0
+        response['prev_article_title'] = prev_article_title
+        response['next_article_title'] = next_article_title
+        response['prev_article_id'] = prev_article_id
+        response['next_article_id'] = next_article_id
     except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
