@@ -39,7 +39,7 @@
       </el-menu-item>
       <el-menu-item index="5" @click="skiplocal('/#/about')">
         <i class="el-icon-user"></i>
-        <span slot="title" style="font-weight: bold">关于我</span>
+        <span slot="title" style="font-weight: bold">关于</span>
       </el-menu-item>
     </el-menu>
       <p></p>
