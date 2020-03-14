@@ -2,7 +2,7 @@
   <el-container style="height: 693px">
     <el-aside width="220px" style="margin-left: 130px">
       <el-menu
-        default-active="2"
+        default-active="3"
         class="el-menu-vertical-demo"
         background-color="#545c64"
         text-color="#fff"
@@ -10,6 +10,7 @@
         active-text-color="#ffd04b"
         style="height: 370x">
 <!--        </br>-->
+<!--        <p></p>-->
         <div class="blogtitlebox">
           <div class="blogtitle">请叫我算术嘉の博客</div>
         </div>
@@ -28,7 +29,7 @@
 <!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
         </template>
       </el-menu-item>
-      <el-menu-item index="3" @click="skiplocal('/#/category')">
+      <el-menu-item index="3" @click="notfinishalert">
         <i class="el-icon-menu"></i>
         <span slot="title" style="font-weight: bold">分类</span>
       </el-menu-item>
@@ -82,40 +83,43 @@
     </el-menu>
     </el-aside>
     <el-main>
-      <div id="apparchive" v-loading="loading" element-loading-text="拼命加载中" style="height: 555px">
-        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+      <div id="appcategory" v-loading="loading" element-loading-text="拼命加载中">
+        <div class="category-box">
+          <div class="grid-content bg-puprple-light">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h1 style="font-size: 21px"><a style="text-decoration: none;color: #4D4D4D" :href="'/#/single'+ '/' + value.pk">{{ value.fields.title }}</a></h1>
-                  <div>
-                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-date"></i> 发表于：{{ value.fields.timestamp | formatDate }}</span>
-                    <el-divider direction="vertical"></el-divider>
-                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views }}</span>
+                  <h1 style="text-align: center">分类</h1>
+                  <p style="text-align: center">当前共计{{ totalItems }}个分类</p>
+                  <div class="me" v-for="(value, key, index) in categoryList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+                    <router-link style="color: #4D4D4D" :to="'/category/'+value.fields.name"><p style="color: #4D4D4D; font-size: large;">{{ value.fields.name }}</p></router-link>
                   </div>
-                  </br>
-                  <p>{{ value.fields.body.substring(0,100)+'......' }}</p>
-                  </br>
-                  <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/#/single'+ '/' + value.pk)">阅读全文 >></el-button>
                 </div>
-                </br>
               </el-col>
             </el-row>
+          </div>
+        </div>
+        </br>
+<!--        <p></p>-->
+        <div class="hide-pagination">
+          <el-switch v-model="value">
+          </el-switch>
         </div>
       <el-footer>
-        </br>
 <!--        </br>-->
-        <el-pagination
-          v-show="showpagination"
-          background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage"
-          :page-sizes="[1, 2, 3, 4]"
-          :page-size="pageSize"
-          :total="totalItems"
-          layout="prev, pager, next, total">
-        </el-pagination>
+<!--        </br>-->
+          <el-pagination
+            v-show="showpagination"
+            :hide-on-single-page="value"
+            background
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[1, 2, 3, 4]"
+            :page-size="pageSize"
+            :total="totalItems"
+            layout="prev, pager, next, total">
+          </el-pagination>
       </el-footer>
       </div>
     </el-main>
@@ -123,69 +127,29 @@
 </template>
 
 <script>
-  import moment from 'moment';
     export default {
-        name: "Me",
+        name: "Category",
         data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
-            blogList: [],
+            value: false,
+            categoryList: [],
             currentPage:1,
             totalItems:0,
-            pageSize:10,
             loading: true,
-            showpagination: false
+            pageSize:10,
           }
         },
-        computed: {
-          reverseblogList() {
-            return this.blogList.reverse();
-          }
-        },
-        filters: {
-	        /*
-	         时间格式自定义 只需把字符串里面的改成自己所需的格式
-	        */
-	        formatDate:function(date) {
-	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
-	        }
-        },
-        mounted: function () {
-          this.showBlogs();
+        mounted() {
+          this.showCategorys();
         },
         methods: {
-          handleSizeChange(val) {
-             this.pageSize = val;
-             this.handleCurrentChange(this.currentPage);
-           },
-          handleCurrentChange: function(currentPage){
-             this.currentPage = currentPage;
-             if(this.flag) {
-               this.blogList = this.filterTableDataEnd
-             }
-          },
-          showBlogs () {
-            this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
-                _timeout:5000,
-                onTimeout :(request) => {
-                    this.$message.error('请求超时');
-                    this.loading = false
-                  }
-                }).then((response) => {
-                var res = JSON.parse(response.bodyText);
-                if (res.error_num === 0) {
-                  this.loading = false;
-                  this.showpagination = true;
-                  this.blogList = res['list'];
-                  this.totalItems = this.blogList.length;
-                } else {
-                  this.$message.error('查询博客列表失败');
-                }
-              })
-          },
           skip(url){
            window.open(url, target='_blank')
+          },
+          handleOpen(key, keyPath) {
+            console.log(key, keyPath);
           },
           skiplocal(url){
             location.href = url
@@ -201,6 +165,35 @@
               }
             });
           },
+          handleSizeChange(val) {
+             this.pageSize = val;
+             this.handleCurrentChange(this.currentPage);
+           },
+          handleCurrentChange: function(currentPage){
+             this.currentPage = currentPage;
+             if(this.flag) {
+               this.blogList = this.filterTableDataEnd
+             }
+          },
+          showCategorys () {
+            this.$http.get('https://www.guanacossj.com/blog/getallcategory/',{
+                _timeout:5000,
+                onTimeout :(request) => {
+                    this.$message.error('请求超时');
+                    this.loading = false
+                  }
+                }).then((response) => {
+                var res = JSON.parse(response.bodyText);
+                if (res.error_num === 0) {
+                  this.loading = false;
+                  this.showpagination = true;
+                  this.categoryList = res['list'];
+                  this.totalItems = this.categoryList.length;
+                } else {
+                  this.$message.error('查询分类列表失败');
+                }
+              })
+          },
         }
     }
 </script>
@@ -209,19 +202,17 @@
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
-  .a{
-    text-decoration: none;
+  .el-main{
+    margin-right: 130px;
   }
-  .el-footer {
-    color: #333;
+  #appcategory {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    line-height: 20px;
-  }
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
+    /*color: #2c3e50;*/
+    color: #4d4d4d;
+    margin-top: 0;
   }
   .el-col {
     border-radius: 4px;
@@ -246,17 +237,8 @@
     /*box-shadow: 0 2px 4px rgba(0, 0, 0, .20), 0 0 6px rgba(0, 0, 0, .04)*/
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
-  .el-main{
-    margin-right: 130px;
-  }
-  #apparchive {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    /*color: #2c3e50;*/
-    color: #4d4d4d;
-    margin-top: 0;
+  .category-box {
+    text-align: left;
   }
   .blogtitlebox {
     text-align: center;
@@ -297,6 +279,9 @@
     color: #fff !important;
     /*margin: 0 auto;*/
   }
+  .el-link--inner {
+    color: #fff;
+  }
   .el-link-github {
     color: #fff !important;
     font-size: 14px;
@@ -317,5 +302,8 @@
   .el-submenu__title.is-active {
     background: #6db6ff !important;
   }
-
+  .hide-pagination {
+    float: right;
+    /*padding-right: 0 !important;*/
+  }
 </style>

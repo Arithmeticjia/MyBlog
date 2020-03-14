@@ -2250,6 +2250,37 @@ def get_article_all(request):
 
 
 @require_http_methods(["GET"])
+def get_categroy_all(request):
+    response = {}
+    try:
+        categorys = Category.objects.all().order_by("id")
+        response['list'] = json.loads(
+            serializers.serialize("json", categorys, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['msg'] = 'success'
+        response['error_num'] = 0
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return HttpResponse(json.dumps(response, ensure_ascii=False))
+
+
+@require_http_methods(["GET"])
+def get_article_category(request, blog_category):
+    cate = get_object_or_404(Category, name=blog_category)
+    response = {}
+    try:
+        articles = Articles.objects.filter(category=cate).filter(status="有效").order_by('id')
+        response['list'] = json.loads(
+            serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['msg'] = 'success'
+        response['error_num'] = 0
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return HttpResponse(json.dumps(response, ensure_ascii=False))
+
+
+@require_http_methods(["GET"])
 def get_article_single(request, article_id):
     response = {}
     next_article_title = ""

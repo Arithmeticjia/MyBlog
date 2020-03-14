@@ -2,10 +2,11 @@
   <el-container style="height: 693px">
     <el-aside width="220px" style="margin-left: 130px">
       <el-menu
-        default-active="4"
+        default-active="2"
         class="el-menu-vertical-demo"
         background-color="#545c64"
         text-color="#fff"
+        @open="handleOpen"
         active-text-color="#ffd04b"
         style="height: 370x">
 <!--        </br>-->
@@ -39,7 +40,8 @@
         <i class="el-icon-user"></i>
         <span slot="title" style="font-weight: bold">关于</span>
       </el-menu-item>
-    </el-menu>
+    </el-menu
+        default-active="2">
       <p></p>
       <el-menu
       class="el-menu-vertical-demo"
@@ -80,61 +82,33 @@
         </div>
     </el-menu>
     </el-aside>
-      <el-main>
-        <el-button type="primary" size="medium" icon="el-icon-search" @click="doFilter" style="float:right;"></el-button>
-        <el-input
-	        clearable
-          type="text"
-          v-model="searchinfo"
-          placeholder="搜索"
-          size="medium"
-          style="width:160px;float: right;margin-right:10px">
-        </el-input>
-        <el-popover
-          placement="top-start"
-          v-model="visible"
-          trigger="hover"
-          style="float: right">
-          <p>点击刷新页面</p>
-          <div style="text-align: right; margin: 0">
-            <el-button type="primary" size="mini" @click="visible = false">我知道了</el-button>
-          </div>
-          <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
-        </el-popover>
-      <el-table height="553" v-loading="loading" element-loading-text="拼命加载中" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-        <el-table-column prop="date" label="编号" width="50">
-          <template scope="scope"> {{ scope.row.pk }} </template>
-        </el-table-column>
-        <el-table-column prop="name" label="标题" width="300">
-          <template scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/single/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
-        </el-table-column>
-        <el-table-column prop="address" label="分类" width="100">
-          <template scope="scope"> {{ scope.row.fields.category }} </template>
-        </el-table-column>
-        <el-table-column prop="address" label="标签" width="130">
-          <template scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>
-        </el-table-column>
-        <el-table-column prop="address" label="浏览量" width="80">
-          <template scope="scope"> {{ scope.row.fields.views }} </template>
-        </el-table-column>
-        <el-table-column prop="address" label="作者" width="120">
-          <template scope="scope"> {{ scope.row.fields.authorname }} </template>
-        </el-table-column>
-        <el-table-column prop="address" label="发布时间" width="200">
-          <template scope="scope"> {{ scope.row.fields.timestamp | formatDate }} </template>
-        </el-table-column>
-        <el-table-column prop="address" label="操作" width="150" fixed="right">
-        <template slot-scope="scope">
-          <el-button type="text" @click="open(scope.row.fields.title,scope.row.fields.body)" size="small">查看</el-button>
-          <el-button @click="skip('https://www.guanacossj.com/blog/article/'+scope.row.pk+'/'+scope.row.fields.url_slug)" type="text" size="small">查看详情</el-button>
-        </template>
-        </el-table-column>
-      </el-table>
+    <el-main>
+      <div id="apparchive" v-loading="loading" element-loading-text="拼命加载中" style="height: 555px">
+        <h1>{{ this.$route.params.name }}</h1>
+        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+            <el-row type="flex" class="row-bg" justify="space-around">
+              <el-col :span="20">
+                <div class="grid-content bg-puprple-light">
+                  <h1><a style="text-decoration: none;color: #4D4D4D" :href="'/#/single'+ '/' + value.pk">{{ value.fields.title }}</a></h1>
+                  <div>
+                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-date"></i> 发表于：{{ value.fields.timestamp | formatDate }}</span>
+                    <el-divider direction="vertical"></el-divider>
+                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views }}</span>
+                  </div>
+                  </br>
+                  <p>{{ value.fields.body.substring(0,100)+'......' }}</p>
+                  </br>
+                  <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/#/single'+ '/' + value.pk)">阅读全文 >></el-button>
+                </div>
+                </br>
+              </el-col>
+            </el-row>
+        </div>
       <el-footer>
-<!--        <p></p>-->
         </br>
-        </br>
+<!--        </br>-->
         <el-pagination
+          v-show="showpagination"
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -145,68 +119,47 @@
           layout="prev, pager, next, total">
         </el-pagination>
       </el-footer>
+      </div>
     </el-main>
   </el-container>
 </template>
 
 <script>
-    import moment from "moment";
+  import moment from 'moment';
     export default {
-        name: "BlogList",
+        name: "Me",
         data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
-            isCollapse: true,
-            visible: false,
+            blogList: [],
             currentPage:1,
             totalItems:0,
-            pageSize:15,
-            searchInfo: '',
-            blogList: [],
-            originblogList: [],
-            searchinfo: '',
-            filterTableDataEnd: [],
-            flag:false,
+            pageSize:10,
             loading: true,
+            showpagination: false
           }
+        },
+        computed: {
+          reverseblogList() {
+            return this.blogList.reverse();
+          }
+        },
+        filters: {
+	        /*
+	         时间格式自定义 只需把字符串里面的改成自己所需的格式
+	        */
+	        formatDate:function(date) {
+	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
+	        }
+        },
+        watch: {
+          '$route':'showBlogs'
         },
         mounted: function () {
           this.showBlogs();
         },
-        filters: {
-	        tagsFilter(data) {
-	        	return data.toString().replace('[','');
-	        },
-          formatDate:function(date) {
-	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
-	        }
-        },
         methods: {
-          reFresh: function() {
-            window.location.reload();
-          },
-          doFilter: function() {
-            if (this.searchinfo === "") {
-              this.$message.warning("查询条件不能为空！");
-              return;
-            }
-            this.filterTableDataEnd=[];
-            this.originblogList.forEach((value, index) => {
-              if(value.fields.title){
-                if(value.fields.title.indexOf(this.searchinfo)>=0){
-                  this.filterTableDataEnd.push(value);
-                }
-              }
-            });
-            //页面数据改变重新统计数据数量和当前页
-             this.currentPage=1;
-             this.totalItems=this.filterTableDataEnd.length;
-             //渲染表格,根据值
-             this.currentChangePage(this.filterTableDataEnd);
-             //页面初始化数据需要判断是否检索过
-             this.flag=true
-          },
           handleSizeChange(val) {
              this.pageSize = val;
              this.handleCurrentChange(this.currentPage);
@@ -217,37 +170,27 @@
                this.blogList = this.filterTableDataEnd
              }
           },
-          currentChangePage(list) {
-             let from = (this.currentPage - 1) * this.pageSize;
-             let to = this.currentPage * this.pageSize;
-             this.blogList = [];
-             if (to > list.length){
-               for (; from < list.length; from++) {
-                 if (list[from]) {
-                   this.blogList.push(list[from]);
-                 }
-               }
-             }else {
-               for (; from < to; from++) {
-                 if (list[from]) {
-                   this.blogList.push(list[from]);
-                 }
-               }
-             }
+          showBlogs () {
+            this.$http.get('https://www.guanacossj.com/blog/getcategoryarticles/'+this.$route.params.name,{
+                _timeout:5000,
+                onTimeout :(request) => {
+                    this.$message.error('请求超时');
+                    this.loading = false
+                  }
+                }).then((response) => {
+                var res = JSON.parse(response.bodyText);
+                if (res.error_num === 0) {
+                  this.loading = false;
+                  this.showpagination = true;
+                  this.blogList = res['list'];
+                  this.totalItems = this.blogList.length;
+                } else {
+                  this.$message.error('查询博客列表失败');
+                }
+              })
           },
-          open(title,body) {
-             this.$alert(body.substr(1,100)+'...', title, {
-               confirmButtonText: '确定',
-               // callback: action => {
-               //   this.$message({
-               //     type: 'info',
-               //     message: `action: ${ action }`
-               //   });
-               // }
-             });
-          }     ,
           skip(url){
-            window.open(url, '_blank')
+           window.open(url, target='_blank')
           },
           skiplocal(url){
             location.href = url
@@ -263,27 +206,7 @@
               }
             });
           },
-          showBlogs () {
-            this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
-                _timeout:5000,
-                onTimeout :(request) => {
-                    this.$message.error('请求超时');
-                    this.loading = false
-                  }
-                }).then((response) => {
-                var res = JSON.parse(response.bodyText);
-                if (res.error_num === 0) {
-                  this.loading = false;
-                  this.blogList = res['list'];
-                  this.totalItems = this.blogList.length;
-                  this.originblogList = this.blogList;
-                } else {
-                  this.$message.error('查询博客列表失败');
-                }
-              })
-          }
         }
-
     }
 </script>
 
@@ -291,15 +214,54 @@
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
+  .a{
+    text-decoration: none;
+  }
   .el-footer {
     color: #333;
     text-align: center;
     line-height: 20px;
   }
-  .el-main {
-    color: #333;
-    text-align: center;
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    /*background-color: #f9fafc;*/
+    background-color: rgba(255, 255, 255, 0);
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, .20), 0 0 6px rgba(0, 0, 0, .04)*/
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
+  }
+  .el-main{
     margin-right: 130px;
+  }
+  #apparchive {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    /*color: #2c3e50;*/
+    color: #4d4d4d;
+    margin-top: 0;
   }
   .blogtitlebox {
     text-align: center;

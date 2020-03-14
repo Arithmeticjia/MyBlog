@@ -27,7 +27,7 @@
 <!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
         </template>
       </el-menu-item>
-      <el-menu-item index="3" @click="notfinishalert">
+      <el-menu-item index="3" @click="skiplocal('/#/category')">
         <i class="el-icon-menu"></i>
         <span slot="title" style="font-weight: bold">分类</span>
       </el-menu-item>

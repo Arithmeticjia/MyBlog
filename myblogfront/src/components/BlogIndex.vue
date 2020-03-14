@@ -128,7 +128,7 @@
   .el-header, .el-footer {
     color: #333;
     text-align: center;
-    line-height: 60px;
+    /*line-height: 60px;*/
   }
   .el-main {
     color: #333;
