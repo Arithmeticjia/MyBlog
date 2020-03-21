@@ -86,7 +86,7 @@
                         var article_id = {{ blog_list.id }};
                         console.log(article_id);
                         $.ajax({
-                            url:"/JiaBlog/collect/",
+                            url:"/blog/collect/",
                             type:'POST',
                             data:{
                                 csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
@@ -106,7 +106,7 @@
                                     $("#collect").html(`<span type="submit" class="iconfont icon-shoucang-copy" style="text-align: center;color: red" onclick="collect()"></span>`);
                                 }
                                 else if (result.result == "illegal"){
-                                    window.location.href="https://guanacossj.com/JiaBlog/login/";
+                                    window.location.href="https://guanacossj.com/blog/login/";
                                 }
                                 else {
                                     swal(

@@ -41,6 +41,8 @@ from rest_framework import serializers, viewsets
 import random
 import json
 from haystack.views import SearchView
+from multiprocessing import Process, Lock
+import threading
 from dwebsocket.decorators import accept_websocket
 from django.utils.safestring import mark_safe
 from django.views.decorators.cache import cache_page
@@ -592,6 +594,16 @@ def search(request):
     return render(request, 'archive.html', context=context)
 
 
+def query_blog_lists():
+    blog_lists = Articles.objects.filter(status="有效").order_by("-timestamp")[0:10]  # 获取所有数据
+    return blog_lists
+
+
+def query_blog_list_head():
+    blog_list_head = Articles.objects.filter(status="有效").filter(istop=1).order_by("-timestamp")[0:5]
+    return blog_list_head
+
+
 # @cache_page(60 * 15)
 def blog_index(request):
     # post = request.get_post(Articles, pk=pk)
@@ -632,18 +644,9 @@ def blog_index(request):
     for key in counter:
         year_month_number.append([key[0], key[1], counter[key]])  # 把字典转化为（年，月，数目）元组为元素的列表
     year_month_number.sort(reverse=True)  # 排序
-    newbloglist = Articles.objects.all()
     tags = Tag.objects.all()
-    view = []
     count = Articles.objects.count()
-    pagelist = round(count / 3)
-    pl = []
-    for i in range(pagelist):
-        pl.append(i + 1)
-    print((pl))
     comment_list = Comment.objects.count()
-    note = Note.objects.get(id=str(random.randint(1, Note.objects.count())))
-    print(note.noteimage)
     categorys = Category.objects.all()
     catcharts = {}
     for cats in categorys:
@@ -677,9 +680,7 @@ def blog_index(request):
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
         'tags': tags,
-        'pagelists': pl,
         'comment_list': comment_list,
-        'note': note,
         'categorys': categorys,
         'count': count,
         'blog_list_five': blog_list_head,
@@ -706,7 +707,7 @@ def blog_index(request):
         # 'oauth2':oauth2_name,
         'oauth2_from': oauth2_from
     }
-    return render(request, 'blog/index.html', context=context)  # 返回Jiaindex.html页面
+    return render(request, 'blog/index.html', context=context)
 
 
 def comments(request, article_id):
@@ -2428,3 +2429,27 @@ class JiaSearch(View):
             'contacts': contacts,
         }
         return render(request, 'newblog/archives.html', context=context)
+
+@csrf_exempt
+def upload_facepic_springboot(request):
+    data= {}
+    try:
+        form = request.FILES.get("file", None)  # 获取上传的文件，如果没有文件，则默认为None
+        # if not myFile:
+        #     return HttpResponse("no files for upload!")
+        file_obj = models.JiaFile(file_name=form.name, file_url='static/Jia_File/' + form.name, file_status=1)
+        file_obj.save()
+        destination = open(os.path.join("static/Jia_File", form.name), 'wb')  # 打开特定的文件进行二进制的写操作
+        for chunk in form.chunks():  # 分块写入文件
+            destination.write(chunk)
+        destination.close()
+        data["code"] = 200
+        data["message"] = "上传成功"
+        data["data"] = file_obj.file_url
+    except:
+        form = UploadFileForm()
+        data["code"] = 500
+        data["message"] = "上传失败"
+        data["data"] = ""
+    return HttpResponse(json.dumps(data), content_type='application/json')
+

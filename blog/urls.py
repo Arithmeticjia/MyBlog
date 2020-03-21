@@ -72,6 +72,7 @@ urlpatterns = [
     url(r'^new/list/$', views.JiaPostList.as_view()),
     url(r'^new/index/$', views.JiaIndex.as_view()),
     url(r'^post/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.JiaPost.as_view()),
+    url(r'^upload_file_springboot/$', views.upload_facepic_springboot),
 ]
 
 
