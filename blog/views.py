@@ -652,15 +652,8 @@ def blog_index(request):
     for cats in categorys:
         catnums = Articles.objects.filter(category=cats.id).filter(status='有效').count()
         catcharts[cats.name] = catnums
-    django = Articles.objects.filter(category=1).filter(status='有效').count()
-    python = Articles.objects.filter(category=2).filter(status='有效').count()
-    mysql = Articles.objects.filter(category=3).filter(status='有效').count()
-    leetcode = Articles.objects.filter(category=4).filter(status='有效').count()
-    other = Articles.objects.filter(category=5).filter(status='有效').count()
-    java = Articles.objects.filter(category=6).filter(status='有效').count()
-    javascript = Articles.objects.filter(category=7).filter(status='有效').count()
-    maxmap = max(django, python, leetcode, mysql, other, java, javascript)
-    minmap = min(django, python, leetcode, mysql, other, java, javascript)
+    maxmap = max(catcharts.values())
+    minmap = min(catcharts.values())
     allvisit = VisitNumber.objects.first()
     jia = Jia.objects.get(id=1)
     try:
@@ -690,13 +683,6 @@ def blog_index(request):
         'blog_list_three': blog_list_news,
         'blog_list_hots': blog_list_hots,
         'blog_list_large': blog_list_large,
-        'django': django,
-        'python': python,
-        'mysql': mysql,
-        'leetcode': leetcode,
-        'other': other,
-        'java': java,
-        'javascript': javascript,
         'max': maxmap,
         'min': minmap,
         'versions': versions,

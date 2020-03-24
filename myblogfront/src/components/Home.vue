@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 693px">
+  <el-container style="height: 690px">
     <el-aside width="220px" style="margin-left: 130px">
       <el-menu
         default-active="1"
@@ -8,7 +8,7 @@
         text-color="#fff"
         @open="handleOpen"
         active-text-color="#ffd04b"
-        style="height: 370x">
+        style="height: 370px">
 <!--        </br>-->
 <!--        <p></p>-->
         <div class="blogtitlebox">

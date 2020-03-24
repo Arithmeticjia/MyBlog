@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 693px">
+  <el-container style="height: 690px">
     <el-aside width="220px" style="margin-left: 130px">
       <el-menu
         default-active="4"
@@ -101,7 +101,7 @@
           </div>
           <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
         </el-popover>
-      <el-table height="553" v-loading="loading" element-loading-text="拼命加载中" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+      <el-table height="550" v-loading="loading" element-loading-text="拼命加载中" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" label="编号" width="50">
           <template scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>

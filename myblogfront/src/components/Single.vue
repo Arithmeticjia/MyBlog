@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 693px">
+  <el-container style="height: 690px">
     <el-aside width="220px" style="margin-left: 130px">
       <el-menu
         class="el-menu-vertical-demo"
@@ -82,7 +82,7 @@
     </el-aside>
     <el-main>
       <div id="appvuedjango">
-        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in singleblog">
+        <div class="grid-content bg-puprple-light" v-loading="loading" v-for="(value, key, index) in singleblog">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="21">
                 <div class="grid-content bg-puprple-light">
@@ -97,19 +97,41 @@
                 </div>
               </el-col>
             </el-row>
+            <div class="donate">
+              <el-popover
+                placement="bottom"
+                trigger="click"
+                width="210">
+                <el-image
+                  style="width:210px; height: 300px;text-align: center"
+                  :src="wechatUrl"
+                  :fit="none"></el-image>
+                <el-button icon="el-icon-coin" type="info" slot="reference">打赏</el-button>
+              </el-popover>
+            </div>
+            </div>
+            </br>
+            <el-row type="flex" class="row-bg" justify="space-around">
+              <el-col :span="21">
+                <div class="grid-content bg-puprple-light">
+                  <p class="author-text"><b>版权声明：</b>本文为博主「请叫我算术嘉」的原创文章，遵循 CC 4.0 BY-SA 版权协议，禁止转载。</p>
+                  <p class="author-text"><b>本文链接：</b><router-link style="color: #4D4D4D;" :to="this.$route.path">http://www.blog.guanacossj.com/#{{ this.$route.path }}</router-link></p>
+                </div>
+              </el-col>
+            </el-row>
             <div class="prev-next">
               <div class="prev-article">
 <!--                <i class="el-icon-back"></i>-->
 <!--                <i class="el-icon-d-arrow-left"></i>-->
                 <i class="el-icon-caret-left"></i>
               </div>
-              <router-link :to="'/single/'+prev_article_id"><div class="prev-article" v-html="prev_article_title"></div></router-link>
+              <router-link :to="'/single/'+prev_article_id"><div class="prev-article" v-html="prev_article_title.substr(0,25)+'...'"></div></router-link>
               <div class="next-article">
 <!--                <i class="el-icon-right"></i>-->
 <!--                <i class="el-icon-d-arrow-right"></i>-->
                 <i class="el-icon-caret-right"></i>
               </div>
-              <router-link :to="'/single/'+next_article_id"><div class="next-article" v-html="next_article_title"></div></router-link>
+              <router-link :to="'/single/'+next_article_id"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
             </div>
         </div>
       </div>
@@ -125,6 +147,7 @@
         data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
+            wechatUrl: "https://www.guanacossj.com/media/articlebodypics/wechatpay.png",
             singleId: 1,
             singleblog: [],
             markdownhtml: "",
@@ -132,6 +155,7 @@
             next_article_title: "已经是最后一篇了",
             prev_article_id: 0,
             next_article_id: 0,
+            loading: true
           }
         },
         created: function () {
@@ -322,6 +346,7 @@
     font-size: 15px;
     font-weight: bold;
   }
-
-
+  .author-text {
+    text-align: left;
+  }
 </style>

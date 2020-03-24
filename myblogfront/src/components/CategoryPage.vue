@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 693px">
+  <el-container style="height: 690px">
     <el-aside width="220px" style="margin-left: 130px">
       <el-menu
         default-active="2"
