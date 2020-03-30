@@ -646,7 +646,6 @@ def blog_index(request):
     year_month_number.sort(reverse=True)  # 排序
     tags = Tag.objects.all()
     count = Articles.objects.count()
-    comment_list = Comment.objects.count()
     categorys = Category.objects.all()
     catcharts = {}
     for cats in categorys:
@@ -673,7 +672,6 @@ def blog_index(request):
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
         'tags': tags,
-        'comment_list': comment_list,
         'categorys': categorys,
         'count': count,
         'blog_list_five': blog_list_head,
@@ -886,10 +884,6 @@ def blog_list(request):
     blog_list_news = Articles.objects.filter(status="有效").order_by("-timestamp")[0:10]  # 获取10 recent posts
     comments = Comment.objects.count()
     tags = Tag.objects.all()
-    view = []
-    count = Articles.objects.count()
-    pagelist = round(count / 5)
-    # maxarticle = Articles.objects.filter(views=maxid['views__max']+1)
     categorys = Category.objects.all()
     jia = Jia.objects.get(id=1)
     try:

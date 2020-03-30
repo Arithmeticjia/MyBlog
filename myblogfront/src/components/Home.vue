@@ -8,9 +8,8 @@
         text-color="#fff"
         @open="handleOpen"
         active-text-color="#ffd04b"
-        style="height: 370px">
+        style="height: 370x">
 <!--        </br>-->
-<!--        <p></p>-->
         <div class="blogtitlebox">
           <div class="blogtitle">请叫我算术嘉の博客</div>
         </div>
@@ -74,10 +73,10 @@
         </br>
         <div class="tag-links">
 <!--          &nbsp;-->
-          <el-link icon="el-icon-link" style="color: white" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">github</el-link>
+          <el-link icon="el-icon-link" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">github</el-link>
           <el-divider direction="vertical"></el-divider>
 <!--          &nbsp;-->
-          <el-link icon="el-icon-message" style="color: white" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">e-mail</el-link>
+          <el-link icon="el-icon-message" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">e-mail</el-link>
 <!--          <el-button icon="el-icon-message" @click="skip('https://www.guanacossj.com/')" type="text">mail</el-button>-->
         </div>
     </el-menu>

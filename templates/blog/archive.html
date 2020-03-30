@@ -476,7 +476,7 @@
 								<ol>
                                     {% for i in blog_list_three %}
 									<li>
-										<h4><a href="/blog/article/{{ i.id }}" target="_blank">{{ i.title }}</a></h4>
+										<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 										<span class="post-tag">
 											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
 											<strong class="tag hot">HOT</strong>

@@ -55,8 +55,8 @@ class Tag(models.Model):
 
 
 class Articles(models.Model):
-    id = models.AutoField(primary_key=True)         # id
-    title = models.CharField(max_length=150)        # 博客标题
+    id = models.AutoField(primary_key=True, db_index=True)  # id
+    title = models.CharField(max_length=150)  # 博客标题
     # body = models.TextField()  # 博客正文
     body = MDTextField()
     timestamp = models.DateTimeField()  # 创建时间
@@ -99,6 +99,7 @@ class Articles(models.Model):
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = '文章'
+        unique_together = ("category", "id", "title")
 
     def save(self, *args, **kwargs):
         self.url_slug = slugify(self.title)
@@ -446,6 +447,8 @@ class Jia(models.Model):
     name = models.CharField(max_length=30)
     brief = models.CharField(max_length=100)
     pic = models.ImageField(upload_to='jia', blank=True, null=True)
+
+
 # Create your models here.
 
 
