@@ -14,9 +14,11 @@
 <!--      <img src="../assets/django_logo.png">-->
       <div>
         <div style="display: inline-block;"><img alt="vue logo" src="../assets/logo.png"></div>&nbsp;&nbsp;&nbsp;
-        <div style="display: inline-block;color: #409EFF;vertical-align: top;font-weight: 300;font-size: 2.1em"><h1>Element-UI</h1></div>
+<!--        <div style="display: inline-block;color: #409EFF;vertical-align: top;font-weight: 300;font-size: 2.1em"><p style="font-size: 16px;color: #2C3E50"><i class="el-icon-time"></i>当前时间：{{ nowTime }}</p><h1>Element-UI</h1></div>-->
+        <div style="display: inline-block;color: #409EFF;vertical-align: top;font-weight: 300;font-size: 2.1em"><p style="font-size: 16px;color: #2C3E50"><h1>Element-UI</h1></div>
       </div>
-      <h1>{{ msg }}</h1>
+<!--      <h1>{{ msg }}</h1>-->
+      <h1>Welcome to My Vue.js & <label class="greendjango">Django</label> App</h1>
       </br>
       <div>
           <span><i class="el-icon-school">&nbsp;</i>南京邮电大学-本科-通信工程</span>
@@ -41,6 +43,7 @@
             </li>
           </ul>
         </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <li><h2>Start Now</h2>
           <ul>
             <li>
@@ -61,6 +64,21 @@
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
         </span>
       </el-dialog>
+      <el-dialog
+        title=""
+        :visible.sync="wuhan"
+        width="30%"
+        :before-close="handleClose">
+        <el-image
+          style="width: 240px; height: 380px"
+          :src="url"
+          :fit="fill">
+        </el-image>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="wuhan = false">取 消</el-button>
+          <el-button type="primary" @click="wuhan = false">确 定</el-button>
+        </span>
+      </el-dialog>
   </div>
 </template>
 
@@ -73,6 +91,7 @@ export default {
   data () {
     return {
       circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
+      url: "https://www.guanacossj.com/media/articlebodypics/781585976585.jpg",
       msg: 'Welcome to My Vue.js & Django App',
       dialogVisible: false,
       worddata: [
@@ -318,7 +337,8 @@ export default {
               value: this.randomValue()
             },
       ],
-      nowTime: ""
+      nowTime: "",
+      wuhan: true,
     };
   },
   created(){
@@ -368,7 +388,7 @@ export default {
             });
           }
         });
-      },
+    },
     initChart() {
           // this.chart = echarts.init(document.getElementById("mywordcloud"));
           let chart = echarts.init(document.getElementById("mywordcloud"));
@@ -466,6 +486,10 @@ li {
 }
 a {
   color: #42b983;
+}
+.greendjango {
+  color: #42b983;
+  font-weight: bolder;
 }
 #appvuedjango {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
