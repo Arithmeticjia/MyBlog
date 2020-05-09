@@ -619,7 +619,7 @@
          </div>`;
 
                                             var Pid = data.pid;
-                                            if(Pid == ''){
+                                            if(Pid === ''){
                                                 $(".commentlist").append(s);
                                                 var newcounts = data.comments;
                                                 $("#commentcounts").html(newcounts+'&nbsp;'+'comments');
