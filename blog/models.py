@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from mdeditor.fields import MDTextField
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
 from imagekit.processors import ResizeToFill
 from imagekit.models import ImageSpecField
@@ -503,3 +503,15 @@ class Hits(models.Model):
     class Meta:
         verbose_name = "点击量"
         verbose_name_plural = "点击量"
+
+
+# class User(AbstractUser):
+#     phone = models.CharField(max_length=11, null=True, blank=True)
+#     nickname = models.CharField(max_length=50, null=True, blank=True)
+#     img = models.ImageField(upload_to="upload/", default="static/upload/a.jpg", max_length=100)
+#
+#     # upload_to  图像上传地址
+#     class Meta:
+#         db_table = "user"
+#         verbose_name = '用户'
+#         verbose_name_plural = verbose_name
