@@ -1,29 +1,32 @@
-from django.conf.urls import url,include
+from django.conf.urls import url, include
+from django.urls import path
 from blog import views
 from rest_framework import routers
 from django.views.decorators.csrf import csrf_exempt
 
-
 app_name = 'blog'
 
 # 定义restfulapi的路由地址
-route = routers.DefaultRouter()
+router = routers.DefaultRouter()
 
 # 注册restfulapi的路由地址
-route.register(r'getarticleinfo', views.GetArticleInfo)
+router.register(r'getarticleinfo', views.GetArticleInfo)
 # route.register(r'getweatherinfo', views.GetWeatherInfo)
 
 urlpatterns = [
     url('^$', views.index, name='index'),
+    url(r'^api/', include(router.urls)),
+    path('api/index/', views.IndexPostListAPIView.as_view()),
+    path('api/auth/', include("rest_framework.urls", namespace="rest_framework")),
     url(r'^search/', views.MySeachView(), name='haystack_search'),
     url(r'^index/$', views.blog_index),
     url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.blog_info, name='article'),
-    url(r'^list/$',views.blog_list),
+    url(r'^list/$', views.blog_list),
     url(r'^article/(?P<article_id>[0-9]+)/comment/(?P<cid>.+)', views.comment_view, name='comment'),
-    url(r'^contact-us/$',views.contact),
-    url(r'^savemessage/$',views.savemessage),
+    url(r'^contact-us/$', views.contact),
+    url(r'^savemessage/$', views.savemessage),
     url(r'^articles/(.+)/$', views.blog_category),
-    url(r'^greats/$',views.greats),
+    url(r'^greats/$', views.greats),
     url(r'^admin/$', views.admininndex),
     url(r'^admincharts/$', views.admincharts),
     url(r'^login/$', views.login_view, name='login'),
@@ -44,11 +47,11 @@ urlpatterns = [
     url(r'^editor/addcategory/$', views.editor_addcategory),
     url(r'^cal/$', views.calculate),
     url(r'^onlineeditor/$', views.pyeditor),
-    url(r'^api/$',views.api),
+    url(r'^api/$', views.api),
     url(r'^upload_images/(?P<article_id>[0-9]+)/$', views.upload_images),
-    url(r'^recruitment/$',views.recruitment),
-    url(r'^recruitment/info/$',views.recruitmentinfo),
-    url(r'^recruitment/findme/$',views.findme),
+    url(r'^recruitment/$', views.recruitment),
+    url(r'^recruitment/info/$', views.recruitmentinfo),
+    url(r'^recruitment/findme/$', views.findme),
     url(r'^film/', views.movie_list, name="movie"),
     url(r'^deletefile/$', views.deletefile),
     url(r'^ajfileupload/$', views.ajupload_file),
@@ -59,7 +62,6 @@ urlpatterns = [
     url(r'^resume/', views.Resume.as_view()),
     # url(r'^getweatherinfo/', views.GetWeatherInfo.as_view()),
     url(r'^getweatherinfo/', csrf_exempt(views.GetWeatherInfo.as_view()), name='getweatherinfo'),
-    url(r'^api/', include(route.urls)),
     url(r'^collect/$', views.collect),
     url(r'^comments/(?P<article_id>[0-9]+)$', views.comments),
     url(r'^rss/$', views.RssFeed(), name='rss'),
@@ -74,7 +76,3 @@ urlpatterns = [
     url(r'^post/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.JiaPost.as_view()),
     url(r'^upload_file_springboot/$', views.upload_facepic_springboot),
 ]
-
-
-
-

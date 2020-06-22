@@ -28,7 +28,7 @@ from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from blog.forms import CommentForm, MessageForm, UserForm, ArticleForm
-from django.db.models import Q
+from django.db.models import Q, IntegerField, CharField, DateTimeField
 from blog import models
 from blog.forms import UploadFileForm
 from django.utils import timezone
@@ -41,6 +41,9 @@ from rest_framework import serializers, viewsets
 import random
 import json
 from haystack.views import SearchView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import AllowAny
 from multiprocessing import Process, Lock
 import threading
 from dwebsocket.decorators import accept_websocket
@@ -50,6 +53,57 @@ from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
+class BlogPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'size'
+    max_page_size = 100
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [
+            'id',
+            'name',
+        ]
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = [
+            'id',
+            'name',
+        ]
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogUser
+        fields = [
+            'id',
+            'name',
+        ]
+
+
+class PostListSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+    authorname = UserSerializer()
+    tags = TagSerializer()
+
+    class Meta:
+        model = Articles
+        fields = [
+            'id',
+            'title',
+            'body',
+            'timestamp',
+            'tags',
+            'category',
+            'authorname',
+            'views',
+        ]
+
 
 class ArticlesSerializers(serializers.ModelSerializer):
     authorname = serializers.CharField(source='authorname.name')
@@ -57,13 +111,32 @@ class ArticlesSerializers(serializers.ModelSerializer):
     tags = serializers.StringRelatedField(many=True)
 
     class Meta:
-        model = Articles  # 指定的模型类
-        fields = ('id', 'title', 'body', 'timestamp', 'authorname', 'views', 'tags', 'category')  # 需要序列化的属性
+        # 指定的模型类
+        model = Articles
+        # 需要序列化的属性
+        fields = [
+            'id',
+            'title',
+            'body',
+            'timestamp',
+            'authorname',
+            'views',
+            'tags',
+            'category'
+        ]
 
 
 class GetArticleInfo(viewsets.ModelViewSet):
     queryset = Articles.objects.all().order_by('-id')
     serializer_class = ArticlesSerializers
+
+
+# 首页文章列表
+class IndexPostListAPIView(ListAPIView):
+    serializer_class = PostListSerializer
+    queryset = Articles.objects.all()
+    pagination_class = BlogPagination
+    permission_classes = [AllowAny]
 
 
 def queryweatherinfo():
@@ -2359,10 +2432,10 @@ class JiaPost(View):
         m = thisarticle.body.count('<code>', 0, len(thisarticle.body))
         for i in range(n):
             thisarticle.body = re.sub(r'<span></span>',
-                                       '&nbsp;&nbsp;<button id="ecodecopy" style="float: right;z-index:10" class="copybtn" '
-                                       'data-clipboard-action="copy" '
-                                       'data-clipboard-target="#code{}">复制</button> '
-                                       '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
+                                      '&nbsp;&nbsp;<button id="ecodecopy" style="float: right;z-index:10" class="copybtn" '
+                                      'data-clipboard-action="copy" '
+                                      'data-clipboard-target="#code{}">复制</button> '
+                                      '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
         # for i in range(n):
         #     thisarticle.body = re.sub(r'<div class="codehilite">',
         #                                '&nbsp;&nbsp;<button id="ecodecopy" style="float: right;z-index:10" class="copybtn" '
@@ -2410,9 +2483,10 @@ class JiaSearch(View):
         }
         return render(request, 'newblog/archives.html', context=context)
 
+
 @csrf_exempt
 def upload_facepic_springboot(request):
-    data= {}
+    data = {}
     try:
         form = request.FILES.get("file", None)  # 获取上传的文件，如果没有文件，则默认为None
         # if not myFile:
@@ -2432,4 +2506,3 @@ def upload_facepic_springboot(request):
         data["message"] = "上传失败"
         data["data"] = ""
     return HttpResponse(json.dumps(data), content_type='application/json')
-
