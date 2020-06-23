@@ -11,12 +11,14 @@ router = routers.DefaultRouter()
 
 # 注册restfulapi的路由地址
 router.register(r'getarticleinfo', views.GetArticleInfo)
+router.register(r'posts', views.PostViewSet, basename='post')
 # route.register(r'getweatherinfo', views.GetWeatherInfo)
 
 urlpatterns = [
     url('^$', views.index, name='index'),
     url(r'^api/', include(router.urls)),
     path('api/index/', views.IndexPostListAPIView.as_view()),
+    # path('api/single/', views.PostViewSet.as_view({'get': 'retrieve'})),
     path('api/auth/', include("rest_framework.urls", namespace="rest_framework")),
     url(r'^search/', views.MySeachView(), name='haystack_search'),
     url(r'^index/$', views.blog_index),

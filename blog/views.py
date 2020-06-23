@@ -44,6 +44,8 @@ from haystack.views import SearchView
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
+from rest_framework import viewsets
+from rest_framework import mixins
 from multiprocessing import Process, Lock
 import threading
 from dwebsocket.decorators import accept_websocket
@@ -89,7 +91,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PostListSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
     authorname = UserSerializer()
-    tags = TagSerializer()
+    tags = TagSerializer(many=True)
 
     class Meta:
         model = Articles
@@ -102,6 +104,25 @@ class PostListSerializer(serializers.ModelSerializer):
             'category',
             'authorname',
             'views',
+        ]
+
+
+class PostRetrieveSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+    authorname = UserSerializer()
+    tags = TagSerializer()
+
+    class Meta:
+        model = Articles
+        fields = [
+            "id",
+            "title",
+            "body",
+            "timestamp",
+            "views",
+            "category",
+            "authorname",
+            "tags",
         ]
 
 
@@ -136,6 +157,12 @@ class IndexPostListAPIView(ListAPIView):
     serializer_class = PostListSerializer
     queryset = Articles.objects.all()
     pagination_class = BlogPagination
+    permission_classes = [AllowAny]
+
+
+class PostViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    serializer_class = PostListSerializer
+    queryset = Articles.objects.all()
     permission_classes = [AllowAny]
 
 
