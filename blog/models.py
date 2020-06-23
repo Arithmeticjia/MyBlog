@@ -1,11 +1,15 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 from mdeditor.fields import MDTextField
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
 from imagekit.processors import ResizeToFill
 from imagekit.models import ImageSpecField
 from uuslug import slugify
+import markdown
+from markdown.extensions.toc import TocExtension
+import re
 from django.conf import settings
 from datetime import date
 
@@ -52,6 +56,18 @@ class Tag(models.Model):
 
 
 # Create your models here.
+def generate_rich_content(value):
+    md = markdown.Markdown(
+        extensions=[
+            "markdown.extensions.extra",
+            "markdown.extensions.codehilite",
+            TocExtension(slugify=slugify),
+        ]
+    )
+    content = md.convert(value)
+    m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+    toc = m.group(1) if m is not None else ""
+    return {"body": content, "toc": toc}
 
 
 class Articles(models.Model):
@@ -104,6 +120,14 @@ class Articles(models.Model):
     def save(self, *args, **kwargs):
         self.url_slug = slugify(self.title)
         super(Articles, self).save(*args, **kwargs)
+
+    @property
+    def body_html(self):
+        return self.rich_content.get("body", "")
+
+    @cached_property
+    def rich_content(self):
+        return generate_rich_content(self.body)
 
 
 # Create your models here.
@@ -503,7 +527,6 @@ class Hits(models.Model):
     class Meta:
         verbose_name = "点击量"
         verbose_name_plural = "点击量"
-
 
 # class User(AbstractUser):
 #     phone = models.CharField(max_length=11, null=True, blank=True)

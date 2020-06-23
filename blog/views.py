@@ -4,41 +4,38 @@ from django.db import models
 from django.forms.models import model_to_dict
 from django.utils.decorators import method_decorator
 from django.contrib.syndication.views import Feed
-import re
-from django.http import FileResponse
-from django.utils.safestring import mark_safe
+from django.utils.text import slugify
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_http_methods
 from django.views import View
 from django.shortcuts import render_to_response, redirect, get_object_or_404, reverse, HttpResponseRedirect
 from django.http import JsonResponse
+from django.db.models import Q, IntegerField, CharField, DateTimeField
+from django.views.decorators.http import require_POST
+import re
 from blog.models import Articles, Message, Tag, Category, Note, Comment, BlogUser, VisitNumber, Recruitment, \
     Recruinfo, Movie, JiaFile, Jia, BlogRole, Paper, Graduation, Honour, Teacher, Project, Version, BlogUserCollect, \
     SocialAuthUsersocialauth, AuthUser, Hits
 from django.contrib.auth import logout
 import time
 import requests
-from django.http.response import HttpResponse, HttpResponseBadRequest
+from django.http.response import HttpResponse
 from django.core.mail import send_mail
 import os
 from .forms import RegisterForm
 import psutil
 import datetime
 import markdown
-from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from blog.forms import CommentForm, MessageForm, UserForm, ArticleForm
-from django.db.models import Q, IntegerField, CharField, DateTimeField
 from blog import models
 from blog.forms import UploadFileForm
 from django.utils import timezone
 from functools import wraps
 from .visit_info import change_info
-from django.views.decorators.http import require_POST
 import subprocess
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import serializers, viewsets
-import random
 import json
 from haystack.views import SearchView
 from rest_framework.generics import ListAPIView, RetrieveAPIView
@@ -46,15 +43,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework import viewsets
 from rest_framework import mixins
-from multiprocessing import Process, Lock
-import threading
-from dwebsocket.decorators import accept_websocket
-from django.utils.safestring import mark_safe
-from django.views.decorators.cache import cache_page
 
 
 # Create your views here.
-
 class BlogPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'size'
@@ -88,6 +79,7 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
+# 列表序列化器
 class PostListSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
     authorname = UserSerializer()
@@ -107,10 +99,12 @@ class PostListSerializer(serializers.ModelSerializer):
         ]
 
 
+# 详情序列化器
 class PostRetrieveSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
     authorname = UserSerializer()
     tags = TagSerializer()
+    body_html = serializers.CharField()
 
     class Meta:
         model = Articles
@@ -118,6 +112,7 @@ class PostRetrieveSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "body",
+            "body_html",
             "timestamp",
             "views",
             "category",
@@ -161,9 +156,33 @@ class IndexPostListAPIView(ListAPIView):
 
 
 class PostViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
-    serializer_class = PostListSerializer
+
     queryset = Articles.objects.all()
     permission_classes = [AllowAny]
+
+    serializer_class_table = {
+        'list': PostListSerializer,
+        'retrieve': PostRetrieveSerializer,
+    }
+
+    def get_serializer_class(self):
+        return self.serializer_class_table.get(
+            self.action
+        )
+
+
+# class PostViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+#     # serializer_class = PostListSerializer
+#     queryset = Articles.objects.all()
+#     permission_classes = [AllowAny]
+#
+#     def get_serializer_class(self):
+#         if self.action == 'list':
+#             return PostListSerializer
+#         elif self.action == 'retrieve':
+#             return PostRetrieveSerializer
+#         else:
+#             return super().get_serializer_class()
 
 
 def queryweatherinfo():
