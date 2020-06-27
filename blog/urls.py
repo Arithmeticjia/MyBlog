@@ -34,7 +34,6 @@ urlpatterns = [
     url(r'^login/$', views.login_view, name='login'),
     url(r'^logout/$', views.LogoutView.as_view()),
     url(r'^register/$', views.register_view),
-    url(r'^search/$', views.search),
     url(r'^upload_file/$', views.upload_file),
     url(r'^file/$', views.Jiafile),
     url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/editor/$', views.usereditor),
@@ -77,4 +76,5 @@ urlpatterns = [
     url(r'^new/index/$', views.JiaIndex.as_view()),
     url(r'^post/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.JiaPost.as_view()),
     url(r'^upload_file_springboot/$', views.upload_facepic_springboot),
+    url(r'^sign_in/$', views.sign_in),
 ]

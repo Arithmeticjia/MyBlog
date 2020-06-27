@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.db import models
 from django.forms.models import model_to_dict
 from django.utils.decorators import method_decorator
+from django.utils import timezone
 from django.contrib.syndication.views import Feed
 from django.utils.text import slugify
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -10,6 +13,8 @@ from django.views.decorators.http import require_http_methods
 from django.views import View
 from django.shortcuts import render_to_response, redirect, get_object_or_404, reverse, HttpResponseRedirect
 from django.http import JsonResponse
+from django.http.response import HttpResponse
+from django.core.mail import send_mail
 from django.db.models import Q, IntegerField, CharField, DateTimeField
 from django.views.decorators.http import require_POST
 import re
@@ -19,8 +24,6 @@ from blog.models import Articles, Message, Tag, Category, Note, Comment, BlogUse
 from django.contrib.auth import logout
 import time
 import requests
-from django.http.response import HttpResponse
-from django.core.mail import send_mail
 import os
 from .forms import RegisterForm
 import psutil
@@ -30,7 +33,6 @@ from markdown.extensions.toc import TocExtension
 from blog.forms import CommentForm, MessageForm, UserForm, ArticleForm
 from blog import models
 from blog.forms import UploadFileForm
-from django.utils import timezone
 from functools import wraps
 from .visit_info import change_info
 import subprocess
@@ -665,52 +667,6 @@ class LogoutView(View):
         del request.session['user_name']
         del request.session['user_role']
         return redirect("/blog/login/")
-
-
-def search(request):
-    change_info(request)
-    q = request.GET.get('s')
-    error_msg = ''
-    if not q:
-        error_msg = '请输入关键词'
-        return render(request, 'archive.html', {'error_msg': error_msg})
-
-    blog_list = Articles.objects.filter(title__icontains=q)
-    print('search', blog_list)
-    paginator = Paginator(blog_list, 10)  # 分页，每页10条数据
-    page = request.GET.get('page')
-    try:
-        contacts = paginator.page(page)  # contacts为Page对象！
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        contacts = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        contacts = paginator.page(paginator.num_pages)
-    blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:10]
-    blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
-    blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
-    comments = Comment.objects.count()
-    jia = Jia.objects.get(id=1)
-    # print(blog_list_views)
-    tags = Tag.objects.all()
-    view = []
-    count = Articles.objects.count()
-    categorys = Category.objects.all()
-    context = {
-        'blog_list': blog_list,
-        'blog_list_views': blog_list_views,
-        'tags': tags,
-        'contacts': contacts,
-        'blog_list_greats': blog_list_greats,
-        'blog_list_comments': blog_list_comments,
-        'comments': comments,
-        'error_msg': error_msg,
-        'categorys': categorys,
-        'jia': jia
-    }
-    # print((maxarticle))
-    return render(request, 'archive.html', context=context)
 
 
 def query_blog_lists():
@@ -2551,4 +2507,11 @@ def upload_facepic_springboot(request):
         data["code"] = 500
         data["message"] = "上传失败"
         data["data"] = ""
+
     return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+@login_required()
+@csrf_exempt
+def sign_in(request):
+    return HttpResponse("ok", content_type='application/json')

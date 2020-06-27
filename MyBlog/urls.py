@@ -43,6 +43,7 @@ if settings.DEBUG:
         path('china-wuhan/', views.china_wuhan),
         path('china-wuhan/virusdata', views.china_wuhan_virus),
         url(r'', include('social_django.urls', namespace='social')),
+        url(r'^accounts/', include('django.contrib.auth.urls')),
         # url(r'^oauth/', include('social_django.urls', namespace='social')),
         # url(r'^search/', include('haystack.urls')),                       # old way
         # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
@@ -63,27 +64,10 @@ else:
         path('china-wuhan/', views.china_wuhan),
         path('china-wuhan/virusdata', views.china_wuhan_virus),
         url(r'', include('social_django.urls', namespace='social')),
+        url(r'^accounts/', include('django.contrib.auth.urls')),
         # url(r'^oauth/', include('social_django.urls', namespace='social')),
         # url(r'^search/', include('haystack.urls')),                       # old way
         # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
         url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
         url(r'^media/(?P<path>.*)$',  serve, {"document_root": settings.MEDIA_ROOT}),
     ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# urlpatterns = [
-#     url(r'^$', views.blog_index),
-#     path('admin/', admin.site.urls),
-#     path('blog/', include('blog.urls', namespace="blog")),
-#     path('activemq/', include('activemq.urls', namespace="activemq")),
-#     path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
-#     path('mdeditor/', include('mdeditor.urls')),
-#     path('china-wuhan/', views.china_wuhan),
-#     path('china-wuhan/virusdata', views.china_wuhan_virus),
-#     url(r'', include('social_django.urls', namespace='social')),
-#     # url(r'^oauth/', include('social_django.urls', namespace='social')),
-#     # url(r'^search/', include('haystack.urls')),                   # old way
-#     url(r'^search/', views.MySeachView(), name='haystack_search'),  # new way
-#     path(r"__debug__/", include(debug_toolbar.urls)),
-#     # url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}, name='static'),
-#     # url(r'^media/(?P<path>.*)$',  serve, {"document_root": MEDIA_ROOT}),
-# ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
