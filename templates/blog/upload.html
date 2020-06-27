@@ -55,7 +55,7 @@
         }
         .search-box{
             position: absolute;
-            top: 20px;
+            top: 15px;
             right: 25px;
             transform: translate(-0%,-0%);
             background: #2f3640;
@@ -360,13 +360,26 @@
                                     <div>
 									    <h3 id="reply-title" class="comment-reply-title">Download Files</h3>
                                         <div style="display: inline;float: right">
-                                            <form method="get" action="/blog/searchfile">
+                                            <form method="get" action="/blog/searchfile" onsubmit="return checkSearch()">
                                                 <div class="search-box">
-                                                    <input class="search-txt" type="text" name="q" placeholder="Type to search file">
+                                                    <input id="searchValue" class="search-txt" type="text" name="q" placeholder="Type to search file">
                                                     <button class="search-btn">
                                                         <i class="fas fa-search"></i>
                                                     </button>
                                                 </div>
+                                                <script type="text/javascript">
+                                                    function checkSearch() {
+                                                        var searchValue = document.getElementById("searchValue");
+                                                        if (searchValue.value==="") {
+                                                            sweetAlert(
+                                                                'Please enter the filename！'
+                                                            );
+                                                            return false
+                                                        }else{
+			                                            	return true;
+			                                            }
+                                                    }
+                                                </script>
                                             </form>
                                         </div>
                                     </div>
@@ -799,6 +812,7 @@
 	</div>
 	<!-- include jQuery -->
 	<script src="/static/JiaBlog/js/jquery.js"></script>
+    <
 	<!-- include jQuery -->
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->
