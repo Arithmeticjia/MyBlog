@@ -36,6 +36,7 @@ if settings.DEBUG:
         path('admin/', admin.site.urls),
         path('oblog/', include('oblog.urls', namespace="oblog")),
         path('blog/', include('blog.urls', namespace="blog")),
+        path('blog/new/', include('blogproject.urls', namespace="blogproject")),
         path('itube/', include('itube.urls', namespace="itube")),
         path('activemq/', include('activemq.urls', namespace="activemq")),
         path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
@@ -44,6 +45,7 @@ if settings.DEBUG:
         path('china-wuhan/virusdata', views.china_wuhan_virus),
         url(r'', include('social_django.urls', namespace='social')),
         url(r'^accounts/', include('django.contrib.auth.urls')),
+        path('comment/', include('comment.urls', namespace='comment')),
         # url(r'^oauth/', include('social_django.urls', namespace='social')),
         # url(r'^search/', include('haystack.urls')),                       # old way
         # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
@@ -56,6 +58,7 @@ else:
         path('admin/', admin.site.urls),
         path('oblog/', include('oblog.urls', namespace="oblog")),
         path('blog/', include('blog.urls', namespace="blog")),
+        path('blog/new/', include('blogproject.urls', namespace="blogproject")),
         path('itube/', include('itube.urls', namespace="itube")),
         path('activemq/', include('activemq.urls', namespace="activemq")),
         path('cloudserver/', include('cloudserver.urls')),
@@ -65,6 +68,7 @@ else:
         path('china-wuhan/virusdata', views.china_wuhan_virus),
         url(r'', include('social_django.urls', namespace='social')),
         url(r'^accounts/', include('django.contrib.auth.urls')),
+        path('comment/', include('comment.urls', namespace='comment')),
         # url(r'^oauth/', include('social_django.urls', namespace='social')),
         # url(r'^search/', include('haystack.urls')),                       # old way
         # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
