@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<!-- set the encoding of your site -->
+    {% load highlight %}
 {#    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">#}
     <link rel="shortcut icon" href="/static/images/写博客.png">
 	<meta charset="utf-8">
 	<!-- set the viewport width and initial-scale on mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>File</title>
+	<title>Archive</title>
 	<!-- include the site stylesheet -->
 	<link href='https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CPoppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 	<!-- include the site stylesheet -->
@@ -22,76 +23,20 @@
 	<!-- include the site stylesheet -->
 	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
 	<!-- include the site stylesheet -->
-	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_dycynze6id6.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_oyyrvpk63p.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_07f5zbdbyf9q.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_xmpmtbu3qm.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_2jx8jr9khtj.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_h5pzyznynb7.css">
-{#    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>#}
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
-    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<link type="text/css" rel="stylesheet" href="/static/css/github.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/viewerjs-master/dist/viewer.min.css">
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_dycynze6id6.css">
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_oyyrvpk63p.css">
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_07f5zbdbyf9q.css">
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_xmpmtbu3qm.css">
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_2jx8jr9khtj.css">
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_h5pzyznynb7.css">
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_we12to92lhb.css">
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_38gskixsmzu.css">
     <style>
         p{
             font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif
-        }
-        .readme{
-            background: #ec6149;
-            border-radius: 20px;
-            border: none;
-            width: 80px;
-            height: 30px;
-            font-size: 10px;
-            font-weight: bold;
-            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: white
-        }
-        .search-box{
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            transform: translate(-0%,-0%);
-            background: #2f3640;
-            border-radius: 40px;
-            padding: 10px;
-        }
-        .search-box:hover>.search-txt{
-            width: 240px;
-            padding: 0 6px;
-        }
-        .search-box:hover>.search-btn{
-           background: white;
-        }
-        .search-btn{
-            border: none;
-            color: #e84118;
-            float:right ;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #2f3640;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .search-txt{
-            border: none;
-            background: none;
-            outline: none;
-            float: left;
-            padding: 0;
-            color: white;
-            font-size: 16px;
-            transition: 0.4s;
-            line-height: 40px;
-            width: 0px;
         }
     </style>
 </head>
@@ -195,12 +140,12 @@
 					<h2>About me</h2>
 					<section class="widget profile-widget">
 						<div class="profile-pic">
-                            <a href="#">
-                                <img src="{{ jia.pic.url }}" alt="ArithmeticJia">
-                            </a>
-                        </div>
-                        <h3><a href="#">{{ jia.name }}</a></h3>
-                        <p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ jia.brief }}</p>
+							<a href="#">
+								<img src="/static/JiaBlog/images/head.jpg" alt="John Aston">
+							</a>
+						</div>
+						<h3><a href="#">ArithmeticJia</a></h3>
+						<p>Life is short, you need Python</p>
 						<!-- Social Network of the page -->
 						<ul class="social-networks">
 							<li><a href="#"><span class="icon ico-facebook"></span></a></li>
@@ -223,10 +168,16 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
-								<h1>File Page</h1>
+                                {% if this_year_month %}
+                                    <h1>{{ this_year_month.0 }}</h1>
+                                {% elif blog_category  %}
+                                    <h1>{{ blog_category }}</h1>
+                                {% else %}
+                                    <h1>Archive Page</h1>
+                                {% endif %}
 								<ol class="breadcrumb">
 									<li><a href="/blog/index">Home</a></li>
-									<li class="active">File</li>
+									<li class="active">Archive</li>
 								</ol>
 							</div>
 						</div>
@@ -237,7 +188,59 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="main-header">
-								<strong class="title">Files</strong>
+								<strong class="title" id="blogview"><a href="javascript:void(0);" style="text-decoration: none;" onclick="switchto()">switchview</a></strong>
+                                <script type="text/javascript">
+                                {#var btn4 = document.getElementById("blogview");#}
+                                {#btn4.addEventListener("click",switchto);#}
+                                {#btn4.addEventListener("click",backto);#}
+                                function switchto() {
+                                    var n = `<header class="header">
+                                        </header>
+                                {% for i in contacts %}
+                                        {#<hr style="height:2px;border:none;border-top:3px double black;" />#}
+                                        <div class="comment-form" style="border-top: 1px solid #f1f1f1;"><h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" style="color: #f5ab35;font-size:18px;text-decoration: none;" target="_blank">{{ i.title }}</a></h4>
+                                            <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.articlebodybrief|slice:"100"|safe}}</p>
+                                            <p style="color:rgba(30,30,30,0.85);font-weight: bold;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ i.timestamp }}&nbsp;&nbsp;&nbsp;&nbsp;views:&nbsp;&nbsp;{{ i.views }}&nbsp;&nbsp;&nbsp;&nbsp;comments:&nbsp;&nbsp;{{ i.all_comments.count }}&nbsp;&nbsp;&nbsp;&nbsp;greats:&nbsp;&nbsp;{{ i.greats }}</p>
+                                        </div>
+                                {% empty %}
+                                    <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+                                        <div class="post-holder" style="">没有搜索到符合条件的文章</div>
+                                    </article>
+                                {% endfor %}`;
+                                    var v = `<strong class="title" id="blogview2"><a href="javascript:void(0);" style="text-decoration: none;" onclick="backto()">back</a></strong>`;
+                                    $("#blogview").html(v);
+                                    $("#articlelist").html(n);
+                                }
+                                function backto() {
+                                    var o = `<section class="posts-blocks">
+                                            {% for i in contacts %}
+                                           <article class="post-block wow fadeInUp" data-wow-delay="0.6s" >
+                                            <div class="post-holder" style="font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif " >
+                                                <div class="img-holder">
+                                                    <a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
+                                                </div>
+                                                <time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+                                                <h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
+                                                <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.articlebodybrief|slice:"150"|safe }}</p>
+                                                <a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" class="read-more">Read more</a>
+                                                <footer>
+                                                    <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ i.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                                    <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">{{ i.greats }}</a></strong>
+                                                </footer>
+                                            </div>
+                                            </article>
+                                            {% empty %}
+                                                <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+                                                    <div class="post-holder" style="">没有搜索到符合条件的文章</div>
+                                                </article>
+                                        {% endfor %}
+                                        </section>`;
+                                    $("#articlelist").html(o);
+                                    var k = `<strong class="title" id="blogview2"><a href="javascript:void(0);" style="text-decoration: none;" onclick="switchto()">switchview</a></strong>`;
+                                    $("#blogview").html(k);
+                                    {#window.location.reload();#}
+                                }
+                            </script>
 							</div>
 						</div>
 					</div>
@@ -246,7 +249,7 @@
 						<div id="content" class="col-xs-12 col-md-8">
 							<!-- Widget of the page -->
 							<div class="widget widget_search hidden-md hidden-lg">
-								<form method="get" class="search-form" action="/blog/search">
+								<form method="get" class="search-form" action="/blog/search/">
 									<fieldset>
 										<input type="search" name="q" placeholder="Type to search here">
 										<button type="button" class="ico-search"></button>
@@ -258,7 +261,7 @@
 							<section class="widget profile-widget version-ii hidden-lg hidden-md">
 								<div class="profile-pic">
 									<a href="#">
-										<img src="/static/JiaBlog/images/head.jpg" alt="John Aston">
+										<img src="{{ jia.pic.url }}" alt="ArithmeticJia">
 									</a>
 								</div>
 								<h3>{{ jia.name }}</h3>
@@ -275,222 +278,136 @@
 							</section>
 							<!-- Widget of the page end -->
 							<!-- Posts Blocks of the page -->
-							<section class="comment-respond wow fadeInUp" data-wow-delay="0.4s">
-								<header class="header">
-									<h3 id="reply-title" class="comment-reply-title">Upload Files</h3>
-                                    <button class="readme" onclick="show()">README</button>
-                                    <script>
-                                        function show() {
-                                            swal(
-                                            '最大支持1000M文件！',
-                                            '',
-                                            'info'
-                                        )}
-                                    </script>
-									<!--p>it’s easy to upload or download files here</p-->
-								</header>
-								<form method="POST" id="commentform"  class="comment-form" enctype="multipart/form-data">
-                                    {% csrf_token %}
-									<div class="wrap">
-										<input id='fileupload' class="form-submit" type='file' name="file">
-										<div class="form-submit">
-										    <input type="button" name="submit" value="Upload" onclick="checkfile()">
-									    </div>
-									</div>
-                                    <script type="text/javascript">
-                                        function checkfile(){
-                                            var obj_file = document.getElementById("fileupload");
-                                            if(obj_file.value==""){
-                                                swal(
-                                                    "Please select a file! ",
-                                                    "",
-                                                    "warning"
-                                                );
-                                                return false;
-                                            }else{
-                                                var form_data = new FormData();
-                                                var file_info = $('#fileupload')[0].files[0];
-                                                form_data.append('file',file_info);
-                                                console.log(form_data);
-                                                $.ajax({
-                                                        url:"/JiaBlog/ajfileupload/",
-                                                        type:'POST',
-                                                        contentType: false,
-                                                        {#async: false,#}
-                                                        processData: false,
-                                                        data: form_data,
-                                                        success:function (upresult) {
-                                                           var upstatus = upresult.result;
-                                                           if (upstatus == 'success'){
-                                                               swal(
-                                                                   'Upload Successfully！',
-                                                                   '',
-                                                                   'success'
-                                                            ).then(function (result) {
-                                                                if(result.value){
-                                                                setTimeout(function () {
-                                                                window.location.reload()
-                                                                    }, 1000);
-                                                               }
-                                                                setTimeout(function () {
-                                                                window.location.reload()
-                                                                    }, 1000);
-                                                            });
-                                                           }else {
-                                                               swal(
-                                                                   'Upload Failed! ',
-                                                                   '',
-                                                                   "error"
-                                                               )
-                                                           }
-                                                       }
-                                                    })
-                                                }
-                                            };
-                                    </script>
-									<p class="form-allowed-tags hidden">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a
-							 href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt;
-							&lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del
-							datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt;
-							&lt;strong&gt; </code></p>
-								</form>
-							</section>
-                            <section class="comment-respond wow fadeInUp" data-wow-delay="0.4s">
-								<header class="header">
-                                    <div>
-									    <h3 id="reply-title" class="comment-reply-title">Download Files</h3>
-                                        <div style="display: inline;float: right">
-                                            <form method="get" action="/blog/searchfile" onsubmit="return checkSearch()">
-                                                <div class="search-box">
-                                                    <input id="searchValue" class="search-txt" type="text" name="q" placeholder="Type to search file">
-                                                    <button class="search-btn">
-                                                        <i class="fas fa-search"></i>
-                                                    </button>
-                                                </div>
-                                                <script type="text/javascript">
-                                                    function checkSearch() {
-                                                        var searchValue = document.getElementById("searchValue");
-                                                        if (searchValue.value==="") {
-                                                            swal(
-                                                                "Please enter the filename! ",
-                                                                "",
-                                                                "warning"
-                                                            );
-                                                            return false
-                                                        }else{
-			                                            	return true;
-			                                            }
-                                                    }
-                                                </script>
-                                            </form>
-                                        </div>
-                                    </div>
-									<!--p>it’s easy to upload or download files here</p-->
-								</header>
-                                {% for i in jiafiles %}
-{#                                    /static/Jia_File/{{ i.file_name }}#}
-                                        <div class="comment-form"><a style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" name="{{ i.file_name }}" href="javascript:void(0);" onclick="checkdown(this)">{{ i }}</a><a href="javascript:void(0);" style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;float:right;color: #f5ab35" id="{{ i.id }}" onclick="checkdelete(this)">Delete</a></div>
+{#                            <h3 id="blogview"><a style="display: inline;color: #f5ab35;" href="javascript:void(0);" onclick="switchto()">switchview</a></h3>#}
 
-                                <script type="text/javascript">
-                                    function checkdelete(obj) {
-                                        //var file_name = "{{ i }}";
-                                        var file_id = $(obj).attr("id");
-                                        console.log($(obj).attr("file_id"));
-                                        swal({
-                                            title: 'Enter your password to Delete',
-                                            input: 'password',
-                                            inputAttributes: {
-                                                'maxlength': 10,
-                                                'autocapitalize': 'off',
-                                                'autocorrect': 'off'
-                                            }
-                                        }).then(function(result) {
-                                            if (result.value) {
-                                                $.ajax({
-                                                    url: "/blog/deletefile/",
-                                                    type: 'POST',
-                                                    data: {
-                                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                                                        file_id: file_id,
-                                                        password: result.value
-                                                    },
-                                                    success: function (result) {
-                                                        var status = result.result;
-                                                        if (status == 'success') {
-                                                            swal(
-                                                                'Delete successfully！',
-                                                                '',
-                                                                'success'
-                                                            ).then(function (result) {
-                                                                if(result.value){
-                                                                setTimeout(function () {
-                                                                     window.location.reload()
-                                                                });
-                                                            }
-                                                                setTimeout(function () {
-                                                                    window.location.reload()
-                                                                })
-                                                            });
-                                                        } else {
-                                                            swal(
-                                                                'Wrong password！',
-                                                                '',
-                                                                "error"
-                                                            );           //后端删除失败
-                                                        }
-                                                    },
-                                                })
-                                            }
-                                    })
-                                    }
-                                    function checkdown(obj) {
-                                        var file_name = $(obj).attr("name");
-                                        console.log(file_name);
-                                        swal({
-                                            title: 'Enter your password to Download',
-                                            input: 'password',
-                                            inputAttributes: {
-                                                'maxlength': 10,
-                                                'autocapitalize': 'off',
-                                                'autocorrect': 'off'
-                                            }
-                                        }).then(function(result) {
-                                            if (result.value) {
-                                                $.ajax({
-                                                    url: "/blog/filecheck/",
-                                                    type: 'POST',
-                                                    data: {
-                                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                                                        password: result.value
-                                                    },
-                                                    success: function (result) {
-                                                        var status = result.result;
-                                                        if (status == 'success') {
-                                                            swal(
-                                                                'Start Downloading! ',
-                                                                '',
-                                                                'success'
-                                                            ).then(function (result) {
-                                                                if(result.value){
-                                                                    {#window.open("/static/Jia_File/{{ i.file_name }}")#}
-                                                                    window.open('/static/Jia_File/'+file_name+'')
-                                                            }
-                                                            });
-                                                        } else {
-                                                            swal(
-                                                                'Wrong Password! ',
-                                                                '',
-                                                                "error"
-                                                            );           //后端删除失败
-                                                        }
-                                                    },
-                                                })
-                                            }
-                                    })
-                                    }
-                                </script>
+                            <section class="comment-respond wow fadeInUp" id="articlelist">
+							<section class="posts-blocks">
+								<!-- Post Block of the page -->
+                                {% for i in contacts %}
+								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder" style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" >
+										<div class="img-holder">
+{#											<a href="/JiaBlog/article/{{ i.id }}" target="_blank"><img class="viewerpic" src="/media/{{ i.pic }}" alt="image description"></a>#}
+                                            <img class="viewerpic" src="/media/{{ i.pic }}" alt="image description">
+                                            <script type="text/javascript">
+                                                $(document).ready(function () {
+    	            	                            $('.viewerpic').viewer({
+                    		                            navbar: false,
+                    		                            button: true,
+                    		                            toolbar: true,
+                    		                            title: false
+                                                    });
+		                                        });
+                                            </script>
+										</div>
+										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
+										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
+										<a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" class="read-more">Read more</a>
+										<footer>
+                                            <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                            <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.greats }}</a></strong>
+											<!--strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">{{ i.all_comments.count }} comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">{{ i.greats }} greats</a></strong-->
+
+										</footer>
+									</div>
+								</article>
+                                {% empty %}
+                                    <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+                                        <div class="post-holder" style="">没有搜索到符合条件的文章</div>
+                                    </article>
                                 {% endfor %}
+                            </section>
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/static/JiaBlog/images/img23.jpg" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">Traveling is awesome <br>if you can enjoy.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="video-holder">
+											<a href="#" class="ico-play lightbox fancybox.iframe"></a>
+											<img src="/static/JiaBlog/images/img70.jpg" alt="image description">
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">I get up in the morning looking for adventure.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/static/JiaBlog/images/img65.jpg" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">Traveling is awesome <br>if you can enjoy.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/static/JiaBlog/images/img66.jpg" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">I get up in the morning looking for adventure.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
+								<!-- Post Block of the page -->
+								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
+									<div class="post-holder">
+										<div class="img-holder">
+											<a href="single-post.html"><img src="/static/JiaBlog/images/img67.jpg" alt="image description"></a>
+										</div>
+										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
+										<h2><a href="single-post.html">Traveling is awesome <br>if you can enjoy.</a></h2>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
+										<a href="single-post.html" class="read-more">Read more</a>
+										<footer>
+											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
+										</footer>
+									</div>
+								</article-->
+								<!-- Post Block of the page end -->
 							</section>
+                            </section>
 							<!-- Posts Blocks of the page end -->
 							<!-- Navigation of the page -->
 							<nav role="navigation" class="navigation pagination">
@@ -501,6 +418,20 @@
 									<span class="page-numbers dots hidden">…</span>
 									<a href="#" class="page-numbers">3</a>
 									<a href="#" class="next page-numbers">NEXT post.</a-->
+                                    {% if contacts.has_previous %}
+                                        <a href="?page={{ contacts.previous_page_number }}" class="prev page-numbers">Prev Page</a>
+                                    {% endif %}
+                                    <span>
+                                        {% for pagelist in contacts.paginator.page_range %}
+                                            <a href="?page={{ pagelist }}" class="page-numbers"><b>{{ pagelist }}</b></a>&nbsp;
+                                        {% endfor %}
+                                    </span>
+                                    <span class="page-numbers current">
+                                        Page {{ contacts.number }}&nbsp;/&nbsp;{{ contacts.paginator.num_pages }}&nbsp;Pages
+                                    </span>
+                                    {% if contacts.has_next %}
+                                        <a href="?page={{ contacts.next_page_number }}" class="next page-numbers">Next Page</a>
+                                    {% endif %}
 								</div>
 							</nav>
 							<!-- Navigation of the page end -->
@@ -514,7 +445,7 @@
 										<img src="{{ jia.pic.url }}" alt="ArithmeticJia">
 									</a>
 								</div>
-								<h3>{{ jia.name }}</h3>
+								<h3><a href="#">{{ jia.name }}</a></h3>
 								<p>{{ jia.brief }}</p>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">
@@ -537,6 +468,36 @@
 							</div>
 							<!-- Widget of the page end -->
 							<!-- Widget of the page -->
+                            <section class="widget recent-posts-widget wow fadeInUp" data-wow-delay="0.6s">
+								<header class="widget-head">
+									<h3>Recent Posts</h3>
+									<p>post those are very recent in Dot</p>
+								</header>
+								<ol>
+                                    {% for i in blog_list_three %}
+									<li>
+										<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+											<strong class="tag hot">HOT</strong>
+										</span>
+									</li>
+                                    {% endfor %}
+									<!--li>
+										<h4><a href="single-post.html">Letter from the desk of an <br>unsuccessful designer.</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">25th may</a></time>
+											<strong class="tag">trending</strong>
+										</span>
+									</li-->
+									<!--li>
+										<h4><a href="single-post.html">Exploring the unknow truth about myself - My Story.</a></h4>
+										<span class="post-tag">
+											<time datetime="2011-01-12"><a href="#">25th may</a></time>
+										</span>
+									</li-->
+								</ol>
+							</section>
 							<section class="widget recent-posts-widget version-ii wow fadeInUp" data-wow-delay="0.6s">
 								<header class="tab-head">
 									<h3><a class="active" href="#tab1">Recent Posts</a></h3>
@@ -548,7 +509,7 @@
 	                                     {% for i in blog_list_comments %}
 											<li>
 												<div class="alignleft">
-													<img src="/media/{{ i.pic }}" alt="image description">
+													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
 													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
@@ -588,7 +549,7 @@
 		                                    {% for i in blog_list_greats %}
 											<li>
 												<div class="alignleft">
-													<img src="/media/{{ i.pic }}" alt="image description">
+													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
 													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
@@ -630,6 +591,23 @@
 								<a href="#"><img src="/static/JiaBlog/images/ad-placeholder.jpg" alt="“Place your Advertisement here”"></a>
 							</div-->
 							<!-- Widget of the page end -->
+                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								<header class="widget-head">
+									<h3>Time</h3>
+								</header>
+								<ul>
+                                    {% for i in year_month_number %}
+									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/blog/list/{{ i.0 }}/{{ i.1 }}" target="_blank">- {{ i.0 }}年{{ i.1 }}月---({{ i.2 }})</a></span></li>
+									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
+									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
+                                    {% endfor %}
+								</ul>
+                                <!--div class="rss">
+                                    <a href="/JiaBlog/rss/" target="_blank"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                                </div-->
+							</div>
 							<!-- Widget of the page -->
 
                             <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
@@ -734,8 +712,9 @@
 				<div class="row">
 					<div class="col-xs-12 holder">
 						<div class="col">
-							<div class="logo"><a href="#"><img src="/static/JiaBlog/images/logo2.png" alt="dot"></a></div>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.</p>
+							<div class="logo"><a href="#"><img src="/media/jia/IMG_0323.JPG" alt="dot"></a></div>
+							<p>Created By ArithmeticJia</p>
+                            <p>Nanjing University Of Posts & Telecommunications</p>
 							<!-- Social Network of the page -->
 							<ul class="social-networks">
 								<li><a href="#"><span class="ico-facebook"></span></a></li>
@@ -750,29 +729,23 @@
 						<nav class="col footer-nav">
 							<h3>Important Links</h3>
 							<ul>
-								<li><a href="#">About us</a></li>
-								<li><a href="#">Terms &amp; Conditions</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Sitemap</a></li>
-								<li><a href="#">Support</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
 							</ul>
 						</nav>
-						<!-- Footer Nav of the page end -->
-						<!-- Footer Nav of the page -->
-						<nav class="col footer-nav">
+                        <nav class="col footer-nav">
 							<h3>Popular Links</h3>
 							<ul>
-								<li><a href="#">About us</a></li>
-								<li><a href="#">Terms &amp; Conditions</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Sitemap</a></li>
-								<li><a href="#">Support</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
 							</ul>
 						</nav>
 						<!-- Footer Nav of the page end -->
 						<div class="col">
 							<h3>Subscribe to Newsletter</h3>
-							<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie.</p>
+							<p></p>
 							<!-- subscribe form of the page -->
 							<form action="#" class="subscribe-form">
 								<div class="form-group">
@@ -790,7 +763,7 @@
 			<footer id="footer" class="container version-ii">
 				<div class="row">
 					<div class="col-xs-12 col-sm-6">
-						<p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+						<p>Copyright &copy; 2019.Company name All rights reserved.苏ICP备19007197号<a target="_blank" href=""></a></p>
 					</div>
 					<div class="col-xs-12 col-sm-6">
 						<!-- Social Network of the page -->
@@ -809,17 +782,17 @@
 			<!-- Back Top of the page -->
 	    	<span id="back-top" class="fa fa-angle-up"></span>
 	    	<!-- Style Changer of the page -->
-	    	<div id="style-changer" data-src="inc/style-changer.html"></div>
+{#	    	<div id="style-changer" data-src="inc/style-changer.html"></div>#}
 		</div>
 	</div>
 	<!-- include jQuery -->
 	<script src="/static/JiaBlog/js/jquery.js"></script>
-    <
 	<!-- include jQuery -->
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->
     <script src="/static/JiaBlog/js/jquery.main.js"></script>
-    <script src="/static/JiaBlog/js/fontawesome.js"></script>
+    <script type="text/javascript" src="/static/viewerjs-master/dist/viewer.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-viewer-master/dist/jquery-viewer.min.js"></script>
     <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
 </body>
 </html>

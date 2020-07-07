@@ -55,7 +55,7 @@
         }
         .search-box{
             position: absolute;
-            top: 15px;
+            top: 20px;
             right: 25px;
             transform: translate(-0%,-0%);
             background: #2f3640;
@@ -357,138 +357,118 @@
 							</section>
                             <section class="comment-respond wow fadeInUp" data-wow-delay="0.4s">
 								<header class="header">
-                                    <div>
-									    <h3 id="reply-title" class="comment-reply-title">Download Files</h3>
-                                        <div style="display: inline;float: right">
-                                            <form method="get" action="/blog/searchfile" onsubmit="return checkSearch()">
+									<h3 id="reply-title" class="comment-reply-title">Download Files</h3>
+                                    <div style="display: inline;float: right">
+                                            <form method="get" action="/blog/searchfile">
                                                 <div class="search-box">
-                                                    <input id="searchValue" class="search-txt" type="text" name="q" placeholder="Type to search file">
+                                                    <input class="search-txt" type="text" name="q" placeholder="Type to search file">
                                                     <button class="search-btn">
                                                         <i class="fas fa-search"></i>
                                                     </button>
                                                 </div>
-                                                <script type="text/javascript">
-                                                    function checkSearch() {
-                                                        var searchValue = document.getElementById("searchValue");
-                                                        if (searchValue.value==="") {
-                                                            swal(
-                                                                "Please enter the filename! ",
-                                                                "",
-                                                                "warning"
-                                                            );
-                                                            return false
-                                                        }else{
-			                                            	return true;
-			                                            }
-                                                    }
-                                                </script>
                                             </form>
                                         </div>
-                                    </div>
 									<!--p>it’s easy to upload or download files here</p-->
 								</header>
-                                {% for i in jiafiles %}
-{#                                    /static/Jia_File/{{ i.file_name }}#}
-                                        <div class="comment-form"><a style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" name="{{ i.file_name }}" href="javascript:void(0);" onclick="checkdown(this)">{{ i }}</a><a href="javascript:void(0);" style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;float:right;color: #f5ab35" id="{{ i.id }}" onclick="checkdelete(this)">Delete</a></div>
-
-                                <script type="text/javascript">
-                                    function checkdelete(obj) {
-                                        //var file_name = "{{ i }}";
-                                        var file_id = $(obj).attr("id");
-                                        console.log($(obj).attr("file_id"));
-                                        swal({
-                                            title: 'Enter your password to Delete',
-                                            input: 'password',
-                                            inputAttributes: {
-                                                'maxlength': 10,
-                                                'autocapitalize': 'off',
-                                                'autocorrect': 'off'
-                                            }
-                                        }).then(function(result) {
-                                            if (result.value) {
-                                                $.ajax({
-                                                    url: "/blog/deletefile/",
-                                                    type: 'POST',
-                                                    data: {
-                                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                                                        file_id: file_id,
-                                                        password: result.value
-                                                    },
-                                                    success: function (result) {
-                                                        var status = result.result;
-                                                        if (status == 'success') {
-                                                            swal(
-                                                                'Delete successfully！',
-                                                                '',
-                                                                'success'
-                                                            ).then(function (result) {
-                                                                if(result.value){
-                                                                setTimeout(function () {
-                                                                     window.location.reload()
+                                {% for i in file_list %}
+                                    <div class="comment-form"><a style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" name="{{ i.file_name }}" href="javascript:void(0);" onclick="checkdown(this)">{{ i }}</a><a href="javascript:void(0);" style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;float:right;color: #f5ab35" id="{{ i.id }}" onclick="checkdelete(this)">Delete</a></div>
+                                    <script type="text/javascript">
+                                        function checkdelete(obj) {
+                                            //var file_name = "{{ i }}";
+                                            var file_id = $(obj).attr("id");
+                                            console.log($(obj).attr("file_id"));
+                                            swal({
+                                                title: 'Enter your password to Delete',
+                                                input: 'password',
+                                                inputAttributes: {
+                                                    'maxlength': 10,
+                                                    'autocapitalize': 'off',
+                                                    'autocorrect': 'off'
+                                                }
+                                            }).then(function(result) {
+                                                if (result.value) {
+                                                    $.ajax({
+                                                        url: "/blog/deletefile/",
+                                                        type: 'POST',
+                                                        data: {
+                                                            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                                            file_id: file_id,
+                                                            password: result.value
+                                                        },
+                                                        success: function (result) {
+                                                            var status = result.result;
+                                                            if (status == 'success') {
+                                                                swal(
+                                                                    'Delete successfully！',
+                                                                    '',
+                                                                    'success'
+                                                                ).then(function (result) {
+                                                                    if(result.value){
+                                                                    setTimeout(function () {
+                                                                         window.location.reload()
+                                                                    });
+                                                                }
+                                                                    setTimeout(function () {
+                                                                        window.location.reload()
+                                                                    })
                                                                 });
+                                                            } else {
+                                                                swal(
+                                                                    'Wrong password！',
+                                                                    '',
+                                                                    "error"
+                                                                );           //后端删除失败
                                                             }
-                                                                setTimeout(function () {
-                                                                    window.location.reload()
-                                                                })
-                                                            });
-                                                        } else {
-                                                            swal(
-                                                                'Wrong password！',
-                                                                '',
-                                                                "error"
-                                                            );           //后端删除失败
-                                                        }
-                                                    },
-                                                })
-                                            }
-                                    })
-                                    }
-                                    function checkdown(obj) {
-                                        var file_name = $(obj).attr("name");
-                                        console.log(file_name);
-                                        swal({
-                                            title: 'Enter your password to Download',
-                                            input: 'password',
-                                            inputAttributes: {
-                                                'maxlength': 10,
-                                                'autocapitalize': 'off',
-                                                'autocorrect': 'off'
-                                            }
-                                        }).then(function(result) {
-                                            if (result.value) {
-                                                $.ajax({
-                                                    url: "/blog/filecheck/",
-                                                    type: 'POST',
-                                                    data: {
-                                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                                                        password: result.value
-                                                    },
-                                                    success: function (result) {
-                                                        var status = result.result;
-                                                        if (status == 'success') {
-                                                            swal(
-                                                                'Start Downloading! ',
-                                                                '',
-                                                                'success'
-                                                            ).then(function (result) {
-                                                                if(result.value){
-                                                                    {#window.open("/static/Jia_File/{{ i.file_name }}")#}
-                                                                    window.open('/static/Jia_File/'+file_name+'')
+                                                        },
+                                                    })
+                                                }
+                                        })
+                                        }
+                                        function checkdown(obj) {
+                                            var file_name = $(obj).attr("name");
+                                            swal({
+                                                title: 'Enter your password to Download',
+                                                input: 'password',
+                                                inputAttributes: {
+                                                    'maxlength': 10,
+                                                    'autocapitalize': 'off',
+                                                    'autocorrect': 'off'
+                                                }
+                                            }).then(function(result) {
+                                                if (result.value) {
+                                                    $.ajax({
+                                                        url: "/blog/filecheck/",
+                                                        type: 'POST',
+                                                        data: {
+                                                            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                                            password: result.value
+                                                        },
+                                                        success: function (result) {
+                                                            var status = result.result;
+                                                            if (status == 'success') {
+                                                                swal(
+                                                                    'Start Downloading! ',
+                                                                    '',
+                                                                    'success'
+                                                                ).then(function (result) {
+                                                                    if(result.value){
+                                                                        {#window.open("/static/Jia_File/{{ i.file_name }}")#}
+                                                                        window.open('/static/Jia_File/'+file_name+'')
+                                                                }
+                                                                });
+                                                            } else {
+                                                                swal(
+                                                                    'Wrong Password! ',
+                                                                    '',
+                                                                    "error"
+                                                                );           //后端删除失败
                                                             }
-                                                            });
-                                                        } else {
-                                                            swal(
-                                                                'Wrong Password! ',
-                                                                '',
-                                                                "error"
-                                                            );           //后端删除失败
-                                                        }
-                                                    },
-                                                })
-                                            }
-                                    })
-                                    }
-                                </script>
+                                                        },
+                                                    })
+                                                }
+                                        })
+                                        }
+                                    </script>
                                 {% endfor %}
 							</section>
 							<!-- Posts Blocks of the page end -->
@@ -814,7 +794,6 @@
 	</div>
 	<!-- include jQuery -->
 	<script src="/static/JiaBlog/js/jquery.js"></script>
-    <
 	<!-- include jQuery -->
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->

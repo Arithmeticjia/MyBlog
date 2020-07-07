@@ -1,0 +1,760 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<!-- set the encoding of your site -->
+{#    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">#}
+    <link rel="shortcut icon" href="/static/images/写博客.png">
+	<meta charset="utf-8">
+	<!-- set the viewport width and initial-scale on mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contact-Me</title>
+	<!-- include the site stylesheet -->
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CPoppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/font-awesome.min.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/bootstrap.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/animate.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/style.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_c5936x81jmd.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_g8vm0a3stgk.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_cxy0cuyzhbe.css">
+    <script src="/static/JiaBlog/js/jquery.js"></script>
+{#    <script src="/static/js/jquery-3.4.1.min.js"></script>#}
+    <script src="/static/JiaBlog/js/echarts.js"></script>
+    <script src="/static/js/worldcloud.js"></script>
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
+    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://at.alicdn.com/t/font_1039987_4lcpg4r5xs6.css"></script>
+    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_15rlnyvm67w.css">
+{#    <script src="https://at.alicdn.com/t/font_1039987_b4rh2p8shhv.css"></script>#}
+</head>
+<body class="version-ii">
+	<div class="loader-holder">
+		<div class="loader">
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+			<div class="side"></div>
+		</div>
+	</div>
+	<!-- main container of all the page elements -->
+	<div id="wrapper">
+		<!-- w1 of the page -->
+		<div class="w1">
+			<!-- header of the page -->
+			<header id="header" class="version-ii">
+				<div class="container">
+					<div class="row top-bar">
+						<!-- Top Nav of the page -->
+						<nav class="col-xs-12 col-sm-6 policy-nav">
+							<ul>
+								<li><a href="#">sitemap</a></li>
+								<li><a href="#">privacy policy</a></li>
+								<li><a href="#">support</a></li>
+							</ul>
+						</nav>
+						<!-- Top Nav of the page end -->
+						<div class="col-xs-12 col-sm-6 pull-right hidden-xs">
+							<!-- Social Network of the page -->
+							<ul class="social-networks">
+								<li><a href="#"><span class="ico-facebook"></span></a></li>
+								<li><a href="#"><span class="ico-twitter"></span></a></li>
+								<li><a href="#"><span class="ico-google-plus"></span></a></li>
+								<li><a href="#"><span class="ico-linkedin"></span></a></li>
+								<li><a href="#"><span class="ico-pinterest"></span></a></li>
+							</ul>
+							<!-- Social Network of the page end -->
+						</div>
+					</div>
+					<div class="row holder">
+						<div class="col-xs-3 col-sm-2">
+							<!-- Logo of the page -->
+							<div class="logo"><a href="/JiaBlog/index/"><img src="/static/JiaBlog/images/logonew.png" alt="dot"></a></div>
+							<!-- Logo of the page end -->
+						</div>
+						<div class="col-xs-9 col-sm-10 nav-holder">
+							<!-- Nav of the page -->
+							<nav id="nav" class="navbar navbar-default">
+								<!-- Navbar Header of the page -->
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+								<!-- Navbar Header of the page end -->
+								<a href="#" class="pull-right icon-menu"><span class="ico-menu"></span></a>
+								<!-- Collapse of the page -->
+								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+									<ul class="nav navbar-nav navbar-right">
+										<li><a href="/blog/index/">Home</a></li>
+                                        <li><a href="/blog/list/">Archive</a></li>
+										<!--li><a href="single.html">Single</a></li-->
+										<li><a href="/blog/contact-us">Contact</a></li>
+                                        <li><a href="/blog/file/" target="_blank">File</a></li>
+                                        <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
+                                        {% if request.session.is_login %}
+                                            <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
+                                            <li><a href="/blog/logout/">Logout</a></li>
+                                        {% elif request.user.is_authenticated %}
+                                            <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                            <li><a href="/blog/logout/">Logout</a></li>
+                                        {% else %}
+                                            <li><a href="/blog/mylist/">Tourist</a></li>
+                                            <li><a href="/blog/login/">Login</a></li>
+                                        {% endif %}
+									</ul>
+								</div>
+								<!-- Collapse of the page end -->
+							</nav>
+							<!-- Nav of the page -->
+						</div>
+					</div>
+				</div>
+				<!-- Side Nav of the page -->
+				<nav class="side-nav">
+					<a href="#" class="close"><i class="fa fa-times"></i></a>
+					<!-- Widget of the page -->
+					<h2>About me</h2>
+					<section class="widget profile-widget">
+						<div class="profile-pic">
+                            <a href="#">
+                                <img src="{{ jia.pic.url }}" alt="ArithmeticJia">
+                            </a>
+                        </div>
+                        <h3><a href="#">A{{ jia.name }}</a></h3>
+                        <p>{{ jia.brief }}</p>
+						<!-- Social Network of the page -->
+						<ul class="social-networks">
+							<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+							<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+							<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+							<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+							<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+						</ul>
+						<!-- Social Network of the page end -->
+					</section>
+					<!-- Widget of the page end -->
+				</nav>
+				<!-- Side Nav of the page end -->
+			</header>
+			<!-- Header of the page end -->
+			<!-- Main of the page -->
+			<main id="main" role="main">
+				<!-- Page head of the page -->
+				<header class="page-head wow fadeInUp" data-wow-delay="0.6s" style="background-color:#2a2d34">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<h1>Contact Me</h1>
+								<ol class="breadcrumb">
+									<li><a href="/blog/index">Home</a></li>
+									<li class="active">Contact</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</header>
+				<!-- Page head of the page end -->
+				<!-- Contact Sec of the page -->
+				<div class="contact-sec">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-md-8">
+                                <section class="section comments wow fadeInUp" style="background: rgba(24,24,24,0.91);" data-wow-delay="0.4s">
+								    <header class="header">
+									    <h2 style="color: white">About Me</h2>
+									    <p></p>
+								    </header>
+                                    <div class="commentlist" style="height: 300px;" id="mycloud"></div>
+                                        <script>
+                                            $(function(){
+                                                echartsCloud();
+                                            });
+                                            function echartsCloud(){
+                                                var myChart = echarts.init(document.getElementById('mycloud'));
+                                                myChart.setOption({
+                                                title: {
+                                                    text: ''
+                                                },
+                                                tooltip: {},
+                                                series: [{
+                                                    type : 'wordCloud',  //类型为字符云
+                                                        shape:'smooth',  //平滑
+                                                        gridSize : 8, //网格尺寸
+                                                        size : ['50%','50%'],
+                                                        //sizeRange : [ 50, 100 ],
+                                                        rotationRange : [-45, 0, 45, 90], //旋转范围
+                                                        textStyle : {
+                                                            normal : {
+                                                                fontFamily:'微软雅黑',
+                                                                color: function() {
+                                                                    return 'rgb(' +
+                                                                        Math.round(Math.random() * 255) +
+                                                                        ', ' + Math.round(Math.random() * 255) +
+                                                                        ', ' + Math.round(Math.random() * 255) + ')'
+                                                                    }
+                                                            },
+                                                            emphasis : {
+                                                                shadowBlur : 5,  //阴影距离
+                                                                shadowColor : '#333'  //阴影颜色
+                                                            }
+                                                        },
+                                                        left: 'center',
+                                                        top: 'center',
+                                                        right: null,
+                                                        bottom: null,
+                                                        width:'100%',
+                                                        height:'100%',
+                                                        data:[
+                                                            {"name": "帅","value": "756"},
+                                                            {"name": "太帅了","value": "701"},
+                                                            {"name": "超级帅","value": "622"},
+                                                            {"name": "超级无敌帅","value": "579"},
+                                                            {"name": "请叫我算术嘉","value": "525"},
+                                                            {"name": "python3.6","value": "479"},
+                                                            {"name": "Tensorflow2.0","value": "443"},
+                                                            {"name": "Django2.2","value": "386"},
+                                                            {"name": "Spring Boot","value": "345"},
+                                                            {"name": "单身狗","value": "327"},
+                                                            {"name": "天才和小可爱","value": "298"},
+                                                            {"name": "Pytorch1.0","value": "256"},
+                                                            {"name": "Casio","value": "213"},
+                                                            {"name": "波霸奶茶少冰七分糖","value": "188"},
+                                                            {"name": "Nginx","value": "178"},
+                                                            {"name": "可口可乐","value": "171"},
+                                                            {"name": "哈哈哈哈哈","value": "136"},
+                                                            {"name": "taishuaile","value": "114"},
+                                                            {"name": "请叫我算术嘉","value": "98"},
+                                                            {"name": "清风抽纸","value": "75"},
+                                                            {"name": "python","value": "46"},
+                                                            {"name": "NJUPT","value": "38"},
+                                                            {"name": "ArithmeticJia","value": "26"}],
+                                                        }]
+                                                    });
+                                                // 异步加载数据
+                                                }
+                                        </script>
+								<!-- Comment list of the page end -->
+							    </section>
+
+                                <section class="section comments wow fadeInUp" style="background: rgba(24,24,24,0.91);" data-wow-delay="0.4s">
+								    <header class="header">
+									    <h2 style="color: white">Message Board</h2>
+									    <p></p>
+								    </header>
+                                    <div class="commentlist" style="height: 300px;" id="messagecloud"></div>
+                                        <script>
+                                            $(function(){
+                                                messageechartsCloud();
+                                            });
+                                            function messageechartsCloud(){
+                                                var myChart = echarts.init(document.getElementById('messagecloud'));
+                                                myChart.setOption({
+                                                title: {
+                                                    text: ''
+                                                },
+                                                tooltip: {},
+                                                series: [{
+                                                    type : 'wordCloud',  //类型为字符云
+                                                        shape:'smooth',  //平滑
+                                                        gridSize : 8, //网格尺寸
+                                                        size : ['50%','50%'],
+                                                        //sizeRange : [ 50, 100 ],
+                                                        rotationRange : [-45, 0, 45, 90], //旋转范围
+                                                        textStyle : {
+                                                            normal : {
+                                                                fontFamily:'微软雅黑',
+                                                                color: function() {
+                                                                    return 'rgb(' +
+                                                                        Math.round(Math.random() * 255) +
+                                                                        ', ' + Math.round(Math.random() * 255) +
+                                                                        ', ' + Math.round(Math.random() * 255) + ')'
+                                                                    }
+                                                            },
+                                                            emphasis : {
+                                                                shadowBlur : 5,  //阴影距离
+                                                                shadowColor : '#333'  //阴影颜色
+                                                            }
+                                                        },
+                                                        left: 'center',
+                                                        top: 'center',
+                                                        right: null,
+                                                        bottom: null,
+                                                        width:'100%',
+                                                        height:'100%',
+                                                        data: [
+                                                            {% for i in messages %}
+                                                                {value:100 , name:'{{ i.content }}'},
+                                                            {% endfor %}
+                                                            ]
+                                                        }]
+                                                    });
+                                                // 异步加载数据
+                                                }
+                                        </script>
+								<!-- Comment list of the page end -->
+							    </section>
+
+								<!-- Comment respond of the page -->
+                                <section class="section comments wow fadeInUp" data-wow-delay="0.4s">
+								    <header class="header">
+									    <h2>Messages on me</h2>
+									    <p>{{ messages.count }} messages</p>
+								    </header>
+								<!-- Comment list of the page -->
+								<div class="commentlist">
+									<!-- Comment list item of the page -->
+                                    {% for i in messages %}
+									<div class="commentlist-item" id="messagelist">
+										<div class="comment even thread-even depth-1" id="comment-1">
+											<div class="avatar-holder">
+												<img alt="image description" src="{{ i.messpic }}" class="avatar avatar-48 photo avatar-default">
+											</div>
+											<div class="commentlist-holder">
+												<p class="meta">
+													<strong class="name"><a href="#">{{ i.username }}</a></strong>
+													<a href="#"><time datetime="2011-01-12">{{ i.publish|date:"Y-m-d H:i:s" }}</time></a>
+												</p>
+												<p>{{ i.content }}</p>
+												<p><a class="comment-reply-link" href="#" onclick="return addComment.moveForm(&quot;comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;1&quot;)">REPLY</a></p>
+											</div>
+										</div>
+									</div>
+                                    {% endfor %}
+									<!-- Comment list item of the page end -->
+									<!-- Comment list item of the page -->
+									    <div class="commentlist-item">
+										<!--div class="comment even thread-even depth-1" id="comment-2">
+											<div class="avatar-holder">
+												<img alt="image description" src="/static/JiaBlog/images/img57.jpg" class="avatar avatar-48 photo avatar-default">
+											</div>
+											<div class="commentlist-holder">
+												<p class="meta">
+													<strong class="name"><a href="#">John Doe</a></strong>
+													<a href="#"><time datetime="2011-01-12">2 hours ago</time></a>
+												</p>
+												<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam erat volutpat.</p>
+												<p><a class="comment-reply-link" href="#" onclick="return addComment.moveForm(&quot;comment-2&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;1&quot;)">REPLY</a></p>
+											</div>
+										</div-->
+										<!-- Comment list item of the page -->
+										<!--div class="commentlist-item">
+											<div class="comment even thread-even depth-1" id="comment-3">
+												<div class="avatar-holder">
+													<img alt="image description" src="/static/JiaBlog/images/img58.jpg" class="avatar avatar-48 photo avatar-default">
+												</div>
+												<div class="commentlist-holder">
+													<p class="meta">
+														<strong class="name"><a href="#">John Doe</a></strong>
+														<a href="#"><time datetime="2011-01-12">2 hours ago</time></a>
+													</p>
+													<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam erat volutpat.</p>
+													<p><a class="comment-reply-link" href="#" onclick="return addComment.moveForm(&quot;comment-3&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;1&quot;)">REPLY</a></p>
+												</div>
+											</div>
+										</div-->
+										<!-- Comment list item of the page end -->
+									    </div>
+									<!-- Comment list item of the page end -->
+								    </div>
+								<!-- Comment list of the page end -->
+							    </section>
+								<section class="comment-respond contact-form wow fadeInUp" data-wow-delay="0.6s">
+									<header class="header">
+										<h3 id="reply-title" class="comment-reply-title">Get in touch</h3>
+										<p>We will reply your message within 24 hours!</p>
+									</header>
+									<form  method="POST" id="messageform"  class="comment-form">
+                                        {% csrf_token %}
+										<div class="wrap form-group">
+											<div class="comment-form-author">
+												<label for="author">Your name <span class="required">*</span></label>
+												<input type="text" id="author" name="username" size="30" aria-required="true" placeholder="enter your name here" maxlength="20">
+											</div>
+											<div class="comment-form-email">
+												<label for="email">Email address <span class="required">*</span></label>
+												<input type="text" id="email" name="email" size="30" aria-required="true" placeholder="enter your email address" maxlength="20" onblur="isEmail()">
+                                                <script>
+                                                    function isEmail() {
+                                                        var regu = "^(([0-9a-zA-Z]+)|([0-9a-zA-Z]+[_.0-9a-zA-Z-]*[0-9a-zA-Z]+))@([a-zA-Z0-9-]+[.])+([a-zA-Z]{2}|net|NET|com|COM|gov|GOV|mil|MIL|org|ORG|edu|EDU|int|INT)$";
+                                                        var myemail = document.getElementById("email").value;
+                                                        if (myemail.search(regu)!= -1) {
+                                                            return true;
+                                                        } else {
+                                                            swal(
+                                                                "请输入有效合法的E-mail地址 ！",
+                                                                '',
+                                                                'warning'
+                                                            );
+                                                            return false;
+                                                        }
+                                                    }
+                                                </script>
+											</div>
+										</div>
+										<div class="wrap form-group">
+											<div class="comment-form-tel">
+												<label for="nmber">Phone number <span class="required">(Optional)</span></label>
+												<input type="tel" id="number" name="phone" placeholder="Phone number" size="30" maxlength="11">
+											</div>
+											<div class="comment-form-url">
+												<label for="url">Title <span class="text-light">*</span></label>
+												<input type="text" id="title" name="title" size="100" value="" maxlength="20">
+											</div>
+										</div>
+										<div class="comment-form-comment">
+											<label for="comment">Message * <span class="required">*</span></label>
+											<textarea id="message" name="content" rows="3" cols="72" aria-required="true" placeholder="Write your message here" maxlength="500"></textarea>
+										</div>
+										<p class="form-allowed-tags hidden">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a
+								 href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt;
+								&lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del
+								datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt;
+								&lt;strong&gt; </code></p>
+										<div class="form-submit">
+											<input type="button" name="submit" value="Leave a comment" onclick="DoSubmit()">
+											<input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID">
+											<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+										</div>
+									</form>
+                                    <script>
+                                function DoSubmit(){
+                                    var author = document.getElementById("author").value;
+                                    var email = document.getElementById("email").value;
+                                    var number = document.getElementById("number").value;
+                                    var title = document.getElementById("title").value;
+                                    var content = document.getElementById("message").value;
+                                    var regu = "^(([0-9a-zA-Z]+)|([0-9a-zA-Z]+[_.0-9a-zA-Z-]*[0-9a-zA-Z]+))@([a-zA-Z0-9-]+[.])+([a-zA-Z]{2}|net|NET|com|COM|gov|GOV|mil|MIL|org|ORG|edu|EDU|int|INT)$";
+                                    if( author == ''){
+                                        swal(
+                                            'name不能为空！',
+                                            '',
+                                            'warning'
+                                        );
+                                        return false;
+                                    }
+                                    if( email == ''){
+                                        swal(
+                                            'email不能为空！',
+                                            '',
+                                            'warning'
+                                        );
+                                        return false;
+                                    } else if (email.search(regu)== -1) {
+                                        swal(
+                                            "请输入有效合法的E-mail地址 ！",
+                                            '',
+                                            'warning'
+                                        );
+                                        return false;
+                                    }
+                                    else if (title == ''){
+                                        swal(
+                                            'title不能为空！',
+                                            '',
+                                            'warning'
+                                        );
+                                        return false;
+                                    }
+                                    else if (content == ''){
+                                        swal(
+                                            'message不能为空！',
+                                            '',
+                                            'warning'
+                                        );
+                                        return false;
+                                    }
+                                    else $.ajax({
+                                        cache: false,
+                                        type: "POST",
+                                        url: "/blog/savemessage/",
+                                        data: $('#messageform').serialize(),
+                                        beforeSend: function (xhr, settings) {
+                                            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                                        },
+                                        success: function (data) {
+                                            $('#messageform')[0].reset();
+                                            var username = data.username;
+                                            var content = data.content;
+                                            var created_time = data.time;
+                                            var messpic = data.messpic;
+                                            var s = `<div class="commentlist-item">
+										<div class="comment even thread-even depth-1" id="comment-1">
+											<div class="avatar-holder">
+												<img alt="image description" src="${messpic}" class="avatar avatar-48 photo avatar-default">
+											</div>
+											<div class="commentlist-holder">
+												<p class="meta">
+													<strong class="name"><a href="#">${username}</a></strong>
+													<a href="#"><time datetime="2011-01-12">${ created_time }</time></a>
+												</p>
+												<p>${ content }</p>
+												<p><a class="comment-reply-link" href="#" onclick="return addComment.moveForm(&quot;comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;1&quot;)">REPLY</a></p>
+											</div>
+										</div>
+									</div>`;
+                                            $(".commentlist").append(s);
+                                            swal(
+                                                '评论成功！',
+                                                "",
+                                                "success"
+                                            )
+                                        },error:function(data){
+                                            var status = data.status;
+                                            swal(
+                                                '服务器好像出了点问题，请稍后重试！',
+                                                "",
+                                                "error"
+                                                )
+                                            }
+                                    })
+                                }
+
+                            </script>
+								</section>
+								<!-- Comment respond of the page end -->
+							</div>
+							<aside class="col-xs-12 col-md-4 pull-right">
+								<!-- Widget of the page -->
+								<section class="widget profile-widget version-ii wow fadeInUp" data-wow-delay="0.6s">
+									<div class="profile-pic">
+									<a href="#">
+										<img src="{{ jia.pic.url }}" alt="ArithmeticJia">
+									</a>
+								</div>
+								<h3><a href="#">{{ jia.name }}</a></h3>
+								<p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ jia.brief }}</p>
+									<!-- Social Network of the page -->
+									<ul class="social-networks">
+										<li><a href="#"><span class="icon ico-facebook"></span></a></li>
+										<li><a href="#"><span class="icon ico-twitter"></span></a></li>
+										<li><a href="#"><span class="icon ico-google-plus"></span></a></li>
+										<li><a href="#"><span class="icon ico-linkedin"></span></a></li>
+										<li><a href="#"><span class="icon ico-pinterest"></span></a></li>
+									</ul>
+									<!-- Social Network of the page end -->
+								</section>
+								<!-- Widget of the page end -->
+								<!-- Widget of the page -->
+                                <div class="widget tel-widget version-ii contact-widget wow fadeInUp" data-wow-delay="0.6s">
+									<p>
+{#                                        {% for i in users %}#}
+										<span class="iconfont icon-yonghu"></span><a href="javascript:void(0);">{{ users }}</a>
+										<br>
+{#                                        {% endfor %}#}
+{#                                        {% for i in articles %}#}
+                                        <span class="iconfont icon-wenzhang"></span><a href="/blog/list" target="_blank">{{ articles }}</a>
+                                        <br>
+{#                                        {% endfor %}#}
+{#                                        {% for i in allvisits %}#}
+                                        <span class="iconfont icon-jiaoyinzujifangke"></span><a href="javascript:void(0);">{{ visits }}</a>
+                                        <br>
+{#                                        {% endfor %}#}
+									</p>
+								</div>
+                                <div class="widget tel-widget version-ii contact-widget wow fadeInUp" data-wow-delay="0.6s">
+									<p>
+										<span class="iconfont icon-zhuye1"></span><a href="http://www.guanacossj.com" target="_blank">ArithmeticJia</a>
+										<br>
+                                        <span class="iconfont icon-github"></span><a href="https://github.com/Arithmeticjia/MyBlog" target="_blank">Github</a>
+                                        <br>
+                                        <span class="iconfont icon-csdn"></span><a href="https://blog.csdn.net/ssjdoudou" target="_blank">CSDN</a>
+                                        <br>
+									</p>
+								</div>
+                                <div class="widget tel-widget version-ii contact-widget wow fadeInUp" data-wow-delay="0.6s">
+									<p>
+										<span class="iconfont icon-zhiyuandidian"></span><a href="javascript:void(0);">Nanjing, Jiangsu, China</a>
+										<br>
+                                        <span class="iconfont icon-xuexiao"></span><a href="http://www.njupt.edu.cn/" target="_blank">NJUPT</a>
+                                        <br>
+									</p>
+								</div>
+								<div class="widget tel-widget version-ii contact-widget wow fadeInUp" data-wow-delay="0.6s">
+									<p>
+										<span class="iconfont icon-youxiang"></span><a href="mailto:&#49;&#53;&#50;&#52;&#49;&#50;&#54;&#52;&#51;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#49;&#53;&#50;&#52;&#49;&#50;&#54;&#52;&#51;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a>
+										<br>
+										<span class="iconfont icon-houshinianshoujihao"></span><a href="tel:+0034524325">+183-519-22995</a>
+                                        <br>
+                                        <span class="iconfont icon-weixin" ></span><a href="javascript:void(0);" onclick="mywechat()">wechat</a>
+                                        <script>
+                                            function mywechat() {
+                                                swal({
+                                                    title: '欢迎骚扰！',
+                                                    text: '',
+                                                    imageUrl: '/static/images/newssjwx.jpg',
+                                                    imageWidth: 400,
+                                                    imageHeight: 200,
+                                                    animation: false
+                                                })
+                                            }
+                                        </script>
+									</p>
+								</div>
+
+                                <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
+								    <header class="widget-head">
+									    <h3>Domain Info</h3>
+								    </header>
+                                    <ul>
+                                        <li class="cat-item cat-item-1">- 苏ICP备19007197号</li>
+                                        <li class="cat-item cat-item-1">- Copyright &copy; 2019.Company name All &nbsp;&nbsp;&nbsp;rights reserved.arithmeticjia</li>
+                                    </ul>
+                                </div>
+								<!-- Widget of the page end -->
+							</aside>
+						</div>
+					</div>
+				</div>
+				<!-- Contact Sec of the page end -->
+                <div class="instagram-slider container-fluid">
+				    <div class="row">
+					    <div class="mask">
+						    <div class="slideset">
+							    <div class="slide">
+								    <a href="#"><img src="/static/JiaBlog/images/img30.jpg" alt="image description"></a>
+							    </div>
+							    <div class="slide">
+							    	<a href="#"><img src="/static/JiaBlog/images/img31.jpg" alt="image description"></a>
+							    </div>
+							    <div class="slide">
+							    	<a href="#"><img src="/static/JiaBlog/images/img35.jpg" alt="image description"></a>
+							    </div>
+							    <div class="slide">
+							    	<a href="#"><img src="/static/JiaBlog/images/img32.jpg" alt="image description"></a>
+							    </div>
+							    <div class="slide">
+							    	<a href="#"><img src="/static/JiaBlog/images/img33.jpg" alt="image description"></a>
+							    </div>
+							    <div class="slide">
+							    	<a href="#"><img src="/static/JiaBlog/images/img36.jpg" alt="image description"></a>
+							    </div>
+							    <div class="slide">
+							    	<a href="#"><img src="/static/JiaBlog/images/img34.jpg" alt="image description"></a>
+							    </div>
+							    <div class="slide">
+							    	<a href="#"><img src="/static/JiaBlog/images/img30.jpg" alt="image description"></a>
+							    </div>
+							    <div class="slide">
+							    	<a href="#"><img src="/static/JiaBlog/images/img31.jpg" alt="image description"></a>
+							    </div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			</main>
+			<!-- Main of the page end -->
+			<aside class="aside version-ii container">
+				<div class="row">
+					<div class="col-xs-12 holder">
+						<div class="col">
+							<div class="logo"><a href="#"><img src="/media/jia/IMG_0323.JPG" alt="dot"></a></div>
+							<p>Created By ArithmeticJia</p>
+                            <p>Nanjing University Of Posts & Telecommunications</p>
+							<!-- Social Network of the page -->
+							<ul class="social-networks">
+								<li><a href="#"><span class="ico-facebook"></span></a></li>
+								<li><a href="#"><span class="ico-twitter"></span></a></li>
+								<li><a href="#"><span class="ico-google-plus"></span></a></li>
+								<li><a href="#"><span class="ico-linkedin"></span></a></li>
+								<li><a href="#"><span class="ico-pinterest"></span></a></li>
+							</ul>
+							<!-- Social Network of the page end -->
+						</div>
+						<!-- Footer Nav of the page -->
+						<nav class="col footer-nav">
+							<h3>Important Links</h3>
+							<ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
+							</ul>
+						</nav>
+                        <nav class="col footer-nav">
+							<h3>Popular Links</h3>
+							<ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="/blog/list">Archive</a></li>
+								<li><a href="/blog/contact-us" target="_blank">About me</a></li>
+							</ul>
+						</nav>
+						<!-- Footer Nav of the page end -->
+						<div class="col">
+							<h3>Subscribe to Newsletter</h3>
+							<p></p>
+							<!-- subscribe form of the page -->
+							<form action="#" class="subscribe-form">
+								<div class="form-group">
+									<input type="email" class="form-control" placeholder="Enter your email here">
+									<button type="button" class="ico-send"></button>
+								</div>
+							</form>
+							<!-- subscribe form of the page end -->
+						</div>
+					</div>
+				</div>
+			</aside>
+			<!-- Aside of the page end -->
+			<!-- Footer of the page -->
+			<footer id="footer" class="container version-ii">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<p>Copyright &copy; 2019.Company name All rights reserved.苏ICP备19007197号<a target="_blank" href=""></a></p>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<!-- Social Network of the page -->
+						<ul class="social-networks">
+							<li><a href="#"><span class="ico-facebook"></span></a></li>
+							<li><a href="#"><span class="ico-twitter"></span></a></li>
+							<li><a href="#"><span class="ico-google-plus"></span></a></li>
+							<li><a href="#"><span class="ico-linkedin"></span></a></li>
+							<li><a href="#"><span class="ico-pinterest"></span></a></li>
+						</ul>
+						<!-- Social Network of the page end -->
+					</div>
+				</div>
+			</footer>
+			<!-- Footer of the page end -->
+			<!-- Back Top of the page -->
+	    	<span id="back-top" class="fa fa-angle-up"></span>
+	    	<!-- Style Changer of the page -->
+	    	<div id="style-changer" data-src="inc/style-changer.html"></div>
+		</div>
+	</div>
+	<!-- include jQuery -->
+{#    <script src="/static/js/jquery-3.4.1.min.js"></script>#}
+    <script src="/static/js/jquery.min.js"></script>
+	<script src="/static/JiaBlog/js/jquery.js"></script>
+{#    <script src="/static/JiaBlog/js/echarts.js"></script>#}
+    <script src="/static/echarts-3/echarts.js"></script>
+{#    <script src="/static/js/worldcloud.js"></script>#}
+    <script src="/static/js/echarts-wordcloud.min.js"></script>
+	<!-- include jQuery -->
+    <script src="/static/JiaBlog/js/plugins.js"></script>
+
+    <!-- include jQuery -->
+    <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
+</body>
+</html>
+

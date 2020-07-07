@@ -1,14 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<!-- set the encoding of your site -->
-{#    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">#}
-    <link rel="shortcut icon" href="/static/images/写博客.png">
+    <link rel="shortcut icon" href="/static/images/Jiaicon.ico">
 	<meta charset="utf-8">
 	<!-- set the viewport width and initial-scale on mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>File</title>
+	<title>Recruitment</title>
 	<!-- include the site stylesheet -->
 	<link href='https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CPoppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 	<!-- include the site stylesheet -->
@@ -29,71 +27,6 @@
     <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_xmpmtbu3qm.css">
     <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_2jx8jr9khtj.css">
     <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1039987_h5pzyznynb7.css">
-{#    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>#}
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
-    <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
-    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-    <style>
-        p{
-            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif
-        }
-        .readme{
-            background: #ec6149;
-            border-radius: 20px;
-            border: none;
-            width: 80px;
-            height: 30px;
-            font-size: 10px;
-            font-weight: bold;
-            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: white
-        }
-        .search-box{
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            transform: translate(-0%,-0%);
-            background: #2f3640;
-            border-radius: 40px;
-            padding: 10px;
-        }
-        .search-box:hover>.search-txt{
-            width: 240px;
-            padding: 0 6px;
-        }
-        .search-box:hover>.search-btn{
-           background: white;
-        }
-        .search-btn{
-            border: none;
-            color: #e84118;
-            float:right ;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #2f3640;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .search-txt{
-            border: none;
-            background: none;
-            outline: none;
-            float: left;
-            padding: 0;
-            color: white;
-            font-size: 16px;
-            transition: 0.4s;
-            line-height: 40px;
-            width: 0px;
-        }
-    </style>
 </head>
 <body class="version-ii">
 	<div class="loader-holder">
@@ -168,12 +101,12 @@
 											<!--li><a href="single.html">Single</a></li-->
 											<li><a href="/blog/contact-us">Contact</a></li>
                                             <li><a href="/blog/file/" target="_blank">File</a></li>
-                                            <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
+                                            <li><a href="/blog/onlineeditor" target="_blank">OnlineExplain</a></li>
                                             {% if request.session.is_login %}
                                                 <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
                                                 <li><a href="/blog/logout/">Logout</a></li>
                                             {% elif request.user.is_authenticated %}
-                                                <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                                <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}(Github)</a></li>
                                                 <li><a href="/blog/logout/">Logout</a></li>
                                             {% else %}
                                                 <li><a href="/blog/mylist/">Tourist</a></li>
@@ -195,12 +128,12 @@
 					<h2>About me</h2>
 					<section class="widget profile-widget">
 						<div class="profile-pic">
-                            <a href="#">
-                                <img src="{{ jia.pic.url }}" alt="ArithmeticJia">
-                            </a>
-                        </div>
-                        <h3><a href="#">{{ jia.name }}</a></h3>
-                        <p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ jia.brief }}</p>
+							<a href="#">
+								<img src="/static/JiaBlog/images/head.jpg" alt="John Aston">
+							</a>
+						</div>
+						<h3><a href="#">ArithmeticJia</a></h3>
+						<p>Hi, I am ArithmeticJia. Suning Tesco IT Headquarters Data Center's most handsome test engineer</p>
 						<!-- Social Network of the page -->
 						<ul class="social-networks">
 							<li><a href="#"><span class="icon ico-facebook"></span></a></li>
@@ -223,10 +156,10 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
-								<h1>File Page</h1>
+								<h1>Recruitment Page</h1>
 								<ol class="breadcrumb">
 									<li><a href="/blog/index">Home</a></li>
-									<li class="active">File</li>
+									<li class="active">Recruitment</li>
 								</ol>
 							</div>
 						</div>
@@ -237,7 +170,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="main-header">
-								<strong class="title">Files</strong>
+								<strong class="title">Published By ArithmeticJia</strong>
 							</div>
 						</div>
 					</div>
@@ -246,9 +179,9 @@
 						<div id="content" class="col-xs-12 col-md-8">
 							<!-- Widget of the page -->
 							<div class="widget widget_search hidden-md hidden-lg">
-								<form method="get" class="search-form" action="/blog/search">
+								<form method="get" class="search-form" action="#">
 									<fieldset>
-										<input type="search" name="q" placeholder="Type to search here">
+										<input type="search" name="s" placeholder="Type to search here">
 										<button type="button" class="ico-search"></button>
 									</fieldset>
 								</form>
@@ -261,8 +194,8 @@
 										<img src="/static/JiaBlog/images/head.jpg" alt="John Aston">
 									</a>
 								</div>
-								<h3>{{ jia.name }}</h3>
-								<p>{{ jia.brief }}</p>
+								<h3>ArithmeticJia<!--a href="#"><img src="/static/JiaBlog/images/text-jhon-aston.png" alt="jhon aston"></a--></h3>
+								<p>Hi, I am John Aston. Duis autem vel eum dolor in hendrerit in vulputate velit esse mole consequat, vel illum dolore eu feugiat nulla lisis at vero eros et accumsan et iusto.</p>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">
 									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
@@ -277,219 +210,30 @@
 							<!-- Posts Blocks of the page -->
 							<section class="comment-respond wow fadeInUp" data-wow-delay="0.4s">
 								<header class="header">
-									<h3 id="reply-title" class="comment-reply-title">Upload Files</h3>
-                                    <button class="readme" onclick="show()">README</button>
-                                    <script>
-                                        function show() {
-                                            swal(
-                                            '最大支持1000M文件！',
-                                            '',
-                                            'info'
-                                        )}
-                                    </script>
-									<!--p>it’s easy to upload or download files here</p-->
+									<!--h3 id="reply-title" class="comment-reply-title">Recruitment</h3-->
+                                    <h3><a class="active" style="display: inline;color: #f5ab35" href="/blog/recruitment/">招聘要求</a>&nbsp;&nbsp;&nbsp;<a style="display: inline;" href="/blog/recruitment/info/">招聘信息</a>&nbsp;&nbsp;&nbsp;<a style="display: inline;" href="/blog/recruitment/findme/">联系我</a>&nbsp;&nbsp;&nbsp;<a style="display: inline;" href="/static/download/recruitment.xlsx">信息下载</a></h3>
+									<p></p>
 								</header>
-								<form method="POST" id="commentform"  class="comment-form" enctype="multipart/form-data">
-                                    {% csrf_token %}
-									<div class="wrap">
-										<input id='fileupload' class="form-submit" type='file' name="file">
-										<div class="form-submit">
-										    <input type="button" name="submit" value="Upload" onclick="checkfile()">
-									    </div>
-									</div>
-                                    <script type="text/javascript">
-                                        function checkfile(){
-                                            var obj_file = document.getElementById("fileupload");
-                                            if(obj_file.value==""){
-                                                swal(
-                                                    "Please select a file! ",
-                                                    "",
-                                                    "warning"
-                                                );
-                                                return false;
-                                            }else{
-                                                var form_data = new FormData();
-                                                var file_info = $('#fileupload')[0].files[0];
-                                                form_data.append('file',file_info);
-                                                console.log(form_data);
-                                                $.ajax({
-                                                        url:"/JiaBlog/ajfileupload/",
-                                                        type:'POST',
-                                                        contentType: false,
-                                                        {#async: false,#}
-                                                        processData: false,
-                                                        data: form_data,
-                                                        success:function (upresult) {
-                                                           var upstatus = upresult.result;
-                                                           if (upstatus == 'success'){
-                                                               swal(
-                                                                   'Upload Successfully！',
-                                                                   '',
-                                                                   'success'
-                                                            ).then(function (result) {
-                                                                if(result.value){
-                                                                setTimeout(function () {
-                                                                window.location.reload()
-                                                                    }, 1000);
-                                                               }
-                                                                setTimeout(function () {
-                                                                window.location.reload()
-                                                                    }, 1000);
-                                                            });
-                                                           }else {
-                                                               swal(
-                                                                   'Upload Failed! ',
-                                                                   '',
-                                                                   "error"
-                                                               )
-                                                           }
-                                                       }
-                                                    })
-                                                }
-                                            };
-                                    </script>
-									<p class="form-allowed-tags hidden">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a
-							 href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt;
-							&lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del
-							datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt;
-							&lt;strong&gt; </code></p>
+								<form method="POST" id="commentform" class="comment-form" enctype="multipart/form-data">
+                                    <table border="1">
+                                        <tr>
+                                            <th style="text-align: center">公司名</th>
+                                            <th style="text-align: center">行业</th>
+                                    		<th style="text-align: center">是否对学习形式有要求</th>
+                                            <th style="text-align: center">企业是否接收非全</th>
+                                    		<th style="text-align: center">备注</th>
+                                        </tr>
+                                    	{% for i in recruitment %}
+                                        <tr>
+                                            <td style="text-align: center">{{i.company_name}}</td>
+                                            <td style="text-align: center">{{i.industry_name}}</td>
+                                    		<td style="text-align: center">{{i.is_form}}</td>
+                                            <td style="text-align: center">{{i.if_accept}}</td>
+                                    		<td style="text-align: center">{{i.des}}</td>
+                                        </tr>
+                                    	{% endfor %}
+                                    </table>
 								</form>
-							</section>
-                            <section class="comment-respond wow fadeInUp" data-wow-delay="0.4s">
-								<header class="header">
-                                    <div>
-									    <h3 id="reply-title" class="comment-reply-title">Download Files</h3>
-                                        <div style="display: inline;float: right">
-                                            <form method="get" action="/blog/searchfile" onsubmit="return checkSearch()">
-                                                <div class="search-box">
-                                                    <input id="searchValue" class="search-txt" type="text" name="q" placeholder="Type to search file">
-                                                    <button class="search-btn">
-                                                        <i class="fas fa-search"></i>
-                                                    </button>
-                                                </div>
-                                                <script type="text/javascript">
-                                                    function checkSearch() {
-                                                        var searchValue = document.getElementById("searchValue");
-                                                        if (searchValue.value==="") {
-                                                            swal(
-                                                                "Please enter the filename! ",
-                                                                "",
-                                                                "warning"
-                                                            );
-                                                            return false
-                                                        }else{
-			                                            	return true;
-			                                            }
-                                                    }
-                                                </script>
-                                            </form>
-                                        </div>
-                                    </div>
-									<!--p>it’s easy to upload or download files here</p-->
-								</header>
-                                {% for i in jiafiles %}
-{#                                    /static/Jia_File/{{ i.file_name }}#}
-                                        <div class="comment-form"><a style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" name="{{ i.file_name }}" href="javascript:void(0);" onclick="checkdown(this)">{{ i }}</a><a href="javascript:void(0);" style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;float:right;color: #f5ab35" id="{{ i.id }}" onclick="checkdelete(this)">Delete</a></div>
-
-                                <script type="text/javascript">
-                                    function checkdelete(obj) {
-                                        //var file_name = "{{ i }}";
-                                        var file_id = $(obj).attr("id");
-                                        console.log($(obj).attr("file_id"));
-                                        swal({
-                                            title: 'Enter your password to Delete',
-                                            input: 'password',
-                                            inputAttributes: {
-                                                'maxlength': 10,
-                                                'autocapitalize': 'off',
-                                                'autocorrect': 'off'
-                                            }
-                                        }).then(function(result) {
-                                            if (result.value) {
-                                                $.ajax({
-                                                    url: "/blog/deletefile/",
-                                                    type: 'POST',
-                                                    data: {
-                                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                                                        file_id: file_id,
-                                                        password: result.value
-                                                    },
-                                                    success: function (result) {
-                                                        var status = result.result;
-                                                        if (status == 'success') {
-                                                            swal(
-                                                                'Delete successfully！',
-                                                                '',
-                                                                'success'
-                                                            ).then(function (result) {
-                                                                if(result.value){
-                                                                setTimeout(function () {
-                                                                     window.location.reload()
-                                                                });
-                                                            }
-                                                                setTimeout(function () {
-                                                                    window.location.reload()
-                                                                })
-                                                            });
-                                                        } else {
-                                                            swal(
-                                                                'Wrong password！',
-                                                                '',
-                                                                "error"
-                                                            );           //后端删除失败
-                                                        }
-                                                    },
-                                                })
-                                            }
-                                    })
-                                    }
-                                    function checkdown(obj) {
-                                        var file_name = $(obj).attr("name");
-                                        console.log(file_name);
-                                        swal({
-                                            title: 'Enter your password to Download',
-                                            input: 'password',
-                                            inputAttributes: {
-                                                'maxlength': 10,
-                                                'autocapitalize': 'off',
-                                                'autocorrect': 'off'
-                                            }
-                                        }).then(function(result) {
-                                            if (result.value) {
-                                                $.ajax({
-                                                    url: "/blog/filecheck/",
-                                                    type: 'POST',
-                                                    data: {
-                                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                                                        password: result.value
-                                                    },
-                                                    success: function (result) {
-                                                        var status = result.result;
-                                                        if (status == 'success') {
-                                                            swal(
-                                                                'Start Downloading! ',
-                                                                '',
-                                                                'success'
-                                                            ).then(function (result) {
-                                                                if(result.value){
-                                                                    {#window.open("/static/Jia_File/{{ i.file_name }}")#}
-                                                                    window.open('/static/Jia_File/'+file_name+'')
-                                                            }
-                                                            });
-                                                        } else {
-                                                            swal(
-                                                                'Wrong Password! ',
-                                                                '',
-                                                                "error"
-                                                            );           //后端删除失败
-                                                        }
-                                                    },
-                                                })
-                                            }
-                                    })
-                                    }
-                                </script>
-                                {% endfor %}
 							</section>
 							<!-- Posts Blocks of the page end -->
 							<!-- Navigation of the page -->
@@ -511,11 +255,11 @@
 							<section class="widget profile-widget version-ii hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
 								<div class="profile-pic">
 									<a href="#">
-										<img src="{{ jia.pic.url }}" alt="ArithmeticJia">
+										<img src="/static/JiaBlog/images/head.jpg" alt="John Aston">
 									</a>
 								</div>
-								<h3>{{ jia.name }}</h3>
-								<p>{{ jia.brief }}</p>
+								<h3>ArithmeticJia<!--a href="#"><img src="/static/JiaBlog/images/text-jhon-aston.png" alt="jhon aston"></a--></h3>
+								<p>Hi, I am ArithmeticJia. Suning Tesco IT Headquarters Data Center's most handsome test engineer</p>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">
 									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
@@ -530,7 +274,7 @@
 							<div class="widget widget_search hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
 								<form method="get" class="search-form" action="/blog/search/">
 									<fieldset>
-										<input type="search" name="q" placeholder="Type to search here">
+										<input type="search" name="s" placeholder="Type to search here">
 										<button type="submit" class="ico-search"></button>
 									</fieldset>
 								</form>
@@ -548,7 +292,7 @@
 	                                     {% for i in blog_list_comments %}
 											<li>
 												<div class="alignleft">
-													<img src="/media/{{ i.pic }}" alt="image description">
+													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
 													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
@@ -588,7 +332,7 @@
 		                                    {% for i in blog_list_greats %}
 											<li>
 												<div class="alignleft">
-													<img src="/media/{{ i.pic }}" alt="image description">
+													<img src="{{ i.pic.url }}" alt="image description">
 												</div>
 												<div class="descr">
 													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
@@ -675,16 +419,6 @@
                                     {% endfor %}
 								</ul>
 							</div>
-
-                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
-								<header class="widget-head">
-									<h3>Domain Info</h3>
-								</header>
-                                <ul>
-                                    <li class="cat-item cat-item-1">- 苏ICP备19007197号</li>
-                                    <li class="cat-item cat-item-1">- Copyright &copy; 2019.Company name All &nbsp;&nbsp;&nbsp;rights reserved.arithmeticjia</li>
-                                </ul>
-                            </div>
 							<!-- Widget of the page end -->
 						</aside>
 						<!-- Sidebar of the page end -->
@@ -814,12 +548,10 @@
 	</div>
 	<!-- include jQuery -->
 	<script src="/static/JiaBlog/js/jquery.js"></script>
-    <
 	<!-- include jQuery -->
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->
     <script src="/static/JiaBlog/js/jquery.main.js"></script>
-    <script src="/static/JiaBlog/js/fontawesome.js"></script>
     <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
 </body>
 </html>
