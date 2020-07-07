@@ -99,6 +99,14 @@ class Post(models.Model):
     def increase_views(self):
         self.__class__.objects.filter(id=self.id).update(views=F("views") + 1)
 
+    def was_created_recently(self):
+        # 若文章是"最近"发表的，则返回 True
+        diff = timezone.now() - self.created_time
+        if 0 == diff.days <= diff.seconds < 60:
+            return True
+        else:
+            return False
+
     @property
     def body_html(self):
         return self.rich_content.get("content", "")

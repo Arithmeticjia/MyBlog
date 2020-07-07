@@ -6,13 +6,14 @@ from .forms import CommentForm
 from .models import Comment
 from blogproject.models import Post, Tag, Category
 
+
 # Create your views here.
 
 
 @login_required(login_url='/userprofile/login/')
 # 新增参数 parent_comment_id
 def post_comment(request, article_id, parent_comment_id=None):
-    article = get_object_or_404(Post, id = article_id)
+    article = get_object_or_404(Post, id=article_id)
 
     # 处理 POST 请求
     if request.method == 'POST':
