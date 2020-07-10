@@ -1,7 +1,9 @@
 from django.contrib import admin
+from . import models
 from django.utils.translation import gettext_lazy as _
 
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, User
+
 
 # Register your models here.
 
@@ -51,3 +53,6 @@ class TagAdmin(admin.ModelAdmin):
     list_filter = [
         "name",
     ]
+
+
+admin.site.register(models.User)

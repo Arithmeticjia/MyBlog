@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
 from django.db.models import F
 from django.urls import reverse
 from django.utils import timezone
@@ -13,6 +14,11 @@ from imagekit.models import ImageSpecField
 from uuslug import slugify
 
 from blogproject.utils import generate_rich_content
+
+
+class User(AbstractUser):
+    mobile = models.CharField(max_length=16, null=True, default=None)
+    profile_photo = models.ImageField(upload_to='userpic', blank=True, null=True)
 
 
 class Category(TimeStampedModel):

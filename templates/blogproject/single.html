@@ -37,10 +37,11 @@
     <script src="https://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
     <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.css">
     <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="/static/ckeditor/ckeditor.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="description" content="js代码（www.jsdaima.com）">
     <meta name="author" content="js代码（www.jsdaima.com）">
@@ -492,7 +493,7 @@
                                                         {% endif %}">
                                                 <div class="comment even thread-even depth-1" id="comment-2">
                                                     <div class="avatar-holder">
-                                                        <img alt="image description" src="/static/JiaBlog/images/img58.jpg" class="avatar avatar-48 photo avatar-default">
+                                                        <a href=""><img alt="image description" src="{{ comment.user.profile_photo.url }}"></a>
                                                     </div>
                                                     <div class="commentlist-holder">
                                                         <p class="meta">
@@ -544,10 +545,21 @@
 										</div-->
 									</div>
 									<!--div class="comment-form-url hidden"><label for="url">Website</label> <input type="text" id="url" name="url" size="30"></div-->
-									<div class="comment-form-comment">
+
+                                    <div class="comment-form-comment">
 										<label for="comment">Comment <span class="required">*</span></label>
-										<textarea id="comment" name="text" rows="3" cols="72" aria-required="true" placeholder="your comment here"></textarea>
+										<input id="ceditor" name="text">
+{#                                        <textarea id="comment" rows="3" cols="72" aria-required="true" placeholder="your comment here"></textarea>#}
+{#                                        <div id="editor"></div>#}
+
+                                        <link rel="stylesheet" href="/static/ckeditor5-build-classic/sample/css/sample.css">
+
 									</div>
+
+{#                                        <script src="/static/ckeditor5-build-classic/ckeditor.js"></script>#}
+                                        <script>
+                                            CKEDITOR.replace( 'ceditor' );
+                                        </script>
                                 {% if request.session.is_login %}
 									<div class="form-submit" >
 										<input type="button" id ="dosubmit" name="submit" value="Leave a comment" onclick=DoSubmit(this)>
@@ -1006,6 +1018,7 @@
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->
     <script src="/static/JiaBlog/js/jquery.main.js"></script>
+
     <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
 </body>
 </html>

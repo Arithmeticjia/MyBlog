@@ -1,7 +1,8 @@
+# from django.contrib.auth.models import User
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-from django.contrib.auth.models import User
-from blogproject.models import Post
+# from django.contrib.auth.models import User
+from blogproject.models import Post, User
 from ckeditor.fields import RichTextField
 # Create your models here.
 
