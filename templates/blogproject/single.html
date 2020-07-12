@@ -37,11 +37,10 @@
     <script src="https://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/sweetalert2/js/sweetalert2.min.js"></script>
     <script src="/static/sweetalert2/js/sweetalert2.all.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.css">
     <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-    <script src="/static/ckeditor/ckeditor.js"></script>
+    <script src="/static/ckeditor4/ckeditor.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="description" content="js代码（www.jsdaima.com）">
     <meta name="author" content="js代码（www.jsdaima.com）">
@@ -508,7 +507,7 @@
                                                             <a href="#"><time datetime="2011-01-12">{{ comment.created_time|date:"Y-m-d H:i" }}</time></a>
                                                         </p>
                                                         <p>{{ comment.body|safe }}</p>
-                                                        <p><a class="comment-reply-link" href="#" onclick="return addComment.moveForm(&quot;comment-3&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;1&quot;)">REPLY</a></p>
+                                                        <p><a id="replyeditor" class="comment-reply-link" href="#" onclick="reply()">REPLY</a></p>
                                                     </div>
                                                 </div>
                                                 {% if not comment.is_leaf_node %}
@@ -548,17 +547,43 @@
 
                                     <div class="comment-form-comment">
 										<label for="comment">Comment <span class="required">*</span></label>
-										<input id="ceditor" name="text">
+                                        <textarea id="ceditor" placeholder="your comment here"></textarea>
 {#                                        <textarea id="comment" rows="3" cols="72" aria-required="true" placeholder="your comment here"></textarea>#}
-{#                                        <div id="editor"></div>#}
-
-                                        <link rel="stylesheet" href="/static/ckeditor5-build-classic/sample/css/sample.css">
-
 									</div>
-
-{#                                        <script src="/static/ckeditor5-build-classic/ckeditor.js"></script>#}
+                                        <script src="/static/JiaBlog/js/jquery.js"></script>
                                         <script>
-                                            CKEDITOR.replace( 'ceditor' );
+                                            {#和class="ckeditor只能用一个"#}
+                                            CKEDITOR.replace( 'ceditor',{
+                                                customConfig: '/static/ckeditor4/config.js',
+                                            });
+                                            function reply() {
+                                                var replyObj;
+                                                var textValue;
+                                                swal({
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: "#f5ab35",
+                                                    confirmButtonText: "Submit",
+                                                    cancelButtonText: "Cancel",
+                                                    width: 600,
+                                                }).then(function(isConfirm){
+                                                    if (isConfirm) {
+                                                        alert(textValue)
+                                                    } else {
+                                                        alert("offk")
+                                                    }
+                                                });
+
+                                                replyObj = CKEDITOR.replace( 'swal2-validation-message',{
+                                                    customConfig: '/static/ckeditor4/config.js',
+                                                });
+
+                                                replyObj.on( 'change', function( event ) {
+                                                    textValue = this.getData();
+                                                    console.log(textValue)
+                                                });
+
+                                            }
+
                                         </script>
                                 {% if request.session.is_login %}
 									<div class="form-submit" >
