@@ -19,6 +19,7 @@ from blogproject.utils import generate_rich_content
 class User(AbstractUser):
     mobile = models.CharField(max_length=16, null=True, default=None)
     profile_photo = models.ImageField(upload_to='userpic', blank=True, null=True)
+    brief_info = models.CharField(max_length=200, blank=True, null=True)
 
 
 class Category(TimeStampedModel):
@@ -67,6 +68,7 @@ class Post(models.Model):
     updated_time = models.DateTimeField(_("created time"), auto_now=True)
     likes = models.PositiveIntegerField(default=0)
     url_slug = models.SlugField(editable=False, max_length=200)
+    cover_pic = models.ImageField(upload_to='blogcovers')
 
     status = models.PositiveSmallIntegerField(
         _("status"), choices=STATUS_CHOICES, default=STATUS_CHOICES.draft

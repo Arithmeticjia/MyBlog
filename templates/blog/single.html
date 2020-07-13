@@ -674,6 +674,14 @@
 							</section>
 							<!-- Widget of the page end -->
 							<!-- Widget of the page -->
+                            <div class="widget widget_search hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s" style="display: none">
+								<form method="get" class="search-form" action="/blog/search/">
+									<fieldset>
+										<input type="search" name="q" placeholder="Type to search here">
+                                        <button type="submit" class="ico-search"></button>
+									</fieldset>
+								</form>
+							</div>
                             <div class="widget widget_search hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
 								<form method="get" class="search-form" action="/blog/search/">
 									<fieldset>
@@ -694,16 +702,7 @@
                                     {% endblock toc %}
                                 </div>
                             </div>
-{#                          <div class="widget widget_categories tabs wow fadeInUp" data-wow-delay="0.4s">#}
-{#								<header class="widget-head">#}
-{#									<h3>Article Catagory</h3>#}
-{#								</header>#}
-{#								<url style="text-indent: 2em;">#}
-{#                                   {% block toc %}#}
-{#                                       {{ toc|safe }}#}
-{#                                   {% endblock toc %}#}
-{#								</url>#}
-{#							</div>#}
+
                             <section class="widget recent-posts-widget wow fadeInUp" data-wow-delay="0.6s">
 								<header class="widget-head">
 									<h3>Recent Posts</h3>

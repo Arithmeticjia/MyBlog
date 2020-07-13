@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<!-- set the viewport width and initial-scale on mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ blog_list.title }}</title>
+	<title>{{ post.title }}</title>
 	<!-- include the site stylesheet -->
 	<link href='https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CPoppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 	<!-- include the site stylesheet -->
@@ -87,14 +87,14 @@
             {% endif %}
             <script type="text/javascript">
                 function Collect(){
-                        var article_id = {{ blog_list.id }};
-                        console.log(article_id);
+                        var post_id = {{ post.id }};
+                        console.log(post_id);
                         $.ajax({
                             url:"/blog/collect/",
                             type:'POST',
                             data:{
                                 csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                                article_id:article_id,
+                                article_id:post_id,
                             },
                             success:function (result) {
                                 console.log(result.result);
@@ -272,7 +272,7 @@
 {#                                    {% to_image blog_list.body  style="border:#F00 1px solid", css="a_css_class" %}#}
 {#                                    {% unicode_to_image blog_list.body  style="border:#F00 1px solid", css="a_css_class" %}#}
 									<div class="img-holder">
-										<img src="{{ post.pic.url  }}" alt="image description">
+										<img src="{{ post.cover_pic.url  }}" alt="image description">
 									</div>
 									<time datetime="2011-01-12"><a href="#">{{ post.timestamp }}</a></time>
 									<h2 id="blog-title">{{ post.title }}</h2>
@@ -370,14 +370,14 @@
                             </script>
 							<div class="widget widget-block wow fadeInUp" data-wow-delay="0.4s">
 								<div class="alignleft">
-									<a href="#"><img src="{{ post.author.userpic.url }}" alt="David Ramon"></a>
+									<a href="#"><img src="{{ post.author.profile_photo.url }}" alt="David Ramon"></a>
 								</div>
 								<div class="text-holder">
 									<header>
-										<h2><a href="#">{{ blog_lpostist.authorname }}</a></h2>
+										<h2><a href="#">{{ post.author }}</a></h2>
 										<span class="subtitle"><a href="http://www.guanacossj.com" target="_blank">www.guanacossj.com</a></span>
 									</header>
-									<p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ post.author.brief }}</p>
+									<p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ post.author.brief_info }}</p>
 									<!-- Social Network of the page -->
 									<ul class="social-networks">
 										<li><a href="#"><span class="ico-facebook"></span></a></li>
@@ -676,11 +676,11 @@
 							<section class="widget profile-widget version-ii hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.4s">
 								<div class="profile-pic">
 									<a href="#">
-										<img src="{{ blog_list.authorname.userpic.url }}" alt="John Aston">
+										<img src="{{ post.author.profile_photo.url }}" alt="John Aston">
 									</a>
 								</div>
-								<h3>{{ blog_list.authorname }}</h3>
-								<p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ blog_list.authorname.brief }}</p>
+								<h3>{{ post.author }}</h3>
+								<p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ post.author.brief_info }}</p>
 								<!--Social Network of the page-->
 								<ul class="social-networks">
 									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
@@ -693,6 +693,14 @@
 							</section>
 							<!-- Widget of the page end -->
 							<!-- Widget of the page -->
+                            <div class="widget widget_search hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s" style="display: none">
+								<form method="get" class="search-form" action="/blog/search/">
+									<fieldset>
+										<input type="search" name="q" placeholder="Type to search here">
+                                        <button type="submit" class="ico-search"></button>
+									</fieldset>
+								</form>
+							</div>
                             <div class="widget widget_search hidden-sm hidden-xs wow fadeInUp" data-wow-delay="0.6s">
 								<form method="get" class="search-form" action="/blog/search/">
 									<fieldset>
