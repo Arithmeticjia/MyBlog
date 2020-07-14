@@ -12,6 +12,7 @@ router = routers.DefaultRouter()
 # 注册restfulapi的路由地址
 router.register(r'getarticleinfo', views.GetArticleInfo)
 router.register(r'posts', views.PostViewSet, basename='post')
+router.register(r"search", views.PostSearchView, basename="search")
 # route.register(r'getweatherinfo', views.GetWeatherInfo)
 
 urlpatterns = [

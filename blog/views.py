@@ -18,6 +18,10 @@ from django.core.mail import send_mail
 from django.db.models import Q, IntegerField, CharField, DateTimeField
 from django.views.decorators.http import require_POST
 import re
+
+from drf_haystack.serializers import HaystackSerializerMixin
+from drf_haystack.viewsets import HaystackViewSet
+
 from blog.models import Articles, Message, Tag, Category, Note, Comment, BlogUser, VisitNumber, Recruitment, \
     Recruinfo, Movie, JiaFile, Jia, BlogRole, Paper, Graduation, Honour, Teacher, Project, Version, BlogUserCollect, \
     SocialAuthUsersocialauth, AuthUser, Hits
@@ -310,6 +314,16 @@ class Resume(View):
     def get(self, request):
         # name = Jia.objects.get(name=)
         return render(request, 'resume.html')
+
+
+class ArticleHaystackSerializer(HaystackSerializerMixin, PostListSerializer):
+    class Meta(PostListSerializer.Meta):
+        search_fields = ["text"]
+
+
+class PostSearchView(HaystackViewSet):
+    index_models = [Articles]
+    serializer_class = ArticleHaystackSerializer
 
 
 class MySeachView(SearchView):

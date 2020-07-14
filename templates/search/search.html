@@ -263,7 +263,7 @@
                                     </a>
                                 </div>
                                 <h3><a href="#">{{ jia.name }}</a></h3>
-                                <p>{{ jia.brief }}</p>
+                                <p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ jia.brief }}</p>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">
 									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
@@ -279,10 +279,10 @@
                             <section class="comment-respond wow fadeInUp" id="articlelist">
 							<section class="posts-blocks">
 								<!-- Post Block of the page -->
-                            {% if query %}
                                 <header class="header">
                                     <h2>Search Results:</h2>
                                 </header>
+                            {% if query %}
                                 {% for result in page.object_list %}
 								<article class="post-block wow fadeInUp" data-wow-delay="0.6s">
 									<div class="post-holder" style="">
@@ -303,100 +303,17 @@
 									</div>
 								</article>
                                 {% empty %}
-                                    <article class="post-block wow fadeInUp" data-wow-delay="0.6s">
-                                        <div class="post-holder" style="">没有搜索到符合条件的文章</div>
-                                    </article>
+                                    <div style="background: #fff;border-radius: 1px;overflow: hidden;padding: 0 26px 62px;position: relative;">
+                                        <p>Nothing</p>
+                                    </div>
                                 {% endfor %}
+                                {% else %}
+                                    <div style="background: #fff;border-radius: 1px;overflow: hidden;padding: 0 26px 62px;position: relative;">
+                                        <p>Nothing</p>
+                                    </div>
                              {% endif %}
-
-								<!-- Post Block of the page end -->
-								<!-- Post Block of the page -->
-								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
-									<div class="post-holder">
-										<div class="img-holder">
-											<a href="single-post.html"><img src="/static/JiaBlog/images/img23.jpg" alt="image description"></a>
-										</div>
-										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
-										<h2><a href="single-post.html">Traveling is awesome <br>if you can enjoy.</a></h2>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
-										<a href="single-post.html" class="read-more">Read more</a>
-										<footer>
-											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
-											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
-										</footer>
-									</div>
-								</article-->
-								<!-- Post Block of the page end -->
-								<!-- Post Block of the page -->
-								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
-									<div class="post-holder">
-										<div class="video-holder">
-											<a href="#" class="ico-play lightbox fancybox.iframe"></a>
-											<img src="/static/JiaBlog/images/img70.jpg" alt="image description">
-										</div>
-										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
-										<h2><a href="single-post.html">I get up in the morning looking for adventure.</a></h2>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
-										<a href="single-post.html" class="read-more">Read more</a>
-										<footer>
-											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
-											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
-										</footer>
-									</div>
-								</article-->
-								<!-- Post Block of the page end -->
-								<!-- Post Block of the page -->
-								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
-									<div class="post-holder">
-										<div class="img-holder">
-											<a href="single-post.html"><img src="/static/JiaBlog/images/img65.jpg" alt="image description"></a>
-										</div>
-										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
-										<h2><a href="single-post.html">Traveling is awesome <br>if you can enjoy.</a></h2>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
-										<a href="single-post.html" class="read-more">Read more</a>
-										<footer>
-											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
-											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
-										</footer>
-									</div>
-								</article-->
-								<!-- Post Block of the page end -->
-								<!-- Post Block of the page -->
-								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
-									<div class="post-holder">
-										<div class="img-holder">
-											<a href="single-post.html"><img src="/static/JiaBlog/images/img66.jpg" alt="image description"></a>
-										</div>
-										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
-										<h2><a href="single-post.html">I get up in the morning looking for adventure.</a></h2>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
-										<a href="single-post.html" class="read-more">Read more</a>
-										<footer>
-											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
-											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
-										</footer>
-									</div>
-								</article-->
-								<!-- Post Block of the page end -->
-								<!-- Post Block of the page -->
-								<!--article class="post-block wow fadeInUp" data-wow-delay="0.6s">
-									<div class="post-holder">
-										<div class="img-holder">
-											<a href="single-post.html"><img src="/static/JiaBlog/images/img67.jpg" alt="image description"></a>
-										</div>
-										<time datetime="2011-01-12"><a href="#">25th May - Travel</a></time>
-										<h2><a href="single-post.html">Traveling is awesome <br>if you can enjoy.</a></h2>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt...</p>
-										<a href="single-post.html" class="read-more">Read more</a>
-										<footer>
-											<strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">25 comments</a></strong>
-											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">138 shares</a></strong>
-										</footer>
-									</div>
-								</article-->
-								<!-- Post Block of the page end -->
 							</section>
+
                             </section>
 							<!-- Posts Blocks of the page end -->
 							<!-- Navigation of the page -->
@@ -436,7 +353,7 @@
                                     </a>
                                 </div>
                                 <h3><a href="#">{{ jia.name }}</a></h3>
-                                <p>{{ jia.brief }}</p>
+                                <p style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ jia.brief }}</p>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">
 									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
