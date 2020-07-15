@@ -26,8 +26,6 @@
 	<!-- include the site stylesheet -->
 	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
     <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
-{#    <script src="/static/JiaBlog/js/echarts.js"></script>#}
-    <script src="/static/echarts-4"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <meta name="baidu-site-verification" content="iYpMqoGJf4" />
@@ -71,6 +69,7 @@
     </style>
 </head>
 <body>
+    <script src="/static/JiaBlog/js/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             let timerInterval;
@@ -344,20 +343,20 @@
 				<!-- slide of the page end -->
 			</div>
 			<!-- twocolumns of the page -->
-            <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script><script>tpwidget("init", {
-                "flavor": "bubble",
-                "location": "WX4FBXXFKE4F",
-                "geolocation": "enabled",
-                "position": "top-left",
-                "margin": "250px 10px",
-                "language": "zh-chs",
-                "unit": "c",
-                "theme": "chameleon",
-                "uid": "U2D9B077BB",
-                "hash": "c25dba4c45793e2cadff6ee42856d99f"
-                });
-                tpwidget("show");
-            </script>
+{#            <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script><script>tpwidget("init", {#}
+{#                "flavor": "bubble",#}
+{#                "location": "WX4FBXXFKE4F",#}
+{#                "geolocation": "enabled",#}
+{#                "position": "top-left",#}
+{#                "margin": "250px 10px",#}
+{#                "language": "zh-chs",#}
+{#                "unit": "c",#}
+{#                "theme": "chameleon",#}
+{#                "uid": "U2D9B077BB",#}
+{#                "hash": "c25dba4c45793e2cadff6ee42856d99f"#}
+{#                });#}
+{#                tpwidget("show");#}
+{#            </script>#}
 {#            <button style="border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 16px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;" onclick="vshow()">版本更新</button>#}
             <div class="form-submit" >
                 <input type="button" id="tryme" value="Try Me" onclick="vshow()">
@@ -1310,9 +1309,8 @@
 
 	</div>
 	<!-- include jQuery -->
-{#    <script src="/static/JiaBlog/js/echarts.js"></script>#}
+    <script src="/static/JiaBlog/js/jquery.js"></script>
     <script src="/static/echarts-4/echarts.js"></script>
-	<script src="/static/JiaBlog/js/jquery.js"></script>
 	<!-- include jQuery -->
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->
