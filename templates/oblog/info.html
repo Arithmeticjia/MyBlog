@@ -10,6 +10,7 @@
 <link type="text/css" rel="stylesheet" href="/static/css/github.css"/>
 <link href="/static/css/m.css" rel="stylesheet">
 <script src="/static/js/jquery-1.8.3.min.js" ></script>
+<script src="/static/ckeditor4/ckeditor.js"></script>
 <script src="/static/js/comm.js"></script>
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
@@ -122,7 +123,14 @@ tpwidget("show");</script>
             {% csrf_token %}
                 <br>
                 <label for="id_body">
-                    <textarea class="qingshuru"style="width: 400px;height: 100px;font-size: 15px" id="id_body" name="text" placeholder="请注意文明用语喔~🙂"></textarea>
+{#                    <textarea class="qingshuru"style="width: 400px;height: 100px;font-size: 15px" id="id_body" name="text" placeholder="请注意文明用语喔~🙂"></textarea>#}
+                  <textarea id="ceditor" placeholder="请注意文明用语喔~🙂" name="text"></textarea>
+                 <script>
+                    {#和class="ckeditor只能用一个"#}
+                    CKEDITOR.replace( 'ceditor',{
+                        customConfig: '/static/ckeditor4/config.js',
+                    });
+                </script>
                 </label>
                 <style>
                     textarea[class="qingshuru"]::-webkit-input-placeholder{font-family: "Microsoft YaHei";color: #ff8614;}
@@ -188,21 +196,20 @@ tpwidget("show");</script>
               <br class="comment-item">
               <div style="background: #f6f6f6">
                 <br>
-                <div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time|date:'Y-m-d H:i:s' }}</time>
+                <div class="text">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.text|safe }}
                 </div>
+                  <br>
+                  <div>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time|date:'Y-m-d H:i:s' }}</time>
+                    </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来自:&nbsp;&nbsp;&nbsp;<span class="nickname">{{ comment.name }}</span>
+                  </div>
                 <br>
-              <div class="text">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.text }}
-              </div>
-              <br>
-              <div>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From:&nbsp;&nbsp;&nbsp;<span class="nickname">{{ comment.name }}</span>
-              </div>
-              <br>
               </div>
           {% empty %}
-                暂无评论
+              暂无评论
           {% endfor %}
       </ul>
     </div>

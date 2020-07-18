@@ -177,101 +177,87 @@ class PostViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.Gen
         )
 
 
-# class PostViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
-#     # serializer_class = PostListSerializer
-#     queryset = Articles.objects.all()
-#     permission_classes = [AllowAny]
+# def queryweatherinfo():
+#     url = "https://restapi.amap.com/v3/weather/weatherInfo"
+#     key = '9bae4d790cfacdf4b54188b7758edf23'
+#     data = {'key': key, "city": '320100'}
+#     req = requests.post(url, data)
+#     return req.json()
 #
-#     def get_serializer_class(self):
-#         if self.action == 'list':
-#             return PostListSerializer
-#         elif self.action == 'retrieve':
-#             return PostRetrieveSerializer
-#         else:
-#             return super().get_serializer_class()
-
-
-def queryweatherinfo():
-    url = "https://restapi.amap.com/v3/weather/weatherInfo"
-    key = '9bae4d790cfacdf4b54188b7758edf23'
-    data = {'key': key, "city": '320100'}
-    req = requests.post(url, data)
-    return req.json()
-
-
-class GetWeatherInfo(View):
-
-    def get(self, request):
-        result = {}
-        try:
-            info = dict(queryweatherinfo())
-            weatherinfo = info['lives'][0]
-            result['status'] = 000
-            result['message'] = 'success'
-            result['info'] = {
-                'location': weatherinfo['province'] + weatherinfo['city'],
-                'weather': weatherinfo['weather'],
-                'temperature': weatherinfo['temperature'] + '℃',
-                'winddirection': weatherinfo['winddirection'],
-                'windpower': weatherinfo['windpower'],
-                'humidity': weatherinfo['humidity'],
-                'reporttime': weatherinfo['reporttime'],
-            }
-            return JsonResponse(
-                result,
-                json_dumps_params={'ensure_ascii': False}
-            )
-        except Exception as e:
-            result['status'] = 500
-            result['message'] = '请求异常，请稍后重试'
-            result['info'] = {}
-            return JsonResponse(
-                result,
-                json_dumps_params={'ensure_ascii': False}
-            )
-
-    @csrf_exempt
-    def post(self, request):
-        # 查询到的数据是二进制
-        json_bytes = request.body
-        # 需要进行解码，转成字符串
-        json_str = json_bytes.decode()
-        # 在把字符串转换成json字典
-        weather_dict = json.loads(json_str)
-        city = weather_dict.get('city')
-        result = {}
-        try:
-            url = "https://restapi.amap.com/v3/weather/weatherInfo"
-            key = '9bae4d790cfacdf4b54188b7758edf23'
-            data = {'key': key, "city": city}
-            req = requests.post(url, data)
-            info = dict(req.json())
-            weatherinfo = info['lives'][0]
-            result['status'] = 000
-            result['message'] = 'success'
-            result['info'] = {
-                'location': weatherinfo['province'] + weatherinfo['city'],
-                'weather': weatherinfo['weather'],
-                'temperature': weatherinfo['temperature'] + '℃',
-                'winddirection': weatherinfo['winddirection'],
-                'windpower': weatherinfo['windpower'],
-                'humidity': weatherinfo['humidity'],
-                'reporttime': weatherinfo['reporttime'],
-            }
-            return JsonResponse(
-                result,
-                json_dumps_params={'ensure_ascii': False}
-            )
-        except Exception as e:
-            result = {
-                'status': 500,
-                'message': '请求异常，请稍后重试',
-                'info': {}
-            }
-            return JsonResponse(
-                result,
-                json_dumps_params={'ensure_ascii': False}
-            )
+#
+# class GetWeatherInfo(View):
+#
+#     def get(self, request):
+#         result = {}
+#         try:
+#             info = dict(queryweatherinfo())
+#             weatherinfo = info['lives'][0]
+#             result['status'] = 000
+#             result['message'] = 'success'
+#             result['info'] = {
+#                 'location': weatherinfo['province'] + weatherinfo['city'],
+#                 'weather': weatherinfo['weather'],
+#                 'temperature': weatherinfo['temperature'] + '℃',
+#                 'winddirection': weatherinfo['winddirection'],
+#                 'windpower': weatherinfo['windpower'],
+#                 'humidity': weatherinfo['humidity'],
+#                 'reporttime': weatherinfo['reporttime'],
+#             }
+#             return JsonResponse(
+#                 result,
+#                 json_dumps_params={'ensure_ascii': False}
+#             )
+#         except Exception as e:
+#             result['status'] = 500
+#             result['message'] = '请求异常，请稍后重试'
+#             result['info'] = {}
+#             return JsonResponse(
+#                 result,
+#                 json_dumps_params={'ensure_ascii': False}
+#             )
+#
+#     @csrf_exempt
+#     def post(self, request):
+#         # 查询到的数据是二进制
+#         json_bytes = request.body
+#         # 需要进行解码，转成字符串
+#         json_str = json_bytes.decode()
+#         # 在把字符串转换成json字典
+#         weather_dict = json.loads(json_str)
+#         city = weather_dict.get('city')
+#         result = {}
+#         try:
+#             url = "https://restapi.amap.com/v3/weather/weatherInfo"
+#             key = '9bae4d790cfacdf4b54188b7758edf23'
+#             data = {'key': key, "city": city}
+#             req = requests.post(url, data)
+#             info = dict(req.json())
+#             weatherinfo = info['lives'][0]
+#             result['status'] = 000
+#             result['message'] = 'success'
+#             result['info'] = {
+#                 'location': weatherinfo['province'] + weatherinfo['city'],
+#                 'weather': weatherinfo['weather'],
+#                 'temperature': weatherinfo['temperature'] + '℃',
+#                 'winddirection': weatherinfo['winddirection'],
+#                 'windpower': weatherinfo['windpower'],
+#                 'humidity': weatherinfo['humidity'],
+#                 'reporttime': weatherinfo['reporttime'],
+#             }
+#             return JsonResponse(
+#                 result,
+#                 json_dumps_params={'ensure_ascii': False}
+#             )
+#         except Exception as e:
+#             result = {
+#                 'status': 500,
+#                 'message': '请求异常，请稍后重试',
+#                 'info': {}
+#             }
+#             return JsonResponse(
+#                 result,
+#                 json_dumps_params={'ensure_ascii': False}
+#             )
 
 
 class Yun(View):
@@ -1010,45 +996,6 @@ def blog_list(request):
         'oauth2_from': oauth2_from
     }
     return render(request, 'blog/archive.html', context=context)
-
-
-def getlocalweather(request):
-    url = "https://restapi.amap.com/v3/weather/weatherInfo"
-    key = '9bae4d790cfacdf4b54188b7758edf23'
-    data = {'key': key, "city": '320100'}
-    req = requests.post(url, data)
-    info = dict(req.json())
-    info = dict(info)
-    print(info)
-    newinfo = info['lives'][0]
-    print("你查询的当地天气信息如下：")
-    print("省市：", newinfo['province'] + newinfo['city'])
-    print("城市：", newinfo['city'])
-    print("编码：", newinfo['adcode'])
-    print("天气：", newinfo['weather'])
-    print("气温：", newinfo['temperature'] + '℃')
-    print("风向：", newinfo['winddirection'])
-    print("风力：", newinfo['windpower'])
-    print("湿度：", newinfo['humidity'])
-    print("报告时间：", newinfo['reporttime'])
-    newresult = newinfo['province'] + newinfo['city'] + ' 天气:' + newinfo['weather'] + ' 气温:' + newinfo[
-        'temperature'] + '℃' + ' 风向:' + newinfo['winddirection'] \
-                + ' 风力:' + newinfo['windpower'] + ' 风向:' + newinfo['winddirection'] + ' 湿度:' + newinfo['humidity']
-
-    result = {
-        'location': newinfo['province'] + newinfo['city'],
-        'weather': newinfo['weather'],
-        'temperature': newinfo['temperature'] + '℃',
-        'winddirection': newinfo['winddirection'],
-        'windpower': newinfo['windpower'],
-        'humidity': newinfo['humidity'],
-        'reporttime': newinfo['reporttime'],
-    }
-    print(result)
-    return render(request, 'myweather.html', result)
-
-
-# return newresult
 
 
 def sendemail(request):

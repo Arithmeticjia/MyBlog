@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 import hashlib
 from django.shortcuts import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.shortcuts import render_to_response,redirect,get_object_or_404,render
+from django.shortcuts import render_to_response, redirect, get_object_or_404, render
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 import requests
@@ -21,7 +21,7 @@ import requests
 from wechat_sdk import WechatBasic
 from wechat_sdk.exceptions import ParseError
 from wechat_sdk.messages import TextMessage
-from django.http.response import HttpResponse,HttpResponseBadRequest
+from django.http.response import HttpResponse, HttpResponseBadRequest
 from oblog import talk_machine
 from wechatpy import WeChatClient
 from django.core.mail import send_mail
@@ -48,38 +48,38 @@ def index(request):
 
 
 def blog_index(request):
-    #post = request.get_post(Articles, pk=pk)
-    blog_list = models.Articles.objects.filter(status="有效").order_by("-timestamp")[0:10] # 获取所有数据
-    blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:10] # 点击排行
-    blog_list_greats = Articles.objects.filter(status="有效").order_by('-greats')[0:10] # 猜你喜欢
-    blog_list_comments =  Articles.objects.filter(status="有效").order_by('-comments')[0:10] # 博主推荐
-    blog_list_comments_top = Articles.objects.filter(status="有效").order_by('-comments')[0:1] # 博主推荐
+    # post = request.get_post(Articles, pk=pk)
+    blog_list = models.Articles.objects.filter(status="有效").order_by("-timestamp")[0:10]  # 获取所有数据
+    blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:10]  # 点击排行
+    blog_list_greats = Articles.objects.filter(status="有效").order_by('-greats')[0:10]  # 猜你喜欢
+    blog_list_comments = Articles.objects.filter(status="有效").order_by('-comments')[0:10]  # 博主推荐
+    blog_list_comments_top = Articles.objects.filter(status="有效").order_by('-comments')[0:1]  # 博主推荐
     tags = Tag.objects.all()
     myview = []
     count = Articles.objects.count()
-    for ids in range(1,count+1):
-        article = get_object_or_404(Articles,id=str(ids))
+    for ids in range(1, count + 1):
+        article = get_object_or_404(Articles, id=str(ids))
         myview.append(article.increase_views())
     maxview = int(myview.index(max(myview)))
     maxview += 1
     maxarticle = Articles.objects.filter(id=str(maxview))
     comment_list = Comment.objects.count()
-    note = Note.objects.get(id=str(random.randint(1,Note.objects.count())))
+    note = Note.objects.get(id=str(random.randint(1, Note.objects.count())))
     categorys = Category.objects.all()
     context = {
         'maxview': maxarticle,
         'blog_list': blog_list,
-        'blog_list_views':blog_list_views,
-        'blog_list_greats':blog_list_greats,
-        'blog_list_comments':blog_list_comments,
-        'comment_list':comment_list,
+        'blog_list_views': blog_list_views,
+        'blog_list_greats': blog_list_greats,
+        'blog_list_comments': blog_list_comments,
+        'comment_list': comment_list,
         'tags': tags,
-        'note':note,
+        'note': note,
         'count': count,
-        'categorys':categorys,
-        'blog_list_comments_top':blog_list_comments_top,
+        'categorys': categorys,
+        'blog_list_comments_top': blog_list_comments_top,
     }
-    return render(request, 'oblog/index.html', context = context)   # 返回index.html页面
+    return render(request, 'oblog/index.html', context=context)  # 返回index.html页面
 
 
 def search(request):
@@ -88,7 +88,7 @@ def search(request):
     if not q:
         error_msg = '请输入关键词'
         return render(request, 'oblog/list.html', {'error_msg': error_msg})
-    
+
     blog_list = Articles.objects.filter(title__icontains=q)
     paginator = Paginator(blog_list, 15)  # 分页，每页10条数据
     page = request.GET.get('page')
@@ -100,7 +100,7 @@ def search(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
-    
+
     blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:10]
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     comments = Comment.objects.count()
@@ -137,25 +137,25 @@ def search(request):
     return render(request, 'oblog/list.html', context=context)
 
 
-def blog_info(request,article_id):
+def blog_info(request, article_id):
     blogs = Articles.objects.count()  # 获取所有数据
-    thisarticle = get_object_or_404(Articles,id=article_id)
+    thisarticle = get_object_or_404(Articles, id=article_id)
     thisarticle.increase_views()
     greats = thisarticle.greats
     thisarticle.body = markdown.markdown(thisarticle.body,
-                                     extensions=[
-                                                 'markdown.extensions.extra',
-                                                 'markdown.extensions.codehilite',
-                                                 'markdown.extensions.toc',
-                                                 ])
-    if int(article_id)  == 1:
+                                         extensions=[
+                                             'markdown.extensions.extra',
+                                             'markdown.extensions.codehilite',
+                                             'markdown.extensions.toc',
+                                         ])
+    if int(article_id) == 1:
         leftarticle = '这已经是第一篇啦'
     else:
-        leftarticle = get_object_or_404(Articles, id=str(int(article_id)-1))
+        leftarticle = get_object_or_404(Articles, id=str(int(article_id) - 1))
     if int(article_id) == blogs:
         rightarticle = '这已经是最后一篇啦'
     else:
-        rightarticle = get_object_or_404(Articles,id=str(int(article_id)+1))
+        rightarticle = get_object_or_404(Articles, id=str(int(article_id) + 1))
     comment_list = thisarticle.comment_set.all()
     view = []
     count = Articles.objects.count()
@@ -167,12 +167,12 @@ def blog_info(request,article_id):
     blog_list_all = Articles.objects.filter(status="有效").order_by("-views")[0:10]
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
-    blog_list_comments_top = Articles.objects.filter(status="有效").order_by('-comments')[0:1] # 博主推荐
+    blog_list_comments_top = Articles.objects.filter(status="有效").order_by('-comments')[0:1]  # 博主推荐
     category_id = thisarticle.category.id
     tag_name = thisarticle.tags.values('name')
     tag_name = [item[key] for item in tag_name for key in item]
     tag = (" ".join(tag_name))
-    category = get_object_or_404(Category,id=category_id)
+    category = get_object_or_404(Category, id=category_id)
     comments = Comment.objects.count()
     note = Note.objects.get(id=str(random.randint(1, Note.objects.count())))
     categorys = Category.objects.all()
@@ -181,20 +181,20 @@ def blog_info(request,article_id):
         'maxview': maxarticle,
         'blog_list': thisarticle,
         'comment_list': comment_list,
-        'right_blog_list':rightarticle,
-        'left_blog_list':leftarticle,
+        'right_blog_list': rightarticle,
+        'left_blog_list': leftarticle,
         'category': category,
         'tag': tag_name,
-        'tags':tag,
+        'tags': tag,
         'greats': greats,
-        'blog_list_greats':blog_list_greats,
+        'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
-        'comments':comments,
+        'comments': comments,
         'note': note,
-        'categorys':categorys,
-        'blog_list_comments_top':blog_list_comments_top,
-                }
-    return render(request, 'oblog/info.html', context = context)   # 返回info.html页面
+        'categorys': categorys,
+        'blog_list_comments_top': blog_list_comments_top,
+    }
+    return render(request, 'oblog/info.html', context=context)  # 返回info.html页面
 
 
 def blog_list(request):
@@ -203,8 +203,8 @@ def blog_list(request):
     blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:10]
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
-    blog_list_comments_top = Articles.objects.filter(status="有效").order_by('-comments')[0:1] # 博主推荐
-    paginator = Paginator(blog_list, 15)     # 分页，每页15条数据
+    blog_list_comments_top = Articles.objects.filter(status="有效").order_by('-comments')[0:1]  # 博主推荐
+    paginator = Paginator(blog_list, 15)  # 分页，每页15条数据
     page = request.GET.get('page')
     try:
         contacts = paginator.page(page)  # contacts为Page对象！
@@ -223,10 +223,10 @@ def blog_list(request):
     for i in range(pagelist):
         pl.append(i + 1)
     print((pl))
-#maxid = Articles.objects.all().aggregate(Max('views'))
+    # maxid = Articles.objects.all().aggregate(Max('views'))
     # maxid = maxid['id__max']
     print('ss')
-#print(maxid['views__max'])
+    # print(maxid['views__max'])
     for ids in range(1, count + 1):
         article = get_object_or_404(Articles, id=str(ids))
         print(article)
@@ -246,12 +246,12 @@ def blog_list(request):
         'contacts': contacts,
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
-        'comments':comments,
-        'categorys':categorys,
-        'blog_list_comments_top':blog_list_comments_top,
+        'comments': comments,
+        'categorys': categorys,
+        'blog_list_comments_top': blog_list_comments_top,
     }
     # print((maxarticle))
-    return render(request, 'oblog/list.html',context=context)
+    return render(request, 'oblog/list.html', context=context)
 
 
 def aboutme(request):
@@ -286,8 +286,8 @@ def aboutme(request):
             'note': note,
             'comment_list': comment_list,
             'count': count,
-            'categorys':categorys,
-            'blog_list_comments_top':blog_list_comments_top,
+            'categorys': categorys,
+            'blog_list_comments_top': blog_list_comments_top,
         }
         return render(request, "oblog/about.html", context=context)
     return render_to_response('oblog/about.html')
@@ -315,7 +315,6 @@ def getnewweather(request):
 
 def getdocument(request):
     return render_to_response('oblog/document.html')
-
 
 
 WECHAT_TOKEN = 'ssjsecrettoken980612ssj'
@@ -356,6 +355,7 @@ def mymenu(request):
     )
     return HttpResponse('ok')
 
+
 @csrf_exempt
 def weixin(request):
     if request.method == "GET":
@@ -364,7 +364,7 @@ def weixin(request):
         nonce = request.GET.get('nonce')
         echostr = request.GET.get('echostr')
         token = "ssjsecrettoken980612ssj"
-        tmpArr = [token,timestamp,nonce]
+        tmpArr = [token, timestamp, nonce]
         tmpArr.sort()
         string = ''.join(tmpArr).encode('utf-8')
         string = hashlib.sha1(string).hexdigest()
@@ -410,47 +410,47 @@ from django.http import FileResponse
 
 
 def file_down(request):
-    file=open('./static/download/0简易教学管理系统需求.doc','rb')
-    response =FileResponse(file)
-    response['Content-Type']='application/octet-stream'
-    response['Content-Disposition']='attachment;filename="0简易教学管理系统需求.doc"'
+    file = open('./static/download/0简易教学管理系统需求.doc', 'rb')
+    response = FileResponse(file)
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="0简易教学管理系统需求.doc"'
     return response
 
 
-def getlocalweather(request):
-    
-    url = "https://restapi.amap.com/v3/weather/weatherInfo"
-    key = '9bae4d790cfacdf4b54188b7758edf23'
-    data = {'key': key, "city": '320100'}
-    req = requests.post(url, data)
-    info = dict(req.json())
-    info = dict(info)
-    print(info)
-    newinfo = info['lives'][0]
-    print("你查询的当地天气信息如下：")
-    print("省市：",newinfo['province']+newinfo['city'])
-    print("城市：", newinfo['city'])
-    print("编码：", newinfo['adcode'])
-    print("天气：", newinfo['weather'])
-    print("气温：", newinfo['temperature']+'℃')
-    print("风向：", newinfo['winddirection'])
-    print("风力：", newinfo['windpower'])
-    print("湿度：", newinfo['humidity'])
-    print("报告时间：", newinfo['reporttime'])
-    newresult = newinfo['province']+newinfo['city']+' 天气:'+newinfo['weather']+' 气温:'+newinfo['temperature']+'℃'+' 风向:'+newinfo['winddirection']\
-    +' 风力:'+newinfo['windpower']+' 风向:'+newinfo['winddirection']+' 湿度:'+newinfo['humidity']
+# def getlocalweather(request):
+#     url = "https://restapi.amap.com/v3/weather/weatherInfo"
+#     key = '9bae4d790cfacdf4b54188b7758edf23'
+#     data = {'key': key, "city": '320100'}
+#     req = requests.post(url, data)
+#     info = dict(req.json())
+#     info = dict(info)
+#     print(info)
+#     newinfo = info['lives'][0]
+#     print("你查询的当地天气信息如下：")
+#     print("省市：", newinfo['province'] + newinfo['city'])
+#     print("城市：", newinfo['city'])
+#     print("编码：", newinfo['adcode'])
+#     print("天气：", newinfo['weather'])
+#     print("气温：", newinfo['temperature'] + '℃')
+#     print("风向：", newinfo['winddirection'])
+#     print("风力：", newinfo['windpower'])
+#     print("湿度：", newinfo['humidity'])
+#     print("报告时间：", newinfo['reporttime'])
+#     newresult = newinfo['province'] + newinfo['city'] + ' 天气:' + newinfo['weather'] + ' 气温:' + newinfo[
+#         'temperature'] + '℃' + ' 风向:' + newinfo['winddirection'] \
+#                 + ' 风力:' + newinfo['windpower'] + ' 风向:' + newinfo['winddirection'] + ' 湿度:' + newinfo['humidity']
+#
+#     result = {
+#         'location': newinfo['province'] + newinfo['city'],
+#         'weather': newinfo['weather'],
+#         'temperature': newinfo['temperature'] + '℃',
+#         'winddirection': newinfo['winddirection'],
+#         'windpower': newinfo['windpower'],
+#         'humidity': newinfo['humidity'],
+#         'reporttime': newinfo['reporttime'],
+#     }
+#     return render(request, 'myweather.html', result)
 
-    result = {
-        'location': newinfo['province']+newinfo['city'],
-        'weather': newinfo['weather'],
-        'temperature': newinfo['temperature']+'℃',
-        'winddirection': newinfo['winddirection'],
-        'windpower': newinfo['windpower'],
-        'humidity':newinfo['humidity'],
-        'reporttime':newinfo['reporttime'],
-    }
-    return render(request,'myweather.html', result)
-    #return newresult
 
 def sendemail(request):
     email_title = '邮件标题'
@@ -482,7 +482,7 @@ def login(request):
             except:
                 message = "用户不存在！"
         return render(request, 'login.html', locals())
-    
+
     login_form = UserForm()
     return render(request, 'login.html', locals())
 
@@ -512,9 +512,9 @@ def register(request):
                 if same_email_user:  # 邮箱地址唯一
                     message = '该邮箱地址已被注册，请使用别的邮箱！'
                     return render(request, 'register.html', locals())
-                
+
                 # 当一切都OK的情况下，创建新用户
-                
+
                 new_user = models.User.objects.create()
                 new_user.name = username
                 new_user.password = password1
@@ -529,17 +529,18 @@ def register(request):
 def logout(request):
     if not request.session.get('is_login', None):
         # 如果本来就未登录，也就没有登出一说
-        return redirect("/Blog/new/")
-    #request.session.flush()
+        return redirect("/oblog/new/")
+    # request.session.flush()
     # 或者使用下面的方法
     del request.session['is_login']
     del request.session['user_id']
     del request.session['user_name']
-    return redirect("/Blog/monitor/")
+    return redirect("/oblog/monitor/")
+
 
 def newindex(request):
-    #request.session.flush()
-    return render(request,'loginindex.html')
+    # request.session.flush()
+    return render(request, 'loginindex.html')
 
 
 def getCPUInfo(request):
@@ -557,7 +558,7 @@ def getMemInfo(request):
     free_mem_percentage = 100 - m.percent
     print('{"total_mem":%s,"used_mem": %s,"free_mem":%s}' % (total_mem, used_mem_percentage, free_mem_percentage))
     return HttpResponse(
-                        '{"total_mem":%s,"used_mem": %s,"free_mem":%s}' % (total_mem, used_mem_percentage, free_mem_percentage))
+        '{"total_mem":%s,"used_mem": %s,"free_mem":%s}' % (total_mem, used_mem_percentage, free_mem_percentage))
 
 
 def getDiskioData(request):
@@ -565,12 +566,11 @@ def getDiskioData(request):
     disk_list = []
     for d in diskioinfo.keys():
         disk_list.append(d)
-    print('{"disk_list":%s}' % (disk_list))
     return HttpResponse('{"disk_list":%s}' % (disk_list))
 
 
 def monitor(request):
-    return render(request,'monitorindex.html')
+    return render(request, 'monitorindex.html')
 
 
 def savemessage(request):
@@ -581,11 +581,11 @@ def savemessage(request):
     publish = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     email_title = '每一点进步离不开你的宝贵意见，由衷感谢你的支持~'
     email_body = '已经收到你的宝贵意见，我们会持续改进。--From ArithmeticJia'
-    email = email   # 对方的邮箱
-    send_mail(email_title, email_body, '1524126437@qq.com',[email])
+    email = email  # 对方的邮箱
+    send_mail(email_title, email_body, '1524126437@qq.com', [email])
     message = models.Message(title=title, content=content, username=username, email=email, publish=publish)
     message.save()
-    
+
     return HttpResponseRedirect('/Blog/about/')
 
 
@@ -596,8 +596,9 @@ def open_url(url):
     data = response.read().decode('utf-8')
     return data
 
+
 def inputtranslate(request):
-    return render(request,'translate.html')
+    return render(request, 'translate.html')
 
 
 def translate(request):
@@ -606,7 +607,8 @@ def translate(request):
         js = eval('Py4Js()')
         tk = js.getTk(content)
         content = urllib.parse.quote(content)
-        url = "http://translate.google.cn/translate_a/single?client=t" + "&sl=en&tl=zh-CN&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" + "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" + "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, content)
+        url = "http://translate.google.cn/translate_a/single?client=t" + "&sl=en&tl=zh-CN&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" + "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" + "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (
+        tk, content)
         result = open_url(url)
         end = result.find("\",")
         if end > 4:
@@ -614,8 +616,9 @@ def translate(request):
             return render_to_response("oblog/show.html", {"translates": end})
         return render(request, 'oblog/show.html')
 
+
 class Py4Js():
-    
+
     def __init__(self):
         self.ctx = execjs.compile("""
             function TL(a) {
@@ -657,7 +660,7 @@ class Py4Js():
             return a
             }
             """)
-    
+
     def getTk(self, text):
         return self.ctx.call("TL", text)
 
@@ -666,15 +669,15 @@ def videotest(request):
     return render_to_response('videotest.html')
 
 
-def videoplayer(request,film_name):
+def videoplayer(request, film_name):
     videoid = {
         'video_id': film_name,
     }
-    return render(request, 'videoplayer.html', context = videoid)
+    return render(request, 'videoplayer.html', context=videoid)
 
 
 FILE_HOME_DIR = "./static/film"
-MEDIA = [".mp4",]
+MEDIA = [".mp4", ]
 
 
 def movie_list(request):
@@ -683,38 +686,35 @@ def movie_list(request):
     path = "/".join(request.path.split("/")[3:])
     print(f"request.path= {request.path}")
     print(f"path = {path}")
-    data = {"files":[], "dirs":[]}
+    data = {"files": [], "dirs": []}
     print(data)
-    child_path = FILE_HOME_DIR+'/'+path
+    child_path = FILE_HOME_DIR + '/' + path
     print(f"child_path = {child_path}")
-    data['cur_dir'] = path+next
+    data['cur_dir'] = path + next
     print(data)
     for dir in os.listdir(child_path):
-        if os.path.isfile(child_path+"/"+dir):
+        if os.path.isfile(child_path + "/" + dir):
             if os.path.splitext(dir)[1] in MEDIA:
                 data['files'].append(dir)
         else:
             data['dirs'].append(dir)
 
     print(data)
-    return render(request,"video.html", data)
+    return render(request, "video.html", data)
 
 
-
+@csrf_exempt
 def comment_view(request, article_id):
-    print(article_id)
     article = get_object_or_404(Articles, id=article_id)
     if request.method == 'POST':
         form = CommentForm(request.POST)
-        print(form)
         if form.is_valid():
-            comment = form.save(commit = False)
+            comment = form.save(commit=False)
             comment.post = article
             comment.save()
             Articles.objects.update(comments=article.all_comments.count())
-            return redirect('/Blog/article/%s' %(article_id))
+            return redirect('/oblog/article/%s' % (article_id))
         else:
-            print("sss")
             pass
 
     return HttpResponse("")
@@ -724,14 +724,14 @@ def timeline(request):
     return render_to_response('oblog/newtimeline.html')
 
 
-def greats(request,article_id):
+def greats(request, article_id):
     blogs = Articles.objects.count()  # 获取所有博客的总数
     thisarticle = get_object_or_404(Articles, id=article_id)
     thisarticle.increase_views()
     thisarticle.greats += 1
     thisarticle.save()
     greats = thisarticle.greats
-    
+
     if int(article_id) == 1:
         leftarticle = '这已经是第一篇啦'
     else:
@@ -756,10 +756,10 @@ def greats(request,article_id):
     tag = (" ".join(tag_name))
     category = get_object_or_404(Category, id=category_id)
     thisarticle.body = markdown.markdown(thisarticle.body, extensions=[
-                                                                       'markdown.extensions.extra',
-                                                                       'markdown.extensions.codehilite',
-                                                                       'markdown.extensions.toc',
-                                                                       ])
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+    ])
     context = {
         'maxview': maxarticle,
         'blog_list': thisarticle,
@@ -773,12 +773,12 @@ def greats(request,article_id):
         'tags': tag,
         'greats': greats,
     }
-#return render(request, 'info.html', context=context)  # 返回info.html页面
-    return redirect('/Blog/article/%s' %(article_id))
+    # return render(request, 'info.html', context=context)  # 返回info.html页面
+    return redirect('/oblog/article/%s' % (article_id))
 
 
 def blog_category(request, blog_category):
-    blog_list = Articles.objects.filter(category__name__exact=blog_category) # 获取所有数据
+    blog_list = Articles.objects.filter(category__name__exact=blog_category)  # 获取所有数据
     paginator = Paginator(blog_list, 10)  # 分页，每页10条数据
     page = request.GET.get('page')
     try:
@@ -789,7 +789,7 @@ def blog_category(request, blog_category):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
-    
+
     blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:10]
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
@@ -801,13 +801,11 @@ def blog_category(request, blog_category):
     pl = []
     for i in range(pagelist):
         pl.append(i + 1)
-    print((pl))
     for ids in range(1, count + 1):
         article = get_object_or_404(Articles, id=str(ids))
         print(article)
         view.append(article.increase_views())
     maxview = int(view.index(max(view))) + 1
-    print(maxview)
     # maxarticle = Articles.objects.filter(views=maxid['views__max']+1)
     maxarticle = Articles.objects.filter(id=maxview)
     categorys = Category.objects.all()
@@ -821,8 +819,8 @@ def blog_category(request, blog_category):
         'contacts': contacts,
         'blog_list_greats': blog_list_greats,
         'comments': comments,
-        'categorys':categorys,
-        'blog_category':blog_category,
+        'categorys': categorys,
+        'blog_category': blog_category,
     }
     return render(request, 'list.html', context=context)
 
@@ -851,7 +849,7 @@ def login(request):
             except:
                 message = "用户不存在！"
         return render(request, 'oblog/login.html', locals())
-    
+
     login_form = UserForm()
     return render(request, 'oblog/login.html', locals())
 
@@ -881,9 +879,9 @@ def register(request):
                 if same_email_user:  # 邮箱地址唯一
                     message = '该邮箱地址已被注册，请使用别的邮箱！'
                     return render(request, 'oblog/register.html', locals())
-                
+
                 # 当一切都OK的情况下，创建新用户
-                
+
                 new_user = models.BlogUser.objects.create()
                 new_user.name = username
                 new_user.password = password1
@@ -899,10 +897,9 @@ def logout(request):
     if not request.session.get('is_login', None):
         # 如果本来就未登录，也就没有登出一说
         return redirect("/oblog/newindex/")
-    #request.session.flush()
+    # request.session.flush()
     # 或者使用下面的方法
     del request.session['is_login']
     del request.session['user_id']
     del request.session['user_name']
     return redirect("/oblog/login/")
-
