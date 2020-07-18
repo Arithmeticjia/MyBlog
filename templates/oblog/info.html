@@ -96,7 +96,7 @@ tpwidget("show");</script>
             <p>{{ blog_list.body|safe|linebreaksbr }}</p>
           <form action="/Blog/greats/{{ blog_list.id }}" method="post">
               {% csrf_token %}
-                <p><span class="diggit"><a href="/Blog/greats/{{ blog_list.id }}">很赞哦！ ({{ greats }})</a></span></p>
+                <p><span class="diggit"><a href="/oblog/greats/{{ blog_list.id }}">很赞哦！ ({{ greats }})</a></span></p>
               </form>
           <p><a href ="javascript:void(0);" class="diggit" style="color: white;text-decoration : none" onclick="reP()">打赏一下！</a></p>
            <SCRIPT LANGUAGE="JavaScript">
