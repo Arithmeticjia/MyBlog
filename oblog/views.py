@@ -469,7 +469,6 @@ def login(request):
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
-            print(username, password)
             try:
                 user = models.User.objects.get(name=username)
                 if user.password == password:

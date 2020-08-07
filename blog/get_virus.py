@@ -17,7 +17,6 @@ selenium_page = driver.page_source
 soup = BeautifulSoup(selenium_page, 'html.parser')
 protocols = soup.find('div', {'class': 'areaBox___3jZkr'})
 # protocols = soup.find('div', {'class': 'wrapper___3xhNP'})
-print(protocols)
 # 每个省
 cities = protocols.find_all('div')
 data = {}
@@ -28,11 +27,8 @@ for i in cities:
         content = first.find_all('p')
         name = content[0].get_text()
         num = content[1].get_text()
-        print(num)
         if num == "":
             num = 0
         data['{}'.format(name)] = num
-        print('疫情：', name, '确诊', num, '例')
     except AttributeError as e:
         continue
-print(data)
