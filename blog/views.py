@@ -25,6 +25,8 @@ from drf_haystack.viewsets import HaystackViewSet
 from blog.models import Articles, Message, Tag, Category, Note, Comment, BlogUser, VisitNumber, Recruitment, \
     Recruinfo, Movie, JiaFile, Jia, BlogRole, Paper, Graduation, Honour, Teacher, Project, Version, BlogUserCollect, \
     SocialAuthUsersocialauth, AuthUser, Hits
+
+from blogproject.models import User
 from django.contrib.auth import logout
 import time
 import requests
@@ -686,7 +688,7 @@ def blog_index(request):
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
-        d_user_id = AuthUser.objects.get(username=name).id
+        d_user_id = User.objects.get(username=name).id
         try:
             #            SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
@@ -822,7 +824,7 @@ def blog_info(request, article_id, slug):
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
-        d_user_id = AuthUser.objects.get(username=name).id
+        d_user_id = User.objects.get(username=name).id
         try:
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             #            oauth2_info = oauth2login.extra_data
@@ -929,7 +931,7 @@ def blog_list(request):
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
-        d_user_id = AuthUser.objects.get(username=name).id
+        d_user_id = User.objects.get(username=name).id
         try:
             #            SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
@@ -1119,7 +1121,7 @@ def blog_category(request, blog_category):
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
-        d_user_id = AuthUser.objects.get(username=name).id
+        d_user_id = User.objects.get(username=name).id
         try:
             #            SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
@@ -1262,7 +1264,7 @@ def contact(request):
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
-        d_user_id = AuthUser.objects.get(username=name).id
+        d_user_id = User.objects.get(username=name).id
         try:
             #            SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
@@ -1368,7 +1370,7 @@ def Jiafile(request):
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
-        d_user_id = AuthUser.objects.get(username=name).id
+        d_user_id = User.objects.get(username=name).id
         try:
             #            SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
@@ -1457,7 +1459,7 @@ def mylist(request):
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
-        d_user_id = AuthUser.objects.get(username=name).id
+        d_user_id = User.objects.get(username=name).id
         try:
             #            SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
@@ -2211,7 +2213,7 @@ def searchfile(request):
     oauth2_from = ''
     if request.user.username:
         name = request.user.username
-        d_user_id = AuthUser.objects.get(username=name).id
+        d_user_id = User.objects.get(username=name).id
         try:
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2_from = oauth2login.provider
