@@ -18,7 +18,7 @@ from django.core.mail import send_mail
 from django.db.models import Q, IntegerField, CharField, DateTimeField
 from django.views.decorators.http import require_POST
 import re
-
+import logging
 from drf_haystack.serializers import HaystackSerializerMixin
 from drf_haystack.viewsets import HaystackViewSet
 
@@ -164,7 +164,6 @@ class IndexPostListAPIView(ListAPIView):
 
 
 class PostViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
-
     queryset = Articles.objects.all()
     permission_classes = [AllowAny]
 
@@ -445,84 +444,6 @@ def blog_time(request, year, month):
     return render(request, 'blog/archive.html', context=context)
 
 
-'''def login(request):
-    if request.session.get('is_login', None):
-        return redirect('/blog/admin/')
-    if request.method == "POST":
-        login_form = UserForm(request.POST)
-        message = "请检查填写的内容！"
-        if login_form.is_valid():
-            username = login_form.cleaned_data['username']
-            password = login_form.cleaned_data['password']
-            try:
-                user = models.BlogUser.objects.get(name=username)
-                if user.password == password:
-                    request.session['is_login'] = True
-                    request.session['user_id'] = user.id
-                    request.session['user_name'] = user.name
-                    return redirect('/blog/admin/')
-                else:
-                    message = "密码不正确！"
-            except:
-                message = "用户不存在！"
-        return render(request, 'page-login.html', locals())
-    
-    login_form = UserForm()
-    return render(request, 'page-login.html', locals())
-
-
-def logout(request):
-    if not request.session.get('is_login', None):
-        # 如果本来就未登录，也就没有登出一说
-        return redirect("/blog/admin/")
-    #request.session.flush()
-    # 或者使用下面的方法
-    del request.session['is_login']
-    del request.session['user_id']
-    del request.session['user_name']
-    return redirect("/blog/login/")
-
-
-def register(request):
-    if request.session.get('is_login', None):
-        # 登录状态不允许注册。你可以修改这条原则！
-        return redirect("/blog/adminindex/")
-    if request.method == "POST":
-        register_form = RegisterForm(request.POST)
-        message = "请检查填写的内容！"
-        if register_form.is_valid():  # 获取数据
-            username = register_form.cleaned_data['username']
-            password1 = register_form.cleaned_data['password1']
-            password2 = register_form.cleaned_data['password2']
-            email = register_form.cleaned_data['email']
-            sex = register_form.cleaned_data['sex']
-            if password1 != password2:  # 判断两次密码是否相同
-                message = "两次输入的密码不同！"
-                return render(request, 'page-register.html', locals())
-            else:
-                same_name_user = models.BlogUser.objects.filter(name=username)
-                if same_name_user:  # 用户名唯一
-                    message = '用户已经存在，请重新选择用户名！'
-                    return render(request, 'page-register.html', locals())
-                same_email_user = models.BlogUser.objects.filter(email=email)
-                if same_email_user:  # 邮箱地址唯一
-                    message = '该邮箱地址已被注册，请使用别的邮箱！'
-                    return render(request, 'page-register.html', locals())
-                
-                # 当一切都OK的情况下，创建新用户
-                
-                new_user = models.BlogUser.objects.create()
-                new_user.name = username
-                new_user.password = password1
-                new_user.email = email
-                new_user.sex = sex
-                new_user.save()
-                return render(request, 'jialogin.html', locals())
-                #return redirect('/blog/login/')  # 自动跳转到登录页面
-    register_form = RegisterForm()
-    return render(request, 'page-register.html', locals())'''
-
-
 def check_login(f):
     @wraps(f)
     def inner(request, *arg, **kwargs):
@@ -535,46 +456,6 @@ def check_login(f):
     return inner
 
 
-# def login_view(request):
-#     if request.session.get('is_login', None):
-#         return redirect('/blog/mylist/')
-#     elif request.user.is_authenticated:
-#         return redirect('/blog/index/')
-#     global next
-#
-#     if request.method == "POST":
-#         login_form = UserForm(request.POST)
-#         request.session['login_from'] = request.META['HTTP_REFERER']
-#         print(request.META['HTTP_REFERER'])
-#         message = "请检查填写的内容！"
-#         if login_form.is_valid():
-#             username = login_form.cleaned_data['username']
-#             password = login_form.cleaned_data['password']
-#             print(username, password)
-#             try:
-#                 user = models.BlogUser.objects.get(name=username)
-#                 if user.status == 'active' or user.status == '有效':
-#                     if user.password == password:
-#                         request.session['is_login'] = True
-#                         request.session['user_id'] = user.id
-#                         request.session['user_name'] = user.name
-#                         request.session['user_role'] = user.role.name
-#                         if next == '':
-#                             return HttpResponseRedirect(request.session['login_from'])
-#                         else:
-#                             return redirect(next)
-#                     else:
-#                         message = "密码不正确！"
-#                 else:
-#                     message = "用户状态信息异常，请联系管理员(18351922995)! "
-#             except:
-#                 message = "用户不存在！"
-#         return render(request, 'login.html', locals())
-#
-#     else:
-#         login_form = UserForm()
-#         next = request.GET.get('next', '')
-#         return render(request, 'login.html', locals())
 def login_view(request):
     # 当前端点击登录按钮时，提交数据到后端，进入该POST方法
     if request.method == "POST":
@@ -780,36 +661,11 @@ def comments(request, article_id):
     return render(request, 'comment.html', context=context)
 
 
-comment_list = [
-    (1, '111', None),
-    (2, '222', None),
-    (3, '33', None),
-    (9, '999', 5),
-    (4, '444', 2),
-    (5, '555', 1),
-    (7, '777', 2),
-]
-
-ncomment_list = [
-    (171, 1, '1524126437@qq.com', '111', datetime.datetime(2019, 11, 21, 21, 38, 40, 661000), 15, None),
-    # (172, 1,'1524126437@qq.com','555', datetime.datetime(2019, 11, 21, 21, 38, 50, 746073),15,171),
-    # (173, 1,'1524126437@qq.com','222',datetime.datetime(2019, 11, 21, 21, 39, 6, 283034), 15, None)
-]
-
-blog_recommend = {
-    "0": [1, 2, 3, 4],
-    "1": [2, 3, 5],
-    "2": [1, 4, 5, 7],
-    "3": [9, 1, 3, 5]
-}
-
-
 def make_blog_user(hits):
     tmp = []
     for i in hits:
         tmp.append(i.userid)
     users = list(set(tmp))
-    print(users)
     hitsdict = {}
     for j in tmp:
         hitsdict.update({'user%d' % int(j): []})
@@ -843,7 +699,7 @@ def blog_info(request, article_id, slug):
     except Exception as e:
         return render(request, '404.html')
     try:
-        if login_name != None:
+        if login_name is not None:
             hit = Hits.objects.get(userid=int(BlogUser.objects.get(name=login_name).id), blogid=int(article_id))
             hit.hitnum = hit.hitnum + 1
             hit.save()
