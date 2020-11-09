@@ -198,7 +198,7 @@
                                                 <li><a href="/blog/mylist" target="_blank">{{  request.session.user_name }}</a></li>
                                                 <li><a href="/blog/logout/">Logout</a></li>
                                             {% elif request.user.is_authenticated %}
-                                                <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{oauth2_from}})</a></li>
+                                                <li><a href="/blog/mylist" target="_blank">{{  request.user.username }}({{ oauth2_from }})</a></li>
                                                 <li><a href="/blog/logout/">Logout</a></li>
                                             {% else %}
                                                 <li><a href="/blog/mylist/">Tourist</a></li>

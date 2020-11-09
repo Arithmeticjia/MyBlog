@@ -34,7 +34,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-							<form method="POST" action="{% url 'blog:login' %}">
+							<form method="POST" action="{% url 'commonauth:login' %}">
                                 {% csrf_token %}
                                 <div style="display: none;">
                                     <input id="next" type="text" name="next_url" value="{{ next_url }}" />
