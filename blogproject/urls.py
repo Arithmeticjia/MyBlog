@@ -9,4 +9,5 @@ app_name = 'blogproject'
 
 urlpatterns = [
     url(r'^post/(?P<article_id>[0-9]+)/(?P<url_slug>[-\w]+)/$', views.post_detail, name='post'),
+    url(r'^auth/$', views.check_auth, name='auth'),
 ]

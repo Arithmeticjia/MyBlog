@@ -1714,15 +1714,6 @@ def collect_cpu():
     print(t, cpu)
 
 
-def calculate(request):
-    formula = request.GET['formula']
-    try:
-        result = eval(formula, {})
-    except:
-        result = 'Error formula'
-    return HttpResponse(result)
-
-
 def pyeditor(request):
     return render(request, 'blog/pyexplain.html')
 

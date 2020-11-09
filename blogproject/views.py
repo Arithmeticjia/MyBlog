@@ -2,7 +2,10 @@ import markdown
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from markdown.extensions.toc import TocExtension, slugify
-from blogproject.models import Post, Category
+from django.contrib.auth.decorators import login_required
+from blog.models import SocialAuthUsersocialauth
+from blogproject.models import Post, Category, User
+from django.shortcuts import HttpResponse, render, redirect
 from comment.models import Comment
 
 
@@ -12,8 +15,26 @@ def post_detail_test(request, article_id, url_slug):
     pass
 
 
-def post_detail(request, article_id, url_slug):
+@login_required()
+def check_auth(request):
+    return HttpResponse("ok")
 
+
+def get_oauth2_from(name):
+    oauth2_from = ''
+
+    if name:
+        d_user_id = User.objects.get(username=name).id
+        try:
+            oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
+            oauth2_from = oauth2login.provider
+        except:
+            oauth2_from = 'Django'
+
+    return oauth2_from
+
+
+def post_detail(request, article_id, url_slug):
     try:
         post = get_object_or_404(Post, id=article_id)
         post.increase_views()
@@ -39,7 +60,8 @@ def post_detail(request, article_id, url_slug):
         'tag': tag_name,
         'likes': likes,
         'toc': md.toc,
-        'comments': comments
+        'comments': comments,
+        'oauth2_from': get_oauth2_from(request.user.username)
 
     }
     return render(request, 'blogproject/single.html', context=context)

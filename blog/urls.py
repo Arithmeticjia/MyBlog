@@ -47,7 +47,6 @@ urlpatterns = [
     url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/cancelcollect/', views.cancelcollect),
     url(r'^editor/userbrief/$', views.editor_userbrief),
     url(r'^editor/addcategory/$', views.editor_addcategory),
-    url(r'^cal/$', views.calculate),
     url(r'^onlineeditor/$', views.pyeditor),
     url(r'^api/$', views.api),
     url(r'^upload_images/(?P<article_id>[0-9]+)/$', views.upload_images),

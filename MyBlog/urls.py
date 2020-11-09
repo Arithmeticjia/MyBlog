@@ -45,6 +45,7 @@ if settings.DEBUG:
         path('china-wuhan/virusdata', views.china_wuhan_virus),
         url(r'', include('social_django.urls', namespace='social')),
         url(r'^accounts/', include('django.contrib.auth.urls')),
+        url(r'^auth/', include('commonauth.urls')),
         path('comment/', include('comment.urls', namespace='comment')),
         # url(r'^oauth/', include('social_django.urls', namespace='social')),
         # url(r'^search/', include('haystack.urls')),                       # old way
