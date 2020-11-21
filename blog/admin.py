@@ -7,6 +7,7 @@ class BlogsPostAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.MDTextField: {'widget': MDEditorWidget}
     }
+    search_fields = ('title', 'body')
     list_display = ['title', 'body', 'timestamp', 'authorname']
 
 
