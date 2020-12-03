@@ -328,13 +328,13 @@
                                                                    'success'
                                                             ).then(function (result) {
                                                                 if(result.value){
+                                                                    setTimeout(function () {
+                                                                    window.location.reload()
+                                                                        }, 1000);
+                                                                }
                                                                 setTimeout(function () {
-                                                                window.location.reload()
-                                                                    }, 1000);
-                                                               }
-                                                                setTimeout(function () {
-                                                                window.location.reload()
-                                                                    }, 1000);
+                                                                    window.location.reload()
+                                                                }, 1000);
                                                             });
                                                            }else {
                                                                swal(
@@ -346,7 +346,7 @@
                                                        }
                                                     })
                                                 }
-                                            };
+                                            }
                                     </script>
 									<p class="form-allowed-tags hidden">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a
 							 href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt;
