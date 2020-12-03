@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="description" content="js代码（www.jsdaima.com）">
     <meta name="author" content="js代码（www.jsdaima.com）">
@@ -283,6 +284,15 @@
 									<p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigatio nes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p-->
 {#                                    <p>{{ blog_list.body|safe|linebreaksbr }}</p>#}
                                     <div style="font-size: 15px;color: #4D4D4D;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ blog_list.body|safe}}</div>
+                                    <script>
+                                        var clipboard = new Clipboard('.copybtn');
+                                        clipboard.on('success', function(e) {
+                                            console.log(e)
+                                        });
+                                        clipboard.on('error', function(e) {
+                                        console.log(e);
+                                        });
+                                    </script>
 									<footer>
 										<strong class="text"><span class="iconfont icon-people_fill" style="text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;</span>{{ blog_list.authorname }}&nbsp;&nbsp;&nbsp;&nbsp;</strong>
 										<strong class="text comment-count"><span class="iconfont icon-comment_fill_light" id="commentcount">&nbsp;&nbsp;&nbsp;&nbsp;</span>{{ blog_list.all_comments.count }}&nbsp;&nbsp;&nbsp;&nbsp;</strong>
@@ -1020,6 +1030,7 @@
     <script src="/static/JiaBlog/js/plugins.js"></script>
     <!-- include jQuery -->
     <script src="/static/JiaBlog/js/jquery.main.js"></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
     <script type="text/javascript" color="255,0,0" pointColor="255,0,0" opacity='0.7' zIndex="-1" count="100" src="/static/js/canvas-nest.js"></script>
 </body>
 </html>

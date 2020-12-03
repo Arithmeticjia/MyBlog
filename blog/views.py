@@ -719,18 +719,35 @@ def blog_info(request, article_id, slug):
     tag_name = [item[key] for item in tag_name for key in item]
     tag = (" ".join(tag_name)).split(" ")
     category = get_object_or_404(Category, id=category_id)
-    #    thisarticle.body = markdown.markdown(thisarticle.body, extensions=[
-    #                                                                       'markdown.extensions.extra',
-    #                                                                       'markdown.extensions.codehilite',
-    #                                                                       'markdown.extensions.toc',
-    #                                                                       ])
     md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         # 'markdown.extensions.toc',
         TocExtension(slugify=slugify)
     ])
-    thisarticle.body = md.convert(thisarticle.body)
+    thisarticle.body = markdown.markdown(thisarticle.body, extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        # 'markdown.extensions.toc',
+        TocExtension(slugify=slugify)
+    ])
+    n = thisarticle.body.count('<div class="codehilite">', 0, len(thisarticle.body))
+    for i in range(n):
+        thisarticle.body = re.sub(r'<span></span>',
+                                  '&nbsp;&nbsp;<button id="ecodecopy" style="'
+                                  'background-color: #555555;border: none;'
+                                  'color: white;'
+                                  'padding: 6px 6px;'
+                                  'text-align: center;'
+                                  'text-decoration: none;'
+                                  'display: inline-block;'
+                                  'float:right;'
+                                  'font-size: 12px" class="copybtn" '
+                                  'data-clipboard-action="copy" '
+                                  'data-clipboard-target="#code{}">copy</button> '
+                                  '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
+    comment_list = thisarticle.comment_set.all()
+    # thisarticle.body = md.convert(thisarticle.body)
     categorys = Category.objects.all()
     jia = Jia.objects.get(id=1)
     related_blog = Articles.objects.filter(status="有效").filter(category=thisarticle.category).filter(~Q(id=article_id))[
@@ -2248,12 +2265,6 @@ class JiaPost(View):
                                       'data-clipboard-action="copy" '
                                       'data-clipboard-target="#code{}">复制</button> '
                                       '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
-        # for i in range(n):
-        #     thisarticle.body = re.sub(r'<div class="codehilite">',
-        #                                '&nbsp;&nbsp;<button id="ecodecopy" style="float: right;z-index:10" class="copybtn" '
-        #                                'data-clipboard-action="copy" '
-        #                                'data-clipboard-target="#code{}">复制</button> '
-        #                                '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)
         for i in range(m):
             thisarticle.body = re.sub(r'<code>',
                                       '<code style="background: rgba(205,205,205,0.51)">', thisarticle.body, 1)
