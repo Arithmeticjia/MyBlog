@@ -725,12 +725,14 @@ def blog_info(request, article_id, slug):
         # 'markdown.extensions.toc',
         TocExtension(slugify=slugify)
     ])
+    md_body = thisarticle.body
     thisarticle.body = markdown.markdown(thisarticle.body, extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         # 'markdown.extensions.toc',
         TocExtension(slugify=slugify)
     ])
+    md_body = md.convert(md_body)
     n = thisarticle.body.count('<div class="codehilite">', 0, len(thisarticle.body))
     for i in range(n):
         thisarticle.body = re.sub(r'<span></span>',
@@ -796,6 +798,7 @@ def blog_info(request, article_id, slug):
         'oauth2_from': oauth2_from
 
     }
+
     return render(request, 'blog/single.html', context=context)
 
 
