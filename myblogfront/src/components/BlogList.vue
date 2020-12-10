@@ -103,27 +103,27 @@
         </el-popover>
       <el-table height="550" v-loading="loading" element-loading-text="拼命加载中" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" label="编号" width="50">
-          <template scope="scope"> {{ scope.row.pk }} </template>
+          <template slot-scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
         <el-table-column prop="name" label="标题" width="300">
-          <template scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/single/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
+          <template slot-scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/single/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
         </el-table-column>
         <el-table-column prop="address" label="分类" width="100">
-          <template scope="scope"> {{ scope.row.fields.category }} </template>
+          <template slot-scope="scope"> {{ scope.row.fields.category }} </template>
         </el-table-column>
         <el-table-column prop="address" label="标签" width="130">
-          <template scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>
+          <template slot-scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>
         </el-table-column>
         <el-table-column prop="address" label="浏览量" width="80">
-          <template scope="scope"> {{ scope.row.fields.views }} </template>
+          <template slot-scope="scope"> {{ scope.row.fields.views }} </template>
         </el-table-column>
         <el-table-column prop="address" label="作者" width="120">
-          <template scope="scope"> {{ scope.row.fields.authorname }} </template>
+          <template slot-scope="scope"> {{ scope.row.fields.authorname }} </template>
         </el-table-column>
         <el-table-column prop="address" label="发布时间" width="200">
-          <template scope="scope"> {{ scope.row.fields.timestamp | formatDate }} </template>
+          <template slot-scope="scope"> {{ scope.row.fields.timestamp | formatDate }} </template>
         </el-table-column>
-        <el-table-column prop="address" label="操作" width="150" fixed="right">
+          <el-table-column prop="address" label="操作" width="150" fixed="right">
         <template slot-scope="scope">
           <el-button type="text" @click="open(scope.row.fields.title,scope.row.fields.body)" size="small">查看</el-button>
           <el-button @click="skip('https://www.guanacossj.com/blog/article/'+scope.row.pk+'/'+scope.row.fields.url_slug)" type="text" size="small">查看详情</el-button>

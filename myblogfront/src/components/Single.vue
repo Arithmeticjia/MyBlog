@@ -81,8 +81,8 @@
     </el-menu>
     </el-aside>
     <el-main>
-      <div id="appvuedjango">
-        <div class="grid-content bg-puprple-light" v-loading="loading" v-for="(value, key, index) in singleblog">
+      <div id="appvuedjango" v-loading="this.loading" element-loading-text="拼命加载中">
+        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in singleblog">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="21">
                 <div class="grid-content bg-puprple-light">
@@ -143,7 +143,7 @@
   import moment from 'moment';
   import "../assets/tango.css";
     export default {
-        name: "Me",
+        name: "Single",
         data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",

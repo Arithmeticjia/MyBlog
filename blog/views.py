@@ -2193,6 +2193,7 @@ def get_article_single(request, article_id):
             TocExtension(slugify=slugify)
         ])
         single_article.body = md.convert(single_article.body)
+        single_article.body = single_article.body.replace("/media", "https://www.guanacossj.com/media")
         response['list'] = json.loads(
             serializers.serialize("json", article, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'

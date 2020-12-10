@@ -85,19 +85,19 @@
     <el-main>
       <el-table height="100%" v-loading="loading" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" label="序号" width="50">
-          <template scope="scope"> {{ scope.row.pk }} </template>
+          <template slot-scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
         <el-table-column prop="name" label="标题" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.title }}</template>
+          <template slot-scope="scope"> {{ scope.row.fields.title }}</template>
         </el-table-column>
         <el-table-column prop="address" label="分类" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.category }} </template>
+          <template slot-scope="scope"> {{ scope.row.fields.category }} </template>
         </el-table-column>
         <el-table-column prop="address" label="标签" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.tags }} </template>
+          <template slot-scope="scope"> {{ scope.row.fields.tags }} </template>
         </el-table-column>
         <el-table-column prop="address" label="作者" width="width: 100%">
-          <template scope="scope"> {{ scope.row.fields.authorname }} </template>
+          <template slot-scope="scope"> {{ scope.row.fields.authorname }} </template>
         </el-table-column>
         <el-table-column prop="address" label="操作" width="width: 100%">
         <template slot-scope="scope">
