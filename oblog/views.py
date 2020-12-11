@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from alipay import AliPay
+from django.db.models import Max
 from django.views.decorators.csrf import csrf_exempt
 import hashlib
 from django.shortcuts import HttpResponseRedirect
@@ -49,20 +50,14 @@ def index(request):
 
 def blog_index(request):
     # post = request.get_post(Articles, pk=pk)
-    blog_list = models.Articles.objects.filter(status="有效").order_by("-timestamp")[0:10]  # 获取所有数据
+    blog_list = Articles.objects.filter(status="有效").order_by("-timestamp")[0:10]  # 获取所有数据
     blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:10]  # 点击排行
     blog_list_greats = Articles.objects.filter(status="有效").order_by('-greats')[0:10]  # 猜你喜欢
     blog_list_comments = Articles.objects.filter(status="有效").order_by('-comments')[0:10]  # 博主推荐
     blog_list_comments_top = Articles.objects.filter(status="有效").order_by('-comments')[0:1]  # 博主推荐
     tags = Tag.objects.all()
-    myview = []
-    count = Articles.objects.count()
-    for ids in range(1, count + 1):
-        article = get_object_or_404(Articles, id=str(ids))
-        myview.append(article.increase_views())
-    maxview = int(myview.index(max(myview)))
-    maxview += 1
-    maxarticle = Articles.objects.filter(id=str(maxview))
+    count = Articles.objects.filter(status="有效").count()
+    maxarticle = Articles.objects.filter(status="有效").order_by('-views')[0:1]
     comment_list = Comment.objects.count()
     note = Note.objects.get(id=str(random.randint(1, Note.objects.count())))
     categorys = Category.objects.all()
@@ -152,18 +147,12 @@ def blog_info(request, article_id):
         leftarticle = '这已经是第一篇啦'
     else:
         leftarticle = get_object_or_404(Articles, id=str(int(article_id) - 1))
-    if int(article_id) == blogs:
+    if int(article_id) == int(Articles.objects.last().id):
         rightarticle = '这已经是最后一篇啦'
     else:
         rightarticle = get_object_or_404(Articles, id=str(int(article_id) + 1))
     comment_list = thisarticle.comment_set.all()
-    view = []
-    count = Articles.objects.count()
-    for ids in range(1, count + 1):
-        article = get_object_or_404(Articles, id=str(ids))
-        view.append(article.increase_views())
-    maxview = int(view.index(max(view))) + 1
-    maxarticle = Articles.objects.filter(id=str(maxview))
+    maxarticle = Articles.objects.filter(status="有效").order_by('-views')[0:1]
     blog_list_all = Articles.objects.filter(status="有效").order_by("-views")[0:10]
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
@@ -222,19 +211,7 @@ def blog_list(request):
     pl = []
     for i in range(pagelist):
         pl.append(i + 1)
-    print((pl))
-    # maxid = Articles.objects.all().aggregate(Max('views'))
-    # maxid = maxid['id__max']
-    print('ss')
-    # print(maxid['views__max'])
-    for ids in range(1, count + 1):
-        article = get_object_or_404(Articles, id=str(ids))
-        print(article)
-        view.append(article.increase_views())
-    maxview = int(view.index(max(view))) + 1
-    print(maxview)
-    # maxarticle = Articles.objects.filter(views=maxid['views__max']+1)
-    maxarticle = Articles.objects.filter(id=maxview)
+    maxarticle = Articles.objects.filter(status="有效").order_by('-views')[0:1]
     comments = Comment.objects.count()
     categorys = Category.objects.all()
     context = {
@@ -266,14 +243,7 @@ def aboutme(request):
         note = Note.objects.get(id=str(random.randint(1, Note.objects.count())))
         tags = Tag.objects.all()
         view = []
-        for ids in range(1, count + 1):
-            article = get_object_or_404(Articles, id=str(ids))
-            ccc = article.all_comments.count()
-            print(ccc)
-            view.append(article.increase_views())
-        maxview = int(view.index(max(view))) + 1
-        maxarticle = Articles.objects.filter(id=maxview)
-        maxarticle = Articles.objects.filter(id=maxview)
+        maxarticle = Articles.objects.filter(status="有效").order_by('-views')[0:1]
         comment_list = Comment.objects.count()
         categorys = Category.objects.all()
         context = {
@@ -833,7 +803,6 @@ def login(request):
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
-            print(username, password)
             try:
                 user = models.BlogUser.objects.get(name=username)
                 if user.password == password:
@@ -841,7 +810,6 @@ def login(request):
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
                     print(request.session['is_login'], request.session['user_name'])
-                    print('ok')
                     return redirect('/oblog/monitor/')
                 else:
                     message = "密码不正确！"

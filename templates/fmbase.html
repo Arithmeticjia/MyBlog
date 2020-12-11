@@ -116,10 +116,10 @@
 							<div class="btn-group hidden-phone">
                                 {% if request.session.is_login %}
                                     <a class="btn btn-small btn-inverse ">当前在线：{{ request.session.user_name }}</a>
-                                    <a class="btn btn-small btn-inverse dropdown-toggle" href="/Blog/logout/">logout</a>
+                                    <a class="btn btn-small btn-inverse dropdown-toggle" href="/oblog/logout/">logout</a>
                                 {% else %}
-                                    <a class="btn btn-small btn-inverse dropdown-toggle" href="/Blog/login/">login</a>
-								    <a class="btn btn-small btn-inverse dropdown-toggle" href="/Blog/register/">register</a>
+                                    <a class="btn btn-small btn-inverse dropdown-toggle" href="/oblog/login/">login</a>
+								    <a class="btn btn-small btn-inverse dropdown-toggle" href="/oblog/register/">register</a>
 							    {% endif %}
                             </div>
 						</div>

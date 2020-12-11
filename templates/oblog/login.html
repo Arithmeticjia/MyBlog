@@ -38,8 +38,6 @@
     <script>
         // This is called with the results from from FB.getLoginStatus().
         function statusChangeCallback(response) {
-          console.log('statusChangeCallback');
-          console.log(response);
           // The response object is returned with a status field that lets the
           // app know the current login status of the person.
           // Full docs on the response object can be found in the documentation
@@ -118,7 +116,7 @@
     </script>
     <div class="container">
 
-      <form class="form-signin" method="post" action="{% url 'JiaBlog:login' %}">
+      <form class="form-signin" method="post" action="{% url 'oblog:login' %}">
           {% if message %}
               <div class="alert alert-warning">{{ message }}</div>
           {% endif %}
@@ -140,7 +138,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
       <div class="form-signin">
-          <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href = '/JiaBlog/register'">Register in</button>
+          <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href = '/oblog/register'">Register in</button>
       </div>
         <div style="text-align: center">
             <div style="display:inline-block;"><span class="iconfont icon-github">&nbsp;</span><a style="color: black;text-decoration: none;" href="{% url "social:begin" "github" %}">GitHub</a></div>&nbsp;&nbsp;&nbsp;

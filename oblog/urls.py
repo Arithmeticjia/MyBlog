@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^mymenu/', views.mymenu),
     url(r'^download/$', views.file_down, name='download'),
     url(r'^email/', views.sendemail),
-    url(r'^login/', views.login),
+    url(r'^login/', views.login, name='login'),
     url(r'^register/', views.register),
     url(r'^logout/', views.logout),
     url(r'^new/', views.newindex),

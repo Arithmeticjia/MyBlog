@@ -1,6 +1,7 @@
 {% extends "fmbase.html" %}
 {% block title %}主页{% endblock %}
 {% block page-content %}
+    {% csrf_token %}
     {% if not request.session.is_login %}
         <h1>你尚未登录，只能访问公开内容！</h1>
     {% else %}
