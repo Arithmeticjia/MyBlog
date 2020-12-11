@@ -26,6 +26,7 @@
 	<!-- include the site stylesheet -->
 	<link rel="stylesheet" href="/static/JiaBlog/css/colors.css">
     <link rel="stylesheet" href="/static/sweetalert2/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <meta name="baidu-site-verification" content="iYpMqoGJf4" />
@@ -149,9 +150,15 @@
 									<ul class="nav navbar-nav navbar-right">
 										<li><a href="/blog/index/">Home</a></li>
 										<li><a href="/blog/list/">Archive</a></li>
-										<!--li><a href="single.html">Single</a></li-->
-										<li><a href="/blog/contact-us">Contact</a></li>
-                                        <li><a href="/blog/contact-us">Service</a></li>
+										<li class="dropdown">
+                                            <a href="/blog/contact-us" class="dropbtn">Service</a>
+                                            <div class="dropdown-content">
+                                                <a href="https://www.position.guanacossj.com/">Position</a>
+                                                <a href="https://www.guanacossj.com/oblog/">Old Version</a>
+                                                <a href="https://blog.guanacossj.com/">Vue Version</a>
+                                            </div>
+                                        </li>
+                                        <li><a href="/blog/contact-us">Contact</a></li>
                                         <li><a href="/blog/file/" target="_blank">File</a></li>
                                         <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
                                         {% if request.session.is_login %}
@@ -622,7 +629,7 @@
 							<div class="cols-holder">
                                 <article class="post fluid text-center wow fadeInUp" data-wow-delay="0.6s">
                                     <div  class="post fluid text-center wow fadeInUp" id="myechart" style="width: 100%;height:480px;position: relative"></div>
-                                        <script type="text/javascript" src="/static/JiaBlog/js/echarts.js">
+                                        <script type="text/javascript" src="/static/echarts-4/echarts.js">
 
                                             // 基于准备好的dom，初始化echarts实例
                                             var myChart = echarts.init(document.getElementById('myechart'));
