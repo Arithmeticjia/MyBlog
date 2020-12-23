@@ -12,6 +12,7 @@ import About from '@/components/About'
 import NotFound from '@/components/NotFound'
 import Category from '@/components/Category'
 import CategoryPage from '@/components/CategoryPage'
+import Calendar from '@/components/Calendar'
 import CategoryPageTimeline from '@/components/CategoryPageTimeline'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/en'
@@ -82,5 +83,10 @@ export default new Router({
       name: 'categorypagetimeline',
       component: CategoryPage
     },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: Calendar
+    },
   ]
-})
+});

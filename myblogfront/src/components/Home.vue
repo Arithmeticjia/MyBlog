@@ -11,34 +11,35 @@
         style="height: 370x">
 <!--        </br>-->
         <div class="blogtitlebox">
-          <div class="blogtitle">请叫我算术嘉の博客</div>
+          <div class="blogtitle">{{$t('common.blog-name')}}</div>
         </div>
         </br>
       <el-menu-item index="1" @click="skiplocal('/#/home')">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span style="font-weight: bold">首页</span>
+<!--          <span style="font-weight: bold">首页</span>-->
+          <span style="font-weight: bold">{{$t('common.home')}}</span>
 <!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
         </template>
       </el-menu-item>
       <el-menu-item index="2" @click="skiplocal('/#/archive')">
         <template slot="title">
         <i class="el-icon-document"></i>
-        <span style="font-weight: bold">归档</span>
+        <span style="font-weight: bold">{{$t('common.archive')}}</span>
 <!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
         </template>
       </el-menu-item>
       <el-menu-item index="3" @click="skiplocal('/#/category')">
         <i class="el-icon-menu"></i>
-        <span slot="title" style="font-weight: bold">分类</span>
+        <span slot="title" style="font-weight: bold">{{$t('common.category')}}</span>
       </el-menu-item>
       <el-menu-item index="4" @click="skiplocal('/#/bloglist')">
         <i class="el-icon-search"></i>
-        <span slot="title" style="font-weight: bold">搜索</span>
+        <span slot="title" style="font-weight: bold">{{$t('common.search')}}</span>
       </el-menu-item>
       <el-menu-item index="5" @click="skiplocal('/#/about')">
         <i class="el-icon-user"></i>
-        <span slot="title" style="font-weight: bold">关于</span>
+        <span slot="title" style="font-weight: bold">{{$t('common.about')}}</span>
       </el-menu-item>
     </el-menu>
       <p></p>
@@ -53,7 +54,7 @@
           </div>
         <p></p>
         <div class="myname">
-          <span slot="title">请叫我算术嘉</span>
+          <span slot="title">{{$t('common.myname')}}</span>
         </div>
         <p></p>
         <div id="tag-sign">
@@ -83,6 +84,15 @@
     </el-aside>
     <el-main>
       <div id="apphome">
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            语言<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item @click.native = "switchLang('zh')">中文</el-dropdown-item>
+        <el-dropdown-item @click.native = "switchLang('en')">英文</el-dropdown-item>
+        </el-dropdown-menu>
+        </el-dropdown>
         <img src="../assets/logo.png">
         </br>
         </br>
@@ -91,9 +101,9 @@
         </br>
         <p></p>
           <div>
-            <span style="font-size: large">青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪</span>
+            <span style="font-size: large">{{$t('common.home-word-up')}}</span>
             <el-divider></el-divider>
-            <span style="font-size: large">少量的邪恶足以抵消全部高贵的品质, 害得人声名狼藉</span>
+            <span style="font-size: large">{{$t('common.home-word-down')}}</span>
             </div>
         </br>
         </br>
@@ -135,6 +145,13 @@
           },
           skiplocal(url){
             location.href = url
+          },
+          handleCommand(command) {
+            console.log(command)
+            this.switchLang(command)
+          },
+          switchLang(val){
+            this.$i18n.locale=val;//此处val为 zh 或者 en
           },
           notfinishalert() {
             this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
@@ -228,5 +245,14 @@
   }
   .el-submenu__title.is-active {
     background: #6db6ff !important;
+  }
+  .el-dropdown {
+    float: right;
+  }
+  .el-dropdown-link {
+    cursor: pointer;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
   }
 </style>

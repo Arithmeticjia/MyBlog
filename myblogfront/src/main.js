@@ -3,11 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import i18n from './i18n/index'
 import echarts from 'echarts'
+import ElementUI from 'element-ui'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import './assets/articlemarkdown.css'
+import locale from 'element-ui/lib/locale/lang/en'
 
+Vue.use(ElementUI, { locale })
 Vue.use(mavonEditor)
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
@@ -16,6 +20,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  i18n,
   components: { App },
   template: '<App/>'
 })
