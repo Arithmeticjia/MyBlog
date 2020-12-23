@@ -58,11 +58,11 @@
         </div>
         <p></p>
         <div id="tag-sign">
-          <span>雨纷纷</span>
+          <span>{{$t('common.autograph-left')}}</span>
             <el-divider direction="vertical"></el-divider>
-          <span>旧故里</span>
+          <span>{{$t('common.autograph-middle')}}</span>
             <el-divider direction="vertical"></el-divider>
-          <span>草木深</span>
+          <span>{{$t('common.autograph-right')}}</span>
         </div>
 <!--        <el-menu-item id="tag-sign">-->
 <!--          <span>雨纷纷</span>-->
@@ -86,11 +86,11 @@
       <div id="apphome">
         <el-dropdown>
           <span class="el-dropdown-link">
-            语言<i class="el-icon-arrow-down el-icon--right"></i>
+            {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
         <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item @click.native = "switchLang('zh')">中文</el-dropdown-item>
-        <el-dropdown-item @click.native = "switchLang('en')">英文</el-dropdown-item>
+        <el-dropdown-item @click.native = "switchLang('zh')">{{$t('common.lang-zh')}}</el-dropdown-item>
+        <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
         </el-dropdown-menu>
         </el-dropdown>
         <img src="../assets/logo.png">
