@@ -1,87 +1,16 @@
 <template>
   <el-container style="height: 690px">
-    <el-aside width="220px" style="margin-left: 130px">
-      <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo"
-        background-color="#545c64"
-        text-color="#fff"
-        @open="handleOpen"
-        active-text-color="#ffd04b"
-        style="height: 370x">
-<!--        </br>-->
-        <div class="blogtitlebox">
-          <div class="blogtitle">请叫我算术嘉の博客</div>
-        </div>
-        </br>
-      <el-menu-item index="1" @click="skiplocal('/#/home')">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span style="font-weight: bold">首页</span>
-<!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
-        </template>
-      </el-menu-item>
-      <el-menu-item index="2" @click="skiplocal('/#/archive')">
-        <template slot="title">
-        <i class="el-icon-document"></i>
-        <span style="font-weight: bold">归档</span>
-<!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
-        </template>
-      </el-menu-item>
-      <el-menu-item index="3" @click="skiplocal('/#/category')">
-        <i class="el-icon-menu"></i>
-        <span slot="title" style="font-weight: bold">分类</span>
-      </el-menu-item>
-      <el-menu-item index="4" @click="skiplocal('/#/bloglist')">
-        <i class="el-icon-search"></i>
-        <span slot="title" style="font-weight: bold">搜索</span>
-      </el-menu-item>
-      <el-menu-item index="5" @click="skiplocal('/#/about')">
-        <i class="el-icon-user"></i>
-        <span slot="title" style="font-weight: bold">关于</span>
-      </el-menu-item>
-    </el-menu>
-      <p></p>
-      <el-menu
-      class="el-menu-vertical-demo"
-      background-color="#545c64"
-      text-color="#fff"
-      style="height: 295px">
-        </br>
-        <div class="mypic">
-            <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
-          </div>
-        <p></p>
-        <div class="myname">
-          <span slot="title">请叫我算术嘉</span>
-        </div>
-        <p></p>
-        <div id="tag-sign">
-          <span>雨纷纷</span>
-            <el-divider direction="vertical"></el-divider>
-          <span>旧故里</span>
-            <el-divider direction="vertical"></el-divider>
-          <span>草木深</span>
-        </div>
-<!--        <el-menu-item id="tag-sign">-->
-<!--          <span>雨纷纷</span>-->
-<!--            <el-divider direction="vertical"></el-divider>-->
-<!--          <span>旧故里</span>-->
-<!--            <el-divider direction="vertical"></el-divider>-->
-<!--          <span>草木深</span>-->
-<!--        </el-menu-item>-->
-        </br>
-        <div class="tag-links">
-<!--          &nbsp;-->
-          <el-link icon="el-icon-link" style="color: white" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">github</el-link>
-          <el-divider direction="vertical"></el-divider>
-<!--          &nbsp;-->
-          <el-link icon="el-icon-message" style="color: white" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">e-mail</el-link>
-<!--          <el-button icon="el-icon-message" @click="skip('https://www.guanacossj.com/')" type="text">mail</el-button>-->
-        </div>
-    </el-menu>
-    </el-aside>
+    <Menu></Menu>
     <el-main>
+      <el-dropdown>
+          <span class="el-dropdown-link">
+            {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item @click.native = "switchLang('zh')">{{$t('common.lang-zh')}}</el-dropdown-item>
+        <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
+        </el-dropdown-menu>
+        </el-dropdown>
       <div id="apparchive" v-loading="loading" element-loading-text="拼命加载中" style="height: 555px">
         <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
             <el-row type="flex" class="row-bg" justify="space-around">
@@ -124,8 +53,10 @@
 
 <script>
   import moment from 'moment';
+  import Menu from "./Menu";
     export default {
         name: "Me",
+        components: { Menu },
         data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
@@ -159,6 +90,9 @@
              this.pageSize = val;
              this.handleCurrentChange(this.currentPage);
            },
+          switchLang(val){
+            this.$i18n.locale=val;//此处val为 zh 或者 en
+          },
           handleCurrentChange: function(currentPage){
              this.currentPage = currentPage;
              if(this.flag) {
@@ -256,7 +190,7 @@
     text-align: center;
     /*color: #2c3e50;*/
     color: #4d4d4d;
-    margin-top: 0;
+    margin-top: 25px;
   }
   .blogtitlebox {
     text-align: center;
@@ -316,6 +250,9 @@
   }
   .el-submenu__title.is-active {
     background: #6db6ff !important;
+  }
+  .el-dropdown {
+    float: right;
   }
 
 </style>

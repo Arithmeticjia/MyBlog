@@ -1,87 +1,6 @@
 <template>
   <el-container style="height: 690px">
-    <el-aside width="220px" style="margin-left: 130px">
-      <el-menu
-        default-active="1"
-        class="el-menu-vertical-demo"
-        background-color="#545c64"
-        text-color="#fff"
-        @open="handleOpen"
-        active-text-color="#ffd04b"
-        style="height: 370x">
-<!--        </br>-->
-        <div class="blogtitlebox">
-          <div class="blogtitle">{{$t('common.blog-name')}}</div>
-        </div>
-        </br>
-      <el-menu-item index="1" @click="skiplocal('/#/home')">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-<!--          <span style="font-weight: bold">首页</span>-->
-          <span style="font-weight: bold">{{$t('common.home')}}</span>
-<!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
-        </template>
-      </el-menu-item>
-      <el-menu-item index="2" @click="skiplocal('/#/archive')">
-        <template slot="title">
-        <i class="el-icon-document"></i>
-        <span style="font-weight: bold">{{$t('common.archive')}}</span>
-<!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
-        </template>
-      </el-menu-item>
-      <el-menu-item index="3" @click="skiplocal('/#/category')">
-        <i class="el-icon-menu"></i>
-        <span slot="title" style="font-weight: bold">{{$t('common.category')}}</span>
-      </el-menu-item>
-      <el-menu-item index="4" @click="skiplocal('/#/bloglist')">
-        <i class="el-icon-search"></i>
-        <span slot="title" style="font-weight: bold">{{$t('common.search')}}</span>
-      </el-menu-item>
-      <el-menu-item index="5" @click="skiplocal('/#/about')">
-        <i class="el-icon-user"></i>
-        <span slot="title" style="font-weight: bold">{{$t('common.about')}}</span>
-      </el-menu-item>
-    </el-menu>
-      <p></p>
-      <el-menu
-      class="el-menu-vertical-demo"
-      background-color="#545c64"
-      text-color="#fff"
-      style="height: 295px">
-        </br>
-        <div class="mypic">
-            <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
-          </div>
-        <p></p>
-        <div class="myname">
-          <span slot="title">{{$t('common.myname')}}</span>
-        </div>
-        <p></p>
-        <div id="tag-sign">
-          <span>{{$t('common.autograph-left')}}</span>
-            <el-divider direction="vertical"></el-divider>
-          <span>{{$t('common.autograph-middle')}}</span>
-            <el-divider direction="vertical"></el-divider>
-          <span>{{$t('common.autograph-right')}}</span>
-        </div>
-<!--        <el-menu-item id="tag-sign">-->
-<!--          <span>雨纷纷</span>-->
-<!--            <el-divider direction="vertical"></el-divider>-->
-<!--          <span>旧故里</span>-->
-<!--            <el-divider direction="vertical"></el-divider>-->
-<!--          <span>草木深</span>-->
-<!--        </el-menu-item>-->
-        </br>
-        <div class="tag-links">
-<!--          &nbsp;-->
-          <el-link icon="el-icon-link" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">github</el-link>
-          <el-divider direction="vertical"></el-divider>
-<!--          &nbsp;-->
-          <el-link icon="el-icon-message" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">e-mail</el-link>
-<!--          <el-button icon="el-icon-message" @click="skip('https://www.guanacossj.com/')" type="text">mail</el-button>-->
-        </div>
-    </el-menu>
-    </el-aside>
+    <Menu></Menu>
     <el-main>
       <div id="apphome">
         <el-dropdown>
@@ -118,9 +37,12 @@
 </template>
 
 <script>
+    import Me from "./Archive";
+    import Menu from "./Menu";
     export default {
-        name: "Home",
-        data () {
+      name: "Home",
+      components: { Me, Menu },
+      data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
