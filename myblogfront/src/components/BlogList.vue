@@ -28,38 +28,38 @@
           v-model="visible"
           trigger="hover"
           style="float: left;margin-left: 5px">
-          <p>点击刷新页面</p>
+          <p>{{$t('common.tip')}}</p>
           <div style="text-align: right;">
-            <el-button type="primary" size="mini" @click="visible = false">我知道了</el-button>
+            <el-button type="primary" size="mini" @click="visible = false">{{$t('common.know')}}</el-button>
           </div>
           <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
         </el-popover>
       <el-table height="550" v-loading="loading" element-loading-text="拼命加载中" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-        <el-table-column prop="date" label="编号" width="50">
+        <el-table-column prop="date" :label="$t('common.table.post-id')" width="50">
           <template slot-scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
-        <el-table-column prop="name" label="标题" width="300">
+        <el-table-column prop="name" :label="$t('common.table.post-title')" width="300">
           <template slot-scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/single/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
         </el-table-column>
-        <el-table-column prop="address" label="分类" width="100">
+        <el-table-column prop="address" :label="$t('common.table.post-category')" width="100">
           <template slot-scope="scope"> {{ scope.row.fields.category }} </template>
         </el-table-column>
-        <el-table-column prop="address" label="标签" width="130">
+        <el-table-column prop="address" :label="$t('common.table.post-tags')" width="130">
           <template slot-scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>
         </el-table-column>
-        <el-table-column prop="address" label="浏览量" width="80">
+        <el-table-column prop="address" :label="$t('common.table.post-visit')" width="80">
           <template slot-scope="scope"> {{ scope.row.fields.views }} </template>
         </el-table-column>
-        <el-table-column prop="address" label="作者" width="120">
+        <el-table-column prop="address" :label="$t('common.table.post-author')" width="120">
           <template slot-scope="scope"> {{ scope.row.fields.authorname }} </template>
         </el-table-column>
-        <el-table-column prop="address" label="发布时间" width="200">
+        <el-table-column prop="address" :label="$t('common.table.post-time')" width="200">
           <template slot-scope="scope"> {{ scope.row.fields.timestamp | formatDate }} </template>
         </el-table-column>
-          <el-table-column prop="address" label="操作" width="150" fixed="right">
+          <el-table-column prop="address" :label="$t('common.table.post-operation')" width="150" fixed="right">
         <template slot-scope="scope">
-          <el-button type="text" @click="open(scope.row.fields.title,scope.row.fields.body)" size="small">查看</el-button>
-          <el-button @click="skip('https://www.guanacossj.com/blog/article/'+scope.row.pk+'/'+scope.row.fields.url_slug)" type="text" size="small">查看详情</el-button>
+          <el-button type="text" @click="open(scope.row.fields.title,scope.row.fields.body)" size="small">{{$t('common.table.operation.overview')}}</el-button>
+          <el-button @click="skip('https://www.guanacossj.com/blog/article/'+scope.row.pk+'/'+scope.row.fields.url_slug)" type="text" size="small">{{$t('common.table.operation.detail')}}</el-button>
         </template>
         </el-table-column>
       </el-table>
@@ -177,7 +177,7 @@
           },
           open(title,body) {
              this.$alert(body.substr(1,100)+'...', title, {
-               confirmButtonText: '确定',
+               confirmButtonText: this.$t('common.table.operation.confirm'),
                // callback: action => {
                //   this.$message({
                //     type: 'info',
@@ -207,7 +207,7 @@
             this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
                 _timeout:5000,
                 onTimeout :(request) => {
-                    this.$message.error('请求超时');
+                    this.$message.error("$t('common.timeout')");
                     this.loading = false
                   }
                 }).then((response) => {

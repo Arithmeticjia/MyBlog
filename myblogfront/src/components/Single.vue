@@ -123,7 +123,7 @@
             this.$http.get('https://www.guanacossj.com/blog/getsinglearticle/'+this.$route.params.id,{
                 _timeout:5000,
                 onTimeout :(request) => {
-                    this.$message.error('请求超时');
+                    this.$message.error("$t('common.timeout')");
                     this.loading = false
                   }
                 }).then((response) => {

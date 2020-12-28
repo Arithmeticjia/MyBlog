@@ -18,7 +18,25 @@ var zh = {
     "search-placeholder": "搜索",
     "cat-before": "当前共计",
     "cat-after": "个分类",
-    "load-text": "拼命加载中..."
+    "load-text": "拼命加载中...",
+    "timeout": "request timeout",
+    "know": "我知道了",
+    "tip": "点击刷新页面",
+    "table" : {
+      "post-id": "编号",
+      "post-title": "标题",
+      "post-category": "分类",
+      "post-tags": "标签",
+      "post-visit": "浏览量",
+      "post-author": "作者",
+      "post-time": "发布时间",
+      "post-operation": "操作",
+      "operation": {
+        "overview": "概览",
+        "detail": "详情",
+        "confirm": "确定"
+      }
+    }
   }
 }
 export default zh

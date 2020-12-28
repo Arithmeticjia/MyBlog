@@ -18,7 +18,25 @@ const en = {
     "search-placeholder": "search",
     "cat-before": "Total",
     "cat-after": "categories",
-    "load-text": "loading..."
+    "load-text": "loading...",
+    "timeout": "request timeout",
+    "know": "got it",
+    "tip": "click to refresh",
+    "table" : {
+      "post-id": "id",
+      "post-title": "title",
+      "post-category": "category",
+      "post-tags": "tags",
+      "post-visit": "visit",
+      "post-author": "author",
+      "post-time": "release time",
+      "post-operation": "operation",
+      "operation": {
+        "overview": "overview",
+        "detail": "detail",
+        "confirm": "ok"
+      }
+    }
   }
 };
 export default en
