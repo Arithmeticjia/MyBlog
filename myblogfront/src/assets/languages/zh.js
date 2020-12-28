@@ -18,6 +18,7 @@ var zh = {
     "search-placeholder": "搜索",
     "cat-before": "当前共计",
     "cat-after": "个分类",
+    "load-text": "拼命加载中..."
   }
 }
 export default zh

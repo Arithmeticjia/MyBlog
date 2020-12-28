@@ -11,7 +11,7 @@
         <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <div id="apparchive" v-loading="loading" element-loading-text="拼命加载中" style="height: 555px">
+      <div id="apparchive" v-loading="loading" :element-loading-text="$t('common.load-text')" style="height: 555px">
         <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">

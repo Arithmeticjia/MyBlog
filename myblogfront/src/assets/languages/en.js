@@ -18,6 +18,7 @@ const en = {
     "search-placeholder": "search",
     "cat-before": "Total",
     "cat-after": "categories",
+    "load-text": "loading..."
   }
 };
 export default en

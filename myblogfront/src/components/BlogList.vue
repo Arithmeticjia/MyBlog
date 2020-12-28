@@ -14,7 +14,6 @@
         <div id="appbloglist">
           <div class="input_search">
             <el-input
-              class="input_box"
 	            clearable
               type="text"
               v-model="searchinfo"
