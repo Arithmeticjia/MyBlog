@@ -1,7 +1,7 @@
 <template>
   <el-aside width="220px" style="margin-left: 130px">
       <el-menu
-        default-active="1"
+        :default-active="$route.path"
         class="el-menu-vertical-demo"
         background-color="#545c64"
         text-color="#fff"
@@ -13,7 +13,7 @@
           <div class="blogtitle">{{$t('common.blog-name')}}</div>
         </div>
         </br>
-      <el-menu-item index="1" @click="skiplocal('/#/home')">
+      <el-menu-item index="/home" @click="skiplocal('/#/home')">
         <template slot="title">
           <i class="el-icon-location"></i>
 <!--          <span style="font-weight: bold">首页</span>-->
@@ -21,22 +21,22 @@
 <!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
         </template>
       </el-menu-item>
-      <el-menu-item index="2" @click="skiplocal('/#/archive')">
+      <el-menu-item index="/archive" @click="skiplocal('/#/archive')">
         <template slot="title">
         <i class="el-icon-document"></i>
         <span style="font-weight: bold">{{$t('common.archive')}}</span>
 <!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
         </template>
       </el-menu-item>
-      <el-menu-item index="3" @click="skiplocal('/#/category')">
+      <el-menu-item index="/category" @click="skiplocal('/#/category')">
         <i class="el-icon-menu"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.category')}}</span>
       </el-menu-item>
-      <el-menu-item index="4" @click="skiplocal('/#/bloglist')">
+      <el-menu-item index="/bloglist" @click="skiplocal('/#/bloglist')">
         <i class="el-icon-search"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.search')}}</span>
       </el-menu-item>
-      <el-menu-item index="5" @click="skiplocal('/#/about')">
+      <el-menu-item index="/about" @click="skiplocal('/#/about')">
         <i class="el-icon-user"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.about')}}</span>
       </el-menu-item>
