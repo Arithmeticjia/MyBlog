@@ -11,7 +11,7 @@
         <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <div id="appcategory" v-loading="loading" element-loading-text="拼命加载中">
+      <div id="appcategory" v-loading="loading" :element-loading-text="$t('common.load-text')">
         <div class="category-box">
           <div class="grid-content bg-puprple-light">
             <el-row type="flex" class="row-bg" justify="space-around">

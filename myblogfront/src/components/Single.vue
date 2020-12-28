@@ -2,7 +2,7 @@
   <el-container style="height: 690px">
     <Menu></Menu>
     <el-main>
-      <div id="appvuedjango" v-loading="this.loading" element-loading-text="拼命加载中">
+      <div id="appvuedjango" v-loading="this.loading" :element-loading-text="$t('common.load-text')">
         <div class="grid-content bg-puprple-light" v-for="(value, key, index) in singleblog">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="21">
