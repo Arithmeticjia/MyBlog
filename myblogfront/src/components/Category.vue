@@ -2,14 +2,23 @@
   <el-container style="height: 690px">
     <Menu></Menu>
     <el-main>
+      <el-dropdown>
+          <span class="el-dropdown-link">
+            {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item @click.native = "switchLang('zh')">{{$t('common.lang-zh')}}</el-dropdown-item>
+        <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <div id="appcategory" v-loading="loading" element-loading-text="拼命加载中">
         <div class="category-box">
           <div class="grid-content bg-puprple-light">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h1 style="text-align: center">分类</h1>
-                  <p style="text-align: center">当前共计{{ totalItems }}个分类</p>
+<!--                  <h1 style="text-align: center">分类</h1>-->
+                  <p style="text-align: center">{{$t('common.cat-before')}}<span style="font-size: xxx-large;">{{ totalItems }}</span>{{$t('common.cat-after')}}</p>
                   <div class="me" v-for="(value, key, index) in categoryList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
                     <router-link style="color: #4D4D4D" :to="'/category/'+value.fields.name"><p style="color: #4D4D4D; font-size: large;">{{ value.fields.name }}</p></router-link>
                   </div>
@@ -86,6 +95,9 @@ import Menu from "./Menu";
               }
             });
           },
+          switchLang(val){
+            this.$i18n.locale=val;//此处val为 zh 或者 en
+          },
           handleSizeChange(val) {
              this.pageSize = val;
              this.handleCurrentChange(this.currentPage);
@@ -133,7 +145,7 @@ import Menu from "./Menu";
     text-align: center;
     /*color: #2c3e50;*/
     color: #4d4d4d;
-    margin-top: 0;
+    margin-top: 30px;
   }
   .el-col {
     border-radius: 4px;
@@ -226,5 +238,8 @@ import Menu from "./Menu";
   .hide-pagination {
     float: right;
     /*padding-right: 0 !important;*/
+  }
+  .el-dropdown {
+    float: right;
   }
 </style>

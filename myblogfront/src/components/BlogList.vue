@@ -1,102 +1,36 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <el-container style="height: 690px">
-    <el-aside width="220px" style="margin-left: 130px">
-      <el-menu
-        default-active="4"
-        class="el-menu-vertical-demo"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
-        style="height: 370x">
-<!--        </br>-->
-        <div class="blogtitlebox">
-          <div class="blogtitle">请叫我算术嘉の博客</div>
-        </div>
-        </br>
-      <el-menu-item index="1" @click="skiplocal('/#/home')">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span style="font-weight: bold">首页</span>
-<!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
-        </template>
-      </el-menu-item>
-      <el-menu-item index="2" @click="skiplocal('/#/archive')">
-        <template slot="title">
-        <i class="el-icon-document"></i>
-        <span style="font-weight: bold">归档</span>
-<!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
-        </template>
-      </el-menu-item>
-      <el-menu-item index="3" @click="skiplocal('/#/category')">
-        <i class="el-icon-menu"></i>
-        <span slot="title" style="font-weight: bold">分类</span>
-      </el-menu-item>
-      <el-menu-item index="4" @click="skiplocal('/#/bloglist')">
-        <i class="el-icon-search"></i>
-        <span slot="title" style="font-weight: bold">搜索</span>
-      </el-menu-item>
-      <el-menu-item index="5" @click="skiplocal('/#/about')">
-        <i class="el-icon-user"></i>
-        <span slot="title" style="font-weight: bold">关于</span>
-      </el-menu-item>
-    </el-menu>
-      <p></p>
-      <el-menu
-      class="el-menu-vertical-demo"
-      background-color="#545c64"
-      text-color="#fff"
-      style="height: 295px">
-        </br>
-        <div class="mypic">
-            <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
-          </div>
-        <p></p>
-        <div class="myname">
-          <span slot="title">请叫我算术嘉</span>
-        </div>
-        <p></p>
-        <div id="tag-sign">
-          <span>雨纷纷</span>
-            <el-divider direction="vertical"></el-divider>
-          <span>旧故里</span>
-            <el-divider direction="vertical"></el-divider>
-          <span>草木深</span>
-        </div>
-<!--        <el-menu-item id="tag-sign">-->
-<!--          <span>雨纷纷</span>-->
-<!--            <el-divider direction="vertical"></el-divider>-->
-<!--          <span>旧故里</span>-->
-<!--            <el-divider direction="vertical"></el-divider>-->
-<!--          <span>草木深</span>-->
-<!--        </el-menu-item>-->
-        </br>
-        <div class="tag-links">
-<!--          &nbsp;-->
-          <el-link icon="el-icon-link" style="color: white" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">github</el-link>
-          <el-divider direction="vertical"></el-divider>
-<!--          &nbsp;-->
-          <el-link icon="el-icon-message" style="color: white" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">e-mail</el-link>
-<!--          <el-button icon="el-icon-message" @click="skip('https://www.guanacossj.com/')" type="text">mail</el-button>-->
-        </div>
-    </el-menu>
-    </el-aside>
+    <Menu></Menu>
       <el-main>
-        <el-button type="primary" size="medium" icon="el-icon-search" @click="doFilter" style="float:right;"></el-button>
-        <el-input
-	        clearable
-          type="text"
-          v-model="searchinfo"
-          placeholder="搜索"
-          size="medium"
-          style="width:160px;float: right;margin-right:10px">
-        </el-input>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item @click.native = "switchLang('zh')">{{$t('common.lang-zh')}}</el-dropdown-item>
+        <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
+        </el-dropdown-menu>
+        </el-dropdown>
+        <div id="appbloglist">
+          <div class="input_search">
+            <el-input
+              class="input_box"
+	            clearable
+              type="text"
+              v-model="searchinfo"
+              :placeholder="$t('common.search-placeholder')"
+              size="medium"
+              style="width:160px;float: left">
+            </el-input>
+            <el-button class="search_btn" type="primary" size="medium" icon="el-icon-search" @click="doFilter" style="float:left;margin-left: 10px"></el-button>
+          </div>
         <el-popover
           placement="top-start"
           v-model="visible"
           trigger="hover"
-          style="float: right">
+          style="float: left;margin-left: 5px">
           <p>点击刷新页面</p>
-          <div style="text-align: right; margin: 0">
+          <div style="text-align: right;">
             <el-button type="primary" size="mini" @click="visible = false">我知道了</el-button>
           </div>
           <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
@@ -145,15 +79,19 @@
           layout="prev, pager, next, total">
         </el-pagination>
       </el-footer>
+        </div>
     </el-main>
   </el-container>
 </template>
 
 <script>
     import moment from "moment";
+    import Me from "./Archive";
+    import Menu from "./Menu";
     export default {
-        name: "BlogList",
-        data () {
+      name: "BlogList",
+      components: { Me, Menu },
+      data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
@@ -185,6 +123,9 @@
         methods: {
           reFresh: function() {
             window.location.reload();
+          },
+          switchLang(val){
+            this.$i18n.locale=val;//此处val为 zh 或者 en
           },
           doFilter: function() {
             if (this.searchinfo === "") {
@@ -359,6 +300,9 @@
   }
   .el-submenu__title.is-active {
     background: #6db6ff !important;
+  }
+  .el-dropdown {
+    float: right;
   }
 
 </style>

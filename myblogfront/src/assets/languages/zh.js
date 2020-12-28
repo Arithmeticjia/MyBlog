@@ -14,7 +14,10 @@ var zh = {
     "lang-en": "英文",
     "autograph-left": "雨纷纷",
     "autograph-middle": "旧故里",
-    "autograph-right": "草木深"
+    "autograph-right": "草木深",
+    "search-placeholder": "搜索",
+    "cat-before": "当前共计",
+    "cat-after": "个分类",
   }
 }
 export default zh

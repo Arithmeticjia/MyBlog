@@ -2,6 +2,15 @@
   <el-container style="height: 690px">
     <Menu></Menu>
     <el-main>
+      <el-dropdown>
+          <span class="el-dropdown-link">
+            {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item @click.native = "switchLang('zh')">{{$t('common.lang-zh')}}</el-dropdown-item>
+        <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <div id="appabout">
         <div class="grid-content bg-puprple-light">
             <el-row type="flex" class="row-bg" justify="space-around">
@@ -357,6 +366,9 @@
           skip(url){
            window.open(url, target='_blank')
           },
+          switchLang(val){
+            this.$i18n.locale=val;//此处val为 zh 或者 en
+          },
           handleOpen(key, keyPath) {
             console.log(key, keyPath);
           },
@@ -463,7 +475,7 @@
     text-align: center;
     /*color: #2c3e50;*/
     color: #4d4d4d;
-    margin-top: 0;
+    margin-top: 30px;
   }
   .blogtitlebox {
     text-align: center;
@@ -553,5 +565,7 @@
   .el-submenu__title.is-active {
     background: #6db6ff !important;
   }
-
+  .el-dropdown {
+    float: right;
+  }
 </style>

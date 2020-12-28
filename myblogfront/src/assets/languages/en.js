@@ -14,7 +14,10 @@ const en = {
     "lang-en": "English",
     "autograph-left": "rain hard",
     "autograph-middle": "house",
-    "autograph-right": "vegetation"
+    "autograph-right": "vegetation",
+    "search-placeholder": "search",
+    "cat-before": "Total",
+    "cat-after": "categories",
   }
 };
 export default en

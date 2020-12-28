@@ -10,7 +10,7 @@
         <el-dropdown-item @click.native = "switchLang('zh')">{{$t('common.lang-zh')}}</el-dropdown-item>
         <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
         </el-dropdown-menu>
-        </el-dropdown>
+      </el-dropdown>
       <div id="apparchive" v-loading="loading" element-loading-text="拼命加载中" style="height: 555px">
         <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
             <el-row type="flex" class="row-bg" justify="space-around">
@@ -190,7 +190,7 @@
     text-align: center;
     /*color: #2c3e50;*/
     color: #4d4d4d;
-    margin-top: 25px;
+    margin-top: 30px;
   }
   .blogtitlebox {
     text-align: center;
