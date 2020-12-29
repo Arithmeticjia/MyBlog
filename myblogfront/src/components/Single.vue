@@ -13,7 +13,12 @@
                     <el-divider direction="vertical"></el-divider>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-user-solid"></i> 作者：{{ value.fields.authorname }}</span>
                   </div>
-                  </br>
+                  <br>
+                  <span style="color: #7d7d7d;font-size: small"><i class="el-icon-collection-tag"></i> 标签：</span>
+                  <div style="display: inline" v-for="(tag) in tags">
+                    <el-tag size="small">{{ tag }}</el-tag>&nbsp;
+                  </div>
+                  <br>
                   <div class="bodymarkdown" style="text-align: left" v-html="markdownhtml"></div>
                 </div>
               </el-col>
@@ -77,7 +82,8 @@
             next_article_title: "已经是最后一篇了",
             prev_article_id: 0,
             next_article_id: 0,
-            loading: true
+            loading: true,
+            tags: []
           }
         },
         created: function () {
@@ -128,6 +134,7 @@
                 }).then((response) => {
                 var res = JSON.parse(response.bodyText);
                 if (res.error_num === 0) {
+                  this.tags = res['list'][0]['fields']['tags'];
                   this.loading = false;
                   this.markdownhtml = res.markdown;
                   if (res.prev_article_title !== ""){
