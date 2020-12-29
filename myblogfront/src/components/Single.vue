@@ -55,7 +55,6 @@
               <router-link :to="'/single/'+next_article_id"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
             </div>
         </div>
-      </div>
     </el-main>
   </el-container>
 </template>

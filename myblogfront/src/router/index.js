@@ -4,7 +4,6 @@ import VueResource from 'vue-resource'
 import HelloWorld from '@/components/HelloWorld'
 import VueDjango from '@/components/VueDjango'
 import BlogList from '@/components/BlogList'
-import BlogIndex from '@/components/BlogIndex'
 import Archive from '@/components/Archive'
 import Home from '@/components/Home'
 import Single from '@/components/Single'
@@ -28,11 +27,6 @@ Vue.use(ElementUI)
 
 export default new Router({
   routes: [
-    {
-      path: '/blogindex',
-      name: 'BlogIndex',
-      component: BlogIndex
-    },
     {
       path: '/bloglist',
       name: 'BlogList',

@@ -267,4 +267,10 @@
   .el-dropdown {
     float: right;
   }
+  .el-dropdown-link {
+    cursor: pointer;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 </style>
