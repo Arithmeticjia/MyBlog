@@ -1,5 +1,6 @@
 <template>
-  <el-container style="height: 690px">
+  <el-container class="layout-container">
+<!--  <el-container style="height: 100%">-->
     <Menu></Menu>
     <el-main>
       <el-dropdown>
@@ -259,5 +260,12 @@
   }
   .el-icon-arrow-down {
     font-size: 12px;
+  }
+  .body {
+    height:100%;
+    overflow:hidden;
+  }
+  .layout-container {
+    height: 100%;
   }
 </style>

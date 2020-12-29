@@ -10,6 +10,7 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import './assets/articlemarkdown.css'
 import locale from 'element-ui/lib/locale/lang/en'
+import '@/assets/global.css'
 
 Vue.use(ElementUI, { locale })
 Vue.use(mavonEditor)

@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 690px">
+  <el-container class="layout-container">
     <Menu></Menu>
     <el-main>
       <div id="appvuedjango" v-loading="this.loading" :element-loading-text="$t('common.load-text')">
@@ -277,5 +277,8 @@
   }
   .author-text {
     text-align: left;
+  }
+  .layout-container {
+    height: 100%;
   }
 </style>

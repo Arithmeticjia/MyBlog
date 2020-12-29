@@ -7,7 +7,7 @@
         text-color="#fff"
         @open="handleOpen"
         active-text-color="#ffd04b"
-        style="height: 370x">
+        style="height: 370px">
 <!--        </br>-->
         <div class="blogtitlebox">
           <div class="blogtitle">{{$t('common.blog-name')}}</div>

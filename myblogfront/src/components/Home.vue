@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 690px">
+  <el-container class="layout-container">
     <Menu></Menu>
     <el-main>
       <div id="apphome">
@@ -176,5 +176,8 @@
   }
   .el-icon-arrow-down {
     font-size: 12px;
+  }
+  .layout-container {
+    height: 100%;
   }
 </style>

@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <el-container style="height: 690px">
+  <el-container class="layout-container">
     <Menu></Menu>
       <el-main>
         <el-dropdown>
@@ -34,7 +34,7 @@
           </div>
           <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
         </el-popover>
-      <el-table height="550" v-loading="loading" element-loading-text="拼命加载中" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+      <el-table height="550" v-loading="loading" :element-loading-text="$t('common.load-text')" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" :label="$t('common.table.post-id')" width="50">
           <template slot-scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
@@ -98,7 +98,7 @@
             visible: false,
             currentPage:1,
             totalItems:0,
-            pageSize:15,
+            pageSize:12,
             searchInfo: '',
             blogList: [],
             originblogList: [],
@@ -207,7 +207,7 @@
             this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
                 _timeout:5000,
                 onTimeout :(request) => {
-                    this.$message.error("$t('common.timeout')");
+                    this.$message.error(this.$t('common.timeout'));
                     this.loading = false
                   }
                 }).then((response) => {
@@ -309,5 +309,7 @@
   .el-icon-arrow-down {
     font-size: 12px;
   }
-
+  .layout-container {
+    height: 100%;
+  }
 </style>
