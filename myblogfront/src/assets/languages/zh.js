@@ -5,6 +5,12 @@ var zh = {
     "category": "分类",
     "search": "搜索",
     "about": "关于",
+    "About": {
+      "information": "基本信息",
+      "contact": "联系方式",
+      "profession": "专业技能",
+      "hobby": "兴趣爱好"
+    },
     "home-word-up": "青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪",
     "home-word-down": "少量的邪恶足以抵消全部高贵的品质, 害得人声名狼藉",
     "myname": "请叫我算术嘉",

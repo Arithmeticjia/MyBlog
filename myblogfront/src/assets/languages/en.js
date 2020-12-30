@@ -22,6 +22,12 @@ const en = {
     "timeout": "request timeout",
     "know": "got it",
     "tip": "click to refresh",
+    "About": {
+      "information": "Information",
+      "contact": "Contact",
+      "profession": "Profession",
+      "hobby": "Hobby"
+    },
     "table" : {
       "post-id": "id",
       "post-title": "title",

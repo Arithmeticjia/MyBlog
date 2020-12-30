@@ -16,7 +16,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h2>基本信息</h2>
+                  <h2>{{$t('common.About.information')}}</h2>
                   <div class="me">
                     <p>姓名：单沙嘉（ShanShajia）</p>
                     <p>性别：男</p>
@@ -36,7 +36,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h2>联系方式</h2>
+                  <h2>{{$t('common.About.contact')}}</h2>
                   <div class="me">
                     <p>Phone：18351922995</p>
                     <p>QQ：1524126437</p>
@@ -51,7 +51,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h2>专业技能</h2>
+                  <h2>{{$t('common.About.profession')}}</h2>
                   <div class="me">
                     <p>Python：Django/Flask/Pytorch/Tensorflow</p>
                     <p>Java：SpringBoot</p>
@@ -67,7 +67,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h2>兴趣爱好</h2>
+                  <h2>{{$t('common.About.hobby')}}</h2>
                   <div class="me">
                     <p>王者荣耀：星耀✨✨✨✨</p>
                     <p>看电影...</p>
@@ -109,7 +109,7 @@
   import "echarts-wordcloud/dist/echarts-wordcloud.min";
   import Menu from "./Menu";
     export default {
-        name: "Me",
+        name: "About",
         components: { Menu },
         data () {
           return {
