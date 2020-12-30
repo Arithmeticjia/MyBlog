@@ -12,6 +12,8 @@
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-date"></i> 发表于：{{ value.fields.timestamp | formatDate }}</span>
                     <el-divider direction="vertical"></el-divider>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-user-solid"></i> 作者：{{ value.fields.authorname }}</span>
+                    <el-divider direction="vertical"></el-divider>
+                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-document"></i> 分类：{{ value.fields.category }}</span>
                   </div>
                   <br>
                   <span style="color: #7d7d7d;font-size: small"><i class="el-icon-collection-tag"></i> 标签：</span>
