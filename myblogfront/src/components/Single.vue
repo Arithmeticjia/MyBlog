@@ -2,7 +2,7 @@
   <el-container class="layout-container">
     <Menu></Menu>
     <el-main>
-      <div id="appvuedjango" v-loading="this.loading" :element-loading-text="$t('common.load-text')">
+      <div id="appsingle" v-loading="this.loading" :element-loading-text="$t('common.load-text')">
         <div class="grid-content bg-puprple-light" v-for="(value, key, index) in singleblog">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="21">
@@ -62,6 +62,7 @@
               <router-link :to="'/single/'+next_article_id"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
             </div>
         </div>
+      <el-backtop target=".el-main"></el-backtop>
     </el-main>
   </el-container>
 </template>
@@ -193,7 +194,7 @@
     background-color: rgba(255, 255, 255, 0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
   }
-  #appvuedjango {
+  #appsingle {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

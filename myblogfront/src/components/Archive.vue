@@ -48,6 +48,7 @@
         </el-pagination>
       </el-footer>
       </div>
+      <el-backtop target=".el-main"></el-backtop>
     </el-main>
   </el-container>
 </template>

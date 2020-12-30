@@ -27,6 +27,7 @@
                     <p>个人主页：<a href="https://www.guanacossj.com" target="_blank" style="color: #4D4D4D">https://www.guanacossj.com</a></p>
                     <p>GitHub Page：<a href="https://arithmeticjia.github.io/" target="_blank" style="color: #4D4D4D">https://arithmeticjia.github.io</a></p>
                     <p>CSDN：<a href="https://blog.csdn.net/ssjdoudou" target="_blank" style="color: #4D4D4D">https://blog.csdn.net/ssjdoudou</a></p>
+                    <br>
                   </div>
                 </div>
               </el-col>
@@ -42,6 +43,7 @@
                     <p>QQ：1524126437</p>
                     <p>WeChat：18351922995</p>
                     <p>E-mail：1524126437@qq.com/bluesaltssj@gmail.com</p>
+                    <br>
                   </div>
                 </div>
               </el-col>
@@ -58,6 +60,7 @@
                     <p>前端：/HTML/CSS/JavaScript/Vue.js</p>
                     <p>深度学习：RNN/LSTM/Attention/Seq2Seq</p>
                     <p>未完待续...</p>
+                    <br>
                   </div>
                 </div>
               </el-col>
@@ -74,31 +77,14 @@
                     <p>数码产品...</p>
                     <p>睡大觉💤</p>
                     <p>未完待续...</p>
+                    <br>
                   </div>
                 </div>
               </el-col>
             </el-row>
         </div>
-<!--        <h2>基本信息</h2>-->
-<!--        <div class="me">-->
-<!--            <ul>姓名：单沙嘉（ShanShajia）</ul>-->
-<!--            <ul>性别：男</ul>-->
-<!--            <ul>出生年月：1994.10.27</ul>-->
-<!--            <ul>星座：天蝎座</ul>-->
-<!--            <ul>本科：南京邮电大学-通信与信息工程学院-通信工程</ul>-->
-<!--            <ul>研究生：南京邮电大学-计算机学院、软件学院、网络空间安全学院（大数据研究院）-软件工程</ul>-->
-<!--        </div>-->
-<!--        <h2>专业方向</h2>-->
-<!--        <div class="me">-->
-<!--            <ul>python：Django/Flask</ul>-->
-<!--            <ul>java：SpringBoot</ul>-->
-<!--            <ul>Vue.js</ul>-->
-<!--            <ul>深度学习：RNN/LSTM/Attention/Seq2Seq</ul>-->
-<!--        </div>-->
-<!--        <div id="mywordcloud" :style="{width: '1000px', height: '500px'}" :data="worddata" style="text-align: center"></div>-->
-<!--        <p><a style="text-decoration: none;font-size: large; color: #2C3E50"  href="https://www.guanacossj.com" target="_blank">https://www.guanacossj.com</a></p>-->
-<!--        <el-link :underline="false" href="https://www.guanacossj.com" style="font-size: large" target="_blank">https://www.guanacossj.com</el-link>-->
       </div>
+      <el-backtop target=".el-main"></el-backtop>
     </el-main>
   </el-container>
 </template>
