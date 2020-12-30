@@ -36,7 +36,7 @@
               </el-popover>
             </div>
             </div>
-            </br>
+            <br>
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="21">
                 <div class="grid-content bg-puprple-light">
@@ -157,7 +157,8 @@
 
 <style scoped>
   .el-main{
-    margin-right: 130px;
+    /*margin-right: 150px;*/
+    margin-right: 10%;
   }
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)

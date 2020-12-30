@@ -27,7 +27,7 @@
             </el-row>
           </div>
         </div>
-        </br>
+        <br>
 <!--        <p></p>-->
         <div class="hide-pagination">
           <el-switch v-model="value">
@@ -136,7 +136,8 @@ import Menu from "./Menu";
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
   .el-main{
-    margin-right: 130px;
+    /*margin-right: 150px;*/
+    margin-right: 10%;
   }
   #appcategory {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

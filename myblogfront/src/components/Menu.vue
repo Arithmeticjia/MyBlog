@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="220px" style="margin-left: 130px">
+  <el-aside width="220px" style="margin-left: 10%;">
       <el-menu
         :default-active="$route.path"
         class="el-menu-vertical-demo"

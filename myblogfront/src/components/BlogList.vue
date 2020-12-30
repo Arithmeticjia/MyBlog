@@ -65,8 +65,8 @@
       </el-table>
       <el-footer>
 <!--        <p></p>-->
-        </br>
-        </br>
+        <br>
+        <br>
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -239,7 +239,8 @@
   .el-main {
     color: #333;
     text-align: center;
-    margin-right: 130px;
+    /*margin-right: 150px;*/
+    margin-right: 10%;
   }
   .blogtitlebox {
     text-align: center;

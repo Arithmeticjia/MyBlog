@@ -16,7 +16,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h1>基本信息</h1>
+                  <h2>基本信息</h2>
                   <div class="me">
                     <p>姓名：单沙嘉（ShanShajia）</p>
                     <p>性别：男</p>
@@ -26,6 +26,7 @@
                     <p>研究生：南京邮电大学-计算机学院、软件学院、网络空间安全学院（大数据研究院）-软件工程</p>
                     <p>个人主页：<a href="https://www.guanacossj.com" target="_blank" style="color: #4D4D4D">https://www.guanacossj.com</a></p>
                     <p>GitHub Page：<a href="https://arithmeticjia.github.io/" target="_blank" style="color: #4D4D4D">https://arithmeticjia.github.io</a></p>
+                    <p>CSDN：<a href="https://blog.csdn.net/ssjdoudou" target="_blank" style="color: #4D4D4D">https://blog.csdn.net/ssjdoudou</a></p>
                   </div>
                 </div>
               </el-col>
@@ -35,12 +36,12 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h1>联系方式</h1>
+                  <h2>联系方式</h2>
                   <div class="me">
-                    <p>手机号：18351922995</p>
+                    <p>Phone：18351922995</p>
                     <p>QQ：1524126437</p>
-                    <p>Wechat：18351922995</p>
-                    <p>电子邮箱：1524126437@qq.com/bluesaltssj@gmail.com</p>
+                    <p>WeChat：18351922995</p>
+                    <p>E-mail：1524126437@qq.com/bluesaltssj@gmail.com</p>
                   </div>
                 </div>
               </el-col>
@@ -50,11 +51,11 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h1>专业技能</h1>
+                  <h2>专业技能</h2>
                   <div class="me">
                     <p>Python：Django/Flask/Pytorch/Tensorflow</p>
                     <p>Java：SpringBoot</p>
-                    <p>前端：Vue.js</p>
+                    <p>前端：/HTML/CSS/JavaScript/Vue.js</p>
                     <p>深度学习：RNN/LSTM/Attention/Seq2Seq</p>
                     <p>未完待续...</p>
                   </div>
@@ -66,7 +67,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h1>兴趣爱好</h1>
+                  <h2>兴趣爱好</h2>
                   <div class="me">
                     <p>王者荣耀：星耀✨✨✨✨</p>
                     <p>看电影...</p>
@@ -466,7 +467,8 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
   .el-main{
-    margin-right: 130px;
+    /*margin-right: 150px; */
+    margin-right: 10%;
   }
   #appabout {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

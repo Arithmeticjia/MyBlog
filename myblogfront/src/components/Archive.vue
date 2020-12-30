@@ -182,7 +182,8 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
   .el-main{
-    margin-right: 130px;
+    /*margin-right: 150px;*/
+    margin-right: 10%;
   }
   #apparchive {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

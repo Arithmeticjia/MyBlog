@@ -13,22 +13,22 @@
         </el-dropdown-menu>
         </el-dropdown>
         <img src="../assets/logo.png">
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <p></p>
           <div>
             <span style="font-size: large">{{$t('common.home-word-up')}}</span>
             <el-divider></el-divider>
             <span style="font-size: large">{{$t('common.home-word-down')}}</span>
             </div>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <p><a style="text-decoration: none;font-size: large; color: #2C3E50"  href="https://www.guanacossj.com" target="_blank">https://www.guanacossj.com</a></p>
 <!--        <el-link :underline="false" href="https://www.guanacossj.com" style="font-size: large" target="_blank">https://www.guanacossj.com</el-link>-->
       </div>
@@ -95,7 +95,8 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
   .el-main{
-    margin-right: 130px;
+    /*margin-right: 150px;*/
+    margin-right: 10%;
   }
   #apphome {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
