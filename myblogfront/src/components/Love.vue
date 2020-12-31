@@ -13,10 +13,25 @@
       </el-dropdown>
       <div id="appabout">
         <div class="grid-content bg-puprple-light">
+            <div class="block">
+<!--              <span class="demonstration" style="font-size: larger">祎祎大宝贝</span>-->
+              <h2>嘉嘉の祎祎大宝贝</h2>
+              <el-carousel :height="bannerHeight+'px'" >
+                <el-carousel-item v-for="item in imgUrls" :key="item">
+                  <img
+                    ref="bannerHeight"
+                    @load="imgLoad" style="width: 100%"
+                    :src="item"
+                  >
+                </el-carousel-item>
+              </el-carousel>
+        </div>
+          <br>
+        <div class="grid-content bg-puprple-light">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h2>Timeline</h2>
+                  <h2>{{$t('common.Love.timeline')}}</h2>
                   <div class="me">
                     <el-timeline :reverse="reverse">
                       <el-timeline-item
@@ -32,11 +47,12 @@
               </el-col>
             </el-row>
         </div>
+        </div>
         <div class="grid-content bg-puprple-light">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h2>Down List</h2>
+                  <h2>{{$t('common.Love.down-list')}}</h2>
                   <div class="me">
                     <div class="me">
                     <div v-html="compiledMarkdownToDo"></div>
@@ -69,7 +85,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h2>To Do List</h2>
+                  <h2>{{$t('common.Love.todo-list')}}</h2>
                   <div class="me">
                     <div v-html="compiledMarkdownDown"></div>
                   </div>
@@ -93,6 +109,7 @@
         components: { Menu },
         data () {
           return {
+            bannerHeight: "",
             output: "- 吃一次螺蛳粉\n" +
               "- 吃草莓味的DQ\n" +
               "- 夜游秦淮河",
@@ -101,9 +118,13 @@
               "- 接吻\n" +
               "- 吃烤鸭\n" +
               "- 雍和宫还愿\n" +
-              "- 爱国主义校验（圆明园\n" +
+              "- 爱国主义教育（圆明园\n" +
               "- 看电影",
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
+            imgUrls: [
+              'https://www.guanacossj.com/media/fzy/189531609426993_.pic_hd.jpg',
+              'https://www.guanacossj.com/media/fzy/189521609426989_.pic_hd.jpg',
+            ],
             reverse: false,
             activities: [{
               content: '牛客第一次对话',
@@ -122,7 +143,12 @@
           }
         },
         mounted(){
-          this.initChart()
+          this.initChart();
+          this.imgLoad();
+            window.addEventListener('resize',() => {
+                this.bannerHeight=this.$refs.bannerHeight[0].height;
+                this.imgLoad();
+            },false)
         },
         computed: {
           compiledMarkdownToDo: function() {
@@ -133,6 +159,12 @@
           }
         },
         methods: {
+          imgLoad(){
+            this.$nextTick(()=>{
+              this.bannerHeight=this.$refs.bannerHeight[0].height;
+                console.log(this.$refs.bannerHeight[0].height);
+            })
+          },
           skip(url){
            window.open(url, target='_blank')
           },
@@ -351,4 +383,20 @@
   .layout-container {
     height: 100%;
   }
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+     background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+     background-color: #d3dce6;
+  }
+
 </style>

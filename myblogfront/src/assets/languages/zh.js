@@ -12,6 +12,11 @@ var zh = {
       "profession": "专业技能",
       "hobby": "兴趣爱好"
     },
+    "Love": {
+      "timeline": "时间线",
+      "down-list": "完成列表",
+      "todo-list": "待办列表"
+    },
     "home-word-up": "青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪",
     "home-word-down": "少量的邪恶足以抵消全部高贵的品质, 害得人声名狼藉",
     "myname": "请叫我算术嘉",

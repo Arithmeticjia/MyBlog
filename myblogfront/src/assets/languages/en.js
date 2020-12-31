@@ -29,6 +29,11 @@ const en = {
       "profession": "Profession",
       "hobby": "Hobby"
     },
+    "Love": {
+      "timeline": "Timeline",
+      "down-list": "Down List",
+      "todo-list": "To Do List"
+    },
     "table" : {
       "post-id": "id",
       "post-title": "title",
