@@ -29,10 +29,9 @@
     height: 300px;
     position: relative;
     margin: 0 auto;
-    top: 50%;
+    top: 30%;
     color: #4D4D4D;
     /*transform: translateY(-50%);*/
-    margin-top: 150px;
   }
   .notfound-text {
     /*background-color: #0d8464;*/

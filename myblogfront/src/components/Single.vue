@@ -143,10 +143,14 @@
                   if (res.prev_article_title !== ""){
                     this.prev_article_id = res.prev_article_id;
                     this.prev_article_title = res.prev_article_title;
+                  }else {
+                    this.prev_article_title = "已经是第一篇了"
                   }
                   if (res.next_article_title !== ""){
                     this.next_article_id = res.next_article_id;
                     this.next_article_title = res.next_article_title;
+                  }else {
+                    this.next_article_title = "已经是最后一篇了"
                   }
                   this.singleblog = res['list'];
                 } else {

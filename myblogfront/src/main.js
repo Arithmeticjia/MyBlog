@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import i18n from './i18n/index'
+import store from './store'
 import echarts from 'echarts'
 import ElementUI from 'element-ui'
 import mavonEditor from 'mavon-editor'
@@ -22,6 +23,7 @@ new Vue({
   el: '#app',
   router,
   i18n,
+  store,
   components: { App },
   template: '<App/>'
 })
