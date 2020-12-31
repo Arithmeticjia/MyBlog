@@ -19,13 +19,13 @@
                   <h2>Timeline</h2>
                   <div class="me">
                     <el-timeline :reverse="reverse">
-    <el-timeline-item
-      v-for="(activity, index) in activities"
-      :key="index"
-      :timestamp="activity.timestamp">
-      {{activity.content}}
-    </el-timeline-item>
-  </el-timeline>
+                      <el-timeline-item
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        :timestamp="activity.timestamp">
+                        {{activity.content}}
+                      </el-timeline-item>
+                    </el-timeline>
                   </div>
                   </div>
                   <br>
@@ -107,13 +107,17 @@
             reverse: false,
             activities: [{
               content: '牛客第一次对话',
-              timestamp: '2018-04-15'
+              timestamp: '2020-10-21 14:58'
             }, {
               content: '加微信',
-              timestamp: '2018-04-13'
+              timestamp: '2020-10-27 09:19'
             }, {
               content: '在一起',
-              timestamp: '2018-04-11'
+              timestamp: '2020-11-07 20:20'
+            },
+            {
+              content: '第一次见面（北京）',
+              timestamp: '2020-12-21 19:31'
             }],
           }
         },

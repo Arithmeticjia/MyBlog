@@ -34,7 +34,7 @@
           </div>
           <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
         </el-popover>
-      <el-table height="550" v-loading="loading" :element-loading-text="$t('common.load-text')" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+      <el-table height="650" v-loading="loading" :element-loading-text="$t('common.load-text')" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" :label="$t('common.table.post-id')" width="50">
           <template slot-scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
@@ -97,14 +97,14 @@
             visible: false,
             currentPage:1,
             totalItems:0,
-            pageSize:12,
+            pageSize:15,
             searchInfo: '',
             blogList: [],
             originblogList: [],
             searchinfo: '',
             filterTableDataEnd: [],
             flag:false,
-            loading: true,
+            loading: true
           }
         },
         mounted: function () {
@@ -214,6 +214,7 @@
                 if (res.error_num === 0) {
                   this.loading = false;
                   this.blogList = res['list'];
+                  // this.blogList.push(res['list']) ;
                   this.totalItems = this.blogList.length;
                   this.originblogList = this.blogList;
                 } else {

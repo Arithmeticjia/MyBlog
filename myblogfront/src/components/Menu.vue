@@ -5,9 +5,8 @@
         class="el-menu-vertical-demo"
         background-color="#545c64"
         text-color="#fff"
-        @open="handleOpen"
         active-text-color="#ffd04b"
-        style="height: 370px">
+        style="height: 440px">
 <!--        </br>-->
         <div class="blogtitlebox">
           <div class="blogtitle">{{$t('common.blog-name')}}</div>
@@ -39,6 +38,10 @@
       <el-menu-item index="/about" @click="skiplocal('/#/about')">
         <i class="el-icon-user"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.about')}}</span>
+      </el-menu-item>
+        <el-menu-item index="/love" @click="skiplocal('/#/love')">
+        <i class="el-icon-ice-cream"></i>
+        <span slot="title" style="font-weight: bold">{{$t('common.love')}}</span>
       </el-menu-item>
     </el-menu>
       <p></p>
