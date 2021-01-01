@@ -528,6 +528,7 @@ class Hits(models.Model):
         verbose_name = "点击量"
         verbose_name_plural = "点击量"
 
+
 # class User(AbstractUser):
 #     phone = models.CharField(max_length=11, null=True, blank=True)
 #     nickname = models.CharField(max_length=50, null=True, blank=True)
@@ -538,3 +539,19 @@ class Hits(models.Model):
 #         db_table = "user"
 #         verbose_name = '用户'
 #         verbose_name_plural = verbose_name
+
+
+class LoveFZY(models.Model):
+    id = models.AutoField(primary_key=True)
+    type = models.IntegerField(default=0)
+    content = MDTextField()
+
+    def natural_key(self):
+        return self.__str__()
+
+    def __str__(self):
+        return LoveFZY.objects.get(id=self.id).content
+
+    class Meta:
+        verbose_name = "范子祎"
+        verbose_name_plural = "范子祎"

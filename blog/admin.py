@@ -42,5 +42,6 @@ admin.site.register(models.params)
 admin.site.register(models.Jia)
 admin.site.register(models.BlogUserCollect)
 admin.site.register(models.Hits)
+admin.site.register(models.LoveFZY)
 
 # Register your models here.

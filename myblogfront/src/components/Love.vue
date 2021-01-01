@@ -2,6 +2,14 @@
   <el-container class="layout-container">
     <Menu></Menu>
     <el-main>
+      <el-dropdown style="float:left;">
+          <span class="el-dropdown-link">
+            你好 {{ username }}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item @click.native="toLogout">退出</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <el-dropdown>
           <span class="el-dropdown-link">
             {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -20,11 +28,20 @@
                 <el-carousel-item v-for="item in imgUrls" :key="item">
                   <img
                     ref="bannerHeight"
-                    @load="imgLoad" style="width: 100%"
+                    @load="imgLoad" style="width: 50%"
                     :src="item"
                   >
                 </el-carousel-item>
               </el-carousel>
+<!--              <el-carousel :interval="4000" type="card" height="200px">-->
+<!--                  <el-carousel-item v-for="item in imgUrls" :key="item">-->
+<!--                    <img-->
+<!--                    ref="bannerHeight"-->
+<!--                    @load="imgLoad" style="width: 50%"-->
+<!--                    :src="item"-->
+<!--                  >-->
+<!--                  </el-carousel-item>-->
+<!--              </el-carousel>-->
         </div>
           <br>
         <div class="grid-content bg-puprple-light">
@@ -48,33 +65,30 @@
             </el-row>
         </div>
         </div>
+<!--        <div class="grid-content bg-puprple-light">-->
+<!--            <el-row type="flex" class="row-bg" justify="space-around">-->
+<!--              <el-col :span="20">-->
+<!--                <div class="grid-content bg-puprple-light">-->
+<!--                  <h2>{{$t('common.Love.down-list')}}</h2>-->
+<!--                  <div class="me">-->
+<!--                    <div class="me">-->
+<!--                    <div v-html="compiledMarkdownToDo"></div>-->
+<!--                  </div>-->
+<!--                  </div>-->
+<!--                  <br>-->
+<!--                </div>-->
+<!--              </el-col>-->
+<!--            </el-row>-->
+<!--        </div>-->
         <div class="grid-content bg-puprple-light">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.Love.down-list')}}</h2>
                   <div class="me">
-                    <div class="me">
-                    <div v-html="compiledMarkdownToDo"></div>
+                    <div class="me" v-for="value in downList">
+                    <div v-html="compiledMarkdownNew(value.content)"></div>
                   </div>
-<!--                    <el-transfer-->
-<!--                      style="text-align: left; display: inline-block"-->
-<!--                      v-model="value4"-->
-<!--                      filterable-->
-<!--                      :left-default-checked="[2, 3]"-->
-<!--                      :right-default-checked="[1]"-->
-<!--                      :titles="['Source', 'Target']"-->
-<!--                      :button-texts="['到左边', '到右边']"-->
-<!--                      :format="{-->
-<!--                        noChecked: '${total}',-->
-<!--                        hasChecked: '${checked}/${total}'-->
-<!--                      }"-->
-<!--                      @change="handleChange"-->
-<!--                      :data="data">-->
-<!--                      <span slot-scope="{ option }">{{ option.key }} - {{ option.label }}</span>-->
-<!--                      <el-button class="transfer-footer" slot="left-footer" size="small">操作</el-button>-->
-<!--                      <el-button class="transfer-footer" slot="right-footer" size="small">操作</el-button>-->
-<!--                    </el-transfer>-->
                   </div>
                   <br>
                 </div>
@@ -87,7 +101,9 @@
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.Love.todo-list')}}</h2>
                   <div class="me">
-                    <div v-html="compiledMarkdownDown"></div>
+                    <div class="me" v-for="value in todoList">
+                    <div v-html="compiledMarkdownNew(value.content)"></div>
+                  </div>
                   </div>
                 </div>
               </el-col>
@@ -101,6 +117,8 @@
 
 <script>
   import echarts from "echarts";
+  import store from '../store';
+  import axios from 'axios';
   import "echarts-wordcloud/dist/echarts-wordcloud";
   import "echarts-wordcloud/dist/echarts-wordcloud.min";
   import Menu from "./Menu";
@@ -109,10 +127,14 @@
         components: { Menu },
         data () {
           return {
+            username: store.getters.userName,
             bannerHeight: "",
+            downList: [],
+            todoList: [],
             output: "- 吃一次螺蛳粉\n" +
               "- 吃草莓味的DQ\n" +
-              "- 夜游秦淮河",
+              "- 夜游秦淮河\n" +
+              "- 吃一次火锅",
             input: "- 拥抱\n" +
               "- 牵手\n" +
               "- 接吻\n" +
@@ -133,20 +155,25 @@
               content: '加微信',
               timestamp: '2020-10-27 09:19'
             }, {
-              content: '在一起',
+              content: '(๑′ᴗ‵๑)Ｉ Lᵒᵛᵉᵧₒᵤ❤在一起',
               timestamp: '2020-11-07 20:20'
             },
             {
               content: '第一次见面（北京）',
               timestamp: '2020-12-21 19:31'
+            },
+            {
+              content: '第一次抱着睡💤',
+              timestamp: '2020-12-23 22:50'
             }],
           }
         },
         mounted(){
-          this.initChart();
+          this.getToDOList();
+          this.getDownList();
           this.imgLoad();
             window.addEventListener('resize',() => {
-                this.bannerHeight=this.$refs.bannerHeight[0].height;
+                this.bannerHeight=this.$refs.bannerHeight[0].height * 0.5;
                 this.imgLoad();
             },false)
         },
@@ -154,11 +181,25 @@
           compiledMarkdownToDo: function() {
             return marked(this.input, { sanitize: true });
           },
+          compiledMarkdownNew() {
+            return function (value) {
+              return marked(value, {sanitize: true});
+            }
+          },
           compiledMarkdownDown: function() {
             return marked(this.output, { sanitize: true });
           }
         },
         methods: {
+          toLogout() {
+            localStorage.removeItem('Authorization');
+            localStorage.removeItem('Username');
+            this.$router.push(
+              {
+                path: "/login",
+              }
+            )
+          },
           imgLoad(){
             this.$nextTick(()=>{
               this.bannerHeight=this.$refs.bannerHeight[0].height;
@@ -179,6 +220,22 @@
           },
           skiplocal(url){
             location.href = url
+          },
+          async getToDOList() {
+            try {
+              const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzytodo/");
+              this.todoList = data
+            } catch (e) {
+              this.$message.error("请求用户数据失败，请稍后再试！");
+            }
+          },
+          async getDownList() {
+            try {
+              const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzydown/");
+              this.downList = data
+            } catch (e) {
+              this.$message.error("请求用户数据失败，请稍后再试！");
+            }
           },
           notfinishalert() {
             this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
@@ -258,9 +315,6 @@
           maskImage.onload = function () {
             chart.setOption(option);
           };
-          // window.onresize("resize",function(){
-          //   chart.resize();
-          // });
         },
         }
     }

@@ -8,6 +8,7 @@ import store from './store'
 import echarts from 'echarts'
 import ElementUI from 'element-ui'
 import mavonEditor from 'mavon-editor'
+import axios from 'axios'
 import 'mavon-editor/dist/css/index.css'
 import './assets/articlemarkdown.css'
 import locale from 'element-ui/lib/locale/lang/en'
@@ -15,6 +16,7 @@ import '@/assets/global.css'
 
 Vue.use(ElementUI, { locale })
 Vue.use(mavonEditor)
+Vue.use(axios)
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 

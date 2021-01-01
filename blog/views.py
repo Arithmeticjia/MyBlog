@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib import auth
+from django.core import serializers as core_serializers
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.db import models
@@ -21,10 +22,12 @@ import re
 import logging
 from drf_haystack.serializers import HaystackSerializerMixin
 from drf_haystack.viewsets import HaystackViewSet
+from rest_framework.parsers import JSONParser
+from rest_framework.views import APIView
 
 from blog.models import Articles, Message, Tag, Category, Note, Comment, BlogUser, VisitNumber, Recruitment, \
     Recruinfo, Movie, JiaFile, Jia, BlogRole, Paper, Graduation, Honour, Teacher, Project, Version, BlogUserCollect, \
-    SocialAuthUsersocialauth, AuthUser, Hits
+    SocialAuthUsersocialauth, AuthUser, Hits, LoveFZY
 
 from blogproject.models import User
 from django.contrib.auth import logout
@@ -176,89 +179,6 @@ class PostViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.Gen
         return self.serializer_class_table.get(
             self.action
         )
-
-
-# def queryweatherinfo():
-#     url = "https://restapi.amap.com/v3/weather/weatherInfo"
-#     key = '9bae4d790cfacdf4b54188b7758edf23'
-#     data = {'key': key, "city": '320100'}
-#     req = requests.post(url, data)
-#     return req.json()
-#
-#
-# class GetWeatherInfo(View):
-#
-#     def get(self, request):
-#         result = {}
-#         try:
-#             info = dict(queryweatherinfo())
-#             weatherinfo = info['lives'][0]
-#             result['status'] = 000
-#             result['message'] = 'success'
-#             result['info'] = {
-#                 'location': weatherinfo['province'] + weatherinfo['city'],
-#                 'weather': weatherinfo['weather'],
-#                 'temperature': weatherinfo['temperature'] + '℃',
-#                 'winddirection': weatherinfo['winddirection'],
-#                 'windpower': weatherinfo['windpower'],
-#                 'humidity': weatherinfo['humidity'],
-#                 'reporttime': weatherinfo['reporttime'],
-#             }
-#             return JsonResponse(
-#                 result,
-#                 json_dumps_params={'ensure_ascii': False}
-#             )
-#         except Exception as e:
-#             result['status'] = 500
-#             result['message'] = '请求异常，请稍后重试'
-#             result['info'] = {}
-#             return JsonResponse(
-#                 result,
-#                 json_dumps_params={'ensure_ascii': False}
-#             )
-#
-#     @csrf_exempt
-#     def post(self, request):
-#         # 查询到的数据是二进制
-#         json_bytes = request.body
-#         # 需要进行解码，转成字符串
-#         json_str = json_bytes.decode()
-#         # 在把字符串转换成json字典
-#         weather_dict = json.loads(json_str)
-#         city = weather_dict.get('city')
-#         result = {}
-#         try:
-#             url = "https://restapi.amap.com/v3/weather/weatherInfo"
-#             key = '9bae4d790cfacdf4b54188b7758edf23'
-#             data = {'key': key, "city": city}
-#             req = requests.post(url, data)
-#             info = dict(req.json())
-#             weatherinfo = info['lives'][0]
-#             result['status'] = 000
-#             result['message'] = 'success'
-#             result['info'] = {
-#                 'location': weatherinfo['province'] + weatherinfo['city'],
-#                 'weather': weatherinfo['weather'],
-#                 'temperature': weatherinfo['temperature'] + '℃',
-#                 'winddirection': weatherinfo['winddirection'],
-#                 'windpower': weatherinfo['windpower'],
-#                 'humidity': weatherinfo['humidity'],
-#                 'reporttime': weatherinfo['reporttime'],
-#             }
-#             return JsonResponse(
-#                 result,
-#                 json_dumps_params={'ensure_ascii': False}
-#             )
-#         except Exception as e:
-#             result = {
-#                 'status': 500,
-#                 'message': '请求异常，请稍后重试',
-#                 'info': {}
-#             }
-#             return JsonResponse(
-#                 result,
-#                 json_dumps_params={'ensure_ascii': False}
-#             )
 
 
 class Yun(View):
@@ -2117,16 +2037,13 @@ def searchfile(request):
     return render(request, 'blog/searchfile.html', context=context)
 
 
-from django.core import serializers
-
-
 @require_http_methods(["GET"])
 def get_article_all(request):
     response = {}
     try:
         articles = Articles.objects.filter(status="有效").order_by("id")
         response['list'] = json.loads(
-            serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
+            core_serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'
         response['error_num'] = 0
     except Exception as e:
@@ -2141,7 +2058,7 @@ def get_categroy_all(request):
     try:
         categorys = Category.objects.all().order_by("id")
         response['list'] = json.loads(
-            serializers.serialize("json", categorys, use_natural_foreign_keys=True, ensure_ascii=False))
+            core_serializers.serialize("json", categorys, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'
         response['error_num'] = 0
     except Exception as e:
@@ -2157,7 +2074,7 @@ def get_article_category(request, blog_category):
     try:
         articles = Articles.objects.filter(category=cate).filter(status="有效").order_by('id')
         response['list'] = json.loads(
-            serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
+            core_serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'
         response['error_num'] = 0
     except Exception as e:
@@ -2195,7 +2112,7 @@ def get_article_single(request, article_id):
         single_article.body = md.convert(single_article.body)
         single_article.body = single_article.body.replace("/media", "https://www.guanacossj.com/media")
         response['list'] = json.loads(
-            serializers.serialize("json", article, use_natural_foreign_keys=True, ensure_ascii=False))
+            core_serializers.serialize("json", article, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'
         response['markdown'] = single_article.body
         response['error_num'] = 0
@@ -2340,3 +2257,36 @@ def upload_facepic_springboot(request):
 @csrf_exempt
 def sign_in(request):
     return HttpResponse("ok", content_type='application/json')
+
+
+class LoveFZYSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoveFZY
+        fields = [
+            'id',
+            'type',
+            'content'
+        ]
+
+
+class GetLoveFZYToDoList(ListAPIView):
+    serializer_class = LoveFZYSerializer
+    queryset = LoveFZY.objects.filter(type=1).order_by('id')
+    permission_classes = [AllowAny]
+
+
+class GetLoveFZYDownList(ListAPIView):
+    serializer_class = LoveFZYSerializer
+    queryset = LoveFZY.objects.filter(type=0).order_by('id')
+    permission_classes = [AllowAny]
+
+
+class PostLoveFZYInfo(APIView):
+
+    def post(self, request):
+        data = request.data
+        serializer = LoveFZYSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)

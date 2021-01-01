@@ -13,7 +13,6 @@ router = routers.DefaultRouter()
 router.register(r'getarticleinfo', views.GetArticleInfo)
 router.register(r'posts', views.PostViewSet, basename='post')
 router.register(r"search", views.PostSearchView, basename="search")
-# route.register(r'getweatherinfo', views.GetWeatherInfo)
 
 urlpatterns = [
     url('^$', views.index, name='index'),
@@ -60,7 +59,6 @@ urlpatterns = [
     url(r'^list/(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$', views.blog_time),
     url(r'^jiadmin/', views.JiaAdmin.as_view()),
     url(r'^resume/', views.Resume.as_view()),
-    # url(r'^getweatherinfo/', csrf_exempt(views.GetWeatherInfo.as_view()), name='getweatherinfo'),
     url(r'^collect/$', views.collect),
     url(r'^comments/(?P<article_id>[0-9]+)$', views.comments),
     url(r'^rss/$', views.RssFeed(), name='rss'),
@@ -75,4 +73,7 @@ urlpatterns = [
     url(r'^post/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.JiaPost.as_view()),
     url(r'^upload_file_springboot/$', views.upload_facepic_springboot),
     url(r'^sign_in/$', views.sign_in),
+    url(r'^getlovefzytodo/$', views.GetLoveFZYToDoList.as_view()),
+    url(r'^getlovefzydown/$', views.GetLoveFZYDownList.as_view()),
+    url(r'^postlovefzy/$', views.PostLoveFZYInfo.as_view()),
 ]
