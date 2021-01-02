@@ -30,6 +30,7 @@ const en = {
       "hobby": "Hobby"
     },
     "Love": {
+      "baby": "JiaJia's YiYi treasure",
       "timeline": "Timeline",
       "down-list": "Down List",
       "todo-list": "To Do List"

@@ -13,6 +13,7 @@ var zh = {
       "hobby": "兴趣爱好"
     },
     "Love": {
+      "baby": "嘉嘉の祎祎大宝贝",
       "timeline": "时间线",
       "down-list": "完成列表",
       "todo-list": "待办列表"
