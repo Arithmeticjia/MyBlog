@@ -6,6 +6,7 @@
         :model="loginForm"
         ref="loginForm"
         label-position="left"
+        :rules="rules"
       >
         <div style="text-align: center">
 <!--          <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #409EFF"></svg-icon>-->
@@ -23,7 +24,7 @@
               <svg-icon icon-class="user" class="color-main"></svg-icon>
             </span>
           </el-input>
-        </el-form-item>
+        </el-form-item >
         <el-form-item prop="password">
           <el-input
             name="password"
@@ -46,10 +47,11 @@
             style="width: 100%"
             type="primary"
             :loading="loading"
-            @click.native.prevent="handleLogin"
+            @click.native.prevent="handleLogin('loginForm')"
           >登录</el-button>
         </el-form-item>
       </el-form>
+      <p style="text-align: center;font-size: small">Powered by SpringBoot</p>
     </el-card>
   </div>
 </template>
@@ -67,6 +69,16 @@
         },
         loading: false,
         pwdType: "password",
+        rules: {
+          username: [
+            {required: true, message: '请输入用户名', trigger: 'blur'},
+            {min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur'}
+          ],
+          password: [
+            {required: true, message: '请输入密码', trigger: 'blur'},
+            {min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur'}
+          ],
+        }
       };
     },
     methods: {
@@ -78,8 +90,8 @@
           this.pwdType = "password";
         }
       },
-      handleLogin() {
-        this.$refs.loginForm.validate(valid => {
+      handleLogin(formName) {
+        this.$refs[formName].validate(valid => {
           if (valid) {
             this.loading = true;
             this.$store
