@@ -33,7 +33,17 @@ const en = {
       "baby": "JiaJia's YiYi treasure",
       "timeline": "Timeline",
       "down-list": "Down List",
-      "todo-list": "To Do List"
+      "todo-list": "To Do List",
+      "click-to-add": "Click to Add",
+      "user": "Hello",
+      "add": "Add",
+      "content": "Content",
+      "type": "Type",
+      "cancel": "Cancel",
+      "confirm": "Ok",
+      "placeholder": "Please select a type",
+      "length": "The length is between 1 and 20 characters",
+      "close": "Are you sure to close?"
     },
     "table" : {
       "post-id": "id",

@@ -4,7 +4,7 @@
     <el-main>
       <el-dropdown style="float:left;">
           <span class="el-dropdown-link">
-            你好 {{ username }}<i class="el-icon-arrow-down el-icon--right"></i>
+            {{$t('common.Love.user')}} {{ username }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item @click.native="toLogout">退出</el-dropdown-item>
@@ -19,7 +19,7 @@
         <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <div id="appabout">
+      <div id="applove">
         <div class="grid-content bg-puprple-light">
             <div class="block">
 <!--              <span class="demonstration" style="font-size: larger">祎祎大宝贝</span>-->
@@ -55,7 +55,7 @@
                         v-for="(activity, index) in activities"
                         :key="index"
                         :timestamp="activity.timestamp">
-                        {{activity.content}}
+                        {{ activity.content }}
                       </el-timeline-item>
                     </el-timeline>
                   </div>
@@ -65,22 +65,7 @@
             </el-row>
         </div>
         </div>
-<!--        <div class="grid-content bg-puprple-light">-->
-<!--            <el-row type="flex" class="row-bg" justify="space-around">-->
-<!--              <el-col :span="20">-->
-<!--                <div class="grid-content bg-puprple-light">-->
-<!--                  <h2>{{$t('common.Love.down-list')}}</h2>-->
-<!--                  <div class="me">-->
-<!--                    <div class="me">-->
-<!--                    <div v-html="compiledMarkdownToDo"></div>-->
-<!--                  </div>-->
-<!--                  </div>-->
-<!--                  <br>-->
-<!--                </div>-->
-<!--              </el-col>-->
-<!--            </el-row>-->
-<!--        </div>-->
-        <div class="grid-content bg-puprple-light">
+        <div class="grid-content bg-puprple-light" v-loading="loading">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
@@ -95,7 +80,7 @@
               </el-col>
             </el-row>
         </div>
-        <div class="grid-content bg-puprple-light">
+        <div class="grid-content bg-puprple-light" v-loading="loading">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
@@ -109,24 +94,24 @@
               </el-col>
             </el-row>
         </div>
-        <el-button style="padding: 3px 0" type="text" @click="dialogFormVisible = true">点击添加</el-button>
+        <el-button style="padding: 3px 0" type="text" @click="dialogFormVisible = true">{{$t('common.Love.click-to-add')}}</el-button>
         <!--编辑弹框-->
-        <el-dialog title="新增" :visible.sync="dialogFormVisible" :before-close="handleClose" width="40%">
-          <el-form :model="form" :rules="rules" ref="form" :label-position="labelPosition" label-width="60px">
-            <el-form-item label="内容" prop="content">
+        <el-dialog :title="$t('common.Love.add')" :visible.sync="dialogFormVisible" :before-close="handleClose" width="40%">
+          <el-form :model="form" :rules="rules" ref="form" :label-position="labelPosition" label-width="80px">
+            <el-form-item :label="$t('common.Love.content')" prop="content">
               <el-input v-model="form.content" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="类型" prop="type">
-              <el-select v-model="form.type" placeholder="请选择类型">
-                <el-option label="完成列表" value=0></el-option>
-                <el-option label="待办列表" value=1></el-option>
-                <el-option label="时间线" value=2></el-option>
+            <el-form-item :label="$t('common.Love.type')" prop="type">
+              <el-select v-model="form.type" :placeholder="$t('common.Love.placeholder')">
+                <el-option :label="$t('common.Love.down-list')" value=0></el-option>
+                <el-option :label="$t('common.Love.todo-list')" value=1></el-option>
+                <el-option :label="$t('common.Love.timeline')" value=2></el-option>
               </el-select>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible = false">取 消</el-button>
-              <el-button type="primary" @click="submitForm('form')">确 定</el-button>
+            <el-button @click="dialogFormVisible = false">{{$t('common.Love.cancel')}}</el-button>
+              <el-button type="primary" @click="submitForm('form')">{{$t('common.Love.confirm')}}</el-button>
             </div>
           </el-dialog>
       </div>
@@ -145,6 +130,7 @@
         data () {
           return {
             username: store.getters.userName,
+            loading: true,
             bannerHeight: "",
             dialogFormVisible: false,
             form: {
@@ -154,12 +140,12 @@
             labelPosition: 'right',
             rules: {
               content: [
-                {required: true, message: '请输入内容', trigger: 'blur'},
-                {min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur'}
+                {required: true, message: this.$t('common.Love.placeholder'), trigger: 'blur'},
+                {min: 3, max: 20, message: this.$t('common.Love.length'), trigger: 'blur'}
               ],
               type: [
-                {required: true, message: '请选择类型', trigger: 'blur'},
-                {min: 1, max: 1, message: '长度在 1 到 20 个字符', trigger: 'blur'}
+                {required: true, message: this.$t('common.Love.placeholder'), trigger: 'blur'},
+                {min: 1, max: 1, message: this.$t('common.Love.length'), trigger: 'blur'}
               ],
             },
             downList: [],
@@ -233,7 +219,7 @@
             )
           },
           handleClose(done) {
-            this.$confirm('确认关闭？')
+            this.$confirm(this.$t('common.Love.close'))
               .then(_ => {
                 done();
               })
@@ -265,13 +251,13 @@
               if (valid) {
                 this.loading = true;
                 axios({
-                  method:"post",
-                  url:"https://www.guanacossj.com/blog/postlovefzy/",
+                  method: "post",
+                  url: "https://www.guanacossj.com/blog/postlovefzy/",
                   headers: {
                     'Content-Type': 'application/json'
                   },
-                  withCredentials:false,
-                  data:this.form
+                  withCredentials: false,
+                  data: this.form
                 }).then((res)=>{
                   if(res.status === 200){
                     this.loading = false;
@@ -298,7 +284,8 @@
           async getToDOList() {
             try {
               const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzytodo/");
-              this.todoList = data
+              this.todoList = data;
+              this.loading = false;
             } catch (e) {
               this.$message.error("请求用户数据失败，请稍后再试！");
             }
@@ -306,7 +293,8 @@
           async getDownList() {
             try {
               const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzydown/");
-              this.downList = data
+              this.downList = data;
+              this.loading = false;
             } catch (e) {
               this.$message.error("请求用户数据失败，请稍后再试！");
             }
@@ -327,14 +315,11 @@
 </script>
 
 <style scoped>
-  .el-menu{
-    box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
-  }
   .el-main{
     /*margin-right: 150px; */
     margin-right: 10%;
   }
-  #appabout {
+  #applove {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -342,22 +327,6 @@
     /*color: #2c3e50;*/
     color: #4d4d4d;
     margin-top: 30px;
-  }
-  .blogtitlebox {
-    text-align: center;
-    font-size: larger;
-    font-weight: bold;
-    color: white;
-    height: 75px;
-    background-color: #292929;
-    /*align-items: center;*/
-    /*top:50%;*/
-    /*position: absolute;*/
-    line-height: 75px;
-  }
-  .blogtitle {
-    display: inline-block;
-    vertical-align: middle;
   }
   .me {
     background: #fff;
@@ -387,12 +356,6 @@
   .grid-content {
     border-radius: 4px;
     min-height: 36px;
-  }
-  .el-menu-item.is-active {
-    background: rgb(67, 74, 80) !important;
-  }
-  .el-submenu__title.is-active {
-    background: #6db6ff !important;
   }
   .el-dropdown {
     float: right;

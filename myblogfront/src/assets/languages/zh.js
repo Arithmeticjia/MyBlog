@@ -16,7 +16,17 @@ var zh = {
       "baby": "嘉嘉の祎祎大宝贝",
       "timeline": "时间线",
       "down-list": "完成列表",
-      "todo-list": "待办列表"
+      "todo-list": "待办列表",
+      "click-to-add": "点击添加",
+      "user": "你好",
+      "add": "新增",
+      "content": "内容",
+      "type": "类型",
+      "cancel": "取消",
+      "confirm": "确定",
+      "placeholder": "请选择类型",
+      "length": "长度在 1 到 20 个字符",
+      "close": "确认关闭？"
     },
     "home-word-up": "青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪",
     "home-word-down": "少量的邪恶足以抵消全部高贵的品质, 害得人声名狼藉",
