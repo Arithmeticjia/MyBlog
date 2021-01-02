@@ -109,6 +109,26 @@
               </el-col>
             </el-row>
         </div>
+        <el-button style="padding: 3px 0" type="text" @click="dialogFormVisible = true">点击添加</el-button>
+        <!--编辑弹框-->
+        <el-dialog title="新增" :visible.sync="dialogFormVisible" :before-close="handleClose" width="40%">
+          <el-form :model="form" :rules="rules" ref="form" :label-position="labelPosition" label-width="60px">
+            <el-form-item label="内容" prop="content">
+              <el-input v-model="form.content" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="类型" prop="type">
+              <el-select v-model="form.type" placeholder="请选择类型">
+                <el-option label="完成列表" value=0></el-option>
+                <el-option label="待办列表" value=1></el-option>
+                <el-option label="时间线" value=2></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button type="primary" @click="submitForm('form')">确 定</el-button>
+            </div>
+          </el-dialog>
       </div>
       <el-backtop target=".el-main"></el-backtop>
     </el-main>
@@ -118,8 +138,6 @@
 <script>
   import store from '../store';
   import axios from 'axios';
-  import "echarts-wordcloud/dist/echarts-wordcloud";
-  import "echarts-wordcloud/dist/echarts-wordcloud.min";
   import Menu from "./Menu";
     export default {
         name: "Love",
@@ -128,6 +146,22 @@
           return {
             username: store.getters.userName,
             bannerHeight: "",
+            dialogFormVisible: false,
+            form: {
+              content: '- ',
+              type: '',
+            },
+            labelPosition: 'right',
+            rules: {
+              content: [
+                {required: true, message: '请输入内容', trigger: 'blur'},
+                {min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur'}
+              ],
+              type: [
+                {required: true, message: '请选择类型', trigger: 'blur'},
+                {min: 1, max: 1, message: '长度在 1 到 20 个字符', trigger: 'blur'}
+              ],
+            },
             downList: [],
             todoList: [],
             output: "- 吃一次螺蛳粉\n" +
@@ -198,6 +232,13 @@
               }
             )
           },
+          handleClose(done) {
+            this.$confirm('确认关闭？')
+              .then(_ => {
+                done();
+              })
+              .catch(_ => {});
+          },
           imgLoad(){
             this.$nextTick(()=>{
               this.bannerHeight=this.$refs.bannerHeight[0].height;
@@ -218,6 +259,41 @@
           },
           skiplocal(url){
             location.href = url
+          },
+          submitForm(formname) {
+            this.$refs[formname].validate(valid => {
+              if (valid) {
+                this.loading = true;
+                axios({
+                  method:"post",
+                  url:"https://www.guanacossj.com/blog/postlovefzy/",
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  withCredentials:false,
+                  data:this.form
+                }).then((res)=>{
+                  if(res.status === 200){
+                    this.loading = false;
+                    this.dialogFormVisible = false;
+                    this.$message({
+                      type: 'success',
+                      message: `添加成功!`
+                    });
+                    this.getDownList();
+                    this.getToDOList();
+                  }else {
+                    this.$message({
+                      type: 'error',
+                      message: `服务器出了点问题，请稍后重试!`
+                    });
+                  }
+                });
+              } else {
+                console.log('error submit!!');
+                return false
+              }
+            })
           },
           async getToDOList() {
             try {
@@ -283,43 +359,6 @@
     display: inline-block;
     vertical-align: middle;
   }
-  .myname {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-  }
-  .mypic {
-    text-align: center;
-  }
-  #tag-sign{
-    text-align: center;
-    font-size: small;
-    color: #cdcdcd;
-  }
-  .tag-links{
-    height: 45px;
-    text-align: center;
-    font-size: 14px;
-    line-height:45px;
-    width: 100%;
-    color: #fff !important;
-    /*margin: 0 auto;*/
-  }
-  .el-link-github {
-    color: #fff !important;
-    font-size: 14px;
-  }
-  .el-link-github:hover {
-    color: #ffd04b !important;
-  }
-  .el-link-email {
-    font-size: 14px;
-    color: #fff !important;
-  }
-  .el-link-email:hover {
-    color: #ffd04b !important;
-  }
   .me {
     background: #fff;
     /*background: #4D4D4D;*/
@@ -381,6 +420,9 @@
 
   .el-carousel__item:nth-child(2n+1) {
      background-color: #d3dce6;
+  }
+  .el-form {
+    text-align: left;
   }
 
 </style>

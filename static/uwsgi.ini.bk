@@ -1,0 +1,13 @@
+[uwsgi] 
+chdir = /home/MyBlog 
+module = MyBlog.wsgi:application 
+http = :8081 
+master = true 
+daemonize = /home/MyBlog/run.log 
+disable-logging = true
+processes = 1
+threads = 2
+max-requests = 6000
+chmod-socket    = 666
+buffer-size    = 65535
+#plugins=python
