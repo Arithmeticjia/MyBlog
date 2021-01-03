@@ -76,4 +76,5 @@ urlpatterns = [
     url(r'^getlovefzytodo/$', views.GetLoveFZYToDoList.as_view()),
     url(r'^getlovefzydown/$', views.GetLoveFZYDownList.as_view()),
     url(r'^postlovefzy/$', views.PostLoveFZYInfo.as_view()),
+    url(r'^getlovefzytimeline/$', views.GetLoveFZYTimeline.as_view()),
 ]

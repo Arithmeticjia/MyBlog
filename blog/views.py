@@ -2281,6 +2281,12 @@ class GetLoveFZYDownList(ListAPIView):
     permission_classes = [AllowAny]
 
 
+class GetLoveFZYTimeline(ListAPIView):
+    serializer_class = LoveFZYSerializer
+    queryset = LoveFZY.objects.filter(type=2).order_by('id')
+    permission_classes = [AllowAny]
+
+
 class PostLoveFZYInfo(APIView):
 
     def post(self, request):
