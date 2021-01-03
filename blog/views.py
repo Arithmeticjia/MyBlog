@@ -323,7 +323,7 @@ def blog_time(request, year, month):
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
     blog_lists = Articles.objects.filter(timestamp__year=year, timestamp__month=month, status="有效").order_by(
         '-timestamp')
-    paginator = Paginator(blog_lists, 10)  # 分页，每页10条数据
+    paginator = Paginator(blog_lists, 10)
     page = request.GET.get('page')
     try:
         contacts = paginator.page(page)  # contacts为Page对象！
@@ -2296,3 +2296,4 @@ class PostLoveFZYInfo(APIView):
             serializer.save()
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
+
