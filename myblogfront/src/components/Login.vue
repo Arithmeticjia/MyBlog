@@ -67,6 +67,8 @@
           username: "",
           password: ""
         },
+        userName:"",
+        userToken: "hhhhh",
         loading: false,
         pwdType: "password",
         rules: {
@@ -100,10 +102,10 @@
                 this.loading = false;
                 let code = response.data.code;
                 if (code === 200) {
-                  this.userToken = 'Bearer ' + response.data.data.token;
+                  this.userToken = response.data.data.token;
                   this.userName  = response.data.data.username;
-                  this.changeLogin({ Authorization: this.userToken });
-                  this.changeLogin({ Username: this.userName });
+                  this.changeLogin
+                  ({ Authorization: this.userToken, Username: this.userName });
                   this.$router.push({
                     path: "/home",
                     query: { data: response.data.data.username }

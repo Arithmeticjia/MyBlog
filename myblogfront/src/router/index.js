@@ -15,6 +15,7 @@ import CategoryPageTimeline from '@/components/CategoryPageTimeline'
 import Love from '@/components/Love'
 import Login from '@/components/Login'
 import ElementUI from 'element-ui'
+import axios from 'axios';
 import '../assets/element-#545C64/index.css'
 import '../assets/iconfont/iconfont.css'
 import '../assets/iconfont/iconfont.js'
@@ -109,6 +110,17 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     let token = localStorage.getItem('Authorization');
+    let isAuth = true;
+    // axios.get("http://127.0.0.1:8089/zuul/api/v1/check-login/", {
+    //     headers:{
+    //       'token': token
+    //     }
+    //   }
+    //   ).then(function(result) {
+    //   if(result.status === 200){
+    //     isAuth = true;
+    //   }
+    // })
     if (!token && to.matched.some(record => record.meta.requiresAuth)) {
       next('/login');
     } else {

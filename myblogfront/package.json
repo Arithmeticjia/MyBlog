@@ -24,6 +24,7 @@
     "vue": "^2.5.2",
     "vue-highcharts": "^0.1.0",
     "vue-i18n": "^8.22.2",
+    "vue-localstorage": "^0.6.2",
     "vue-markdown": "^2.2.4",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
