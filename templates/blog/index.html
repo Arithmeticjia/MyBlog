@@ -71,43 +71,43 @@
 </head>
 <body>
     <script src="/static/JiaBlog/js/jquery.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            let timerInterval;
-            Swal.fire({
-                {#title: '🧨祝大家2020鼠年大吉🧨',#}
-                title: '武汉加油，与你同在',
-                html: 'I will close in <b></b> seconds.',
-                {#imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579615243295&di=7bedc214cea751b6ad4fcdcb465d3f7c&imgtype=0&src=http%3A%2F%2Fwww.banbijiang.com%2Fuploads%2Fallimg%2F200120%2F155H52331-0.jpg%3FimageView2%2F2%2Fw%2F750%2Fq%2F80%2Fformat%2Fjpeg',#}
-                {#imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579764445442&di=fbcd15c19cba591d14a2ca33fbe99c9e&imgtype=0&src=http%3A%2F%2Fhimg2.huanqiucdn.cn%2Fattachment2010%2F2020%2F0122%2F16%2F35%2F20200122043523570.png',#}
-                imageUrl: 'https://www.guanacossj.com/media/jiablogimages/wuhan.jpg',
-                timer: 5000,
-                timerProgressBar: true,
-                width: 500,
-                {#showCancelButton: true,#}
-                onBeforeOpen: () => {
-                    Swal.showLoading();
-                    timerInterval = setInterval(() => {
-                        const content = Swal.getContent();
-                        if (content) {
-                            const b = content.querySelector('b');
-                        if (b) {
-                            b.textContent = parseInt(Swal.getTimerLeft() / 1000)
-                            }
-                        }
-                    }, 100)
-                },
-                onClose: () => {
-                    clearInterval(timerInterval)
-                }
-            }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer) {
-                    console.log('I was closed by the timer')
-                }
-            })
-        });
-    </script>
+{#    <script type="text/javascript">#}
+{#        $(document).ready(function(){#}
+{#            let timerInterval;#}
+{#            Swal.fire({#}
+{#                title: '🧨祝大家2020鼠年大吉🧨',#}
+{#                title: '武汉加油，与你同在',#}
+{#                html: 'I will close in <b></b> seconds.',#}
+{#                imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579615243295&di=7bedc214cea751b6ad4fcdcb465d3f7c&imgtype=0&src=http%3A%2F%2Fwww.banbijiang.com%2Fuploads%2Fallimg%2F200120%2F155H52331-0.jpg%3FimageView2%2F2%2Fw%2F750%2Fq%2F80%2Fformat%2Fjpeg',#}
+{#                imageUrl: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579764445442&di=fbcd15c19cba591d14a2ca33fbe99c9e&imgtype=0&src=http%3A%2F%2Fhimg2.huanqiucdn.cn%2Fattachment2010%2F2020%2F0122%2F16%2F35%2F20200122043523570.png',#}
+{#                imageUrl: 'https://www.guanacossj.com/media/jiablogimages/wuhan.jpg',#}
+{#                timer: 5000,#}
+{#                timerProgressBar: true,#}
+{#                width: 500,#}
+{#                showCancelButton: true,#}
+{#                onBeforeOpen: () => {#}
+{#                    Swal.showLoading();#}
+{#                    timerInterval = setInterval(() => {#}
+{#                        const content = Swal.getContent();#}
+{#                        if (content) {#}
+{#                            const b = content.querySelector('b');#}
+{#                        if (b) {#}
+{#                            b.textContent = parseInt(Swal.getTimerLeft() / 1000)#}
+{#                            }#}
+{#                        }#}
+{#                    }, 100)#}
+{#                },#}
+{#                onClose: () => {#}
+{#                    clearInterval(timerInterval)#}
+{#                }#}
+{#            }).then((result) => {#}
+{#                /* Read more about handling dismissals below */#}
+{#                if (result.dismiss === Swal.DismissReason.timer) {#}
+{#                    console.log('I was closed by the timer')#}
+{#                }#}
+{#            })#}
+{#        });#}
+{#    </script>#}
 	<div class="loader-holder">
 		<div class="loader">
 			<div class="side"></div>
@@ -352,24 +352,9 @@
 				<!-- slide of the page end -->
 			</div>
 			<!-- twocolumns of the page -->
-{#            <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script><script>tpwidget("init", {#}
-{#                "flavor": "bubble",#}
-{#                "location": "WX4FBXXFKE4F",#}
-{#                "geolocation": "enabled",#}
-{#                "position": "top-left",#}
-{#                "margin": "250px 10px",#}
-{#                "language": "zh-chs",#}
-{#                "unit": "c",#}
-{#                "theme": "chameleon",#}
-{#                "uid": "U2D9B077BB",#}
-{#                "hash": "c25dba4c45793e2cadff6ee42856d99f"#}
-{#                });#}
-{#                tpwidget("show");#}
-{#            </script>#}
 {#            <button style="border-radius:4px;display: block; position: fixed; left: 10px; top: 360px;width:87px;height: 50px;background: #f5ab35;font-size: 16px;color: white;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;margin:0 auto;" onclick="vshow()">版本更新</button>#}
             <div class="form-submit" >
                 <input type="button" id="tryme" value="Try Me" onclick="vshow()">
-            </div>
                 <script type="text/javascript">
                     function vshow() {
                         swal.setDefaults({
@@ -381,7 +366,7 @@
 
                         var steps = [
                             {
-                                title: 'ArithmeticJia网站一轮测试完成，Debug模式关闭!',
+                                title:'ArithmeticJia网站一轮测试完成，Debug模式关闭!',
                                 text: '',
                                 imageUrl: '/media/jiablogimages/1563091194033_gaitubao_800x450.jpg',
                             },
@@ -519,9 +504,10 @@
                         })
                     }
                 </script>
-            <div class="form-submit" >
-                <input type="button" id="wuhan" value="武汉加油" onclick="towuhan()">
             </div>
+{#            <div class="form-submit" >#}
+{#                <input type="button" id="wuhan" value="武汉加油" onclick="towuhan()">#}
+{#            </div>#}
             <script type="text/javascript">
                 function towuhan() {
                     Swal.fire({
@@ -1176,10 +1162,10 @@
 
                             <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
 								<header class="widget-head">
-									<h3>Domain Info</h3>
+									<h3>Record Info</h3>
 								</header>
                                 <ul>
-                                    <li class="cat-item cat-item-1">- 苏ICP备19007197号</li>
+                                    <li class="cat-item cat-item-1"><a href="https://beian.miit.gov.cn/" target="_blank">- 苏ICP备19007197号</a></li>
                                     <li class="cat-item cat-item-1">- Copyright &copy; 2019.Company name All &nbsp;&nbsp;&nbsp;rights reserved.arithmeticjia</li>
                                 </ul>
                             </div>
@@ -1315,7 +1301,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
-						<p>Copyright &copy; 2019.Company name All rights reserved.苏ICP备19007197号<a target="_blank" href=""></a></p>
+						<p>Copyright &copy; 2019.Company name All rights reserved.&nbsp<a target="_blank" href="https://beian.miit.gov.cn">苏ICP备19007197号</a></p>
 					</div>
 				</div>
 			</div>
