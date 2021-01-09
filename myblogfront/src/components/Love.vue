@@ -320,17 +320,6 @@
               this.$message.error("请求用户数据失败，请稍后再试！");
             }
           },
-          notfinishalert() {
-            this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
-              confirmButtonText: '确定',
-              callback: action => {
-                this.$message({
-                  type: 'success',
-                  message: `联系我吧!`
-                });
-              }
-            });
-          },
         }
     }
 </script>
