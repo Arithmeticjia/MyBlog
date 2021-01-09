@@ -228,7 +228,6 @@
           imgLoad(){
             this.$nextTick(()=>{
               this.bannerHeight=this.$refs.bannerHeight[0].height;
-                console.log(this.$refs.bannerHeight[0].height);
             })
           },
           skip(url){
@@ -283,18 +282,40 @@
           },
           async getToDOList() {
             try {
-              const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzytodo/");
-              this.todoList = data;
-              this.loading = false;
+              let ans = await axios.get("https://yun.guanacossj.com/yunprophet/api/v1/check-login", {
+                headers: {
+                  'token': localStorage.getItem('Authorization')
+                }
+              });
+              if(ans.data.code === 200) {
+                const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzytodo/");
+                this.todoList = data;
+                this.loading = false;
+              }else {
+                await this.$router.push({
+                  path: "/login",
+                });
+              }
             } catch (e) {
               this.$message.error("请求用户数据失败，请稍后再试！");
             }
           },
           async getDownList() {
             try {
-              const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzydown/");
-              this.downList = data;
-              this.loading = false;
+              let ans = await axios.get("https://yun.guanacossj.com/yunprophet/api/v1/check-login", {
+                headers: {
+                  'token': localStorage.getItem('Authorization')
+                }
+              });
+              if(ans.data.code === 200) {
+                const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzydown/");
+                this.downList = data;
+                this.loading = false;
+              }else {
+                await this.$router.push({
+                  path: "/login",
+                });
+              }
             } catch (e) {
               this.$message.error("请求用户数据失败，请稍后再试！");
             }

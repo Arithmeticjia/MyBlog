@@ -102,7 +102,6 @@ const router = new Router({
     },
   ]
 });
-
 // 导航守卫
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
 router.beforeEach((to, from, next) => {
@@ -110,22 +109,18 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     let token = localStorage.getItem('Authorization');
-    let isAuth = true;
-    // axios.get("http://127.0.0.1:8089/zuul/api/v1/check-login/", {
-    //     headers:{
-    //       'token': token
-    //     }
-    //   }
-    //   ).then(function(result) {
-    //   if(result.status === 200){
-    //     isAuth = true;
-    //   }
-    // })
-    if (!token && to.matched.some(record => record.meta.requiresAuth)) {
-      next('/login');
-    } else {
-      next();
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+      if(!token){
+        next('/login');
+      }else {
+        next();
+      }
     }
+    // if ((!token || isAuth) && to.matched.some(record => record.meta.requiresAuth)) {
+    //   next('/login');
+    // } else {
+    //   next();
+    // }
   }
   if (to.matched.length === 0) {  //如果未匹配到路由
     from.name ? next({ name:from.name }) : next('/404');   //如果上级也未匹配到路由则跳转登录页面，如果上级能匹配到则转上级路由

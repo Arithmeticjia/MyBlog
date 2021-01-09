@@ -68,7 +68,7 @@
           password: ""
         },
         userName:"",
-        userToken: "hhhhh",
+        userToken: "",
         loading: false,
         pwdType: "password",
         rules: {

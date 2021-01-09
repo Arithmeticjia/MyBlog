@@ -19,6 +19,7 @@ Vue.use(mavonEditor)
 Vue.use(axios)
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios
 
 /* eslint-disable no-new */
 new Vue({
