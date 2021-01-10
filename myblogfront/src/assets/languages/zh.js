@@ -42,7 +42,7 @@ var zh = {
     "cat-before": "当前共计",
     "cat-after": "个分类",
     "load-text": "拼命加载中...",
-    "timeout": "request timeout",
+    "timeout": "请求超时",
     "know": "我知道了",
     "tip": "点击刷新页面",
     "table" : {

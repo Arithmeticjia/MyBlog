@@ -131,7 +131,7 @@
             this.$http.get('https://www.guanacossj.com/blog/getsinglearticle/'+this.$route.params.id,{
                 _timeout:5000,
                 onTimeout :(request) => {
-                    this.$message.error("$t('common.timeout')");
+                    this.$message.error(this.$t('common.timeout'));
                     this.loading = false
                   }
                 }).then((response) => {
