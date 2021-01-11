@@ -187,8 +187,7 @@
           }
         },
         mounted(){
-          this.getToDOList();
-          this.getDownList();
+          this.checkLogin();
           this.imgLoad();
             window.addEventListener('resize',() => {
                 this.bannerHeight=this.$refs.bannerHeight[0].height * 0.5;
@@ -280,7 +279,7 @@
               }
             })
           },
-          async getToDOList() {
+          async checkLogin() {
             try {
               let ans = await axios.get("https://yun.guanacossj.com/yunprophet/api/v1/check-login", {
                 headers: {
@@ -288,34 +287,32 @@
                 }
               });
               if(ans.data.code === 200) {
-                const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzytodo/");
-                this.todoList = data;
-                this.loading = false;
+                await this.getDownList();
+                await this.getToDOList();
               }else {
+                this.$message.error("凭证已过期，请重新登录！");
                 await this.$router.push({
                   path: "/login",
                 });
               }
+            } catch (e) {
+              this.$message.error("页面出错了，请稍后再试！");
+            }
+          },
+          async getToDOList() {
+            try {
+              const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzytodo/");
+              this.todoList = data;
+              this.loading = false;
             } catch (e) {
               this.$message.error("请求用户数据失败，请稍后再试！");
             }
           },
           async getDownList() {
             try {
-              let ans = await axios.get("https://yun.guanacossj.com/yunprophet/api/v1/check-login", {
-                headers: {
-                  'token': localStorage.getItem('Authorization')
-                }
-              });
-              if(ans.data.code === 200) {
-                const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzydown/");
-                this.downList = data;
-                this.loading = false;
-              }else {
-                await this.$router.push({
-                  path: "/login",
-                });
-              }
+              const {data} = await axios.get("https://www.guanacossj.com/blog/getlovefzydown/");
+              this.downList = data;
+              this.loading = false;
             } catch (e) {
               this.$message.error("请求用户数据失败，请稍后再试！");
             }
