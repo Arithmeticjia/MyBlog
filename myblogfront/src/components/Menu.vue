@@ -56,7 +56,7 @@
           </div>
         <p></p>
         <div class="myname">
-          <span slot="title">{{$t('common.myname')}}</span>
+          <span slot="title">{{$t('common.myName')}}</span>
         </div>
         <p></p>
         <div id="tag-sign">
