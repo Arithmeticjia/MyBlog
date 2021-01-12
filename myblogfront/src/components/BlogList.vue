@@ -127,7 +127,7 @@
           },
           doFilter: function() {
             if (this.searchinfo === "") {
-              this.$message.warning("查询条件不能为空！");
+              this.$message.warning(this.$t('common.warning.queryEmpty'));
               return;
             }
             this.filterTableDataEnd=[];

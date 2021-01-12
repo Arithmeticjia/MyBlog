@@ -12,6 +12,9 @@ var zh = {
       "profession": "专业技能",
       "hobby": "兴趣爱好"
     },
+    "warning": {
+      "queryEmpty": "查询条件不能为空！"
+    },
     "Love": {
       "baby": "嘉嘉の祎祎大宝贝",
       "timeline": "时间线",

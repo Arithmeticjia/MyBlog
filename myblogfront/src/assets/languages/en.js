@@ -29,6 +29,9 @@ const en = {
       "profession": "Profession",
       "hobby": "Hobby"
     },
+    "warning": {
+      "queryEmpty": "Query condition cannot be empty!"
+    },
     "Love": {
       "baby": "JiaJia's YiYi treasure",
       "timeline": "Timeline",
