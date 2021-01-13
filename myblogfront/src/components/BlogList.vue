@@ -19,7 +19,7 @@
               v-model="searchinfo"
               :placeholder="$t('common.search-placeholder')"
               size="medium"
-              style="width:160px;float: left">
+              style="width:180px;float: left">
             </el-input>
             <el-button class="search_btn" type="primary" size="medium" icon="el-icon-search" @click="doFilter" style="float:left;margin-left: 10px"></el-button>
           </div>
@@ -253,47 +253,6 @@
     /*top:50%;*/
     /*position: absolute;*/
     line-height: 75px;
-  }
-  .blogtitle {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .myname {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-  }
-  .mypic {
-    text-align: center;
-  }
-  #tag-sign{
-    text-align: center;
-    font-size: small;
-    color: #cdcdcd;
-  }
-  .tag-links{
-    height: 45px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 45px;
-    width: 100%;
-    color: #fff !important;
-    /*margin: 0 auto;*/
-  }
-  .el-link-github {
-    color: #fff !important;
-    font-size: 14px;
-  }
-  .el-link-github:hover {
-    color: #ffd04b !important;
-  }
-  .el-link-email {
-    font-size: 14px;
-    color: #fff !important;
-  }
-  .el-link-email:hover {
-    color: #ffd04b !important;
   }
   .el-menu-item.is-active {
     background: rgb(67, 74, 80) !important;

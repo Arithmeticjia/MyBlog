@@ -2,6 +2,15 @@
   <el-container class="layout-container">
     <Menu></Menu>
     <el-main>
+      <el-dropdown>
+          <span class="el-dropdown-link">
+            {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item @click.native = "switchLang('zh')">{{$t('common.lang-zh')}}</el-dropdown-item>
+        <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <div id="appsingle" v-loading="this.loading" :element-loading-text="$t('common.load-text')">
         <div class="grid-content bg-puprple-light" v-for="(value, key, index) in singleblog">
             <el-row type="flex" class="row-bg" justify="space-around">
@@ -113,16 +122,8 @@
           skiplocal(url){
             location.href = url
           },
-          notfinishalert() {
-            this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
-              confirmButtonText: '确定',
-              callback: action => {
-                this.$message({
-                  type: 'success',
-                  message: `联系我吧!`
-                });
-              }
-            });
+          switchLang(val){
+            this.$i18n.locale=val;//此处val为 zh 或者 en
           },
           getId() {
             this.singleId = this.$route.params.id;
@@ -205,7 +206,7 @@
     text-align: center;
     /*color: #2c3e50;*/
     color: #4d4d4d;
-    margin-top: 0;
+    margin-top: 30px;
   }
   .blogtitlebox {
     text-align: center;
@@ -219,55 +220,14 @@
     /*position: absolute;*/
     line-height: 75px;
   }
-  .blogtitle {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .myname {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-  }
-  .mypic {
-    text-align: center;
-  }
-  .tag-links{
-    height: 45px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 45px;
-    width: 100%;
-    color: #fff !important;
-    /*margin: 0 auto;*/
-  }
-  .el-link-github {
-    color: #fff !important;
-    font-size: 14px;
-  }
-  .el-link-github:hover {
-    color: #ffd04b !important;
-  }
-  .el-link-email {
-    font-size: 14px;
-    color: #fff !important;
-  }
-  .el-link-email:hover {
-    color: #ffd04b !important;
-  }
-  #tag-sign{
-    text-align: center;
-    font-size: small;
-    color: #cdcdcd;
-  }
-  .el-menu-item.is-active {
-    background: rgb(67, 74, 80) !important;
-  }
-  .el-submenu__title.is-active {
-    background: #6db6ff !important;
-  }
   .prev-next{
     display: inline;
+  }
+  .el-dropdown {
+    float: right;
+  }
+  .el-dropdown-link {
+    cursor: pointer;
   }
   .next-article {
     color: #4D4D4D;
