@@ -12,6 +12,9 @@ var zh = {
       "profession": "专业技能",
       "hobby": "兴趣爱好"
     },
+    "Single": {
+      "donate": "打赏"
+    },
     "warning": {
       "queryEmpty": "查询条件不能为空！"
     },

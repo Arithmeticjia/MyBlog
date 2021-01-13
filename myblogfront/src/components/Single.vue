@@ -34,7 +34,7 @@
                   style="width:210px; height: 300px;text-align: center"
                   :src="wechatUrl"
                   :fit="none"></el-image>
-                <el-button icon="el-icon-coin" type="info" slot="reference">打赏</el-button>
+                <el-button icon="el-icon-coin" type="info" slot="reference">{{$t('common.Single.donate')}}</el-button>
               </el-popover>
             </div>
             </div>

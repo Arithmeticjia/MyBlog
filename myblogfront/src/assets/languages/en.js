@@ -21,13 +21,16 @@ const en = {
     "cat-after": "categories",
     "load-text": "loading...",
     "timeout": "request timeout",
-    "know": "got it",
-    "tip": "click to refresh",
+    "know": "Got it",
+    "tip": "Click to Refresh",
     "About": {
       "information": "Information",
       "contact": "Contact",
       "profession": "Profession",
       "hobby": "Hobby"
+    },
+    "Single": {
+      "donate": "Donate"
     },
     "warning": {
       "queryEmpty": "Query condition cannot be empty!"
