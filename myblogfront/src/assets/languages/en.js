@@ -10,7 +10,7 @@ const en = {
     "home-word-down": "A small amount of evil was enough to offset all the noble qualities, making people's reputation a mess",
     "myName": "ArithmeticJia",
     "blog-name": "ArithmeticJia's Blog",
-    "lang": "language",
+    "lang": "Language",
     "lang-zh": "Chinese",
     "lang-en": "English",
     "autograph-left": "rain hard",
