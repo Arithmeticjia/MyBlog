@@ -23,20 +23,19 @@
                     <el-divider direction="vertical"></el-divider>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views }}</span>
                   </div>
-                  </br>
+                  <br>
                   <p>{{ value.fields.body.substring(0,100)+'......' }}</p>
-                  </br>
+                  <br>
                   <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/#/single'+ '/' + value.pk)">阅读全文 >></el-button>
                 </div>
-                </br>
+                <br>
               </el-col>
             </el-row>
         </div>
       <el-footer>
-        </br>
-<!--        </br>-->
+        <br>
         <el-pagination
-          v-show="showpagination"
+          v-show="showPagination"
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -61,14 +60,13 @@
         components: { Menu },
         data () {
           return {
-            circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
             blogList: [],
             currentPage:1,
             totalItems:0,
             pageSize:10,
             loading: true,
-            showpagination: false
+            showPagination: false
           }
         },
         computed: {
@@ -112,7 +110,7 @@
                 var res = JSON.parse(response.bodyText);
                 if (res.error_num === 0) {
                   this.loading = false;
-                  this.showpagination = true;
+                  this.showPagination = true;
                   this.blogList = res['list'];
                   this.totalItems = this.blogList.length;
                 } else {
@@ -125,17 +123,6 @@
           },
           skiplocal(url){
             location.href = url
-          },
-          notfinishalert() {
-            this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
-              confirmButtonText: '确定',
-              callback: action => {
-                this.$message({
-                  type: 'success',
-                  message: `联系我吧!`
-                });
-              }
-            });
           },
         }
     }
