@@ -2084,6 +2084,23 @@ def get_article_category(request, blog_category):
 
 
 @require_http_methods(["GET"])
+def get_article_tag(request, blog_tag):
+    tag_name = get_object_or_404(Tag, name=blog_tag)
+    response = {}
+    try:
+        tag = Tag.objects.filter(name=tag_name).first()
+        articles = tag.articles_set.all()
+        response['list'] = json.loads(
+            core_serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['msg'] = 'success'
+        response['error_num'] = 0
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return HttpResponse(json.dumps(response, ensure_ascii=False))
+
+
+@require_http_methods(["GET"])
 def get_article_single(request, article_id):
     response = {}
     next_article_title = ""

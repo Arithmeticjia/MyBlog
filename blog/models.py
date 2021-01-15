@@ -51,6 +51,10 @@ class Tag(models.Model):
     def natural_key(self):
         return self.__str__()
 
+    class Meta:
+        verbose_name = "标签"
+        verbose_name_plural = verbose_name
+
     def __str__(self):
         return self.name
 

@@ -67,6 +67,7 @@ urlpatterns = [
     url(r'^getsinglearticle/(?P<article_id>[0-9]+)/$', views.get_article_single),
     url(r'^getallcategory/$', views.get_categroy_all),
     url(r'^getcategoryarticles/(.+)/$', views.get_article_category),
+    url(r'^gettagarticles/(.+)/$', views.get_article_tag),
     url(r'^new/search/$', views.JiaSearch.as_view()),
     url(r'^new/list/$', views.JiaPostList.as_view()),
     url(r'^new/index/$', views.JiaIndex.as_view()),
