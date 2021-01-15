@@ -12,6 +12,7 @@ import Category from '@/components/Category'
 import CategoryPage from '@/components/CategoryPage'
 import Calendar from '@/components/Calendar'
 import CategoryPageTimeline from '@/components/CategoryPageTimeline'
+import TagPageTimeline from "@/components/TagPageTimeline";
 import Love from '@/components/Love'
 import Login from '@/components/Login'
 import ElementUI from 'element-ui'
@@ -76,6 +77,11 @@ const router = new Router({
       path: '/category/:name',
       name: 'categorypage',
       component: CategoryPageTimeline
+    },
+    {
+      path: '/tag/:name',
+      name: 'tagpagetimeline',
+      component: TagPageTimeline
     },
     {
       path: '/categorytimeline/:name',
