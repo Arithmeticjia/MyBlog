@@ -55,11 +55,10 @@
   import moment from 'moment';
   import Menu from "./Menu";
     export default {
-        name: "CategoryPageTimeline",
+        name: "TagPageTimeline",
         components: { Menu },
         data () {
           return {
-            circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
             blogList: [],
             currentPage:1,
@@ -104,7 +103,7 @@
              }
           },
           showBlogs () {
-            this.$http.get('https://www.guanacossj.com/blog/getcategoryarticles/'+this.$route.params.name,{
+            this.$http.get('https://www.guanacossj.com/blog/gettagarticles/'+this.$route.params.name,{
                 _timeout:5000,
                 onTimeout :(request) => {
                     this.$message.error('请求超时');
