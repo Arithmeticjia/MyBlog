@@ -91,7 +91,6 @@
       components: { Me, Menu },
       data () {
           return {
-            circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
             isCollapse: true,
             visible: false,
@@ -190,17 +189,6 @@
           },
           skiplocal(url){
             location.href = url
-          },
-          notfinishalert() {
-            this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
-              confirmButtonText: '确定',
-              callback: action => {
-                this.$message({
-                  type: 'success',
-                  message: `联系我吧!`
-                });
-              }
-            });
           },
           showBlogs () {
             this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{

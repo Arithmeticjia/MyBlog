@@ -27,7 +27,7 @@
                   <br>
                   <span style="color: #7d7d7d;font-size: small"><i class="el-icon-collection-tag"></i> 标签：</span>
                   <div style="display: inline" v-for="(tag) in tags">
-                    <el-tag size="small">{{ tag }}</el-tag>&nbsp;
+                    <el-tag size="small"><router-link style="color: #4D4D4D" :to="'/tag/'+ tag">{{ tag }}</router-link></el-tag>&nbsp;
                   </div>
                   <br>
                   <div class="bodymarkdown" style="text-align: left" v-html="markdownhtml"></div>
@@ -248,5 +248,12 @@
   }
   .layout-container {
     height: 100%;
+  }
+  a {
+  text-decoration: none;
+  }
+
+  .router-link-active {
+    text-decoration: none;
   }
 </style>

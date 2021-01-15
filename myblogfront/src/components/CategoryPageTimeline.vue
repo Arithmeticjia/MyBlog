@@ -11,7 +11,7 @@
         <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <div id="apparchive" v-loading="loading" element-loading-text="拼命加载中" style="height: 555px">
+      <div id="apparchive" v-loading="loading" :element-loading-text="$t('common.load-text')" style="height: 555px">
         <h1>{{ this.$route.params.name }}</h1>
         <div class="category-box">
           <div class="block">
