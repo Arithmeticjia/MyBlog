@@ -19,7 +19,7 @@
       </div>
 <!--      <h1>{{ msg }}</h1>-->
       <h1>Welcome to My Vue.js & <label class="greendjango">Django</label> App</h1>
-      </br>
+      <br>
       <div>
           <span><i class="el-icon-school">&nbsp;</i>南京邮电大学-本科-通信工程</span>
           <el-divider direction="vertical"></el-divider>
@@ -29,7 +29,7 @@
           <el-divider direction="vertical"></el-divider>
           <span><i class="el-icon-s-promotion">&nbsp;</i>bluesaltssj@gmail.com</span>
       </div>
-      </br>
+      <br>
       <ul>
         <li><h2>Home Page</h2>
           <ul>

@@ -34,7 +34,7 @@
           </div>
           <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
         </el-popover>
-      <el-table height="650" v-loading="loading" :element-loading-text="$t('common.load-text')" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+      <el-table :height="table" :style="tableheight" v-loading="loading" :element-loading-text="$t('common.load-text')" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" :label="$t('common.table.post-id')" width="50">
           <template slot-scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
@@ -47,7 +47,7 @@
         <el-table-column prop="address" :label="$t('common.table.post-tags')" width="130">
           <template slot-scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>
         </el-table-column>
-        <el-table-column prop="address" :label="$t('common.table.post-visit')" width="80">
+        <el-table-column prop="address" :label="$t('common.table.post-visit')" width="90">
           <template slot-scope="scope"> {{ scope.row.fields.views }} </template>
         </el-table-column>
         <el-table-column prop="address" :label="$t('common.table.post-author')" width="120">
@@ -65,7 +65,6 @@
       </el-table>
       <el-footer>
         <br>
-        <br>
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -76,6 +75,7 @@
           :total="totalItems"
           layout="prev, pager, next, total">
         </el-pagination>
+        <br>
       </el-footer>
         </div>
     </el-main>
@@ -103,7 +103,11 @@
             searchinfo: '',
             filterTableDataEnd: [],
             flag:false,
-            loading: true
+            loading: true,
+            tableheight:{
+              height:'',
+            },
+            table:window.innerHeight - 159
           }
         },
         mounted: function () {
@@ -117,7 +121,13 @@
 	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
 	        }
         },
+        destroyed(){
+          window.removeEventListener('resize', this.getHeight);
+        },
         methods: {
+          getHeight(){
+            this.tableheight.height = window.innerHeight - 159;
+          },
           reFresh: function() {
             window.location.reload();
           },
@@ -210,8 +220,11 @@
                 }
               })
           }
-        }
-
+        },
+        created() {
+          window.addEventListener('resize', this.getHeight);
+          this.getHeight;
+        },
     }
 </script>
 

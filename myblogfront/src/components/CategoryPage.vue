@@ -14,18 +14,17 @@
                     <el-divider direction="vertical"></el-divider>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views }}</span>
                   </div>
-                  </br>
+                  <br>
                   <p>{{ value.fields.body.substring(0,100)+'......' }}</p>
-                  </br>
+                  <br>
                   <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/#/single'+ '/' + value.pk)">阅读全文 >></el-button>
                 </div>
-                </br>
+                <br>
               </el-col>
             </el-row>
         </div>
       <el-footer>
-        </br>
-<!--        </br>-->
+        <br>
         <el-pagination
           v-show="showpagination"
           background
@@ -111,21 +110,10 @@
               })
           },
           skip(url){
-           window.open(url, target='_blank')
+            window.open(url, target='_blank')
           },
           skiplocal(url){
             location.href = url
-          },
-          notfinishalert() {
-            this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
-              confirmButtonText: '确定',
-              callback: action => {
-                this.$message({
-                  type: 'success',
-                  message: `联系我吧!`
-                });
-              }
-            });
           },
         }
     }

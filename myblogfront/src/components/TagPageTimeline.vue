@@ -31,7 +31,6 @@
         </div>
       <el-footer>
         <br>
-<!--        </br>-->
         <el-pagination
           v-show="showpagination"
           background
@@ -110,8 +109,8 @@
                     this.loading = false
                   }
                 }).then((response) => {
-                var res = JSON.parse(response.bodyText);
-                if (res.error_num === 0) {
+              const res = JSON.parse(response.bodyText);
+              if (res.error_num === 0) {
                   this.loading = false;
                   this.showpagination = true;
                   this.blogList = res['list'];
@@ -129,17 +128,6 @@
           },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
-          },
-          notfinishalert() {
-            this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
-              confirmButtonText: '确定',
-              callback: action => {
-                this.$message({
-                  type: 'success',
-                  message: `联系我吧!`
-                });
-              }
-            });
           },
         }
     }

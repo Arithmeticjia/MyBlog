@@ -45,6 +45,7 @@
           :total="totalItems"
           layout="prev, pager, next, total">
         </el-pagination>
+        <br>
       </el-footer>
       </div>
       <el-backtop target=".el-main"></el-backtop>
@@ -119,7 +120,7 @@
               })
           },
           skip(url){
-           window.open(url, target='_blank')
+            window.open(url, target='_blank')
           },
           skiplocal(url){
             location.href = url
