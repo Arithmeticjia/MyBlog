@@ -1,6 +1,5 @@
 <template>
-  <el-container class="layout-container">
-<!--  <el-container style="height: 100%">-->
+  <el-container>
     <Menu></Menu>
     <el-main>
       <el-dropdown>
@@ -17,7 +16,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/#/single'+ '/' + value.pk">{{ value.fields.title }}</a></h1>
+                  <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/#/post'+ '/' + value.pk">{{ value.fields.title }}</a></h1>
                   <div>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-date"></i> 发表于：{{ value.fields.timestamp | formatDate }}</span>
                     <el-divider direction="vertical"></el-divider>
@@ -26,7 +25,7 @@
                   <br>
                   <p>{{ value.fields.body.substring(0,100)+'......' }}</p>
                   <br>
-                  <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/#/single'+ '/' + value.pk)">阅读全文 >></el-button>
+                  <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/#/post'+ '/' + value.pk)">阅读全文 >></el-button>
                 </div>
                 <br>
               </el-col>
@@ -172,7 +171,7 @@
   }
   .el-main{
     /*margin-right: 150px;*/
-    margin-right: 10%;
+    margin-right: 12%;
   }
   #apparchive {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -250,12 +249,5 @@
   }
   .el-icon-arrow-down {
     font-size: 12px;
-  }
-  .body {
-    height:100%;
-    overflow:hidden;
-  }
-  .layout-container {
-    height: 100%;
   }
 </style>

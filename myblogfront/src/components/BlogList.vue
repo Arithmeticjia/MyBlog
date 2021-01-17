@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <el-container class="layout-container">
+  <el-container>
     <Menu></Menu>
       <el-main>
         <el-dropdown>
@@ -34,12 +34,12 @@
           </div>
           <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
         </el-popover>
-      <el-table :height="table" :style="tableheight" v-loading="loading" :element-loading-text="$t('common.load-text')" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+      <el-table :height="table" :style="tableHeight" v-loading="loading" :element-loading-text="$t('common.load-text')" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
         <el-table-column prop="date" :label="$t('common.table.post-id')" width="50">
           <template slot-scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
         <el-table-column prop="name" :label="$t('common.table.post-title')" width="300">
-          <template slot-scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/single/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
+          <template slot-scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/post/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
         </el-table-column>
         <el-table-column prop="address" :label="$t('common.table.post-category')" width="100">
           <template slot-scope="scope"> {{ scope.row.fields.category }} </template>
@@ -75,7 +75,6 @@
           :total="totalItems"
           layout="prev, pager, next, total">
         </el-pagination>
-        <br>
       </el-footer>
         </div>
     </el-main>
@@ -84,11 +83,10 @@
 
 <script>
     import moment from "moment";
-    import Me from "./Archive";
     import Menu from "./Menu";
     export default {
       name: "BlogList",
-      components: { Me, Menu },
+      components: { Menu },
       data () {
           return {
             reverse: true,
@@ -102,13 +100,17 @@
             originblogList: [],
             searchinfo: '',
             filterTableDataEnd: [],
-            flag:false,
+            flag: false,
             loading: true,
-            tableheight:{
+            tableHeight:{
               height:'',
             },
             table:window.innerHeight - 159
           }
+        },
+        created() {
+          window.addEventListener('resize', this.getHeight);
+          this.getHeight;
         },
         mounted: function () {
           this.showBlogs();
@@ -126,7 +128,7 @@
         },
         methods: {
           getHeight(){
-            this.tableheight.height = window.innerHeight - 159;
+            this.tableHeight.height = window.innerHeight - 159;
           },
           reFresh: function() {
             window.location.reload();
@@ -184,7 +186,11 @@
              }
           },
           open(title,body) {
-             this.$alert(body.substr(1,100)+'...', title, {
+             this.$confirm(body.substr(1,100)+'...', title, {
+               center: true,
+               type: 'info',
+               iconClass: 'el-icon-document',
+               cancelButtonText: this.$t('common.table.operation.cancel'),
                confirmButtonText: this.$t('common.table.operation.confirm'),
                // callback: action => {
                //   this.$message({
@@ -221,17 +227,10 @@
               })
           }
         },
-        created() {
-          window.addEventListener('resize', this.getHeight);
-          this.getHeight;
-        },
     }
 </script>
 
 <style scoped>
-  .el-menu{
-    box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
-  }
   .el-footer {
     color: #333;
     text-align: center;
@@ -241,7 +240,7 @@
     color: #333;
     text-align: center;
     /*margin-right: 150px;*/
-    margin-right: 10%;
+    margin-right: 12%;
   }
   .blogtitlebox {
     text-align: center;
@@ -269,8 +268,5 @@
   }
   .el-icon-arrow-down {
     font-size: 12px;
-  }
-  .layout-container {
-    height: 100%;
   }
 </style>

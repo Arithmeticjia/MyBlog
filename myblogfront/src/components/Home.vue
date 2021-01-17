@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-container">
+  <el-container>
     <Menu></Menu>
     <el-main>
       <div id="apphome">
@@ -99,7 +99,7 @@
   }
   .el-main{
     /*margin-right: 150px;*/
-    margin-right: 10%;
+    margin-right: 12%;
   }
   #apphome {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -180,8 +180,5 @@
   }
   .el-icon-arrow-down {
     font-size: 12px;
-  }
-  .layout-container {
-    height: 100%;
   }
 </style>

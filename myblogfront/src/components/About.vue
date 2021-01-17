@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-container">
+  <el-container>
     <Menu></Menu>
     <el-main>
       <el-dropdown>
@@ -441,7 +441,7 @@
   }
   .el-main{
     /*margin-right: 150px; */
-    margin-right: 10%;
+    margin-right: 12%;
   }
   #appabout {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

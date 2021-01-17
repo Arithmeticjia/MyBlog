@@ -1,4 +1,4 @@
-var zh = {
+const zh = {
   "common": {
     "home": "首页",
     "archive": "归档",
@@ -51,7 +51,7 @@ var zh = {
     "timeout": "请求超时",
     "know": "我知道了",
     "tip": "点击刷新页面",
-    "table" : {
+    "table": {
       "post-id": "编号",
       "post-title": "标题",
       "post-category": "分类",
@@ -63,9 +63,10 @@ var zh = {
       "operation": {
         "overview": "概览",
         "detail": "详情",
-        "confirm": "确定"
+        "confirm": "确定",
+        "cancel": "取消"
       }
     }
   }
-}
+};
 export default zh

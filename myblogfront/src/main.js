@@ -11,8 +11,8 @@ import mavonEditor from 'mavon-editor'
 import axios from 'axios'
 import 'mavon-editor/dist/css/index.css'
 import './assets/articlemarkdown.css'
+import './assets/global.css'
 import locale from 'element-ui/lib/locale/lang/en'
-import '@/assets/global.css'
 
 Vue.use(ElementUI, { locale })
 Vue.use(mavonEditor)
@@ -24,9 +24,9 @@ Vue.prototype.$axios = axios
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
   i18n,
   store,
+  router,
   components: { App },
   template: '<App/>'
 })

@@ -1,6 +1,13 @@
-html,body,#app {
+html, body, #app, .el-container {
   height: 100%;
-  margin: 5px;
   padding: 0;
-  overflow-y:hidden
+  overflow-y:hidden;
+  margin: 0;
+}
+
+.el-container {
+  height: 100%;
+}
+.el-main {
+  margin-right: 15%;
 }

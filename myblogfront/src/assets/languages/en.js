@@ -63,7 +63,8 @@ const en = {
       "operation": {
         "overview": "overview",
         "detail": "detail",
-        "confirm": "ok"
+        "confirm": "ok",
+        "cancel": "cancel"
       }
     }
   }

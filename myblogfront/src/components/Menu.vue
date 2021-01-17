@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="220px" style="margin-left: 10%;">
+  <el-aside width="220px" style="margin-left: 12%;">
       <el-menu
         :default-active="$route.path"
         class="el-menu-vertical-demo"
@@ -7,11 +7,10 @@
         text-color="#fff"
         active-text-color="#ffd04b"
         style="height: 440px">
-<!--        </br>-->
         <div class="blogtitlebox">
           <div class="blogtitle">{{$t('common.blog-name')}}</div>
         </div>
-        </br>
+        <br>
       <el-menu-item index="/home" @click="skiplocal('/#/home')">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -31,7 +30,7 @@
         <i class="el-icon-menu"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.category')}}</span>
       </el-menu-item>
-      <el-menu-item index="/bloglist" @click="skiplocal('/#/bloglist')">
+      <el-menu-item index="/list" @click="skiplocal('/#/list')">
         <i class="el-icon-search"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.search')}}</span>
       </el-menu-item>
@@ -50,7 +49,7 @@
       background-color="#545c64"
       text-color="#fff"
       style="height: 295px">
-        </br>
+        <br>
         <div class="mypic">
             <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
           </div>
@@ -73,7 +72,7 @@
 <!--            <el-divider direction="vertical"></el-divider>-->
 <!--          <span>草木深</span>-->
 <!--        </el-menu-item>-->
-        </br>
+        <br>
         <div class="tag-links">
 <!--          &nbsp;-->
           <el-link icon="el-icon-link" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">github</el-link>
@@ -179,5 +178,4 @@ name: "Menu",
   .el-dropdown {
     float: right;
   }
-
 </style>

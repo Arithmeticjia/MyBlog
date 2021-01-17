@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-container">
+  <el-container>
     <Menu></Menu>
     <el-main>
       <el-dropdown>
@@ -124,7 +124,7 @@ import Menu from "./Menu";
   }
   .el-main{
     /*margin-right: 150px;*/
-    margin-right: 10%;
+    margin-right: 12%;
   }
   #appcategory {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -235,8 +235,5 @@ import Menu from "./Menu";
   }
   .el-icon-arrow-down {
     font-size: 12px;
-  }
-  .layout-container {
-    height: 100%;
   }
 </style>

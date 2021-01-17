@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-container">
+  <el-container>
     <Menu></Menu>
     <el-main>
       <el-dropdown>
@@ -52,20 +52,16 @@
               <el-col :span="21">
                 <div class="grid-content bg-puprple-light">
                   <p class="author-text"><b>版权声明：</b>本文为博主「请叫我算术嘉」的原创文章，遵循 CC 4.0 BY-SA 版权协议，禁止转载。</p>
-                  <p class="author-text"><b>本文链接：</b><router-link style="color: #4D4D4D;" :to="this.$route.path">http://www.blog.guanacossj.com/#{{ this.$route.path }}</router-link></p>
+                  <p class="author-text"><b>本文链接：</b><router-link style="color: #4D4D4D;" :to="this.$route.path">https://www.blog.guanacossj.com/#{{ this.$route.path }}</router-link></p>
                 </div>
               </el-col>
             </el-row>
             <div class="prev-next">
               <div class="prev-article">
-<!--                <i class="el-icon-back"></i>-->
-<!--                <i class="el-icon-d-arrow-left"></i>-->
                 <i class="el-icon-caret-left"></i>
               </div>
-              <router-link :to="'/single/'+prev_article_id"><div class="prev-article" v-html="prev_article_title.substr(0,25)+'...'"></div></router-link>
+              <router-link :to="'/post/'+prev_article_id"><div class="prev-article" v-html="prev_article_title.substr(0,25)+'...'"></div></router-link>
               <div class="next-article">
-<!--                <i class="el-icon-right"></i>-->
-<!--                <i class="el-icon-d-arrow-right"></i>-->
                 <i class="el-icon-caret-right"></i>
               </div>
               <router-link :to="'/single/'+next_article_id"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
@@ -166,7 +162,7 @@
 <style scoped>
   .el-main{
     /*margin-right: 150px;*/
-    margin-right: 10%;
+    margin-right: 12%;
   }
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
@@ -246,14 +242,7 @@
   .author-text {
     text-align: left;
   }
-  .layout-container {
-    height: 100%;
-  }
   a {
   text-decoration: none;
-  }
-
-  .router-link-active {
-    text-decoration: none;
   }
 </style>

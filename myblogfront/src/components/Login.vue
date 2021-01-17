@@ -42,7 +42,7 @@
             </span>
           </el-input>
         </el-form-item>
-        <el-form-item style="margin-bottom: 60px">
+        <el-form-item style="margin-bottom: 20px">
           <el-button
             style="width: 100%"
             type="primary"
@@ -51,6 +51,7 @@
           >登录</el-button>
         </el-form-item>
       </el-form>
+      <p style="text-align: center;font-size: small"><router-link style="color: #7D7D7D" :to="'/home'">返回首页</router-link></p>
       <p style="text-align: center;font-size: small">Powered by SpringBoot</p>
     </el-card>
   </div>

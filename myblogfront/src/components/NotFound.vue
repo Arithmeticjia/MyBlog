@@ -38,5 +38,4 @@
     font-size: 20px;
     color: #4D4D4D;
   }
-
 </style>

@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import VueResource from 'vue-resource'
 import VueDjango from '@/components/VueDjango'
+import Index from '@/components/Index'
+import HelloWorld from '@/components/HelloWorld'
 import BlogList from '@/components/BlogList'
 import Archive from '@/components/Archive'
 import Home from '@/components/Home'
@@ -10,13 +12,11 @@ import About from '@/components/About'
 import NotFound from '@/components/NotFound'
 import Category from '@/components/Category'
 import CategoryPage from '@/components/CategoryPage'
-import Calendar from '@/components/Calendar'
 import CategoryPageTimeline from '@/components/CategoryPageTimeline'
 import TagPageTimeline from "@/components/TagPageTimeline";
 import Love from '@/components/Love'
 import Login from '@/components/Login'
 import ElementUI from 'element-ui'
-import axios from 'axios';
 import '../assets/element-#545C64/index.css'
 import '../assets/iconfont/iconfont.css'
 import '../assets/iconfont/iconfont.js'
@@ -29,7 +29,17 @@ Vue.use(ElementUI)
 const router = new Router({
   routes: [
     {
-      path: '/bloglist',
+      path: '/index',
+      name: 'Index',
+      component: Index
+    },
+    {
+      path: '/h',
+      name: 'HelloWorld',
+      component: HelloWorld
+    },
+    {
+      path: '/list',
       name: 'BlogList',
       component: BlogList
     },
@@ -49,8 +59,8 @@ const router = new Router({
       component: Archive
     },
     {
-      path: '/single/:id',
-      name: 'single',
+      path: '/post/:id',
+      name: 'post',
       component: Single
     },
     {
@@ -75,7 +85,7 @@ const router = new Router({
     },
     {
       path: '/category/:name',
-      name: 'categorypage',
+      name: 'categorypagetimeline',
       component: CategoryPageTimeline
     },
     {
@@ -87,11 +97,6 @@ const router = new Router({
       path: '/categorytimeline/:name',
       name: 'categorypagetimeline',
       component: CategoryPage
-    },
-    {
-      path: '/calendar',
-      name: 'calendar',
-      component: Calendar
     },
     {
       path: '/love',

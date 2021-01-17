@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-container">
+  <el-container>
     <Menu></Menu>
     <el-main>
       <el-dropdown style="float:left;">
@@ -324,7 +324,7 @@
 <style scoped>
   .el-main{
     /*margin-right: 150px; */
-    margin-right: 10%;
+    margin-right: 12%;
   }
   #applove {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
