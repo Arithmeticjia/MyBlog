@@ -57,8 +57,8 @@
                   <div class="me">
                     <p>Python：Django/Flask/Pytorch/Tensorflow</p>
                     <p>Java：SpringBoot</p>
-                    <p>前端：/HTML/CSS/JavaScript/Vue.js</p>
-                    <p>深度学习：RNN/LSTM/Attention/Seq2Seq</p>
+                    <p>前端：HTML/CSS/JavaScript/Vue.js</p>
+                    <p>深度学习：RNN/LSTM/GRU/Attention/Seq2Seq</p>
                     <p>未完待续...</p>
                     <br>
                   </div>
