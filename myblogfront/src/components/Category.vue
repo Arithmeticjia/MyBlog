@@ -19,16 +19,16 @@
                 <div class="grid-content bg-puprple-light">
 <!--                  <h1 style="text-align: center">分类</h1>-->
                   <p style="text-align: center">{{$t('common.cat-before')}}<span style="font-size: xxx-large;">{{ totalItems }}</span>{{$t('common.cat-after')}}</p>
-                  <div class="me" v-for="(value, key, index) in categoryList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-                    <router-link style="color: #4D4D4D" :to="'/category/'+value.fields.name"><p style="color: #4D4D4D; font-size: large;">{{ value.fields.name }}</p></router-link>
+                  <div class="category" v-for="(value, key, index) in categoryList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+                    <router-link style="color: #4D4D4D" :to="'/category/'+value.fields.name"><p style="color: #4D4D4D; font-size: 20px"><span class="xi">{{ value.fields.name }}</span></p></router-link>
                   </div>
+                  <br>
                 </div>
               </el-col>
             </el-row>
           </div>
         </div>
         <br>
-<!--        <p></p>-->
         <div class="hide-pagination">
           <el-switch v-model="value">
           </el-switch>
@@ -59,14 +59,13 @@ import Menu from "./Menu";
         components: { Menu },
         data () {
           return {
-            circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             reverse: true,
             value: false,
             categoryList: [],
-            currentPage:1,
-            totalItems:0,
+            currentPage: 1,
+            totalItems: 0,
             loading: true,
-            pageSize:10,
+            pageSize: 15,
           }
         },
         mounted() {
@@ -122,10 +121,6 @@ import Menu from "./Menu";
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
-  .el-main{
-    /*margin-right: 150px;*/
-    margin-right: 12%;
-  }
   #appcategory {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -161,68 +156,6 @@ import Menu from "./Menu";
   .category-box {
     text-align: left;
   }
-  .blogtitlebox {
-    text-align: center;
-    font-size: larger;
-    font-weight: bold;
-    color: white;
-    height: 75px;
-    background-color: #292929;
-    /*align-items: center;*/
-    /*top:50%;*/
-    /*position: absolute;*/
-    line-height: 75px;
-  }
-  .blogtitle {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .myname {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-  }
-  .mypic {
-    text-align: center;
-  }
-  #tag-sign{
-    text-align: center;
-    font-size: small;
-    color: #cdcdcd;
-  }
-  .tag-links{
-    height: 45px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 45px;
-    width: 100%;
-    color: #fff !important;
-    /*margin: 0 auto;*/
-  }
-  .el-link--inner {
-    color: #fff;
-  }
-  .el-link-github {
-    color: #fff !important;
-    font-size: 14px;
-  }
-  .el-link-github:hover {
-    color: #ffd04b !important;
-  }
-  .el-link-email {
-    font-size: 14px;
-    color: #fff !important;
-  }
-  .el-link-email:hover {
-    color: #ffd04b !important;
-  }
-  .el-menu-item.is-active {
-    background: rgb(67, 74, 80) !important;
-  }
-  .el-submenu__title.is-active {
-    background: #6db6ff !important;
-  }
   .hide-pagination {
     float: right;
     /*padding-right: 0 !important;*/
@@ -235,5 +168,17 @@ import Menu from "./Menu";
   }
   .el-icon-arrow-down {
     font-size: 12px;
+  }
+  .category {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+  }
+  .xi {
+    text-decoration:none;
+    border-bottom:1px solid #ccc; /* #ccc换成链接的颜色 */
+    display: inline-block;
+    padding-bottom:1px;  /*这里设置你要空的距离*/
   }
 </style>

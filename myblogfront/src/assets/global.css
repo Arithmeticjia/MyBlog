@@ -7,7 +7,5 @@ html, body, #app, .el-container {
 
 .el-container {
   height: 100%;
-}
-.el-main {
-  margin-right: 15%;
+  width: 88%;
 }

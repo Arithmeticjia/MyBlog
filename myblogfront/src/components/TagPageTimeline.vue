@@ -176,7 +176,7 @@
   }
   .el-main{
     /*margin-right: 150px;*/
-    margin-right: 12%;
+    /*margin-right: 12%;*/
   }
   #apparchive {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -186,65 +186,6 @@
     /*color: #2c3e50;*/
     color: #4d4d4d;
     margin-top: 30px;
-  }
-  .blogtitlebox {
-    text-align: center;
-    font-size: larger;
-    font-weight: bold;
-    color: white;
-    height: 75px;
-    background-color: #292929;
-    /*align-items: center;*/
-    /*top:50%;*/
-    /*position: absolute;*/
-    line-height: 75px;
-  }
-  .blogtitle {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .myname {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-  }
-  .mypic {
-    text-align: center;
-  }
-  #tag-sign{
-    text-align: center;
-    font-size: small;
-    color: #cdcdcd;
-  }
-  .tag-links{
-    height: 45px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 45px;
-    width: 100%;
-    color: #fff !important;
-    /*margin: 0 auto;*/
-  }
-  .el-link-github {
-    color: #fff !important;
-    font-size: 14px;
-  }
-  .el-link-github:hover {
-    color: #ffd04b !important;
-  }
-  .el-link-email {
-    font-size: 14px;
-    color: #fff !important;
-  }
-  .el-link-email:hover {
-    color: #ffd04b !important;
-  }
-  .el-menu-item.is-active {
-    background: rgb(67, 74, 80) !important;
-  }
-  .el-submenu__title.is-active {
-    background: #6db6ff !important;
   }
   .category-box {
     text-align: left;
@@ -261,8 +202,5 @@
   }
   .el-icon-arrow-down {
     font-size: 12px;
-  }
-  .layout-container {
-    height: 100%;
   }
 </style>

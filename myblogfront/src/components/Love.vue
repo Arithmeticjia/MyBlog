@@ -324,7 +324,7 @@
 <style scoped>
   .el-main{
     /*margin-right: 150px; */
-    margin-right: 12%;
+    /*margin-right: 12%;*/
   }
   #applove {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

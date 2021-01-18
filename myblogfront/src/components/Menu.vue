@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="220px" style="margin-left: 12%;">
+  <el-aside width="230px" style="margin-left: 14%;">
       <el-menu
         :default-active="$route.path"
         class="el-menu-vertical-demo"
@@ -48,10 +48,10 @@
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
-      style="height: 295px">
+      style="height: 320px">
         <br>
         <div class="mypic">
-            <el-avatar  :size="120" shape="square" :src="circleUrl"></el-avatar>
+            <el-avatar  :size="130" shape="square" :src="circleUrl"></el-avatar>
           </div>
         <p></p>
         <div class="myname">
@@ -65,13 +65,6 @@
             <el-divider direction="vertical"></el-divider>
           <span>{{$t('common.autograph-right')}}</span>
         </div>
-<!--        <el-menu-item id="tag-sign">-->
-<!--          <span>雨纷纷</span>-->
-<!--            <el-divider direction="vertical"></el-divider>-->
-<!--          <span>旧故里</span>-->
-<!--            <el-divider direction="vertical"></el-divider>-->
-<!--          <span>草木深</span>-->
-<!--        </el-menu-item>-->
         <br>
         <div class="tag-links">
 <!--          &nbsp;-->
@@ -118,11 +111,11 @@ name: "Menu",
   }
   .blogtitlebox {
     text-align: center;
-    font-size: larger;
+    font-size: 21px;
     font-weight: bold;
     color: white;
-    height: 75px;
-    background-color: #292929;
+    height: 80px;
+    background-color: #222222;
     /*align-items: center;*/
     /*top:50%;*/
     /*position: absolute;*/
@@ -134,16 +127,17 @@ name: "Menu",
   }
   .myname {
     text-align: center;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
     color: white;
   }
   .mypic {
+    margin-top: 5px;
     text-align: center;
   }
   #tag-sign{
     text-align: center;
-    font-size: small;
+    font-size: 14px;
     color: #cdcdcd;
   }
   .tag-links{

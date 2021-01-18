@@ -240,7 +240,7 @@
     color: #333;
     text-align: center;
     /*margin-right: 150px;*/
-    margin-right: 12%;
+    /*margin-right: 12%;*/
   }
   .blogtitlebox {
     text-align: center;

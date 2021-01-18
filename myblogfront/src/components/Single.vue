@@ -30,7 +30,7 @@
                     <el-tag size="small"><router-link style="color: #7D7D7D" :to="'/tag/'+ tag">{{ tag }}</router-link></el-tag>&nbsp;
                   </div>
                   <br>
-                  <div class="bodymarkdown" style="text-align: left" v-html="markdownhtml"></div>
+                  <div class="bodymarkdown" style="text-align: left;line-height: 2em;font-size: 17px" v-html="markdownhtml"></div>
                 </div>
               </el-col>
             </el-row>
@@ -162,7 +162,7 @@
 <style scoped>
   .el-main{
     /*margin-right: 150px;*/
-    margin-right: 12%;
+    /*margin-right: 12%;*/
   }
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
@@ -204,18 +204,6 @@
     color: #4d4d4d;
     margin-top: 30px;
   }
-  .blogtitlebox {
-    text-align: center;
-    font-size: larger;
-    font-weight: bold;
-    color: white;
-    height: 75px;
-    background-color: #292929;
-    /*align-items: center;*/
-    /*top:50%;*/
-    /*position: absolute;*/
-    line-height: 75px;
-  }
   .prev-next{
     display: inline;
   }
@@ -243,6 +231,9 @@
     text-align: left;
   }
   a {
-  text-decoration: none;
+    text-decoration: none;
+  }
+  .router-link-active {
+    text-decoration: none;
   }
 </style>
