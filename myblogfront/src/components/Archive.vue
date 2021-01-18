@@ -23,7 +23,7 @@
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views }}</span>
                   </div>
                   <br>
-                  <p>{{ value.fields.body.substring(0,100)+'......' }}</p>
+                  <p style="font-size: 17px">{{ value.fields.body.substring(0,100)+'......' }}</p>
                   <br>
                   <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/#/post'+ '/' + value.pk)">阅读全文 >></el-button>
                 </div>
