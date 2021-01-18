@@ -450,12 +450,10 @@
   }
   .me {
     background: #fff;
-    /*background: #4D4D4D;*/
     width: 100%;
     height: 100%;
     text-align: left;
-    /*color: white;*/
-    /*padding: 10px;*/
+    font-size: 17px;
   }
   .el-row {
     margin-bottom: 20px;
