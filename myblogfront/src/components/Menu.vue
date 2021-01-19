@@ -11,7 +11,7 @@
           <div class="blogtitle">{{$t('common.blog-name')}}</div>
         </div>
         <br>
-      <el-menu-item index="/home" @click="skiplocal('/#/home')">
+      <el-menu-item index="/home" @click="skiplocal('/home')">
         <template slot="title">
           <i class="el-icon-location"></i>
 <!--          <span style="font-weight: bold">首页</span>-->
@@ -19,26 +19,26 @@
 <!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
         </template>
       </el-menu-item>
-      <el-menu-item index="/archive" @click="skiplocal('/#/archive')">
+      <el-menu-item index="/archive" @click="skiplocal('/archive')">
         <template slot="title">
         <i class="el-icon-document"></i>
         <span style="font-weight: bold">{{$t('common.archive')}}</span>
 <!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
         </template>
       </el-menu-item>
-      <el-menu-item index="/category" @click="skiplocal('/#/category')">
+      <el-menu-item index="/category" @click="skiplocal('/category')">
         <i class="el-icon-menu"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.category')}}</span>
       </el-menu-item>
-      <el-menu-item index="/list" @click="skiplocal('/#/list')">
+      <el-menu-item index="/list" @click="skiplocal('/list')">
         <i class="el-icon-search"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.search')}}</span>
       </el-menu-item>
-      <el-menu-item index="/about" @click="skiplocal('/#/about')">
+      <el-menu-item index="/about" @click="skiplocal('/about')">
         <i class="el-icon-user"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.about')}}</span>
       </el-menu-item>
-        <el-menu-item index="/love" @click="skiplocal('/#/love')">
+        <el-menu-item index="/love" @click="skiplocal('/love')">
         <i class="el-icon-ice-cream"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.love')}}</span>
       </el-menu-item>

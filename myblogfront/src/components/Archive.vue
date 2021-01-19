@@ -25,7 +25,7 @@
                   <br>
                   <p style="font-size: 17px">{{ value.fields.body.substring(0,100)+'......' }}</p>
                   <br>
-                  <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/#/post'+ '/' + value.pk)">阅读全文 >></el-button>
+                  <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/post'+ '/' + value.pk)">阅读全文 >></el-button>
                 </div>
                 <br>
               </el-col>

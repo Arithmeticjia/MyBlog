@@ -27,6 +27,7 @@ Vue.use(ElementUI)
 // Vue.use(ElementUI, { locale })
 
 const router = new Router({
+  mode: 'history',  //去掉url中的#
   routes: [
     {
       path: '/index',
