@@ -56,6 +56,9 @@
                 </div>
               </el-col>
             </el-row>
+            <div class="back">
+              <el-button type="primary" icon="el-icon-back" circle @click="back"></el-button>
+            </div>
             <div class="prev-next">
               <div class="prev-article">
                 <i class="el-icon-caret-left"></i>
@@ -111,7 +114,13 @@
 	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
 	        }
         },
+        destroyed(){
+          sessionStorage.removeItem("detail");
+        },
         methods: {
+          back(){
+            this.$router.go(-1);
+          },
           skip(url){
            window.open(url, target='_blank')
           },
@@ -125,6 +134,7 @@
             this.singleId = this.$route.params.id;
           },
           showSingleBlog () {
+            sessionStorage.setItem("detail", true);
             this.$http.get('https://www.guanacossj.com/blog/getsinglearticle/'+this.$route.params.id,{
                 _timeout:5000,
                 onTimeout :(request) => {

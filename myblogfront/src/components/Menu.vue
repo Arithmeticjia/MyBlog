@@ -91,6 +91,7 @@ name: "Menu",
       window.open(url, target='_blank')
     },
     skiplocal(url){
+      sessionStorage.removeItem("detail");
       location.href = url
     },
   }

@@ -12,7 +12,7 @@
         </el-dropdown-menu>
       </el-dropdown>
       <div id="apparchive" v-loading="loading" :element-loading-text="$t('common.load-text')" style="height: 555px">
-        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)" >
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
@@ -38,10 +38,11 @@
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage"
+          :current-page.sync="currentPage"
           :page-sizes="[1, 2, 3, 4]"
           :page-size="pageSize"
           :total="totalItems"
+          v-if="totalItems != 0"
           layout="prev, pager, next, total">
         </el-pagination>
         <br>
@@ -56,15 +57,15 @@
   import moment from 'moment';
   import Menu from "./Menu";
     export default {
-        name: "Me",
+        name: "Archive",
         components: { Menu },
         data () {
           return {
             reverse: true,
             blogList: [],
-            currentPage:1,
-            totalItems:0,
-            pageSize:10,
+            currentPage: 1,
+            totalItems: 0,
+            pageSize: 10,
             loading: true,
             showPagination: false
           }
@@ -84,6 +85,7 @@
         },
         mounted: function () {
           this.showBlogs();
+          this.getSchoolWebModuleMessageListFunc()
         },
         methods: {
           handleSizeChange(val) {
@@ -95,9 +97,23 @@
           },
           handleCurrentChange: function(currentPage){
              this.currentPage = currentPage;
+             sessionStorage.setItem('currentPage', currentPage);
              if(this.flag) {
                this.blogList = this.filterTableDataEnd
              }
+          },
+          getSchoolWebModuleMessageListFunc(){
+            console.log(this.currentPage)
+      　　　　//当从详情页返回的时候，先获取详情页中存下来的detall标识，在列表页中，把获取到的分页页码重新赋值赋值，用以返回前的页面，保持不变
+            if(sessionStorage.getItem('detail')){
+              // console.log(Number(sessionStorage.getItem("currentPage")));
+              //如果有这个就读取缓存里面的数据
+              this.currentPage = Number(sessionStorage.getItem("currentPage"));
+            }else{
+              this.currentPage = 1;
+              //这个主要是从其他页面第一次进入列表页，清掉缓存里面的数据
+              sessionStorage.removeItem("currentPage");
+            }
           },
           showBlogs () {
             this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
@@ -107,14 +123,15 @@
                     this.loading = false
                   }
                 }).then((response) => {
-                var res = JSON.parse(response.bodyText);
+                const res = JSON.parse(response.bodyText);
                 if (res.error_num === 0) {
-                  this.loading = false;
-                  this.showPagination = true;
-                  this.blogList = res['list'];
-                  this.totalItems = this.blogList.length;
+                    this.loading = false;
+                    this.showPagination = true;
+                    this.blogList = res['list'];
+                    this.totalItems = this.blogList.length;
+                    this.handleCurrentChange(this.currentPage)
                 } else {
-                  this.$message.error('查询博客列表失败');
+                    this.$message.error('查询博客列表失败');
                 }
               })
           },
@@ -122,7 +139,7 @@
             window.open(url, target='_blank')
           },
           skiplocal(url){
-            location.href = url
+            location.href = url;
           },
         }
     }
