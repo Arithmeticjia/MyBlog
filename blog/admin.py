@@ -8,7 +8,7 @@ class BlogsPostAdmin(admin.ModelAdmin):
         models.MDTextField: {'widget': MDEditorWidget}
     }
     search_fields = ('title', 'body')
-    list_display = ['title', 'body', 'timestamp', 'authorname']
+    list_display = ['title', 'id', 'body', 'timestamp', 'authorname']
 
 
 admin.site.register(models.Articles, BlogsPostAdmin)

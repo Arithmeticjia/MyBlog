@@ -64,7 +64,7 @@
               <div class="next-article">
                 <i class="el-icon-caret-right"></i>
               </div>
-              <router-link :to="'/single/'+next_article_id"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
+              <router-link :to="'/post/'+next_article_id"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
             </div>
         </div>
       <el-backtop target=".el-main"></el-backtop>

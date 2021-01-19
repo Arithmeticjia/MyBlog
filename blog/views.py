@@ -2110,13 +2110,13 @@ def get_article_single(request, article_id):
     try:
         article = Articles.objects.filter(status="有效").filter(id=article_id)
         try:
-            prev_article_id = Articles.objects.filter(id__lt=article_id).last().id
-            prev_article_title = Articles.objects.filter(id__lt=article_id).last().title
+            prev_article_id = Articles.objects.filter(id__lt=article_id, status='有效').last().id
+            prev_article_title = Articles.objects.get(id=prev_article_id).title
         except Exception as e:
             pass
         try:
-            next_article_id = Articles.objects.filter(id__gt=article_id).first().id
-            next_article_title = Articles.objects.filter(id__gt=article_id).first().title
+            next_article_id = Articles.objects.filter(id__gt=article_id, status='有效').first().id
+            next_article_title = Articles.objects.get(id=next_article_id).title
         except Exception as e:
             pass
         single_article = get_object_or_404(Articles, id=article_id, status="有效")
