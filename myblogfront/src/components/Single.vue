@@ -52,7 +52,7 @@
               <el-col :span="21">
                 <div class="grid-content bg-puprple-light">
                   <p class="author-text"><b>版权声明：</b>本文为博主「请叫我算术嘉」的原创文章，遵循 CC 4.0 BY-SA 版权协议，禁止转载。</p>
-                  <p class="author-text"><b>本文链接：</b><router-link style="color: #4D4D4D;" :to="this.$route.path">https://www.blog.guanacossj.com/#{{ this.$route.path }}</router-link></p>
+                  <p class="author-text"><b>本文链接：</b><router-link style="color: #4D4D4D;" :to="this.$route.path">https://www.blog.guanacossj.com{{ this.$route.path }}</router-link></p>
                 </div>
               </el-col>
             </el-row>
