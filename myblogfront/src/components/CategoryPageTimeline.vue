@@ -31,7 +31,6 @@
         </div>
       <el-footer>
         <br>
-<!--        </br>-->
         <el-pagination
           v-show="showpagination"
           background

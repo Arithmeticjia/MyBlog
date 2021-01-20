@@ -1,21 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueResource from 'vue-resource'
-import VueDjango from '@/components/VueDjango'
-import Index from '@/components/Index'
-import HelloWorld from '@/components/HelloWorld'
-import BlogList from '@/components/BlogList'
-import Archive from '@/components/Archive'
-import Home from '@/components/Home'
-import Single from '@/components/Single'
-import About from '@/components/About'
-import NotFound from '@/components/NotFound'
-import Category from '@/components/Category'
-import CategoryPage from '@/components/CategoryPage'
-import CategoryPageTimeline from '@/components/CategoryPageTimeline'
-import TagPageTimeline from "@/components/TagPageTimeline";
-import Love from '@/components/Love'
-import Login from '@/components/Login'
 import ElementUI from 'element-ui'
 import '../assets/element-#545C64/index.css'
 import '../assets/iconfont/iconfont.css'
@@ -32,72 +17,72 @@ const router = new Router({
     {
       path: '/index',
       name: 'Index',
-      component: Index
+      component: () => import('@/components/Index')
     },
     {
-      path: '/h',
+      path: '/hello',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: () => import('@/components/HelloWorld')
     },
     {
       path: '/list',
       name: 'BlogList',
-      component: BlogList
+      component: () => import('@/components/BlogList')
     },
     {
       path: '/',
       name: 'VueDjango',
-      component: VueDjango
+      component: () => import('@/components/VueDjango')
     },
     {
       path: '/home',
       name: 'home',
-      component: Home
+      component: () => import('@/components/Home')
     },
     {
       path: '/archive',
       name: 'archive',
-      component: Archive
+      component: () => import('@/components/Archive')
     },
     {
       path: '/post/:id',
       name: 'post',
-      component: Single
+      component: () => import('@/components/Single')
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: () => import('@/components/About')
     },
     {
       path: '*',
       name: 'notfound',
-      component: NotFound
+      component: () => import('@/components/NotFound')
     },
     {
       path: '/404',
       name: 'notfound',
-      component: NotFound
+      component: () => import('@/components/NotFound')
     },
     {
       path: '/category',
       name: 'category',
-      component: Category
+      component: () => import('@/components/Category')
     },
     {
       path: '/category/:name',
       name: 'categorypagetimeline',
-      component: CategoryPageTimeline
+      component: () => import('@/components/CategoryPageTimeline')
     },
     {
       path: '/tag/:name',
       name: 'tagpagetimeline',
-      component: TagPageTimeline
+      component: () => import('@/components/TagPageTimeline')
     },
     {
       path: '/categorytimeline/:name',
       name: 'categorypagetimeline',
-      component: CategoryPage
+      component: () => import('@/components/CategoryPage')
     },
     {
       path: '/love',
@@ -105,12 +90,12 @@ const router = new Router({
       meta: {
         requiresAuth: true  //需要登录才能访问
       },
-      component: Love
+      component: () => import('@/components/Love')
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: () => import('@/components/Login')
     },
   ]
 });
