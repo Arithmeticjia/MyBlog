@@ -31,22 +31,22 @@
               </el-col>
             </el-row>
         </div>
-      <el-footer>
-        <br>
-        <el-pagination
-          v-show="showPagination"
-          background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page.sync="currentPage"
-          :page-sizes="[1, 2, 3, 4]"
-          :page-size="pageSize"
-          :total="totalItems"
-          v-if="totalItems !== 0"
-          layout="prev, pager, next, total">
-        </el-pagination>
-        <br>
-      </el-footer>
+        <el-footer>
+          <br>
+          <el-pagination
+            v-show="showPagination"
+            background
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page.sync="currentPage"
+            :page-sizes="[1, 2, 3, 4]"
+            :page-size="pageSize"
+            :total="totalItems"
+            v-if="totalItems !== 0"
+            layout="prev, pager, next, total">
+          </el-pagination>
+          <br>
+        </el-footer>
       </div>
       <el-backtop target=".el-main"></el-backtop>
     </el-main>
@@ -85,7 +85,7 @@
         },
         mounted: function () {
           this.showBlogs();
-          this.getSchoolWebModuleMessageListFunc()
+          this.getLastPage()
         },
         destroyed(){
           sessionStorage.removeItem("detail");
@@ -105,8 +105,7 @@
                this.blogList = this.filterTableDataEnd
              }
           },
-          getSchoolWebModuleMessageListFunc(){
-            console.log(this.currentPage)
+          getLastPage(){
       　　　　//当从详情页返回的时候，先获取详情页中存下来的detall标识，在列表页中，把获取到的分页页码重新赋值赋值，用以返回前的页面，保持不变
             if(sessionStorage.getItem('detail')){
               // console.log(Number(sessionStorage.getItem("currentPage")));
