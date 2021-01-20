@@ -57,7 +57,7 @@
               </el-col>
             </el-row>
             <div class="back">
-              <el-button type="primary" icon="el-icon-back" circle @click="back"></el-button>
+              <el-button type="primary" icon="el-icon-caret-left" circle @click="back"></el-button>
             </div>
             <div class="prev-next">
               <div class="prev-article">
@@ -236,6 +236,9 @@
     display: inline;
     font-size: 15px;
     font-weight: bold;
+  }
+  .back {
+    margin-bottom: 20px;
   }
   .author-text {
     text-align: left;
