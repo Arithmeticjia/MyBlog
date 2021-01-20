@@ -16,7 +16,7 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
-                  <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/#/post'+ '/' + value.pk">{{ value.fields.title }}</a></h1>
+                  <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/post'+ '/' + value.pk">{{ value.fields.title }}</a></h1>
                   <div>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-date"></i> 发表于：{{ value.fields.timestamp | formatDate }}</span>
                     <el-divider direction="vertical"></el-divider>

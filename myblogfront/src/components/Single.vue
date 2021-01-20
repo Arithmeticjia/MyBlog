@@ -84,7 +84,6 @@
         components: { Menu },
         data () {
           return {
-            circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
             wechatUrl: "https://www.guanacossj.com/media/articlebodypics/wechatpay.png",
             singleId: 1,
             singleblog: [],
