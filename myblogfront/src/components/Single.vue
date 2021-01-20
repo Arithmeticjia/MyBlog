@@ -114,9 +114,6 @@
 	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
 	        }
         },
-        destroyed(){
-          sessionStorage.removeItem("detail");
-        },
         methods: {
           back(){
             this.$router.go(-1);

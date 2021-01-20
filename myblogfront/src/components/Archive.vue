@@ -42,7 +42,7 @@
           :page-sizes="[1, 2, 3, 4]"
           :page-size="pageSize"
           :total="totalItems"
-          v-if="totalItems != 0"
+          v-if="totalItems !== 0"
           layout="prev, pager, next, total">
         </el-pagination>
         <br>
@@ -86,6 +86,9 @@
         mounted: function () {
           this.showBlogs();
           this.getSchoolWebModuleMessageListFunc()
+        },
+        destroyed(){
+          sessionStorage.removeItem("detail");
         },
         methods: {
           handleSizeChange(val) {
