@@ -2,6 +2,7 @@
   <el-container>
     <Menu></Menu>
     <el-main>
+      <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
           <span class="el-dropdown-link">
             {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -20,7 +21,7 @@
 <!--                  <h1 style="text-align: center">分类</h1>-->
                   <p style="text-align: center">{{$t('common.cat-before')}}<span style="font-size: xxx-large;">{{ totalItems }}</span>{{$t('common.cat-after')}}</p>
                   <div class="category" v-for="(value, key, index) in categoryList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-                    <router-link style="color: #4D4D4D" :to="'/category/'+value.fields.name"><p style="color: #4D4D4D; font-size: 20px"><span class="xi">{{ value.fields.name }}</span></p></router-link>
+                    <p style="color: #4D4D4D; font-size: 20px"><router-link style="color: #4D4D4D" :to="'/category/'+value.fields.name"><span class="xi">{{ value.fields.name }}</span></router-link></p>
                   </div>
                   <br>
                 </div>

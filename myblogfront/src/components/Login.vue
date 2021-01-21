@@ -108,7 +108,7 @@
                   this.changeLogin
                   ({ Authorization: this.userToken, Username: this.userName });
                   this.$router.push({
-                    path: "/home",
+                    path: "/love",
                     query: { data: response.data.data.username }
                   });
                 } else {

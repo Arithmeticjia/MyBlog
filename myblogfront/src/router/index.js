@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
+import vueCanvasNest from 'vue-canvas-nest'
 import '../assets/element-#545C64/index.css'
 import '../assets/iconfont/iconfont.css'
 import '../assets/iconfont/iconfont.js'
@@ -9,7 +10,10 @@ import '../assets/iconfont/iconfont.js'
 Vue.use(VueResource)
 Vue.use(Router)
 Vue.use(ElementUI)
+Vue.use(vueCanvasNest)
 // Vue.use(ElementUI, { locale })
+
+Vue.component('vue-canvas-nest', vueCanvasNest)
 
 const router = new Router({
   mode: 'history',  //去掉url中的#

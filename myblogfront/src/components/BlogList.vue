@@ -1,7 +1,8 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <el-container>
     <Menu></Menu>
       <el-main>
+        <vue-canvas-nest></vue-canvas-nest>
         <el-dropdown>
           <span class="el-dropdown-link">
             {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -26,6 +27,7 @@
         <el-popover
           placement="top-start"
           v-model="visible"
+
           trigger="hover"
           style="float: left;margin-left: 5px">
           <p>{{$t('common.tip')}}</p>

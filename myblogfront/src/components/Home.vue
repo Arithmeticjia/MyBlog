@@ -2,6 +2,7 @@
   <el-container>
     <Menu></Menu>
     <el-main>
+      <vue-canvas-nest></vue-canvas-nest>
       <div id="apphome">
         <el-dropdown>
           <span class="el-dropdown-link">

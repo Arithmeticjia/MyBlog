@@ -2,6 +2,7 @@
   <el-container>
     <Menu></Menu>
     <el-main>
+      <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown style="float:left;">
           <span class="el-dropdown-link">
             {{$t('common.Love.user')}} {{ username }}<i class="el-icon-arrow-down el-icon--right"></i>
