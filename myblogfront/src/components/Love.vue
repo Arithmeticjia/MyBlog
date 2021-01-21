@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title>{{$t('common.love')}}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -208,6 +209,11 @@
             return marked(this.output, { sanitize: true });
           }
         },
+        watch: {
+          '$i18n.locale'(newVal,oldVal) {
+            document.title = this.$t('common.love')
+          }
+        },
         methods: {
           toLogout() {
             localStorage.removeItem('Authorization');
@@ -238,6 +244,7 @@
           }, 300),
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
+            sessionStorage.setItem('lang', val);
           },
           handleOpen(key, keyPath) {
             console.log(key, keyPath);

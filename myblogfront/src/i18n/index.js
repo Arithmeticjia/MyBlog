@@ -19,6 +19,8 @@ import langEN from "@/assets/languages/en.js"
 // })
 Vue.use(VueI18n)
 
+let lang = window.sessionStorage.getItem('lang')||'zh'
+
 const messages = {
   "en": langEN,
   "zh": langZh
@@ -27,7 +29,7 @@ const messages = {
 const i18n = new VueI18n({
 
   messages,
-  locale: 'zh',
+  locale: lang,
 
 })
 

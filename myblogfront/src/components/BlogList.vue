@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title>{{$t('common.search')}}</title>
     <Menu></Menu>
       <el-main>
         <vue-canvas-nest></vue-canvas-nest>
@@ -116,6 +117,11 @@
         },
         mounted: function () {
           this.showBlogs();
+        },
+        watch: {
+          '$i18n.locale'(newVal,oldVal) {
+            document.title = this.$t('common.search')
+          }
         },
         filters: {
 	        tagsFilter(data) {

@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title>{{$t('common.home')}}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -62,6 +63,11 @@
             }]
           }
         },
+        watch: {
+          '$i18n.locale'(newVal,oldVal) {
+            document.title = this.$t('common.home')
+          }
+        },
         methods: {
           skip(url){
            window.open(url, target='_blank')
@@ -78,6 +84,7 @@
           },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
+            sessionStorage.setItem('lang', val);
           },
           notfinishalert() {
             this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {

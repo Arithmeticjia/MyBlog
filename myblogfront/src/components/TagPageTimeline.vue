@@ -129,6 +129,7 @@
           },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
+            sessionStorage.setItem('lang', val);
           },
         }
     }

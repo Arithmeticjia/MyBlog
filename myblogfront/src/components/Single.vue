@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title></title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -88,6 +89,7 @@
             wechatUrl: "https://www.guanacossj.com/media/articlebodypics/wechatpay.png",
             singleId: 1,
             singleblog: [],
+            titleName: "",
             markdownhtml: "",
             prev_article_title: "已经是第一篇了",
             next_article_title: "已经是最后一篇了",
@@ -126,6 +128,7 @@
           },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
+            sessionStorage.setItem('lang', val);
           },
           getId() {
             this.singleId = this.$route.params.id;
@@ -157,6 +160,7 @@
                     this.next_article_title = "已经是最后一篇了"
                   }
                   this.singleblog = res['list'];
+                  document.title = res['list'][0].fields.title;
                 } else {
                   this.$message.error('查询博客详情失败');
                 }

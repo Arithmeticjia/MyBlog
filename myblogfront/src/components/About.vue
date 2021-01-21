@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title></title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -346,8 +347,13 @@
           ],
           }
         },
+        watch: {
+          '$i18n.locale'(newVal,oldVal) {
+            document.title = this.$t('common.about')
+          }
+        },
         mounted(){
-          this.initChart()
+          document.title = this.$t('common.about')
         },
         methods: {
           skip(url){
@@ -355,6 +361,7 @@
           },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
+            sessionStorage.setItem('lang', val);
           },
           handleOpen(key, keyPath) {
             console.log(key, keyPath);

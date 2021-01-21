@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title>{{$t('common.archive')}}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -71,6 +72,11 @@
             showPagination: false
           }
         },
+        watch: {
+          '$i18n.locale'(newVal,oldVal) {
+            document.title = this.$t('common.archive')
+          }
+        },
         computed: {
           reverseblogList() {
             return this.blogList.reverse();
@@ -98,6 +104,7 @@
            },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
+            sessionStorage.setItem('lang', val);
           },
           handleCurrentChange: function(currentPage){
              this.currentPage = currentPage;

@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title>{{$t('common.category')}}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -72,6 +73,11 @@ import Menu from "./Menu";
         mounted() {
           this.showCategorys();
         },
+        watch: {
+          '$i18n.locale'(newVal,oldVal) {
+            document.title = this.$t('common.category')
+          }
+        },
         methods: {
           skip(url){
            window.open(url, target='_blank')
@@ -84,6 +90,7 @@ import Menu from "./Menu";
           },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
+            sessionStorage.setItem('lang', val);
           },
           handleSizeChange(val) {
              this.pageSize = val;
