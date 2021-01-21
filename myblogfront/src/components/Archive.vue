@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title>{{$t('common.archive')}}</title>
+    <title>请叫我算术嘉の博客 | {{$t('common.archive')}}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -14,9 +14,10 @@
         </el-dropdown-menu>
       </el-dropdown>
       <div id="apparchive" v-loading="loading" :element-loading-text="$t('common.load-text')" style="height: 555px">
-        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)" >
+        <div v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)" >
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
+                <i type="button" class="el-icon-share" style="float: right;cursor:pointer;margin-right: -30px" @click="share(value.pk)"></i>
                 <div class="grid-content bg-puprple-light">
                   <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/post'+ '/' + value.pk">{{ value.fields.title }}</a></h1>
                   <div>
@@ -69,7 +70,8 @@
             totalItems: 0,
             pageSize: 10,
             loading: true,
-            showPagination: false
+            showPagination: false,
+            centerDialogVisible: false
           }
         },
         watch: {
@@ -98,6 +100,23 @@
           sessionStorage.removeItem("detail");
         },
         methods: {
+          share(val) {
+            let shareUrl = 'https://www.blog.guanacossj.com/post/'+ val;
+            let oInput = document.createElement("input");
+            oInput.value = shareUrl;
+            document.body.appendChild(oInput);
+            oInput.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+            oInput.className = "oInput";
+            oInput.style.display = "none";
+             this.$confirm("链接已复制，快去分享给好友吧！！！", "恭喜！", {
+               center: true,
+               type: 'success',
+               iconClass: 'el-icon-check',
+               cancelButtonText: this.$t('common.table.operation.cancel'),
+               confirmButtonText: this.$t('common.table.operation.confirm'),
+             });
+          },
           handleSizeChange(val) {
              this.pageSize = val;
              this.handleCurrentChange(this.currentPage);
@@ -204,65 +223,6 @@
     /*color: #2c3e50;*/
     color: #4d4d4d;
     margin-top: 30px;
-  }
-  .blogtitlebox {
-    text-align: center;
-    font-size: larger;
-    font-weight: bold;
-    color: white;
-    height: 75px;
-    background-color: #292929;
-    /*align-items: center;*/
-    /*top:50%;*/
-    /*position: absolute;*/
-    line-height: 75px;
-  }
-  .blogtitle {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .myname {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-  }
-  .mypic {
-    text-align: center;
-  }
-  #tag-sign{
-    text-align: center;
-    font-size: small;
-    color: #cdcdcd;
-  }
-  .tag-links{
-    height: 45px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 45px;
-    width: 100%;
-    color: #fff !important;
-    /*margin: 0 auto;*/
-  }
-  .el-link-github {
-    color: #fff !important;
-    font-size: 14px;
-  }
-  .el-link-github:hover {
-    color: #ffd04b !important;
-  }
-  .el-link-email {
-    font-size: 14px;
-    color: #fff !important;
-  }
-  .el-link-email:hover {
-    color: #ffd04b !important;
-  }
-  .el-menu-item.is-active {
-    background: rgb(67, 74, 80) !important;
-  }
-  .el-submenu__title.is-active {
-    background: #6db6ff !important;
   }
   .el-dropdown {
     float: right;

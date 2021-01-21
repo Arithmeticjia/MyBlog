@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title>请叫我算术嘉の博客 | {{$t('common.tag')}} | {{ this.$route.params.name }}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>

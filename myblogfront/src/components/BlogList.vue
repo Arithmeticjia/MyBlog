@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title>{{$t('common.search')}}</title>
+    <title>请叫我算术嘉の博客 | {{$t('common.search')}}</title>
     <Menu></Menu>
       <el-main>
         <vue-canvas-nest></vue-canvas-nest>
@@ -28,7 +28,6 @@
         <el-popover
           placement="top-start"
           v-model="visible"
-
           trigger="hover"
           style="float: left;margin-left: 5px">
           <p>{{$t('common.tip')}}</p>

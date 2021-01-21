@@ -6,6 +6,7 @@ const zh = {
     "search": "搜索",
     "about": "关于",
     "love": "恋爱",
+    "tag": "标签",
     "About": {
       "information": "基本信息",
       "contact": "联系方式",

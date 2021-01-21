@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <title>请叫我算术嘉の博客 | {{$t('common.category')}} | {{ this.$route.params.name }}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -64,6 +65,7 @@
             reverse: true,
             blogList: [],
             currentPage:1,
+            categoryName: "",
             totalItems:0,
             pageSize:10,
             value: false,
@@ -105,7 +107,7 @@
              }
           },
           showBlogs () {
-            this.$http.get('https://www.guanacossj.com/blog/getcategoryarticles/'+this.$route.params.name,{
+            this.$http.get('https://www.guanacossj.com/blog/getcategoryarticles/' + this.$route.params.name,{
                 _timeout:5000,
                 onTimeout :(request) => {
                     this.$message.error('请求超时');
@@ -118,6 +120,7 @@
                   this.showpagination = true;
                   this.blogList = res['list'];
                   this.totalItems = this.blogList.length;
+                  this.categoryName = res['list'][0].fields.category;
                 } else {
                   this.$message.error('查询博客列表失败');
                 }

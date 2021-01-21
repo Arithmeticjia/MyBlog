@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title></title>
+    <title>请叫我算术嘉の博客 | {{$t('common.about')}}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
@@ -353,7 +353,7 @@
           }
         },
         mounted(){
-          document.title = this.$t('common.about')
+
         },
         methods: {
           skip(url){

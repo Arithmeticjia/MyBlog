@@ -59,7 +59,14 @@
               </el-col>
             </el-row>
             <div class="back">
-              <el-button type="primary" icon="el-icon-caret-left" circle @click="back"></el-button>
+              <el-popover
+                placement="top"
+                title="返回上一页"
+                width="200"
+                trigger="hover"
+                content="可返回上次浏览的归档列表。">
+                <el-button slot="reference" type="primary" icon="el-icon-caret-left" circle @click="back"></el-button>
+              </el-popover>
             </div>
             <div class="prev-next">
               <div class="prev-article">
@@ -135,7 +142,7 @@
           },
           showSingleBlog () {
             sessionStorage.setItem("detail", true);
-            this.$http.get('https://www.guanacossj.com/blog/getsinglearticle/'+this.$route.params.id,{
+            this.$http.get('https://www.guanacossj.com/blog/getsinglearticle/' + this.$route.params.id,{
                 _timeout:5000,
                 onTimeout :(request) => {
                     this.$message.error(this.$t('common.timeout'));

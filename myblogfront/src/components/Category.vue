@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title>{{$t('common.category')}}</title>
+    <title>请叫我算术嘉の博客 | {{$t('common.category')}}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>

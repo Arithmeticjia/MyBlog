@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title>{{$t('common.love')}}</title>
+    <title>请叫我算术嘉の博客 | {{$t('common.love')}}</title>
     <Menu></Menu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>

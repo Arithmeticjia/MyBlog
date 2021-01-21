@@ -6,6 +6,7 @@ const en = {
     "search": "Search",
     "about": "About",
     "love": "Love",
+    "tag": "Tag",
     "home-word-up": "Youth is a short-term dream, when you wake up, it has already disappeared",
     "home-word-down": "A small amount of evil was enough to offset all the noble qualities, making people's reputation a mess",
     "myName": "ArithmeticJia",
