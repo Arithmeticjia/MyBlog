@@ -24,6 +24,9 @@ const en = {
     "timeout": "request timeout",
     "know": "Got it",
     "tip": "Click to Refresh",
+    "Archive": {
+      "read-more": "Read More",
+    },
     "About": {
       "information": "Information",
       "contact": "Contact",
