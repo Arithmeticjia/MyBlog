@@ -2089,7 +2089,7 @@ def get_article_tag(request, blog_tag):
     response = {}
     try:
         tag = Tag.objects.filter(name=tag_name).first()
-        articles = tag.articles_set.all()
+        articles = tag.articles_set.all().filter(status='有效')
         response['list'] = json.loads(
             core_serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
         response['msg'] = 'success'
