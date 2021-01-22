@@ -179,8 +179,7 @@
 
 <style scoped>
   .el-main{
-    /*margin-right: 150px;*/
-    /*margin-right: 12%;*/
+    margin-bottom: 20px;
   }
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
