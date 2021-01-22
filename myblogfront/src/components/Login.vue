@@ -84,6 +84,14 @@
         }
       };
     },
+    mounted() {
+      document.title = "请叫我算术嘉の博客 | " + this.$t('common.Login.login');
+    },
+    watch: {
+      '$i18n.locale'(newVal,oldVal) {
+        document.title = "请叫我算术嘉の博客 | " + this.$t('common.Login.login');
+      }
+    },
     methods: {
       ...mapMutations(['changeLogin']),
       showPwd() {

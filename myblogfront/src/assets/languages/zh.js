@@ -22,6 +22,9 @@ const zh = {
     "Archive": {
       "read-more": "阅读全文",
     },
+    "Login": {
+      "login": "登录"
+    },
     "Love": {
       "baby": "嘉嘉の祎祎大宝贝",
       "timeline": "时间线",

@@ -27,6 +27,9 @@ const en = {
     "Archive": {
       "read-more": "Read More",
     },
+    "Login": {
+      "login": "Login"
+    },
     "About": {
       "information": "Information",
       "contact": "Contact",
