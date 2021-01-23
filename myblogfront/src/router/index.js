@@ -101,6 +101,11 @@ const router = new Router({
       name: 'login',
       component: () => import('@/components/Login')
     },
+    {
+      path: '/new/post/:id',
+      name: 'postnew',
+      component: () => import('@/components/NewSingle')
+    },
   ]
 });
 // 导航守卫

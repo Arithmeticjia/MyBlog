@@ -76,7 +76,7 @@
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
-            document.title = this.$t('common.archive')
+            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.archive')
           }
         },
         computed: {

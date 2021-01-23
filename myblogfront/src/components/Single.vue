@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <title></title>
-    <Menu></Menu>
+    <Markdown :psMsg=navList></Markdown>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -85,12 +85,26 @@
 </template>
 
 <script>
-  import moment from 'moment';
-  import Menu from "./Menu";
-  import "../assets/tango.css";
+import moment from 'moment';
+import Menu from "./Menu";
+import "../assets/tango.css";
+import Markdown from "./Markdown";
+import marked from "marked";
+
+let rendererMD = new marked.Renderer();
+  marked.setOptions({
+    renderer: rendererMD,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+  });
     export default {
         name: "Single",
-        components: { Menu },
+        components: { Markdown, Menu },
         data () {
           return {
             wechatUrl: "https://www.guanacossj.com/media/articlebodypics/wechatpay.png",
@@ -103,7 +117,13 @@
             prev_article_id: 0,
             next_article_id: 0,
             loading: true,
-            tags: []
+            tags: [],
+            navList: [],
+            activeIndex: 0,
+            docsFirstLevels: [],
+            docsSecondLevels: [],
+            childrenActiveIndex: 0,
+            html: ""
           }
         },
         created: function () {
@@ -122,6 +142,24 @@
 	        formatDate:function(date) {
 	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
 	        }
+        },
+        computed: {
+          content() {
+            return this.html;
+          },
+        //此函数将markdown内容进一步的转换
+          compiledMarkdown: function() {
+            let index = 0;
+            rendererMD.heading = function(text, level) {
+              //我比较习惯三级和四级目录，这里看你喜欢
+              if (level <= 4) {
+                return `<h${level} id="data-${index++}">${text}</h${level}>`;
+              } else {
+                return `<h${level}>${text}</h${level}>`;
+              }
+            };
+            return marked(this.content);
+          },
         },
         methods: {
           back(){
@@ -154,6 +192,7 @@
                   this.tags = res['list'][0]['fields']['tags'];
                   this.loading = false;
                   this.markdownhtml = res.markdown;
+                  this.html = res['list'][0].fields.body;
                   if (res.prev_article_title !== ""){
                     this.prev_article_id = res.prev_article_id;
                     this.prev_article_title = res.prev_article_title;
@@ -168,11 +207,151 @@
                   }
                   this.singleblog = res['list'];
                   document.title = res['list'][0].fields.title;
+                  this.navList = this.handleNavTree();
+                  this.getDocsFirstLevels(0);
                 } else {
                   this.$message.error('查询博客详情失败');
                 }
               })
-          }
+          },
+          childrenCurrentClick(index) {
+            this.childrenActiveIndex = index;
+          },
+          getDocsFirstLevels(times) {
+            // 解决图片加载会影响高度问题
+            setTimeout(() => {
+              let firstLevels = [];
+              Array.from(document.querySelectorAll("h3"), (element) => {
+                firstLevels.push(element.offsetTop - 60);
+              });
+              this.docsFirstLevels = firstLevels;
+
+              if (times < 8) {
+                this.getDocsFirstLevels(times + 1);
+              }
+            }, 500);
+          },
+          getDocsSecondLevels(parentActiveIndex) {
+            let idx = parentActiveIndex;
+            let secondLevels = [];
+            let navChildren = this.navList[idx].children;
+
+            if (navChildren.length > 0) {
+              secondLevels = navChildren.map((item) => {
+                return this.$el.querySelector(`#data-${item.index}`).offsetTop - 60;
+              });
+              this.docsSecondLevels = secondLevels;
+            }
+          },
+          getLevelActiveIndex(scrollTop, docsLevels) {
+            let currentIdx = null;
+            let nowActive = docsLevels.some((currentValue, index) => {
+              if (currentValue >= scrollTop) {
+                currentIdx = index;
+                return true;
+              }
+            });
+
+            currentIdx = currentIdx - 1;
+
+            if (nowActive && currentIdx === -1) {
+              currentIdx = 0;
+            } else if (!nowActive && currentIdx === -1) {
+              currentIdx = docsLevels.length - 1;
+            }
+            return currentIdx;
+          },
+          pageJump(id) {
+            this.titleClickScroll = true;
+            //这里我与原作者的不太一样，发现原作者的scrollTop一直为0，所以使用了Vuetify自带的goTo事件
+             this.$vuetify.goTo(this.$el.querySelector(`#data-${id}`).offsetTop - 40);
+            setTimeout(() => (this.titleClickScroll = false), 100);
+          },
+          currentClick(index) {
+            this.activeIndex = index;
+            this.getDocsSecondLevels(index);
+          },
+          getTitle(content) {
+            let nav = [];
+
+            let tempArr = [];
+            content.replace(/(#+)[^#][^\n]*?(?:\n)/g, function(match, m1) {
+              let title = match.replace("\n", "");
+              let level = m1.length;
+              tempArr.push({
+                title: title.replace(/^#+/, "").replace(/\([^)]*?\)/, ""),
+                level: level,
+                children: [],
+              });
+            });
+
+            // 只处理二级到四级标题，以及添加与id对应的index值，这里还是有点bug,因为某些code里面的注释可能有多个井号
+            nav = tempArr.filter((item) => item.level >= 2 && item.level <= 4);
+            global.console.log(nav);
+            let index = 0;
+            return (nav = nav.map((item) => {
+              item.index = index++;
+              return item;
+            }));
+          },
+          handleNavTree() {
+            const navs = this.getTitle(this.content)
+            navs.forEach((item) => {
+              item.parent = this.getParentIndex(navs, item.index)
+            })
+            return this.filterArray(navs)
+          },
+          filterArray(data, parent) {
+            const self = this
+            var tree = []
+            var temp
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].parent === parent) {
+                var obj = data[i]
+                temp = self.filterArray(data, data[i].index)
+                if (temp.length > 0) {
+                  obj.children = temp
+                }
+                tree.push(obj)
+              }
+            }
+            return tree
+          },
+          find(arr, condition) {
+            return arr.filter((item) => {
+              for (let key in condition) {
+                if (condition.hasOwnProperty(key) && condition[key] !== item[key]) {
+                  return false;
+                }
+              }
+              return true;
+            });
+          },
+          getParentIndex(nav, endIndex) {
+            for (var i = endIndex - 1; i >= 0; i--) {
+              if (nav[endIndex].level > nav[i].level) {
+                return nav[i].index;
+              }
+            }
+          },
+          appendToParentNav(nav, parentIndex, newNav) {
+            let index = this.findIndex(nav, {
+              index: parentIndex,
+            });
+            nav[index].children = nav[index].children.concat(newNav);
+          },
+          findIndex(arr, condition) {
+            let ret = -1;
+            arr.forEach((item, index) => {
+              for (var key in condition) {
+                if (condition.hasOwnProperty(key) && condition[key] !== item[key]) {
+                  return false;
+                }
+              }
+              ret = index;
+            });
+            return ret;
+          },
         }
     }
 </script>

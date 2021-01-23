@@ -75,7 +75,7 @@ import Menu from "./Menu";
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
-            document.title = this.$t('common.category')
+            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.category')
           }
         },
         methods: {
