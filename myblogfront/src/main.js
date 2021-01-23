@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import i18n from './i18n/index'
+import Vuetify from 'vuetify'
 import store from './store'
 import echarts from 'echarts'
 import ElementUI from 'element-ui'
@@ -19,6 +20,7 @@ Vue.use(ElementUI, { locale })
 Vue.use(mavonEditor)
 Vue.use(axios)
 Vue.use(vueCanvasNest)
+Vue.use(Vuetify)
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
@@ -29,6 +31,7 @@ new Vue({
   i18n,
   store,
   router,
+  vuetify: new Vuetify(),
   components: { App },
   template: '<App/>'
 })

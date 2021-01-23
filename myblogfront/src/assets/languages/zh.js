@@ -7,6 +7,7 @@ const zh = {
     "about": "关于",
     "love": "恋爱",
     "tag": "标签",
+    "index": "文章目录",
     "About": {
       "information": "基本信息",
       "contact": "联系方式",

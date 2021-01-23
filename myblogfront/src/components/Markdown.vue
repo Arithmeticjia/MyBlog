@@ -14,16 +14,13 @@
       <el-menu-item index="/home" @click="skiplocal('/home')">
         <template slot="title">
           <i class="el-icon-location"></i>
-<!--          <span style="font-weight: bold">首页</span>-->
           <span style="font-weight: bold">{{$t('common.home')}}</span>
-<!--          <el-link href="/#/home" :underline="false" style="color: white;font-weight: bold">首页</el-link>-->
         </template>
       </el-menu-item>
       <el-menu-item index="/archive" @click="skiplocal('/archive')">
         <template slot="title">
         <i class="el-icon-document"></i>
         <span style="font-weight: bold">{{$t('common.archive')}}</span>
-<!--        <el-link href="/#/archive" :underline="false" style="color: white;font-weight: bold">归档</el-link>-->
         </template>
       </el-menu-item>
       <el-menu-item index="/category" @click="skiplocal('/category')">
@@ -48,13 +45,13 @@
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff">
-          <p class="mulu">文章目录</p>
+          <p class="mulu">{{$t('common.index')}}</p>
           <div class="mulu_detail">
             <ul>
-            <div style="color: #fff" v-for="(nav, index) in psMsg" :key="index" :class="{ on: activeIndex === index }" @click="currentClick(index)"> <a href="javascript:" @click="pageJump(nav.index)">{{ nav.title }}</a>
+            <div style="color: #fff" v-for="(nav, index) in psMsg" :key="index" :class="{ on: activeIndex === index }" @click="currentClick(index)"> <a href="javascript:" @click="pageJump(nav.title)">{{ nav.title }}</a>
              <div v-if="nav.children.length &gt; 0" class="menu-children-list">
               <ul class="nav-list">
-               <p v-for="(item, idx) in nav.children" :key="idx" :class="{ on: childrenActiveIndex === idx }" @click.stop="childrenCurrentClick(idx)"> <a href="javascript:;" @click="pageJump(item.index)">{{ item.title }}</a> </p>
+               <p v-for="(item, idx) in nav.children" :key="idx" :class="{ on: childrenActiveIndex === idx }" @click.stop="childrenCurrentClick(idx)"> <a href="javascript:;" @click="pageJump(item.title)">{{ item.title }}</a> </p>
               </ul>
              </div>
             </div>
@@ -73,7 +70,7 @@ name: "Markdown",
     }
   },
   props: {
-    psMsg: String,
+    psMsg: Array,
   },
   mounted() {
   },
@@ -95,8 +92,9 @@ name: "Markdown",
     pageJump(id) {
       this.titleClickScroll = true;
       //这里我与原作者的不太一样，发现原作者的scrollTop一直为0，所以使用了Vuetify自带的goTo事件
-      this.$vuetify.goTo(this.$el.querySelector(`#data-${id}`).offsetTop - 40);
-      setTimeout(() => (this.titleClickScroll = false), 100);
+      this.$emit('callFather', id);
+      // this.$vuetify.goTo(this.$el.querySelector('#app').offsetTop - 40);
+      // setTimeout(() => (this.titleClickScroll = false), 100);
     },
     getDocsSecondLevels(parentActiveIndex) {
       let idx = parentActiveIndex;
@@ -117,6 +115,9 @@ name: "Markdown",
 <style scoped>
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
+  }
+  .el-menu-item:hover {
+    color: #ffd04b !important;
   }
   .a{
     text-decoration: none;

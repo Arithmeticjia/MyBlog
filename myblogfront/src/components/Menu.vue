@@ -102,6 +102,9 @@ name: "Menu",
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
   }
+  .el-menu-item:hover {
+    color: #ffd04b !important;
+  }
   .a{
     text-decoration: none;
   }

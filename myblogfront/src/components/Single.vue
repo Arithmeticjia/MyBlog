@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <title></title>
-    <Markdown :psMsg=navList></Markdown>
+    <Markdown :psMsg=navList @callFather="pageJump(id)"></Markdown>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -104,7 +104,7 @@ let rendererMD = new marked.Renderer();
   });
     export default {
         name: "Single",
-        components: { Markdown, Menu },
+        components: { Markdown },
         data () {
           return {
             wechatUrl: "https://www.guanacossj.com/media/articlebodypics/wechatpay.png",
@@ -167,6 +167,15 @@ let rendererMD = new marked.Renderer();
           },
           skip(url){
            window.open(url, target='_blank')
+          },
+          fatherM() {
+            console.log("jjjjj")
+          },
+          fatherMethod() {
+            console.log('father组件');
+          },
+          activeSon(){
+            this.fatherMethod()
           },
           skiplocal(url){
             location.href = url
@@ -264,7 +273,7 @@ let rendererMD = new marked.Renderer();
           pageJump(id) {
             this.titleClickScroll = true;
             //这里我与原作者的不太一样，发现原作者的scrollTop一直为0，所以使用了Vuetify自带的goTo事件
-             this.$vuetify.goTo(this.$el.querySelector(`#data-${id}`).offsetTop - 40);
+            this.$vuetify.goTo(this.$el.querySelector(`#${id}`).offsetTop - 40);
             setTimeout(() => (this.titleClickScroll = false), 100);
           },
           currentClick(index) {
