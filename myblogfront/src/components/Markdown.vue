@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="230px" style="margin-left: 14%;">
+  <el-aside width="230px">
       <el-menu
         :default-active="$route.path"
         class="el-menu-vertical-demo"
@@ -48,10 +48,10 @@
           <p class="mulu">{{$t('common.index')}}</p>
           <div class="mulu_detail">
             <ul>
-            <div style="color: #fff" v-for="(nav, index) in psMsg" :key="index" :class="{ 'active': activeIndex === index }" @click="currentClick(index)"> <a href="javascript:" @click="pageJump(nav.title)">{{ nav.title }}</a>
-             <div v-if="nav.children.length &gt; 0" class="menu-children-list">
-              <ul class="nav-list">
-               <p v-for="(item, idx) in nav.children" :key="idx" :class="{ on: childrenActiveIndex === idx }" @click.stop="childrenCurrentClick(idx)"> <a href="javascript:;" @click="pageJump(item.title)">{{ item.title }}</a> </p>
+            <div style="color: #fff" v-for="(nav, index) in psMsg" :key="index"  @click="currentClick(index)"> <a href="javascript:" :class="{ 'active': activeIndex === index}" @click="pageJump(nav.title)">{{ nav.title }}</a>
+             <div v-if="nav.children.length &gt; 0" class="menu-children-list" style="color: #fff">
+              <ul class="nav-list" style="color: #fff">
+               <p style="color: #fff" v-for="(item, idx) in nav.children" :key="idx"  @click.stop="childrenCurrentClick(index, idx)"> <a href="javascript:" :class="{ 'activeChildren': ((childrenActiveIndex === idx) && (activeIndex === index))}" @click="pageJump(item.title)">{{ item.title }}</a></p>
               </ul>
              </div>
             </div>
@@ -67,7 +67,11 @@ name: "Markdown",
   data() {
     return {
       circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
-      activeIndex: 0
+      activeIndex: -1,
+      childrenActiveIndex: -1,
+      docsFirstLevels: [],
+      docsSecondLevels: [],
+      navList: this.psMsg
     }
   },
   props: {
@@ -85,10 +89,12 @@ name: "Markdown",
     },
     currentClick(index) {
       this.activeIndex = index;
-      this.getDocsSecondLevels(index);
+      // this.getDocsSecondLevels(index);
     },
-    childrenCurrentClick(index) {
-      this.childrenActiveIndex = index;
+    childrenCurrentClick(index, idx) {
+      this.childrenActiveIndex = idx;
+      this.activeIndex = index;
+      console.log(index, idx)
     },
     pageJump(id) {
       this.titleClickScroll = true;
@@ -104,7 +110,8 @@ name: "Markdown",
 
       if (navChildren.length > 0) {
         secondLevels = navChildren.map((item) => {
-          return this.$el.querySelector(`#data-${item.index}`).offsetTop - 60;
+          let tar = item.title.replace(/^\s+|\s+$/g,"").replace(/、|：|（|）|\.|\/|:|，|\[|]/g, "").replace(/\ /g, "-").toLowerCase();
+          return document.getElementById(tar).scrollIntoView();
         });
         this.docsSecondLevels = secondLevels;
       }
@@ -116,6 +123,10 @@ name: "Markdown",
 <style scoped>
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
+  }
+  .el-aside {
+    margin-bottom: 20px;
+    margin-left: 14%;
   }
   .el-menu-item:hover {
     color: #ffd04b !important;
@@ -196,43 +207,14 @@ name: "Markdown",
   a {
     text-decoration: none;
   }
-  @media screen and (min-width: 230px) {
-  .link {
-    padding-top: 100px;
-    position: fixed;
-    right: 25px;
-    top: 100px;
-  }
-  .link_cover {
-    max-height: 400px;
-    overflow: scroll;
-    overflow-x: hidden;
-    overflow-y: visible;
-  }
-}
-@media screen and (min-width: 230px) {
-  .link {
-    padding-top: 100px;
-    position: fixed;
-    right: 50px;
-    top: 100px;
-  }
-
-  .link_cover {
-    max-height: 400px;
-    overflow: scroll;
-    overflow-x: hidden;
-    overflow-y: visible;
-  }
-
-  li {
-    list-style-type: none;
-  }
-
-  .active a {
+  .activeChildren {
     color: #ffd04b;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
   }
-}
+  .active {
+    color: #ffd04b !important;
+    font-weight: bold;
+    font-size: 16px;
+  }
 </style>

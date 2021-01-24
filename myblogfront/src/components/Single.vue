@@ -165,10 +165,7 @@ let rendererMD = new marked.Renderer();
             this.$router.go(-1);
           },
           skip(url){
-           window.open(url, target='_blank');
-          },
-          fatherMethod() {
-            console.log('father组件');
+            window.open(url, target='_blank');
           },
           activeSon(){
             this.fatherMethod()
@@ -266,7 +263,7 @@ let rendererMD = new marked.Renderer();
             return currentIdx;
           },
           goAnchor(selector) {
-            selector = selector.replace(/^\s+|\s+$/g,"");
+            selector = selector.replace(/^\s+|\s+$/g,"").replace(/、|：|（|）|\.|\/|:|，|\[|]/g, "").replace(/\ /g, "-").toLowerCase();
             const anchor = document.getElementById(selector);//获取元素
             if(anchor) {
                 setTimeout(()=>{//页面没有渲染完成时是无法滚动的，因此设置延迟
