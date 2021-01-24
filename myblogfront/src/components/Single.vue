@@ -306,7 +306,6 @@ let rendererMD = new marked.Renderer();
 
             // 只处理二级到四级标题，以及添加与id对应的index值，这里还是有点bug,因为某些code里面的注释可能有多个井号
             nav = tempArr.filter((item) => item.level >= 2 && item.level <= 4);
-            global.console.log(nav);
             let index = 0;
             return (nav = nav.map((item) => {
               item.index = index++;
