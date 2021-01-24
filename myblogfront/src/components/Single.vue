@@ -165,10 +165,7 @@ let rendererMD = new marked.Renderer();
             this.$router.go(-1);
           },
           skip(url){
-           window.open(url, target='_blank')
-          },
-          fatherM() {
-            console.log("jjjjj")
+           window.open(url, target='_blank');
           },
           fatherMethod() {
             console.log('father组件');
@@ -177,7 +174,7 @@ let rendererMD = new marked.Renderer();
             this.fatherMethod()
           },
           skiplocal(url){
-            location.href = url
+            location.href = url;
           },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
@@ -233,7 +230,6 @@ let rendererMD = new marked.Renderer();
                 firstLevels.push(element.offsetTop - 60);
               });
               this.docsFirstLevels = firstLevels;
-
               if (times < 8) {
                 this.getDocsFirstLevels(times + 1);
               }
@@ -291,7 +287,6 @@ let rendererMD = new marked.Renderer();
           },
           getTitle(content) {
             let nav = [];
-
             let tempArr = [];
             content.replace(/(#+)[^#][^\n]*?(?:\n)/g, function(match, m1) {
               let title = match.replace("\n", "");
@@ -302,7 +297,6 @@ let rendererMD = new marked.Renderer();
                 children: [],
               });
             });
-
             // 只处理二级到四级标题，以及添加与id对应的index值，这里还是有点bug,因为某些code里面的注释可能有多个井号
             nav = tempArr.filter((item) => item.level >= 2 && item.level <= 4);
             let index = 0;
@@ -314,9 +308,9 @@ let rendererMD = new marked.Renderer();
           handleNavTree() {
             const navs = this.getTitle(this.content)
             navs.forEach((item) => {
-              item.parent = this.getParentIndex(navs, item.index)
+              item.parent = this.getParentIndex(navs, item.index);
             })
-            return this.filterArray(navs)
+            return this.filterArray(navs);
           },
           filterArray(data, parent) {
             const self = this
@@ -325,14 +319,14 @@ let rendererMD = new marked.Renderer();
             for (var i = 0; i < data.length; i++) {
               if (data[i].parent === parent) {
                 var obj = data[i]
-                temp = self.filterArray(data, data[i].index)
+                temp = self.filterArray(data, data[i].index);
                 if (temp.length > 0) {
-                  obj.children = temp
+                  obj.children = temp;
                 }
-                tree.push(obj)
+                tree.push(obj);
               }
             }
-            return tree
+            return tree;
           },
           find(arr, condition) {
             return arr.filter((item) => {
