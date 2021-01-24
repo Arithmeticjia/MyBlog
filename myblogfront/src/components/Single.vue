@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <title></title>
-    <Markdown :psMsg=navList @callFather="pageJump(id)"></Markdown>
+    <Markdown :psMsg=navList @callFather="pageJump"></Markdown>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -270,11 +270,21 @@ let rendererMD = new marked.Renderer();
             }
             return currentIdx;
           },
+          goAnchor(selector) {
+            selector = selector.replace(/^\s+|\s+$/g,"");
+            const anchor = document.getElementById(selector);//获取元素
+            if(anchor) {
+                setTimeout(()=>{//页面没有渲染完成时是无法滚动的，因此设置延迟
+                    anchor.scrollIntoView(); //js的内置方法，可滚动视图位置至元素位置
+                },100);
+            }
+          },
           pageJump(id) {
             this.titleClickScroll = true;
             //这里我与原作者的不太一样，发现原作者的scrollTop一直为0，所以使用了Vuetify自带的goTo事件
-            this.$vuetify.goTo(this.$el.querySelector(`#${id}`).offsetTop - 40);
-            setTimeout(() => (this.titleClickScroll = false), 100);
+            // this.$vuetify.goTo(this.$el.querySelector(`#${id}`).offsetTop - 40);
+            // setTimeout(() => (this.titleClickScroll = false), 100);
+            this.goAnchor(id);
           },
           currentClick(index) {
             this.activeIndex = index;
