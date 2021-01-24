@@ -48,7 +48,7 @@
           <p class="mulu">{{$t('common.index')}}</p>
           <div class="mulu_detail">
             <ul>
-            <div style="color: #fff" v-for="(nav, index) in psMsg" :key="index" :class="{ on: activeIndex === index }" @click="currentClick(index)"> <a href="javascript:" @click="pageJump(nav.title)">{{ nav.title }}</a>
+            <div style="color: #fff" v-for="(nav, index) in psMsg" :key="index" :class="{ 'active': activeIndex === index }" @click="currentClick(index)"> <a href="javascript:" @click="pageJump(nav.title)">{{ nav.title }}</a>
              <div v-if="nav.children.length &gt; 0" class="menu-children-list">
               <ul class="nav-list">
                <p v-for="(item, idx) in nav.children" :key="idx" :class="{ on: childrenActiveIndex === idx }" @click.stop="childrenCurrentClick(idx)"> <a href="javascript:;" @click="pageJump(item.title)">{{ item.title }}</a> </p>
@@ -67,6 +67,7 @@ name: "Markdown",
   data() {
     return {
       circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
+      activeIndex: 0
     }
   },
   props: {
@@ -119,8 +120,9 @@ name: "Markdown",
   .el-menu-item:hover {
     color: #ffd04b !important;
   }
-  .a{
+  a{
     text-decoration: none;
+    color: white;
   }
   .el-footer {
     color: #333;
@@ -151,20 +153,13 @@ name: "Markdown",
     padding-top: 15px;
   }
   .mulu_detail {
+    width: 205px;
     padding-top: 10px;
     padding-bottom: 25px;
     font-size: 14px;
+    font-weight: bold;
     line-height:25pt;
-    /*font-weight: bold;*/
-  }
-  .mypic {
-    margin-top: 5px;
-    text-align: center;
-  }
-  #tag-sign{
-    text-align: center;
-    font-size: 14px;
-    color: #cdcdcd;
+    color: white !important;
   }
   .tag-links{
     height: 45px;
@@ -199,10 +194,9 @@ name: "Markdown",
     float: right;
   }
   a {
-    color: #fff;
     text-decoration: none;
   }
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 230px) {
   .link {
     padding-top: 100px;
     position: fixed;
@@ -216,19 +210,32 @@ name: "Markdown",
     overflow-y: visible;
   }
 }
-@media screen and (min-width: 1060px) {
+@media screen and (min-width: 230px) {
   .link {
     padding-top: 100px;
     position: fixed;
     right: 50px;
     top: 100px;
   }
+
   .link_cover {
     max-height: 400px;
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: visible;
   }
+
+  li {
+    list-style-type: none;
+  }
+
+  .active a {
+    color: #ffd04b;
+    font-size: 16px;
+    font-weight: bold;
+  }
 }
+
+
 
 </style>

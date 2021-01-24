@@ -86,7 +86,6 @@
 
 <script>
 import moment from 'moment';
-import Menu from "./Menu";
 import "../assets/tango.css";
 import Markdown from "./Markdown";
 import marked from "marked";
