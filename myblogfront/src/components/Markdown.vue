@@ -235,7 +235,4 @@ name: "Markdown",
     font-weight: bold;
   }
 }
-
-
-
 </style>
