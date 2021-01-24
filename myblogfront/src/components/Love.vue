@@ -9,7 +9,7 @@
             {{$t('common.Love.user')}} {{ username }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="toLogout">退出</el-dropdown-item>
+          <el-dropdown-item @click.native="toLogout">{{$t('common.Login.logout')}}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <el-dropdown>
@@ -74,7 +74,7 @@
                   <h2>{{$t('common.Love.down-list')}}</h2>
                   <div class="me">
                     <div class="me" v-for="value in downList">
-                    <div v-html="compiledMarkdownNew(value.content)"></div>
+                    <div v-html="compiledMarkdown(value.content)"></div>
                   </div>
                   </div>
                   <br>
@@ -89,7 +89,7 @@
                   <h2>{{$t('common.Love.todo-list')}}</h2>
                   <div class="me">
                     <div class="me" v-for="value in todoList">
-                    <div v-html="compiledMarkdownNew(value.content)"></div>
+                    <div v-html="compiledMarkdown(value.content)"></div>
                   </div>
                   </div>
                 </div>
@@ -188,8 +188,10 @@
             }],
           }
         },
-        mounted(){
+        beforeMount() {
           this.checkLogin();
+        },
+        mounted(){
           this.imgLoad();
             window.addEventListener('resize',() => {
                 this.bannerHeight=this.$refs.bannerHeight[0].height * 0.5;
@@ -197,17 +199,11 @@
             },false)
         },
         computed: {
-          compiledMarkdownToDo: function() {
-            return marked(this.input, { sanitize: true });
-          },
-          compiledMarkdownNew() {
+          compiledMarkdown() {
             return function (value) {
               return marked(value, {sanitize: true});
             }
           },
-          compiledMarkdownDown: function() {
-            return marked(this.output, { sanitize: true });
-          }
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
@@ -245,12 +241,6 @@
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
             sessionStorage.setItem('lang', val);
-          },
-          handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-          },
-          skiplocal(url){
-            location.href = url
           },
           submitForm(formname) {
             this.$refs[formname].validate(valid => {

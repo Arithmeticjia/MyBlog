@@ -7,7 +7,7 @@ const en = {
     "about": "About",
     "love": "Love",
     "tag": "Tag",
-    "index": "Index",
+    "index": "Article Index",
     "home-word-up": "Youth is a short-term dream, when you wake up, it has already disappeared",
     "home-word-down": "A small amount of evil was enough to offset all the noble qualities, making people's reputation a mess",
     "myName": "ArithmeticJia",
@@ -29,7 +29,8 @@ const en = {
       "read-more": "Read More",
     },
     "Login": {
-      "login": "Login"
+      "login": "Login",
+      "logout": "Logout",
     },
     "About": {
       "information": "Information",
