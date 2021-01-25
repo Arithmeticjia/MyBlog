@@ -50,9 +50,9 @@
             <ul>
             <div style="color: #fff" v-for="(nav, index) in psMsg" :key="index"  @click="currentClick(index)"> <a href="javascript:" :class="{ 'active': activeIndex === index}" @click="pageJump(nav.title)">{{ nav.title }}</a>
              <div v-if="nav.children.length &gt; 0" class="menu-children-list" style="color: #fff">
-              <ul class="nav-list" style="color: #fff">
+              <div class="nav-list" style="color: #fff">
                <p style="color: #fff" v-for="(item, idx) in nav.children" :key="idx"  @click.stop="childrenCurrentClick(index, idx)"> <a href="javascript:" :class="{ 'activeChildren': ((childrenActiveIndex === idx) && (activeIndex === index))}" @click="pageJump(item.title)">{{ item.title }}</a></p>
-              </ul>
+              </div>
              </div>
             </div>
            </ul>
@@ -216,5 +216,8 @@ name: "Markdown",
     color: #ffd04b !important;
     font-weight: bold;
     font-size: 16px;
+  }
+  .nav-list {
+    padding-left: 7px;
   }
 </style>
