@@ -54,7 +54,7 @@
           <template slot-scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/post/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
         </el-table-column>
         <el-table-column prop="address" :label="$t('common.table.post-category')" width="100">
-          <template slot-scope="scope"> {{ scope.row.fields.category }} </template>
+          <template slot-scope="scope"> <router-link style="color: #4D4D4D;text-decoration: none" :to="'/category/' + scope.row.fields.category"> {{ scope.row.fields.category }}</router-link> </template>
         </el-table-column>
         <el-table-column prop="address" :label="$t('common.table.post-tags')" width="150">
           <template slot-scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>

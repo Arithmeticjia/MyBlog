@@ -127,7 +127,7 @@
               })
           },
           skip(url){
-           window.open(url, target='_blank')
+            window.open(url, target='_blank')
           },
           skiplocal(url){
             location.href = url

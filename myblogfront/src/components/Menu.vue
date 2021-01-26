@@ -67,7 +67,7 @@
         <div class="tag-links">
           <el-link icon="el-icon-link" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">GitHub</el-link>
           <el-divider direction="vertical"></el-divider>
-          <el-link icon="el-icon-message" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">E-Mail</el-link>
+          <el-link icon="el-icon-message" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">E-Mail&nbsp;&nbsp;</el-link>
         </div>
     </el-menu>
     <p></p>
