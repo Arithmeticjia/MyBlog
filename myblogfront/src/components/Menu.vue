@@ -65,14 +65,21 @@
         </div>
         <p></p>
         <div class="tag-links">
-<!--          &nbsp;-->
-          <el-link icon="el-icon-link" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">github</el-link>
+          <el-link icon="el-icon-link" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">GitHub</el-link>
           <el-divider direction="vertical"></el-divider>
-<!--          &nbsp;-->
-          <el-link icon="el-icon-message" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">e-mail</el-link>
-<!--          <el-button icon="el-icon-message" @click="skip('https://www.guanacossj.com/')" type="text">mail</el-button>-->
+          <el-link icon="el-icon-message" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">E-Mail</el-link>
         </div>
     </el-menu>
+    <p></p>
+<!--    <el-menu-->
+<!--      class="el-menu-vertical-demo"-->
+<!--      background-color="#545c64"-->
+<!--      text-color="#fff"-->
+<!--      style="height: 40px">-->
+<!--        <div class="bei-an">-->
+<!--          <el-link type="info" style="color: white" href="https://beian.miit.gov.cn" target="_blank">苏ICP备19007197号</el-link>-->
+<!--        </div>-->
+<!--    </el-menu>-->
     </el-aside>
 </template>
 
@@ -149,7 +156,6 @@ name: "Menu",
     line-height: 45px;
     width: 100%;
     color: #fff !important;
-    /*margin: 0 auto;*/
   }
   .el-link-github {
     color: #fff !important;
@@ -173,5 +179,14 @@ name: "Menu",
   }
   .el-dropdown {
     float: right;
+  }
+  .bei-an {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+    line-height: 40px;
+    height: 40px;
   }
 </style>
