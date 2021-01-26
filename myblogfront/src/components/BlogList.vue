@@ -46,7 +46,7 @@
         <el-table-column prop="address" :label="$t('common.table.post-category')" width="100">
           <template slot-scope="scope"> {{ scope.row.fields.category }} </template>
         </el-table-column>
-        <el-table-column prop="address" :label="$t('common.table.post-tags')" width="130">
+        <el-table-column prop="address" :label="$t('common.table.post-tags')" width="150">
           <template slot-scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>
         </el-table-column>
         <el-table-column prop="address" :label="$t('common.table.post-visit')" width="90">

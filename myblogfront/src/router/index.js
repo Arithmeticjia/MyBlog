@@ -46,7 +46,7 @@ const router = new Router({
     {
       path: '/archive',
       name: 'archive',
-      component: () => import('@/components/Archive'),
+      component: () => import('@/components/Archive')
     },
     {
       path: '/post/:id',

@@ -24,33 +24,24 @@
       <div id="applove">
         <div class="grid-content bg-puprple-light">
             <div class="block">
-<!--              <span class="demonstration" style="font-size: larger">祎祎大宝贝</span>-->
               <h2>{{$t('common.Love.baby')}}</h2>
               <el-carousel :height="bannerHeight+'px'" >
                 <el-carousel-item v-for="item in imgUrls" :key="item">
                   <img
                     ref="bannerHeight"
-                    @load="imgLoad" style="width: 50%"
+                    @load="imgLoad"
+                    style="width: 50%;"
                     :src="item"
                   >
                 </el-carousel-item>
               </el-carousel>
-<!--              <el-carousel :interval="4000" type="card" height="200px">-->
-<!--                  <el-carousel-item v-for="item in imgUrls" :key="item">-->
-<!--                    <img-->
-<!--                    ref="bannerHeight"-->
-<!--                    @load="imgLoad" style="width: 50%"-->
-<!--                    :src="item"-->
-<!--                  >-->
-<!--                  </el-carousel-item>-->
-<!--              </el-carousel>-->
-        </div>
+            </div>
           <br>
         <div class="grid-content bg-puprple-light">
-            <el-row type="flex" class="row-bg" justify="space-around">
-              <el-col :span="20">
-                <div class="grid-content bg-puprple-light">
-                  <h2>{{$t('common.Love.timeline')}}</h2>
+          <el-row type="flex" class="row-bg" justify="space-around">
+            <el-col :span="20">
+              <div class="grid-content bg-puprple-light">
+                <h2>{{$t('common.Love.timeline')}}</h2>
                   <div class="me">
                     <el-timeline :reverse="reverse">
                       <el-timeline-item
@@ -61,10 +52,10 @@
                       </el-timeline-item>
                     </el-timeline>
                   </div>
-                  </div>
-                  <br>
-              </el-col>
-            </el-row>
+              </div>
+              <br>
+            </el-col>
+          </el-row>
         </div>
         </div>
         <div class="grid-content bg-puprple-light" v-loading="loading">
@@ -193,10 +184,10 @@
         },
         mounted(){
           this.imgLoad();
-            window.addEventListener('resize',() => {
-                this.bannerHeight=this.$refs.bannerHeight[0].height * 0.5;
-                this.imgLoad();
-            },false)
+          window.addEventListener('resize',() => {
+            this.bannerHeight=this.$refs.bannerHeight[0].height * 0.5;
+            this.imgLoad();
+          },false)
         },
         computed: {
           compiledMarkdown() {
@@ -230,6 +221,7 @@
           imgLoad(){
             this.$nextTick(()=>{
               this.bannerHeight=this.$refs.bannerHeight[0].height;
+              console.log(this.bannerHeight)
             })
           },
           skip(url){

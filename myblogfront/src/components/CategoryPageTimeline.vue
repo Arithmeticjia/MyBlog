@@ -13,7 +13,7 @@
         <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <div id="apparchive" v-loading="loading" :element-loading-text="$t('common.load-text')" style="height: 555px">
+      <div id="appcategorytimeline" v-loading="loading" :element-loading-text="$t('common.load-text')" style="height: 555px">
         <h1>{{ this.$route.params.name }}</h1>
         <div class="category-box">
           <div class="block">
@@ -195,7 +195,7 @@
     /*margin-right: 150px;*/
     /*margin-right: 12%;*/
   }
-  #apparchive {
+  #appcategorytimeline {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
