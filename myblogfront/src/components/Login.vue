@@ -115,11 +115,13 @@
                   this.userName  = response.data.data.username;
                   this.changeLogin
                   ({ Authorization: this.userToken, Username: this.userName });
+                  this.$message.success('登录成功');
                   this.$router.push({
                     path: "/love",
                     query: { data: response.data.data.username }
                   });
                 } else {
+                  this.$message.error('用户名或密码不正确');
                   this.$router.push({
                     path: "/error",
                     query: { message: response.data.message }
