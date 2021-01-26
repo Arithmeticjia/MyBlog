@@ -36,9 +36,19 @@
           </div>
           <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
         </el-popover>
-      <el-table :height="table" :style="tableHeight" v-loading="loading" :element-loading-text="$t('common.load-text')" :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+      <el-table
+        :height="table"
+        :style="tableHeight"
+        v-loading="loading"
+        :element-loading-text="$t('common.load-text')"
+        :default-sort = "{prop: 'date', order: 'descending'}"
+        :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+      >
         <el-table-column prop="date" :label="$t('common.table.post-id')" width="50">
           <template slot-scope="scope"> {{ scope.row.pk }} </template>
+        </el-table-column>
+        <el-table-column prop="address" :label="$t('common.table.post-time')" sortable width="160">
+          <template slot-scope="scope"> {{ scope.row.fields.timestamp | formatDate }} </template>
         </el-table-column>
         <el-table-column prop="name" :label="$t('common.table.post-title')" width="300">
           <template slot-scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/post/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
@@ -55,10 +65,7 @@
         <el-table-column prop="address" :label="$t('common.table.post-author')" width="120">
           <template slot-scope="scope"> {{ scope.row.fields.authorname }} </template>
         </el-table-column>
-        <el-table-column prop="address" :label="$t('common.table.post-time')" width="200">
-          <template slot-scope="scope"> {{ scope.row.fields.timestamp | formatDate }} </template>
-        </el-table-column>
-          <el-table-column prop="address" :label="$t('common.table.post-operation')" width="150" fixed="right">
+          <el-table-column prop="address" :label="$t('common.table.post-operation')" width="120" fixed="right">
         <template slot-scope="scope">
           <el-button type="text" @click="open(scope.row.fields.title,scope.row.fields.body)" size="small">{{$t('common.table.operation.overview')}}</el-button>
           <el-button @click="skip('https://www.guanacossj.com/blog/article/'+scope.row.pk+'/'+scope.row.fields.url_slug)" type="text" size="small">{{$t('common.table.operation.detail')}}</el-button>
@@ -104,6 +111,7 @@
             filterTableDataEnd: [],
             flag: false,
             loading: true,
+            search: "",
             tableHeight:{
               height:'',
             },
