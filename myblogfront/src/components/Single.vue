@@ -25,6 +25,8 @@
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-user"></i> 作者：{{ value.fields.authorname }}</span>
                     <el-divider direction="vertical"></el-divider>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-document"></i><router-link style="color: #7D7D7D" :to="'/category/'+ value.fields.category"> 分类：{{ value.fields.category }}</router-link></span>
+                    <el-divider direction="vertical"></el-divider>
+                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views }}</span>
                   </div>
                   <br>
                   <span style="color: #7d7d7d;font-size: small"><i class="el-icon-collection-tag"></i> 标签：</span>
