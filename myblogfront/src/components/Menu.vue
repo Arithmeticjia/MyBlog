@@ -14,7 +14,7 @@
         <br>
       <el-menu-item index="/home">
         <template slot="title">
-          <i class="el-icon-location"></i>
+          <i class="el-icon-s-home"></i>
           <span style="font-weight: bold">{{$t('common.home')}}</span>
         </template>
       </el-menu-item>

@@ -20,7 +20,7 @@
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.About.information')}}</h2>
                   <div class="me">
-                    <p>姓名：单沙嘉（ShanShajia）</p>
+                    <p>姓名：单沙嘉（Shàn shājiā）</p>
                     <p>性别：男</p>
                     <p>星座：天蝎座</p>
                     <p>生日：1994.10.27</p>

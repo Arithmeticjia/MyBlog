@@ -58,7 +58,7 @@
         :visible.sync="dialogVisible"
         width="30%"
         :before-close="handleClose">
-        <span style="font-size: 20px">单沙嘉(ShanShajia)</span>
+        <span style="font-size: 20px">单沙嘉（Shàn shājiā）</span>
         <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>

@@ -19,6 +19,7 @@
 	            clearable
               type="text"
               v-model="searchinfo"
+              prefix-icon="el-icon-search"
               :placeholder="$t('common.search-placeholder')"
               size="medium"
               style="width:180px;float: left">
