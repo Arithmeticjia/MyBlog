@@ -41,7 +41,7 @@
         :style="tableHeight"
         v-loading="loading"
         :element-loading-text="$t('common.load-text')"
-        :default-sort = "{prop: 'date', order: 'descending'}"
+        :default-sort = "{prop: 'date', order: 'ascending'}"
         :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)"
       >
         <el-table-column prop="date" :label="$t('common.table.post-id')" width="50">
@@ -101,9 +101,9 @@
             reverse: true,
             isCollapse: true,
             visible: false,
-            currentPage:1,
-            totalItems:0,
-            pageSize:15,
+            currentPage: 1,
+            totalItems: 0,
+            pageSize: 20,
             searchInfo: '',
             blogList: [],
             originblogList: [],
