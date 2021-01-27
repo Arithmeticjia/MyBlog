@@ -59,7 +59,6 @@
 
 <script>
   import { mapMutations } from 'vuex';
-  import user from "../store/modules/user";
   export default {
     name: "Login",
     data() {
@@ -122,10 +121,6 @@
                   });
                 } else {
                   this.$message.error('用户名或密码不正确');
-                  this.$router.push({
-                    path: "/error",
-                    query: { message: response.data.message }
-                  });
                 }
               })
               .catch(() => {
