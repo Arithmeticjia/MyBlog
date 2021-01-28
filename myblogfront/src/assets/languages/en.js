@@ -65,7 +65,7 @@ const en = {
       "post-title": "title",
       "post-category": "category",
       "post-tags": "tags",
-      "post-visit": "visit",
+      "post-views": "views",
       "post-author": "author",
       "post-time": "release time",
       "post-operation": "operation",

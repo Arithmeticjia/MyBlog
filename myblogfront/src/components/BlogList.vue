@@ -60,7 +60,7 @@
         <el-table-column prop="address" :label="$t('common.table.post-tags')" width="150">
           <template slot-scope="scope"> {{ scope.row.fields.tags | tagsFilter }} </template>
         </el-table-column>
-        <el-table-column prop="address" :label="$t('common.table.post-visit')" width="90">
+        <el-table-column prop="address" :label="$t('common.table.post-views')" width="90">
           <template slot-scope="scope"> {{ scope.row.fields.views }} </template>
         </el-table-column>
         <el-table-column prop="address" :label="$t('common.table.post-author')" width="120">

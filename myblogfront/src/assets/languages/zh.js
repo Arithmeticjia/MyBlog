@@ -65,7 +65,7 @@ const zh = {
       "post-title": "标题",
       "post-category": "分类",
       "post-tags": "标签",
-      "post-visit": "浏览量",
+      "post-views": "浏览量",
       "post-author": "作者",
       "post-time": "发布时间",
       "post-operation": "操作",

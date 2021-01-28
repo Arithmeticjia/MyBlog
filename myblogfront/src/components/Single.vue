@@ -72,11 +72,11 @@
             </div>
             <div class="prev-next">
               <div class="prev-article">
-                <i class="el-icon-caret-left"></i>
+                <i class="el-icon-caret-left" style="font-size: 20px;vertical-align: middle;"></i>
               </div>
               <router-link :to="'/post/'+prev_article_id"><div class="prev-article" v-html="prev_article_title.substr(0,25)+'...'"></div></router-link>
               <div class="next-article">
-                <i class="el-icon-caret-right"></i>
+                <i class="el-icon-caret-right" style="font-size: 20px;vertical-align: middle;"></i>
               </div>
               <router-link :to="'/post/'+next_article_id"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
             </div>
