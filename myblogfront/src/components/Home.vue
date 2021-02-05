@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.home')}}</title>
-    <Menu></Menu>
+    <NewMenu></NewMenu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <div id="apphome">
@@ -14,7 +14,14 @@
         <el-dropdown-item @click.native = "switchLang('en')">{{$t('common.lang-en')}}</el-dropdown-item>
         </el-dropdown-menu>
         </el-dropdown>
-        <img src="../assets/logo.png">
+<!--        <img src="../assets/logo.png">-->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
@@ -44,9 +51,10 @@
 <script>
     import Me from "./Archive";
     import Menu from "./Menu";
+    import NewMenu from "./NewMenu";
     export default {
       name: "Home",
-      components: { Me, Menu },
+      components: { Me, NewMenu },
       data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
@@ -79,7 +87,6 @@
             location.href = url
           },
           handleCommand(command) {
-            console.log(command)
             this.switchLang(command)
           },
           switchLang(val){

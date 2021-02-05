@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.tag')}} | {{ this.$route.params.name }}</title>
-    <Menu></Menu>
+<!--    <Menu></Menu>-->
+    <NewMenu></NewMenu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -34,7 +35,7 @@
       <el-footer>
         <br>
         <el-pagination
-          v-show="showpagination"
+          v-show="showPagination"
           background
           :hide-on-single-page="value"
           @size-change="handleSizeChange"
@@ -55,19 +56,20 @@
 <script>
   import moment from 'moment';
   import Menu from "./Menu";
+  import NewMenu from "./NewMenu";
     export default {
         name: "TagPageTimeline",
-        components: { Menu },
+        components: { Menu, NewMenu },
         data () {
           return {
             reverse: true,
             blogList: [],
-            currentPage:1,
-            totalItems:0,
-            pageSize:10,
+            currentPage: 1,
+            totalItems: 0,
+            pageSize: 10,
             value: false,
             loading: true,
-            showpagination: false
+            showPagination: false
           }
         },
         computed: {

@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.category')}} | {{ this.$route.params.name }}</title>
-    <Menu></Menu>
+<!--    <Menu></Menu>-->
+    <NewMenu></NewMenu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -34,7 +35,7 @@
       <el-footer>
         <br>
         <el-pagination
-          v-show="showpagination"
+          v-show="showPagination"
           background
           :hide-on-single-page="value"
           @size-change="handleSizeChange"
@@ -56,9 +57,10 @@
 <script>
   import moment from 'moment';
   import Menu from "./Menu";
+  import NewMenu from "./NewMenu";
     export default {
         name: "CategoryPageTimeline",
-        components: { Menu },
+        components: { Menu, NewMenu },
         data () {
           return {
             circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
@@ -70,7 +72,7 @@
             pageSize:10,
             value: false,
             loading: true,
-            showpagination: false
+            showPagination: false
           }
         },
         computed: {
@@ -90,10 +92,10 @@
 	        },
         },
         watch: {
-          '$route':'showBlogs'
+          '$route':'showCategories'
         },
         mounted: function () {
-          this.showBlogs();
+          this.showCategories();
         },
         methods: {
           handleSizeChange(val) {
@@ -106,7 +108,7 @@
                this.blogList = this.filterTableDataEnd
              }
           },
-          showBlogs () {
+          showCategories () {
             this.$http.get('https://www.guanacossj.com/blog/getcategoryarticles/' + this.$route.params.name,{
                 _timeout:5000,
                 onTimeout :(request) => {

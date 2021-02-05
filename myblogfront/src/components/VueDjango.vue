@@ -65,25 +65,32 @@
         </span>
       </el-dialog>
       <el-dialog
+        class="pop_dialog"
         title=""
         :visible.sync="wuhan"
-        width="30%"
-        :before-close="handleClose">
-        <el-image
-          style="width: 240px; height: 380px"
-          :src="url"
-          :fit="fill">
-        </el-image>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="wuhan = false">取 消</el-button>
-          <el-button type="primary" @click="wuhan = false">确 定</el-button>
-        </span>
+        width="35%"
+        center
+        show-close="false"
+        height="100%"
+        >
+<!--        <el-image-->
+<!--          style="width: 240px; height: 380px"-->
+<!--          :src="url"-->
+<!--          :fit="fill">-->
+<!--        </el-image>-->
+        <vue-typed-js :strings="['Welcome to my Vue.js blog','Enjoy yourself']" :typeSpeed="100" :loop="true" @onComplete="doSmth()">
+          <h1 class="typing"></h1>
+        </vue-typed-js>
+<!--        <span slot="footer" class="dialog-footer">-->
+<!--          <el-button @click="wuhan = false">取 消</el-button>-->
+<!--          <el-button type="primary" @click="wuhan = false">确 定</el-button>-->
+<!--        </span>-->
       </el-dialog>
   </div>
 </template>
 
 <script>
-  import echarts from "echarts";
+import echarts from "echarts";
   import "echarts-wordcloud/dist/echarts-wordcloud";
   import "echarts-wordcloud/dist/echarts-wordcloud.min";
 export default {
@@ -328,138 +335,139 @@ export default {
             },
           ],
       randomworddata: [
-            {
-              name: "Xcode",
-              value: this.randomValue()
-            },
-            {
-              name: "世界杯",
-              value: this.randomValue()
-            },
+        {
+          name: "Xcode",
+          value: this.randomValue()
+        },
+        {
+          name: "世界杯",
+          value: this.randomValue()
+        },
       ],
       nowTime: "",
       wuhan: true,
     };
   },
   created(){
-			this.getTime();
-		},
+    this.getTime();
+  },
   mounted(){
-        // 定时刷新页面
+    // 定时刷新页面
+    this.initChart();
+    if (this.timer) {
+      clearInterval(this.timer)
+    }else {
+      this.timer = setInterval(()=>{
         this.initChart();
-        if (this.timer) {
-          clearInterval(this.timer)
-        }else {
-          this.timer = setInterval(()=>{
-            this.initChart();
-            },5000
-          )
-        }
-        // this.initChart();
-      },
+        },5000
+      )
+    }
+    // this.initChart();
+  },
   destroyed() {
     clearInterval(this.timer)
   },
   methods: {
     getTime() {
-				setInterval(()=>{
-					//new Date() new一个data对象，当前日期和时间
-					//toLocaleString() 方法可根据本地时间把 Date 对象转换为字符串，并返回结果。
-					this.nowTime = new Date().toLocaleString();
-				},1000);
+      setInterval(()=>{
+        //new Date() new一个data对象，当前日期和时间
+        //toLocaleString() 方法可根据本地时间把 Date 对象转换为字符串，并返回结果。
+        this.nowTime = new Date().toLocaleString();
+      },1000);
     },
+
     randomValue() {
       return Math.round(Math.random()*1000);
     },
     handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          done();
+        })
+        .catch(_ => {});
     },
     open() {
-        this.$alert('单沙嘉', {
-          confirmButtonText: '确定',
-          callback: action => {
-            this.$message({
-              type: 'success',
-              message: `联系我吧`
-            });
-          }
-        });
+      this.$alert('单沙嘉', {
+        confirmButtonText: '确定',
+        callback: action => {
+          this.$message({
+            type: 'success',
+            message: `联系我吧`
+          });
+        }
+      });
     },
     initChart() {
-          // this.chart = echarts.init(document.getElementById("mywordcloud"));
-          let chart = echarts.init(document.getElementById("mywordcloud"));
-          let maskImage = new Image;
-          maskImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOUAAACCCAYAAAC5OA/0AAAEC0lEQVR4Xu3TsW0bURRE0c/ADShUH+7DBbgUFaFSVJVT5Y4MBgIEOBpwL8DgLKDscYc44r0dDwECTyVwe6pv48sQIHBE6UdA4MkERPlk/xBfh8BXlD/OOe8Bx+s559e39/4553wEO15JoBT4ec65/30999/w/bd89fN2zvn8HuXfqxe8jwCBSeBFlJOXYwK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU3gvyh/b593TYDAxQIf55zP28Uv9ToCBB4UEOWDgD5O4GoBUV4t6n0EHhT4Bx4T+oMmQXEtAAAAAElFTkSuQmCC";
-          const option = {
-            title: {
-              text: "",
-              x: "center"
-            },
-            backgroundColor: "#fff",
-            // backgroundColor: "#B3C0D1",
-            tooltip: {
-              show: true
-            },
-            series: [
-              {
-                type: "wordCloud",
-                //用来调整词之间的距离
-                gridSize: 6,
-                shape:'smooth',  //平滑
-                //用来调整字的大小范围
-                // Text size range which the value in data will be mapped to.
-                // Default to have minimum 12px and maximum 60px size.
-                sizeRange: [11, 50],
-                // Text rotation range and step in degree. Text will be rotated randomly in range [-90,                                                                             90] by rotationStep 45
-                //用来调整词的旋转方向，，[0,0]--代表着没有角度，也就是词为水平方向，需要设置角度参考注释内容
-                // rotationRange: [-45, 0, 45, 90],
-                // rotationRange: [ 0,90],
-                rotationRange: [0, 0],
-                //随机生成字体颜色
-                // maskImage: maskImage,
-                textStyle: {
-                  normal: {
-                    color: function() {
-                      return (
-                        "rgb(" +
-                        Math.round(Math.random() * 255) +
-                        ", " +
-                        Math.round(Math.random() * 255) +
-                        ", " +
-                        Math.round(Math.random() * 255) +
-                        ")"
-                      );
-                    }
-                  }
-                },
-                //位置相关设置
-                // Folllowing left/top/width/height/right/bottom are used for positioning the word cloud
-                // Default to be put in the center and has 75% x 80% size.
-                left: "center",
-                top: "center",
-                right: null,
-                bottom: null,
-                width: "100%",
-                // height: "100%",
-                //数据
-                data: this.worddata,
-                // data: this.randomworddata
-              }
-            ]
-          };
-          // this.chart.setOption(option);
-          chart.setOption(option);
-          // maskImage.onload = function () {
-          //   chart.setOption(option);
-          // };
-          // window.addEventListener("resize",function(){
-          //   this.chart.resize();
-          // });
+      // this.chart = echarts.init(document.getElementById("mywordcloud"));
+      let chart = echarts.init(document.getElementById("mywordcloud"));
+      let maskImage = new Image;
+      maskImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOUAAACCCAYAAAC5OA/0AAAEC0lEQVR4Xu3TsW0bURRE0c/ADShUH+7DBbgUFaFSVJVT5Y4MBgIEOBpwL8DgLKDscYc44r0dDwECTyVwe6pv48sQIHBE6UdA4MkERPlk/xBfh8BXlD/OOe8Bx+s559e39/4553wEO15JoBT4ec65/30999/w/bd89fN2zvn8HuXfqxe8jwCBSeBFlJOXYwK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU1AlJuXawK5gChzYgMENgFRbl6uCeQCosyJDRDYBES5ebkmkAuIMic2QGATEOXm5ZpALiDKnNgAgU3gvyh/b593TYDAxQIf55zP28Uv9ToCBB4UEOWDgD5O4GoBUV4t6n0EHhT4Bx4T+oMmQXEtAAAAAElFTkSuQmCC";
+      const option = {
+        title: {
+          text: "",
+          x: "center"
         },
+        backgroundColor: "#fff",
+        // backgroundColor: "#B3C0D1",
+        tooltip: {
+          show: true
+        },
+        series: [
+          {
+            type: "wordCloud",
+            //用来调整词之间的距离
+            gridSize: 6,
+            shape:'smooth',  //平滑
+            //用来调整字的大小范围
+            // Text size range which the value in data will be mapped to.
+            // Default to have minimum 12px and maximum 60px size.
+            sizeRange: [11, 50],
+            // Text rotation range and step in degree. Text will be rotated randomly in range [-90,                                                                             90] by rotationStep 45
+            //用来调整词的旋转方向，，[0,0]--代表着没有角度，也就是词为水平方向，需要设置角度参考注释内容
+            // rotationRange: [-45, 0, 45, 90],
+            // rotationRange: [ 0,90],
+            rotationRange: [0, 0],
+            //随机生成字体颜色
+            // maskImage: maskImage,
+            textStyle: {
+              normal: {
+                color: function() {
+                  return (
+                    "rgb(" +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ")"
+                  );
+                }
+              }
+            },
+            //位置相关设置
+            // Folllowing left/top/width/height/right/bottom are used for positioning the word cloud
+            // Default to be put in the center and has 75% x 80% size.
+            left: "center",
+            top: "center",
+            right: null,
+            bottom: null,
+            width: "100%",
+            // height: "100%",
+            //数据
+            data: this.worddata,
+            // data: this.randomworddata
+          }
+        ]
+      };
+      // this.chart.setOption(option);
+      chart.setOption(option);
+      // maskImage.onload = function () {
+      //   chart.setOption(option);
+      // };
+      // window.addEventListener("resize",function(){
+      //   this.chart.resize();
+      // });
+    },
   }
 }
 </script>
@@ -497,7 +505,7 @@ a {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 0;
+  margin-top: 30px;
 }
 @font-face {
   font-family: 'iconfont';  /* project id 1039987 */
@@ -507,5 +515,23 @@ a {
   url('//at.alicdn.com/t/font_1039987_gpct6j96g1g.woff') format('woff'),
   url('//at.alicdn.com/t/font_1039987_gpct6j96g1g.ttf') format('truetype'),
   url('//at.alicdn.com/t/font_1039987_gpct6j96g1g.svg#iconfont') format('svg');
+}
+.typed-element{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 17px;
+}
+</style>
+
+<style>
+.el-dialog__body {
+  background-color: black !important;
+  color: black;
+  height: 100%;
+}
+.el-dialog__header {
+  background: black;
 }
 </style>

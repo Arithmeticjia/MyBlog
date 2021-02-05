@@ -10,6 +10,7 @@ import echarts from 'echarts'
 import ElementUI from 'element-ui'
 import mavonEditor from 'mavon-editor'
 import vueCanvasNest from 'vue-canvas-nest'
+import VueTypedJs from 'vue-typed-js'
 import axios from 'axios'
 import 'mavon-editor/dist/css/index.css'
 import './assets/articlemarkdown.css'
@@ -21,6 +22,7 @@ Vue.use(mavonEditor)
 Vue.use(axios)
 Vue.use(vueCanvasNest)
 Vue.use(Vuetify)
+Vue.use(VueTypedJs)
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios

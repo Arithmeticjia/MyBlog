@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.search')}}</title>
-    <Menu></Menu>
+<!--    <Menu></Menu>-->
+    <NewMenu></NewMenu>
       <el-main>
         <vue-canvas-nest></vue-canvas-nest>
         <el-dropdown>
@@ -17,26 +18,27 @@
           <div class="input_search">
             <el-input
 	            clearable
+              @change="resetTable"
               type="text"
-              v-model="searchinfo"
+              v-model="searchInfo"
               prefix-icon="el-icon-search"
               :placeholder="$t('common.search-placeholder')"
-              size="medium"
+              size="small"
               style="width:180px;float: left">
             </el-input>
-            <el-button class="search_btn" type="primary" size="medium" icon="el-icon-search" @click="doFilter" style="float:left;margin-left: 10px"></el-button>
+            <el-button class="search_btn" type="primary" size="small" icon="el-icon-search" @click="doFilter" style="float:left;margin-left: 10px"></el-button>
           </div>
-        <el-popover
-          placement="top-start"
-          v-model="visible"
-          trigger="hover"
-          style="float: left;margin-left: 5px">
-          <p>{{$t('common.tip')}}</p>
-          <div style="text-align: right;">
-            <el-button type="primary" size="mini" @click="visible = false">{{$t('common.know')}}</el-button>
-          </div>
-          <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>
-        </el-popover>
+<!--        <el-popover-->
+<!--          placement="top-start"-->
+<!--          v-model="visible"-->
+<!--          trigger="hover"-->
+<!--          style="float: left;margin-left: 5px">-->
+<!--          <p>{{$t('common.tip')}}</p>-->
+<!--          <div style="text-align: right;">-->
+<!--            <el-button type="primary" size="mini" @click="visible = false">{{$t('common.know')}}</el-button>-->
+<!--          </div>-->
+<!--          <el-button type="text" icon="el-icon-refresh" slot="reference" @click="reFresh" style="margin-right: 10px"></el-button>-->
+<!--        </el-popover>-->
       <el-table
         :height="table"
         :style="tableHeight"
@@ -94,9 +96,10 @@
 <script>
     import moment from "moment";
     import Menu from "./Menu";
+    import NewMenu from "./NewMenu";
     export default {
       name: "BlogList",
-      components: { Menu },
+      components: {NewMenu, Menu },
       data () {
           return {
             reverse: true,
@@ -105,23 +108,22 @@
             currentPage: 1,
             totalItems: 0,
             pageSize: 20,
-            searchInfo: '',
             blogList: [],
             originblogList: [],
-            searchinfo: '',
+            searchInfo: '',
             filterTableDataEnd: [],
             flag: false,
             loading: true,
             search: "",
-            tableHeight:{
+            tableHeight: {
               height:'',
             },
-            table:window.innerHeight - 159
+            table: window.innerHeight - 159
           }
         },
         created() {
           window.addEventListener('resize', this.getHeight);
-          this.getHeight;
+          this.getHeight();
         },
         mounted: function () {
           this.showBlogs();
@@ -129,7 +131,12 @@
         watch: {
           '$i18n.locale'(newVal,oldVal) {
             document.title = '请叫我算术嘉の博客 | ' + this.$t('common.search')
-          }
+          },
+          searchInfo: function() {
+            if (this.searchInfo.length === 0) {
+              this.resetTable();
+            }
+          },
         },
         filters: {
 	        tagsFilter(data) {
@@ -143,6 +150,9 @@
           window.removeEventListener('resize', this.getHeight);
         },
         methods: {
+          resetTable() {
+            this.showBlogs();
+          },
           getHeight(){
             this.tableHeight.height = window.innerHeight - 159;
           },
@@ -153,14 +163,14 @@
             this.$i18n.locale=val;//此处val为 zh 或者 en
           },
           doFilter: function() {
-            if (this.searchinfo === "") {
+            if (this.searchInfo === "") {
               this.$message.warning(this.$t('common.warning.queryEmpty'));
               return;
             }
             this.filterTableDataEnd=[];
             this.originblogList.forEach((value, index) => {
               if(value.fields.title){
-                if(value.fields.title.indexOf(this.searchinfo)>=0){
+                if(value.fields.title.indexOf(this.searchInfo)>=0){
                   this.filterTableDataEnd.push(value);
                 }
               }

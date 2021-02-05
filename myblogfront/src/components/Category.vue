@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.category')}}</title>
-    <Menu></Menu>
+<!--    <Menu></Menu>-->
+    <NewMenu></NewMenu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -37,7 +38,7 @@
         </div>
       <el-footer>
           <el-pagination
-            v-show="showpagination"
+            v-show="showPagination"
             :hide-on-single-page="value"
             background
             @size-change="handleSizeChange"
@@ -56,9 +57,10 @@
 
 <script>
 import Menu from "./Menu";
+import NewMenu from "./NewMenu";
     export default {
         name: "Category",
-        components: { Menu },
+        components: { Menu, NewMenu},
         data () {
           return {
             reverse: true,
@@ -68,10 +70,11 @@ import Menu from "./Menu";
             totalItems: 0,
             loading: true,
             pageSize: 15,
+            showPagination: false
           }
         },
         mounted() {
-          this.showCategorys();
+          this.showCategories();
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
@@ -102,7 +105,7 @@ import Menu from "./Menu";
                this.blogList = this.filterTableDataEnd
              }
           },
-          showCategorys () {
+          showCategories () {
             this.$http.get('https://www.guanacossj.com/blog/getallcategory/',{
                 _timeout:5000,
                 onTimeout :(request) => {

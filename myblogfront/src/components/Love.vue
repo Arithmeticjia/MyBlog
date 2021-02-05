@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.love')}}</title>
-    <Menu></Menu>
+<!--    <Menu></Menu>-->
+    <NewMenu></NewMenu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown style="float:left;">
@@ -117,9 +118,10 @@
   import store from '../store';
   import axios from 'axios';
   import Menu from "./Menu";
+  import NewMenu from "./NewMenu";
     export default {
         name: "Love",
-        components: { Menu },
+        components: {NewMenu, Menu },
         data () {
           return {
             username: store.getters.userName,

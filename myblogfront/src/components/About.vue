@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.about')}}</title>
-    <Menu></Menu>
+<!--    <Menu></Menu>-->
+    <NewMenu></NewMenu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -96,9 +97,10 @@
   import "echarts-wordcloud/dist/echarts-wordcloud";
   import "echarts-wordcloud/dist/echarts-wordcloud.min";
   import Menu from "./Menu";
+  import NewMenu from "./NewMenu";
     export default {
         name: "About",
-        components: { Menu },
+        components: {NewMenu, Menu },
         data () {
           return {
             reverse: true,

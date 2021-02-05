@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <title></title>
-    <Markdown :psMsg=navList @callFather="pageJump"></Markdown>
+<!--    <Markdown :psMsg=navList @callFather="pageJump"></Markdown>-->
+    <NewMarkdown :psMsg=navList @callFather="pageJump"></NewMarkdown>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -14,7 +15,7 @@
         </el-dropdown-menu>
       </el-dropdown>
       <div id="appsingle" v-loading="this.loading" :element-loading-text="$t('common.load-text')">
-        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in singleblog">
+        <div class="grid-content bg-puprple-light" v-for="(value, key, index) in singleBlog">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="21">
                 <div class="grid-content bg-puprple-light">
@@ -67,7 +68,7 @@
                 width="200"
                 trigger="hover"
                 content="可返回上次浏览的归档列表。">
-                <el-button slot="reference" type="primary" icon="el-icon-caret-left" circle @click="back"></el-button>
+                <el-button slot="reference" size="medium" type="primary" icon="el-icon-back" circle @click="back"></el-button>
               </el-popover>
             </div>
             <div class="prev-next">
@@ -91,6 +92,7 @@ import moment from 'moment';
 import "../assets/tango.css";
 import Markdown from "./Markdown";
 import marked from "marked";
+import NewMarkdown from "./NewMarkdown";
 
 let rendererMD = new marked.Renderer();
   marked.setOptions({
@@ -105,12 +107,12 @@ let rendererMD = new marked.Renderer();
   });
     export default {
         name: "Single",
-        components: { Markdown },
+        components: { Markdown, NewMarkdown },
         data () {
           return {
             wechatUrl: "https://www.guanacossj.com/media/articlebodypics/wechatpay.png",
             singleId: 1,
-            singleblog: [],
+            singleBlog: [],
             titleName: "",
             markdownhtml: "",
             prev_article_title: "已经是第一篇了",
@@ -209,9 +211,15 @@ let rendererMD = new marked.Renderer();
                   }else {
                     this.next_article_title = "已经是最后一篇了"
                   }
-                  this.singleblog = res['list'];
+                  this.singleBlog = res['list'];
                   document.title = res['list'][0].fields.title;
                   this.navList = this.handleNavTree();
+                  if(this.navList.length === 0) {
+                    this.navList[0] = {
+                      title: "此页目录为空",
+                      children: new Array(1)['length'] = 0
+                    };
+                  }
                   this.getDocsFirstLevels(0);
                 } else {
                   this.$message.error('查询博客详情失败');

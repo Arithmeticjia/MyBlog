@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.archive')}}</title>
-    <Menu></Menu>
+<!--    <Menu></Menu>-->
+    <NewMenu></NewMenu>
     <el-main>
       <vue-canvas-nest></vue-canvas-nest>
       <el-dropdown>
@@ -59,9 +60,10 @@
 <script>
   import moment from 'moment';
   import Menu from "./Menu";
+  import NewMenu from "./NewMenu";
     export default {
         name: "Archive",
-        components: { Menu },
+        components: { Menu, NewMenu },
         data () {
           return {
             reverse: true,

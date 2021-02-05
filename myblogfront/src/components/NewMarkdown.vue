@@ -3,12 +3,9 @@
       <el-menu
         :default-active="$route.path"
         class="el-menu-vertical-up"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
         router>
-        <div class="blogtitlebox">
-          <div class="blogtitle">{{$t('common.blog-name')}}</div>
+        <div class="blog-title-box">
+          <div class="blog-title">{{$t('common.blog-name')}}</div>
         </div>
       <el-menu-item index="/home">
         <template slot="title">
@@ -18,7 +15,7 @@
       </el-menu-item>
       <el-menu-item index="/archive" @click="skiplocal('/archive')">
         <template slot="title">
-        <i class="el-icon-document"></i>
+        <i class="el-icon-s-order"></i>
         <span style="font-weight: bold">{{$t('common.archive')}}</span>
         </template>
       </el-menu-item>
@@ -31,27 +28,25 @@
         <span slot="title" style="font-weight: bold">{{$t('common.search')}}</span>
       </el-menu-item>
       <el-menu-item index="/about">
-        <i class="el-icon-user"></i>
+        <i class="el-icon-user-solid"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.about')}}</span>
       </el-menu-item>
         <el-menu-item index="/love">
-        <i class="el-icon-lollipop"></i>
+        <i class="el-icon-s-opportunity"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.love')}}</span>
       </el-menu-item>
     </el-menu>
       <p></p>
       <el-menu
-      class="el-menu-vertical-down"
-      background-color="#545c64"
-      text-color="#fff">
+      class="el-menu-vertical-down">
           <el-tooltip class="item" effect="dark" content="点击可重置目录" placement="top">
             <div class="mulu" @click="reSetIdex">{{$t('common.index')}}</div>
           </el-tooltip>
           <div class="mulu-detail" v-loading=mLoading>
-            <div ref="element" style="color: #fff;margin-left: 20px;margin-right: 20px;" v-for="(nav, index) in psMsg" :key="index"  @click="currentClick(index)"> <a href="javascript:" :class="{ 'active': activeIndex === index}" @click="pageJump(nav.title)">{{ nav.title }}</a>
-             <div v-if="nav.children.length &gt; 0" class="menu-children-list" style="color: #fff">
-              <div class="nav-list" style="color: #fff">
-               <p style="color: #fff" v-for="(item, idx) in nav.children" :key="idx"  @click.stop="childrenCurrentClick(index, idx)"> <a href="javascript:" :class="{ 'activeChildren': ((childrenActiveIndex === idx) && (activeIndex === index))}" @click="pageJump(item.title)">{{ item.title }}</a></p>
+            <div ref="element" style="color: black;margin-left: 20px;margin-right: 20px;" v-for="(nav, index) in psMsg" :key="index"  @click="currentClick(index)"> <a href="javascript:" :class="{ 'active': activeIndex === index}" @click="pageJump(nav.title)">{{ nav.title }}</a>
+             <div v-if="nav.children.length &gt; 0" class="menu-children-list" style="color: black">
+              <div class="nav-list" style="color: black">
+               <p style="color: black" v-for="(item, idx) in nav.children" :key="idx"  @click.stop="childrenCurrentClick(index, idx)"> <a href="javascript:" :class="{ 'activeChildren': ((childrenActiveIndex === idx) && (activeIndex === index))}" @click="pageJump(item.title)">{{ item.title }}</a></p>
               </div>
              </div>
             </div>
@@ -62,7 +57,7 @@
 
 <script>
 export default {
-name: "Markdown",
+name: "NewMarkdown",
   data() {
     return {
       circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
@@ -129,72 +124,83 @@ name: "Markdown",
   .el-menu{
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04);
   }
+  .el-menu-item.is-active {
+    background: #f4f4f5;
+  }
   .el-menu-vertical-up {
     position: fixed;
-    width: 230px;
+    margin-left: 4px;
+    width: 222px;
+    box-shadow: -0 4px 4px rgba(0, 0, 0, .30),
+                -4px 0 0 0 rgba(0, 0, 0, .04)
   }
   .el-menu-vertical-down {
     margin-top: 415px;
     position: fixed;
-    width: 230px;
     height: 310px;
     overflow: hidden;
+    margin-left: 4px;
+    width: 222px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .30),
+                0 0 4px rgba(0, 0, 0, .04),
+                -4px 0 0 0 rgba(0, 0, 0, .04)
+  }
+  .el-menu-item {
+    font-size: 12px;
   }
   .el-aside {
     margin-bottom: 20px;
     margin-left: 14%;
   }
-  .el-menu-item:hover {
-    color: #ffd04b !important;
-  }
   a{
     text-decoration: none;
-    color: white;
+    color: #545C64;
   }
   .el-footer {
     color: #333;
     text-align: center;
     line-height: 20px;
   }
-  .blogtitlebox {
+  .blog-title-box {
+    margin-left: -1px;
     text-align: center;
-    font-size: 21px;
+    width: 225px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
-    height: 80px;
+    height: 70px;
     background-color: #222222;
-    line-height: 75px;
+    line-height: 70px;
   }
-  .blogtitle {
+  .blog-title {
     display: inline-block;
     vertical-align: middle;
   }
   .mulu {
     text-align: center;
     font-weight: bold;
-    color: #ffd04b;
-    font-size: 17px;
+    color: #545C64;
+    font-size: 15px;
     padding-top: 30px;
     cursor:pointer;
   }
   .mulu-detail {
     width: 230px;
-    margin-top: 10px;
+    margin-top: 20px;
     padding-bottom: 10px;
-    font-size: 14px !important;
+    font-size: 13px !important;
     font-weight: bold;
     line-height:40px;
     overflow-y: auto;
     overflow-x: auto;
-    color: white;
     height: 210px !important;
   }
   .mulu-detail::-webkit-scrollbar{
-    background: #545C64;
-    width:9px
+    /*background: #545C64;*/
+    width: 10px
   }
   .mulu-detail::-webkit-scrollbar-thumb {
-    background: #545C64;
+    /*background: #545C64;*/
     border-radius: 5px;
   }
   .mulu-detail::-webkit-scrollbar-thumb:hover{
@@ -202,9 +208,6 @@ name: "Markdown",
   }
   .mulu-detail p{
     width: 170px;
-  }
-  .el-menu-item.is-active {
-    background: rgb(67, 74, 80) !important;
   }
   .el-submenu__title.is-active {
     background: #6db6ff !important;
@@ -217,18 +220,18 @@ name: "Markdown",
   }
   .activeChildren {
     color: #ffd04b;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
   }
   .activeChildren p{
     color: #ffd04b;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
   }
   .active {
     color: #ffd04b !important;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
   }
   .nav-list {
     padding-left: 7px;

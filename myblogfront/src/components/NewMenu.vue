@@ -3,13 +3,10 @@
       <el-menu
         router
         :default-active="$route.path"
-        class="el-menu-vertical-demo"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
+        class="el-menu-vertical-up"
         >
-        <div class="blogtitlebox">
-          <div class="blogtitle">{{$t('common.blog-name')}}</div>
+        <div class="blog-title-box">
+          <div class="blog-title">{{$t('common.blog-name')}}</div>
         </div>
       <el-menu-item index="/home">
         <template slot="title">
@@ -19,7 +16,7 @@
       </el-menu-item>
       <el-menu-item index="/archive" @click="skiplocal('/archive')">
         <template slot="title">
-        <i class="el-icon-document"></i>
+        <i class="el-icon-s-order"></i>
         <span style="font-weight: bold">{{$t('common.archive')}}</span>
         </template>
       </el-menu-item>
@@ -32,19 +29,17 @@
         <span slot="title" style="font-weight: bold">{{$t('common.search')}}</span>
       </el-menu-item>
       <el-menu-item index="/about">
-        <i class="el-icon-user"></i>
+        <i class="el-icon-user-solid"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.about')}}</span>
       </el-menu-item>
         <el-menu-item index="/love">
-        <i class="el-icon-lollipop"></i>
+        <i class="el-icon-s-opportunity"></i>
         <span slot="title" style="font-weight: bold">{{$t('common.love')}}</span>
       </el-menu-item>
     </el-menu>
       <p></p>
       <el-menu
-      class="el-menu-vertical-demo"
-      background-color="#545c64"
-      text-color="#fff"
+      class="el-menu-vertical-down"
       style="height: 310px">
         <div class="mypic">
           <el-avatar  :size="130" shape="square" :src="circleUrl"></el-avatar>
@@ -65,7 +60,7 @@
         <div class="tag-links">
           <el-link icon="el-icon-link" class="el-link-github" href="https://github.com/Arithmeticjia" target="_blank" :underline="true">GitHub</el-link>
           <el-divider direction="vertical"></el-divider>
-          <el-link icon="el-icon-message" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="false">E-Mail&nbsp;&nbsp;</el-link>
+          <el-link icon="el-icon-message" class="el-link-email" href="mailto:1524126437@qq.com" target="_blank" :underline="true">E-Mail&nbsp;&nbsp;</el-link>
         </div>
     </el-menu>
     <p></p>
@@ -83,7 +78,7 @@
 
 <script>
 export default {
-name: "Menu",
+name: "NewMenu",
   data() {
     return {
       circleUrl: "https://www.guanacossj.com/media/jia/IMG_0323.JPG",
@@ -102,11 +97,25 @@ name: "Menu",
 </script>
 
 <style scoped>
-  .el-menu{
-    box-shadow: 0 4px 4px rgba(0, 0, 0, .30), 0 0 6px rgba(0, 0, 0, .04)
+  .el-menu-vertical-up {
+    margin-left: 4px;
+    width: 222px;
+    box-shadow: -0 4px 4px rgba(0, 0, 0, .30),
+                -4px 0 0 0 rgba(0, 0, 0, .04)
   }
-  .el-menu-item:hover {
-    color: #ffd04b !important;
+  .el-menu-vertical-down {
+    margin-left: 4px;
+    width: 222px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .30),
+                0 0 4px rgba(0, 0, 0, .04),
+                -4px 0 0 0 rgba(0, 0, 0, .04)
+  }
+  .el-menu-item {
+    font-size: 12px;
+    /*transition: border-color .0s,background-color .0s,color .0s;*/
+  }
+  .el-menu-item.is-active {
+    background: #f4f4f5;
   }
   .a{
     text-decoration: none;
@@ -116,27 +125,26 @@ name: "Menu",
     text-align: center;
     line-height: 20px;
   }
-  .blogtitlebox {
+  .blog-title-box {
+    margin-left: -1px;
     text-align: center;
-    font-size: 21px;
+    width: 225px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
-    height: 80px;
+    height: 70px;
     background-color: #222222;
-    /*align-items: center;*/
-    /*top:50%;*/
-    /*position: absolute;*/
-    line-height: 75px;
+    line-height: 70px;
   }
-  .blogtitle {
+  .blog-title {
     display: inline-block;
     vertical-align: middle;
   }
   .myname {
     text-align: center;
     font-size: 17px;
-    font-weight: bold;
-    color: white;
+    font-weight: bolder;
+    color: #222222;
   }
   .mypic {
     padding-top: 30px;
@@ -144,8 +152,9 @@ name: "Menu",
   }
   #tag-sign{
     text-align: center;
-    font-size: 14px;
-    color: #cdcdcd;
+    font-size: 13px;
+    color: #999999;
+    font-weight: bolder;
   }
   .tag-links{
     height: 45px;
@@ -156,24 +165,12 @@ name: "Menu",
     color: #fff !important;
   }
   .el-link-github {
-    color: #fff !important;
+    /*color: #fff*/
     font-size: 14px;
-  }
-  .el-link-github:hover {
-    color: #ffd04b !important;
   }
   .el-link-email {
     font-size: 14px;
-    color: #fff !important;
-  }
-  .el-link-email:hover {
-    color: #ffd04b !important;
-  }
-  .el-menu-item.is-active {
-    background: rgb(67, 74, 80) !important;
-  }
-  .el-submenu__title.is-active {
-    background: #6db6ff !important;
+    /*color: #fff*/
   }
   .el-dropdown {
     float: right;
