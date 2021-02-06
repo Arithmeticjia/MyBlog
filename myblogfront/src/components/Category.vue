@@ -60,7 +60,7 @@ import Menu from "./Menu";
 import NewMenu from "./NewMenu";
     export default {
         name: "Category",
-        components: { Menu, NewMenu},
+        components: { Menu, NewMenu },
         data () {
           return {
             reverse: true,
@@ -82,15 +82,6 @@ import NewMenu from "./NewMenu";
           }
         },
         methods: {
-          skip(url){
-           window.open(url, target='_blank')
-          },
-          handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-          },
-          skiplocal(url){
-            location.href = url
-          },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
             sessionStorage.setItem('lang', val);
