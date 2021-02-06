@@ -29,7 +29,7 @@
                   <br>
                   <p style="font-size: 17px">{{ value.fields.body.substring(0,100)+'......' }}</p>
                   <br>
-                  <el-button style="border-radius: 0;" size="medium" @click="skiplocal('/post'+ '/' + value.pk)">{{$t('common.Archive.read-more')}} >></el-button>
+                  <el-button style="border-radius: 0;" size="medium"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/post'+ '/' + value.pk">{{$t('common.Archive.read-more')}} >></router-link></el-button>
                 </div>
                 <br>
               </el-col>
