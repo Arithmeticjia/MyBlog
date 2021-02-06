@@ -96,7 +96,7 @@
         },
         mounted: function () {
           this.showBlogs();
-          this.getLastPage()
+          this.getLastPage();
         },
         destroyed(){
           sessionStorage.removeItem("detail");
@@ -124,7 +124,7 @@
              this.handleCurrentChange(this.currentPage);
            },
           switchLang(val){
-            this.$i18n.locale=val;//此处val为 zh 或者 en
+            this.$i18n.locale = val;//此处val为 zh 或者 en
             sessionStorage.setItem('lang', val);
           },
           handleCurrentChange: function(currentPage){

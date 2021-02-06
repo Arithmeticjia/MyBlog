@@ -135,18 +135,7 @@
             location.href = url
           },
           switchLang(val){
-            this.$i18n.locale=val;//此处val为 zh 或者 en
-          },
-          notfinishalert() {
-            this.$alert('暂未开放，敬请期待，欢迎移步我的主页', {
-              confirmButtonText: '确定',
-              callback: action => {
-                this.$message({
-                  type: 'success',
-                  message: `联系我吧!`
-                });
-              }
-            });
+            this.$i18n.locale = val;//此处val为 zh 或者 en
           },
         }
     }
