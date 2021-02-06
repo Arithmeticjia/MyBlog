@@ -4,6 +4,7 @@
         router
         :default-active="$route.path"
         class="el-menu-vertical-up"
+        @select="handleSelect"
         >
         <div class="blog-title-box">
           <div class="blog-title">{{$t('common.blog-name')}}</div>
@@ -14,7 +15,7 @@
           <span style="font-weight: bold">{{$t('common.home')}}</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="/archive" @click="skiplocal('/archive')">
+      <el-menu-item index="/archive">
         <template slot="title">
         <i class="el-icon-s-order"></i>
         <span style="font-weight: bold">{{$t('common.archive')}}</span>
@@ -85,6 +86,11 @@ name: "NewMenu",
     }
   },
   methods: {
+    handleSelect(key, keyPath) {
+      if (key === '/archive') {
+        sessionStorage.removeItem("detail");
+      }
+    },
     skip(url){
       window.open(url, target='_blank')
     },
