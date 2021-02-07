@@ -119,7 +119,7 @@
                 var res = JSON.parse(response.bodyText);
                 if (res.error_num === 0) {
                   this.loading = false;
-                  this.showpagination = true;
+                  this.showPagination = true;
                   this.blogList = res['list'];
                   this.totalItems = this.blogList.length;
                   this.categoryName = res['list'][0].fields.category;
