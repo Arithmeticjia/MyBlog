@@ -49,6 +49,7 @@ const en = {
       "timeline": "Timeline",
       "down-list": "Down List",
       "todo-list": "To Do List",
+      "poetry": "Love Poetry",
       "click-to-add": "Click to Add",
       "user": "Hello",
       "add": "Add",

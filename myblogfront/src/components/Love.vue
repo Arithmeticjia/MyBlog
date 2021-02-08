@@ -24,50 +24,98 @@
       </el-dropdown>
       <div id="applove">
         <div class="grid-content bg-puprple-light">
-            <div class="block">
-              <h2>{{$t('common.Love.baby')}}</h2>
-              <el-carousel :height="bannerHeight+'px'" >
-                <el-carousel-item v-for="item in imgUrls" :key="item">
-                  <img
-                    ref="bannerHeight"
-                    @load="imgLoad"
-                    style="width: 50%;"
-                    :src="item"
-                  >
-                </el-carousel-item>
-              </el-carousel>
-            </div>
-          <br>
+          <div class="block">
+            <h2>{{$t('common.Love.baby')}}</h2>
+            <el-carousel :height="bannerHeight+'px'" >
+              <el-carousel-item v-for="item in imgUrls" :key="item">
+                <img
+                  ref="bannerHeight"
+                  @load="imgLoad"
+                  style="width: 50%;"
+                  :src="item"
+                >
+              </el-carousel-item>
+            </el-carousel>
+          </div>
+        </div>
+        <br>
         <div class="grid-content bg-puprple-light">
           <el-row type="flex" class="row-bg" justify="space-around">
             <el-col :span="20">
               <div class="grid-content bg-puprple-light">
                 <h2>{{$t('common.Love.timeline')}}</h2>
-                  <div class="me">
-                    <el-timeline :reverse="reverse">
-                      <el-timeline-item
-                        v-for="(activity, index) in activities"
-                        :key="index"
-                        :timestamp="activity.timestamp">
-                        {{ activity.content }}
-                      </el-timeline-item>
-                    </el-timeline>
-                  </div>
+                <div class="me">
+                  <el-timeline :reverse="reverse">
+                    <el-timeline-item
+                      v-for="(activity, index) in activities"
+                      :key="index"
+                      :timestamp="activity.timestamp">
+                      {{ activity.content }}
+                    </el-timeline-item>
+                  </el-timeline>
+                </div>
               </div>
               <br>
             </el-col>
           </el-row>
         </div>
+        <div class="grid-content bg-puprple-light">
+          <el-row type="flex" class="row-bg" justify="space-around">
+            <el-col :span="20">
+              <div class="grid-content bg-puprple-light">
+                <h2>{{$t('common.Love.poetry')}}</h2>
+                <br>
+                <div class="me">
+                  <el-collapse>
+                    <el-collapse-item title="To 范子祎" name="1">
+                      <div style="font-size: 16px;color: #4d4d4d">
+                        <p>原谅我不善言辞</p>
+                        <p>只好在电脑上先打好草稿</p>
+                        <p>你说你不喜欢标点符号</p>
+                        <p>于是这就变成一首情诗</p>
+                        <p>原谅我不善言辞</p>
+                        <p>只好在电脑上先打好草稿</p>
+                        <p>你说你不喜欢标点符号</p>
+                        <p>于是这就变成一首情诗</p>
+                        <p>文字不停地打了又删</p>
+                        <p>伴随我的思绪回到从前</p>
+                        <p>从未想过是这样一个开始</p>
+                        <p>变得一发不可收拾</p>
+                        <p>于人山人海中</p>
+                        <p>随时间无涯的荒野</p>
+                        <p>不早不晚</p>
+                        <p>我们相遇了</p>
+                        <p>梦里有你热烈的吻</p>
+                        <p>我希望永远不要醒来</p>
+                        <p>我以为五千年的中华文化所孕育出来的文字已足够成熟细腻</p>
+                        <p>提笔却无法描述对你喜爱的万分之一</p>
+                        <p>这份爱与思念</p>
+                        <p>跨越1075.7公里（常州到北京）</p>
+                        <p>只想紧紧抱住你</p>
+                        <p>我是一个坚定的无神论者</p>
+                        <p>佛前许下的每一个愿望都与你有关</p>
+                        <p>你总说我想的太远</p>
+                        <p>因为我没有你的日子会是难以想象的灾难</p>
+                        <p>未来的日子很长</p>
+                        <p>与你在一起</p>
+                        <p>都是好时光</p>
+                      </div>
+                    </el-collapse-item>
+                  </el-collapse>
+                </div>
+                <br>
+              </div>
+              <br>
+            </el-col>
+          </el-row>
         </div>
         <div class="grid-content bg-puprple-light" v-loading="loading">
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.Love.down-list')}}</h2>
-                  <div class="me">
-                    <div class="me" v-for="value in downList">
+                  <div class="me" v-for="value in downList">
                     <div v-html="compiledMarkdown(value.content)"></div>
-                  </div>
                   </div>
                   <br>
                 </div>
@@ -79,10 +127,8 @@
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.Love.todo-list')}}</h2>
-                  <div class="me">
-                    <div class="me" v-for="value in todoList">
+                  <div class="me" v-for="value in todoList">
                     <div v-html="compiledMarkdown(value.content)"></div>
-                  </div>
                   </div>
                 </div>
               </el-col>
@@ -160,6 +206,7 @@
               'https://www.guanacossj.com/media/fzy/189531609426993_.pic_hd.jpg',
               'https://www.guanacossj.com/media/fzy/189521609426989_.pic_hd.jpg',
             ],
+            poetry: '',
             reverse: false,
             activities: [{
               content: '牛客第一次对话',
@@ -329,12 +376,9 @@
   }
   .me {
     background: #fff;
-    /*background: #4D4D4D;*/
     width: 100%;
     height: 100%;
     text-align: left;
-    /*color: white;*/
-    /*padding: 10px;*/
   }
   .el-row {
     margin-bottom: 20px;
@@ -387,4 +431,10 @@
     text-align: left;
   }
 
+</style>
+<style>
+  .el-collapse-item__header {
+    font-size: 16px !important;
+    color: #4d4d4d !important;
+  }
 </style>

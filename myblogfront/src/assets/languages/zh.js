@@ -32,6 +32,7 @@ const zh = {
       "timeline": "时间线",
       "down-list": "完成列表",
       "todo-list": "待办列表",
+      "poetry": "给你的情诗",
       "click-to-add": "点击添加",
       "user": "你好",
       "add": "新增",
