@@ -64,6 +64,7 @@
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
         </span>
       </el-dialog>
+      <div class="wrapper">
       <el-dialog
         class="pop_dialog"
         title=""
@@ -86,6 +87,7 @@
 <!--          <el-button type="primary" @click="wuhan = false">确 定</el-button>-->
 <!--        </span>-->
       </el-dialog>
+      </div>
   </div>
 </template>
 
@@ -523,15 +525,12 @@ a {
   color: white;
   font-size: 17px;
 }
-</style>
-
-<style>
-.el-dialog__body {
+.wrapper >>> .el-dialog__body {
   background-color: black !important;
   color: black;
   height: 100%;
 }
-.el-dialog__header {
+.wrapper >>> .el-dialog__header {
   background: black;
 }
 </style>
