@@ -15,27 +15,11 @@
         </el-dropdown-menu>
         </el-dropdown>
 <!--        <img src="../assets/logo.png">-->
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <p></p>
-          <div>
+          <div style="padding-top: 295px">
             <span style="font-size: large">{{$t('common.home-word-up')}}</span>
             <el-divider></el-divider>
             <span style="font-size: large">{{$t('common.home-word-down')}}</span>
-            </div>
+          </div>
         <br>
         <br>
         <br>
@@ -78,7 +62,7 @@
         },
         methods: {
           skip(url){
-           window.open(url, target='_blank')
+            window.open(url, target='_blank')
           },
           handleOpen(key, keyPath) {
             console.log(key, keyPath);

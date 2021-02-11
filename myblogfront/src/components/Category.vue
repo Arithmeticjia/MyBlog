@@ -69,7 +69,7 @@ import NewMenu from "./NewMenu";
             currentPage: 1,
             totalItems: 0,
             loading: true,
-            pageSize: 15,
+            pageSize: 10,
             showPagination: false
           }
         },
@@ -128,7 +128,6 @@ import NewMenu from "./NewMenu";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    /*color: #2c3e50;*/
     color: #4d4d4d;
     margin-top: 30px;
   }
