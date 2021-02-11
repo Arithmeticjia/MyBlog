@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="230px">
+  <el-aside width="220px">
       <el-menu
         :default-active="$route.path"
         class="el-menu-vertical-up"
@@ -13,7 +13,7 @@
           <span style="font-weight: bold">{{$t('common.home')}}</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="/archive" @click="skiplocal('/archive')">
+      <el-menu-item index="/archive">
         <template slot="title">
         <i class="el-icon-s-order"></i>
         <span style="font-weight: bold">{{$t('common.archive')}}</span>
@@ -130,23 +130,25 @@ name: "NewMarkdown",
   .el-menu-vertical-up {
     position: fixed;
     margin-left: 4px;
-    width: 222px;
+    width: 212px;
     box-shadow: -0 4px 4px rgba(0, 0, 0, .30),
                 -4px 0 0 0 rgba(0, 0, 0, .04)
   }
   .el-menu-vertical-down {
-    margin-top: 415px;
+    margin-top: 355px;
     position: fixed;
     height: 310px;
     overflow: hidden;
     margin-left: 4px;
-    width: 222px;
+    width: 212px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30),
                 0 0 4px rgba(0, 0, 0, .04),
                 -4px 0 0 0 rgba(0, 0, 0, .04)
   }
   .el-menu-item {
     font-size: 12px;
+    height: 48px;
+    line-height: 48px;
   }
   .el-aside {
     margin-bottom: 20px;
@@ -164,7 +166,7 @@ name: "NewMarkdown",
   .blog-title-box {
     margin-left: -1px;
     text-align: center;
-    width: 225px;
+    width: 215px;
     font-size: 18px;
     font-weight: bold;
     color: white;

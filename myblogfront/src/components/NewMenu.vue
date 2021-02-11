@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="230px" style="margin-left: 14%;">
+  <el-aside width="220px" style="margin-left: 14%;">
       <el-menu
         router
         :default-active="$route.path"
@@ -105,20 +105,21 @@ name: "NewMenu",
 <style scoped>
   .el-menu-vertical-up {
     margin-left: 4px;
-    width: 222px;
+    width: 212px;
     box-shadow: -0 4px 4px rgba(0, 0, 0, .30),
                 -4px 0 0 0 rgba(0, 0, 0, .04)
   }
   .el-menu-vertical-down {
     margin-left: 4px;
-    width: 222px;
+    width: 212px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, .30),
                 0 0 4px rgba(0, 0, 0, .04),
                 -4px 0 0 0 rgba(0, 0, 0, .04)
   }
   .el-menu-item {
     font-size: 12px;
-    /*transition: border-color .0s,background-color .0s,color .0s;*/
+    height: 48px;
+    line-height: 48px;
   }
   .el-menu-item.is-active {
     background: #f4f4f5;
@@ -134,7 +135,7 @@ name: "NewMenu",
   .blog-title-box {
     margin-left: -1px;
     text-align: center;
-    width: 225px;
+    width: 215px;
     font-size: 18px;
     font-weight: bold;
     color: white;
@@ -190,4 +191,7 @@ name: "NewMenu",
     line-height: 40px;
     height: 40px;
   }
+  .el-menu::-webkit-scrollbar {
+	    display: none
+	  }
 </style>
