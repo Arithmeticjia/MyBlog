@@ -107,11 +107,6 @@ const router = new Router({
       component: () => import('@/components/TagPageTimeline')
     },
     {
-      path: '/categorytimeline/:name',
-      name: 'categorypagetimeline',
-      component: () => import('@/components/CategoryPage')
-    },
-    {
       path: '/love',
       name: 'love',
       meta: {

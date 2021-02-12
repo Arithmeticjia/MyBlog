@@ -164,7 +164,9 @@
           },
           doFilter: function() {
             if (this.searchInfo === "") {
-              this.$message.warning(this.$t('common.warning.queryEmpty'));
+              this.$message.warning({
+                center: true,
+                message: this.$t('common.warning.queryEmpty')});
               return;
             }
             this.filterTableDataEnd=[];
@@ -244,7 +246,6 @@
                 if (res.error_num === 0) {
                   this.loading = false;
                   this.blogList = res['list'];
-                  // this.blogList.push(res['list']) ;
                   this.totalItems = this.blogList.length;
                   this.originblogList = this.blogList;
                 } else {
@@ -268,23 +269,8 @@
     /*margin-right: 150px;*/
     /*margin-right: 12%;*/
   }
-  .blogtitlebox {
-    text-align: center;
-    font-size: larger;
-    font-weight: bold;
-    color: white;
-    height: 75px;
-    background-color: #292929;
-    /*align-items: center;*/
-    /*top:50%;*/
-    /*position: absolute;*/
-    line-height: 75px;
-  }
   .el-menu-item.is-active {
     background: rgb(67, 74, 80) !important;
-  }
-  .el-submenu__title.is-active {
-    background: #6db6ff !important;
   }
   .el-dropdown {
     float: right;

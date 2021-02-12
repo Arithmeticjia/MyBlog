@@ -301,14 +301,16 @@
                     this.dialogFormVisible = false;
                     this.$message({
                       type: 'success',
-                      message: `添加成功!`
+                      message: `添加成功!`,
+                      center: true
                     });
                     this.getDownList();
                     this.getToDOList();
                   }else {
                     this.$message({
                       type: 'error',
-                      message: `服务器出了点问题，请稍后重试!`
+                      message: `服务器出了点问题，请稍后重试!`,
+                      center: true
                     });
                   }
                 });
@@ -329,13 +331,19 @@
                 await this.getDownList();
                 await this.getToDOList();
               }else {
-                this.$message.error("凭证已过期，请重新登录！");
+                this.$message.error({
+                  message: '凭证已过期，请重新登录！',
+                  center: true
+                });
                 await this.$router.push({
                   path: "/login",
                 });
               }
             } catch (e) {
-              this.$message.error("页面出错了，请稍后再试！");
+              this.$message.error({
+                message: '页面出错了，请稍后再试！',
+                center: true
+              });
             }
           },
           async getToDOList() {
@@ -344,7 +352,10 @@
               this.todoList = data;
               this.loading = false;
             } catch (e) {
-              this.$message.error("请求用户数据失败，请稍后再试！");
+              this.$message.error({
+                message: '请求用户数据失败，请稍后再试！',
+                center: true
+              });
             }
           },
           async getDownList() {
@@ -353,7 +364,10 @@
               this.downList = data;
               this.loading = false;
             } catch (e) {
-              this.$message.error("请求用户数据失败，请稍后再试！");
+              this.$message.error({
+                message: '请求用户数据失败，请稍后再试！',
+                center: true
+              });
             }
           },
         }
