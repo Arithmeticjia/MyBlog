@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
 import vueCanvasNest from 'vue-canvas-nest'
-import NProgress from 'nprogress';
+import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import '../assets/element-#545C64/index.css'
 import '../assets/iconfont/iconfont.css'
