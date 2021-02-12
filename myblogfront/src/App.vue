@@ -21,4 +21,7 @@ export default {
   /*margin-top: 0;*/
   overflow-y: scroll;
 }
+#nprogress .bar {
+  background: #222222 !important;
+}
 </style>

@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
 import vueCanvasNest from 'vue-canvas-nest'
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css'
 import '../assets/element-#545C64/index.css'
 import '../assets/iconfont/iconfont.css'
 import '../assets/iconfont/iconfont.js'
@@ -13,7 +15,14 @@ Vue.use(ElementUI)
 Vue.use(vueCanvasNest)
 // Vue.use(ElementUI, { locale })
 
-Vue.component('vue-canvas-nest', vueCanvasNest)
+Vue.component('vue-canvas-nest', vueCanvasNest);
+NProgress.configure({
+    easing: 'ease',
+    speed: 500,         // 递增进度条的速度
+    showSpinner: false, // 是否显示加载ico
+    trickleSpeed: 200,  // 自动递增间隔
+    minimum: 0.3        // 初始化时的最小百分比
+});
 
 //解决编程式路由往同一地址跳转时会报错的情况
 const originalPush = Router.prototype.push
@@ -117,9 +126,14 @@ const router = new Router({
     },
   ]
 });
+// 路由跳转后钩子函数中 - 执行进度条加载结束
+router.afterEach(() => {
+  NProgress.done();
+});
 // 导航守卫
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
 router.beforeEach((to, from, next) => {
+  NProgress.start();
   if (to.path === '/login' || to.path === '/home') {
     next();
   } else {
