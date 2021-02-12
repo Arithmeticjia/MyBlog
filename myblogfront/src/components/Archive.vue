@@ -101,6 +101,8 @@
         destroyed(){
           sessionStorage.removeItem("detail");
         },
+        created() {
+        },
         methods: {
           share(val) {
             let shareUrl = 'https://www.blog.guanacossj.com/post/'+ val;
@@ -228,6 +230,10 @@
   }
   .el-dropdown {
     float: right;
+    /*margin-top: 0;*/
+    /*position: absolute;*/
+    /*z-index: 10;*/
+    /*margin-left: 760px;*/
   }
   .el-dropdown-link {
     cursor: pointer;

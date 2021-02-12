@@ -118,7 +118,7 @@
             tableHeight: {
               height:'',
             },
-            table: window.innerHeight - 139
+            table: window.innerHeight - 132
           }
         },
         created() {
@@ -154,7 +154,7 @@
             this.showBlogs();
           },
           getHeight(){
-            this.tableHeight.height = window.innerHeight - 139;
+            this.tableHeight.height = window.innerHeight - 132;
           },
           reFresh: function() {
             window.location.reload();
