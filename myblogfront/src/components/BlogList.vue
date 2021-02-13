@@ -238,7 +238,10 @@
             this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
                 _timeout:5000,
                 onTimeout :(request) => {
-                    this.$message.error(this.$t('common.timeout'));
+                    this.$message.error({
+                      message: this.$t('common.timeout'),
+                      center: true
+                    });
                     this.loading = false
                   }
                 }).then((response) => {
@@ -262,6 +265,14 @@
     color: #333;
     text-align: center;
     line-height: 20px;
+  }
+  #appbloglist {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #4d4d4d;
+    /*margin-top: 30px;*/
   }
   .el-main {
     color: #333;
