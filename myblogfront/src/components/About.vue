@@ -351,11 +351,11 @@
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
-            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.about')
+            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.about');
           }
         },
         mounted(){
-
+          document.title = '请叫我算术嘉の博客 | ' + this.$t('common.about');
         },
         methods: {
           skip(url){

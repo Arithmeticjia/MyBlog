@@ -127,6 +127,7 @@
         },
         mounted: function () {
           this.showBlogs();
+          document.title = '请叫我算术嘉の博客 | ' + this.$t('common.search');
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {

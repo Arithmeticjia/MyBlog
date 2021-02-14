@@ -237,6 +237,7 @@
             this.bannerHeight=this.$refs.bannerHeight[0].height * 0.5;
             this.imgLoad();
           },false)
+          document.title = '请叫我算术嘉の博客 | ' + this.$t('common.love');
         },
         computed: {
           compiledMarkdown() {
@@ -247,7 +248,7 @@
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
-            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.love')
+            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.love');
           }
         },
         methods: {

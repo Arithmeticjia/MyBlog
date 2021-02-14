@@ -97,6 +97,7 @@
         mounted: function () {
           this.showBlogs();
           this.getLastPage();
+          document.title = '请叫我算术嘉の博客 | ' + this.$t('common.archive');
         },
         destroyed(){
           sessionStorage.removeItem("detail");
