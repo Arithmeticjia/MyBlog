@@ -21,7 +21,7 @@
               <div class="grid-content bg-puprple-light">
                 <p style="text-align: center">{{$t('common.cat-before')}}<span style="font-size: xxx-large;">{{ totalItems }}</span>{{$t('common.cat-after')}}</p>
                 <div class="category" v-for="(value, key, index) in categoryList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-                  <p style="color: #4D4D4D; font-size: 19px"><router-link style="color: #4D4D4D;font-weight: bold;text-decoration: none;" :to="'/category/'+value.name"><span class="xi">{{ value.name }}</span>（{{ value.num_articles }}）</router-link></p>
+                  <p style="color: #4D4D4D; font-size: 19px"><router-link style="color: #4D4D4D;text-decoration: none;" :to="'/category/'+value.name"><span class="xi">{{ value.name }}</span>（{{ value.num_articles }}）</router-link></p>
                 </div>
                 <br>
               </div>
