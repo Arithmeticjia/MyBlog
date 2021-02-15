@@ -2068,8 +2068,10 @@ def get_categroy_all(request):
             }
             list.append(p_tmp)
         data['list'] = list
+        data['msg'] = 'success'
         data['error_num'] = 0
-    except:
+    except Exception as e:
+        data['msg'] = str(e)
         data['error_num'] = 1
     return HttpResponse(json.dumps(data), content_type='application/json')
 
