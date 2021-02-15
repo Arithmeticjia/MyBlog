@@ -18,6 +18,7 @@ from django.http.response import HttpResponse
 from django.core.mail import send_mail
 from django.db.models import Q, IntegerField, CharField, DateTimeField
 from django.views.decorators.http import require_POST
+from django.db.models import Count
 import re
 import logging
 from drf_haystack.serializers import HaystackSerializerMixin
@@ -2054,17 +2055,23 @@ def get_article_all(request):
 
 @require_http_methods(["GET"])
 def get_categroy_all(request):
-    response = {}
+
+    category_list = Category.objects.values('name').annotate(
+        num_articles=Count('articles'))
+    data = {}
     try:
-        categorys = Category.objects.all().order_by("id")
-        response['list'] = json.loads(
-            core_serializers.serialize("json", categorys, use_natural_foreign_keys=True, ensure_ascii=False))
-        response['msg'] = 'success'
-        response['error_num'] = 0
-    except Exception as e:
-        response['msg'] = str(e)
-        response['error_num'] = 1
-    return HttpResponse(json.dumps(response, ensure_ascii=False))
+        list = []
+        for i in category_list:
+            p_tmp = {
+                "name": i['name'],
+                "num_articles": i['num_articles']
+            }
+            list.append(p_tmp)
+        data['list'] = list
+        data['error_num'] = 0
+    except:
+        data['error_num'] = 1
+    return HttpResponse(json.dumps(data), content_type='application/json')
 
 
 @require_http_methods(["GET"])

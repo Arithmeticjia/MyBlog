@@ -30,6 +30,10 @@ class Category(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name = "分类"
+        verbose_name_plural = verbose_name
+
     def natural_key(self):
         return self.__str__()
 

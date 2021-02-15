@@ -16,40 +16,33 @@
       </el-dropdown>
       <div id="appcategory" v-loading="loading" :element-loading-text="$t('common.load-text')">
         <div class="category-box">
-          <div class="grid-content bg-puprple-light">
-            <el-row type="flex" class="row-bg" justify="space-around">
-              <el-col :span="20">
-                <div class="grid-content bg-puprple-light">
-<!--                  <h1 style="text-align: center">分类</h1>-->
-                  <p style="text-align: center">{{$t('common.cat-before')}}<span style="font-size: xxx-large;">{{ totalItems }}</span>{{$t('common.cat-after')}}</p>
-                  <div class="category" v-for="(value, key, index) in categoryList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-                    <p style="color: #4D4D4D; font-size: 20px"><router-link style="color: #4D4D4D" :to="'/category/'+value.fields.name"><span class="xi">{{ value.fields.name }}</span></router-link></p>
-                  </div>
-                  <br>
+          <el-row type="flex" class="row-bg" justify="space-around">
+            <el-col :span="20">
+              <div class="grid-content bg-puprple-light">
+                <p style="text-align: center">{{$t('common.cat-before')}}<span style="font-size: xxx-large;">{{ totalItems }}</span>{{$t('common.cat-after')}}</p>
+                <div class="category" v-for="(value, key, index) in categoryList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+                  <p style="color: #4D4D4D; font-size: 19px"><router-link style="color: #4D4D4D;font-weight: bold;text-decoration: none;" :to="'/category/'+value.name"><span class="xi">{{ value.name }}</span>（{{ value.num_articles }}）</router-link></p>
                 </div>
-              </el-col>
-            </el-row>
-          </div>
+                <br>
+              </div>
+            </el-col>
+          </el-row>
         </div>
         <br>
-        <div class="hide-pagination">
-          <el-switch v-model="value">
-          </el-switch>
-        </div>
-      <el-footer>
-          <el-pagination
-            v-show="showPagination"
-            :hide-on-single-page="value"
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[1, 2, 3, 4]"
-            :page-size="pageSize"
-            :total="totalItems"
-            layout="prev, pager, next, total">
-          </el-pagination>
-      </el-footer>
+        <el-footer>
+            <el-pagination
+              v-show="showPagination"
+              :hide-on-single-page="value"
+              background
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage"
+              :page-sizes="[1, 2, 3, 4]"
+              :page-size="pageSize"
+              :total="totalItems"
+              layout="prev, pager, next, total">
+            </el-pagination>
+        </el-footer>
       </div>
     </el-main>
   </el-container>
@@ -69,8 +62,8 @@ import NewMenu from "./NewMenu";
             currentPage: 1,
             totalItems: 0,
             loading: true,
-            pageSize: 10,
-            showPagination: false
+            pageSize: 9,
+            showPagination: true
           }
         },
         mounted() {
@@ -93,9 +86,6 @@ import NewMenu from "./NewMenu";
            },
           handleCurrentChange: function(currentPage){
              this.currentPage = currentPage;
-             if(this.flag) {
-               this.blogList = this.filterTableDataEnd
-             }
           },
           showCategories () {
             this.$http.get('https://www.guanacossj.com/blog/getallcategory/',{
@@ -161,6 +151,11 @@ import NewMenu from "./NewMenu";
   .category-box {
     text-align: left;
   }
+  .el-footer {
+    height: 30px !important;
+    padding-bottom: 5px;
+  }
+
   .hide-pagination {
     float: right;
     /*padding-right: 0 !important;*/
@@ -181,6 +176,7 @@ import NewMenu from "./NewMenu";
     text-align: left;
   }
   .xi {
+    /*font-weight: bold;*/
     text-decoration:none;
     border-bottom:1px solid #ccc; /* #ccc换成链接的颜色 */
     display: inline-block;
