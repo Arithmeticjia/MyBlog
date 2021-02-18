@@ -22,7 +22,7 @@
           <el-timeline-item :timestamp="value.fields.timestamp | formatDateymd" placement="top"  v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)" :key="index">
             <el-card>
               <router-link style="color: #4D4D4D;text-decoration: none" :to="'/post'+'/'+value.pk"><h1 style="font-size: 18px">{{ value.fields.title }}</h1></router-link>
-              <p>{{ value.fields.authorname }} 发表于 {{ value.fields.timestamp | formatDate }}</p>
+              <p style="color: #4d4d4d">{{ value.fields.authorname }} 发表于 {{ value.fields.timestamp | formatDate }}</p>
             </el-card>
           </el-timeline-item>
           </el-timeline>

@@ -28,8 +28,8 @@
                     <p>本科：南京邮电大学-通信与信息工程学院-通信工程</p>
                     <p>研究生：南京邮电大学-计算机学院、软件学院、网络空间安全学院（大数据研究院）-软件工程</p>
                     <p>个人主页：<a href="https://www.guanacossj.com" target="_blank" style="color: #4D4D4D">https://www.guanacossj.com</a></p>
-                    <p>GitHub Page：<a href="https://arithmeticjia.github.io/" target="_blank" style="color: #4D4D4D">https://arithmeticjia.github.io</a></p>
                     <p>CSDN：<a href="https://blog.csdn.net/ssjdoudou" target="_blank" style="color: #4D4D4D">https://blog.csdn.net/ssjdoudou</a></p>
+                    <p>GitHub Page：<a href="https://arithmeticjia.github.io/" target="_blank" style="color: #4D4D4D">https://arithmeticjia.github.io</a></p>
                     <br>
                   </div>
                 </div>
