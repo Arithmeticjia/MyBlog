@@ -4,7 +4,9 @@
 <!--    <Menu></Menu>-->
     <NewMenu></NewMenu>
     <el-main>
-      <vue-canvas-nest></vue-canvas-nest>
+      <div v-if="this.$store.state.Canvas">
+        <vue-canvas-nest></vue-canvas-nest>
+      </div>
       <el-dropdown>
           <span class="el-dropdown-link">
             {{$t('common.lang')}}<i class="el-icon-arrow-down el-icon--right"></i>

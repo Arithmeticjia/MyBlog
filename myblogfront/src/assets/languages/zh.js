@@ -52,6 +52,7 @@ const zh = {
     "lang-zh": "中文",
     "lang-en": "英文",
     "color": "系统颜色",
+    "canvas": "粒子特效",
     "setting": "设置",
     "calendar": "日历",
     "autograph-left": "雨纷纷",

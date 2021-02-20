@@ -13,7 +13,9 @@ const store = new Vuex.Store({
     // 存储token
     Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : '',
     // 存储用户名
-    Username: localStorage.getItem('Username') ? localStorage.getItem('Username') : ''
+    Username: localStorage.getItem('Username') ? localStorage.getItem('Username') : '',
+    // 存储粒子特效开关状态
+    Canvas: true
   },
   getters: {
     userName: (state) => state.Username,
@@ -26,6 +28,9 @@ const store = new Vuex.Store({
       state.Username = user.Username;
       localStorage.setItem('Authorization',user.Authorization);
       localStorage.setItem('Username', user.Username);
+    },
+    changeCanvas (state) {
+      state.Canvas = false;
     }
   },
 });

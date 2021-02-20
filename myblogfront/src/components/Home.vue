@@ -3,7 +3,9 @@
     <title>请叫我算术嘉の博客 | {{$t('common.home')}}</title>
     <NewMenu></NewMenu>
     <el-main>
-      <vue-canvas-nest></vue-canvas-nest>
+      <div v-if="this.$store.state.Canvas">
+        <vue-canvas-nest></vue-canvas-nest>
+      </div>
       <div id="apphome">
 <!--        <el-dropdown>-->
 <!--          <span class="el-dropdown-link">-->
@@ -27,15 +29,13 @@
               <el-radio v-model="radio" @change="switchLang" label="en">{{$t('common.lang-en')}}</el-radio>
             </div>
             <br>
-<!--            <el-tooltip class="item" effect="dark" content="点击打开日历" placement="right">-->
-<!--              <el-button type="text" @click="innerDrawer = true" style="margin-left: 20px;font-size: 16px;font-weight: normal">{{$t('common.calendar')}}</el-button>-->
-<!--            </el-tooltip>-->
             <div class="calendar-style">
               <p>{{$t('common.calendar')}}</p>
               <el-tooltip class="item" effect="dark" content="点击打开日历" placement="right">
                 <el-button type="text" icon="el-icon-date" @click="innerDrawer = true" style="font-size: 20px"></el-button>
               </el-tooltip>
             </div>
+            <br>
             <div class="color-style">
               <p>{{$t('common.color')}}</p>
               <el-color-picker
@@ -53,6 +53,14 @@
                <el-calendar v-model="value">
                </el-calendar>
              </el-drawer>
+             <br>
+             <div class="langSelect">
+              <p>{{$t('common.canvas')}}</p>
+              <el-switch
+                @change="changeCanvas"
+                v-model="canvasNest">
+              </el-switch>
+            </div>
           </el-drawer>
         </div>
 <!--        <img src="../assets/logo.png">-->
@@ -87,6 +95,7 @@
             drawer: false,
             innerDrawer: false,
             direction: 'rtl',
+            canvasNest: this.$store.state.Canvas,
             radio: this.$i18n.locale,
             value: new Date(),
             color1: '#4D4D4D',
@@ -134,6 +143,9 @@
           }
         },
         methods: {
+          changeCanvas() {
+            this.$store.state.Canvas = this.canvasNest;
+          },
           handleClose(done) {
             this.$confirm(this.$t('common.Love.close'))
               .then(_ => {

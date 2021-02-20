@@ -18,6 +18,7 @@ const en = {
     "setting": "Setting",
     "calendar": "Calendar",
     "color": "Color",
+    "canvas": "Canvas-Nest",
     "autograph-left": "rain",
     "autograph-middle": "house",
     "autograph-right": "vert",
