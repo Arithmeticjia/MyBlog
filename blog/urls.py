@@ -65,6 +65,7 @@ urlpatterns = [
     url(r'^searchfile/$', views.searchfile),
     url(r'^getallarticle/$', views.get_article_all),
     url(r'^getsinglearticle/(?P<article_id>[0-9]+)/$', views.get_article_single),
+    url(r'^single-article/(?P<rand_id>[A-Za-z0-9]+)/$', views.single_article),
     url(r'^getallcategory/$', views.get_categroy_all),
     url(r'^getcategoryarticles/(.+)/$', views.get_article_category),
     url(r'^gettagarticles/(.+)/$', views.get_article_tag),

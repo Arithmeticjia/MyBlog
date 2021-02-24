@@ -10,6 +10,8 @@ from uuslug import slugify
 import markdown
 from markdown.extensions.toc import TocExtension
 import re
+import random
+import string
 from django.conf import settings
 from datetime import date
 
@@ -93,11 +95,11 @@ class Articles(models.Model):
     status = models.CharField(max_length=20, default="DEL")
     brief = models.CharField(max_length=200, blank=True, null=True)
     pic = models.ImageField(upload_to='jiablogimages')
-    # bodypic = models.ImageField(upload_to='jiablogimages', blank=True, null=True)
     istop = models.CharField(max_length=5, default='', null=True, blank=True)
     articlebodybrief = models.TextField(blank=True, null=True)
     last_edit_timestamp = models.DateTimeField(auto_now=True, verbose_name="更新时间", editable=True)
     url_slug = models.SlugField(editable=False, max_length=200)
+    rand_id = models.CharField(max_length=8, default=''.join(random.sample(string.ascii_letters + string.digits, 8)))
 
     pic_800_450 = ImageSpecField(
         source="pic",

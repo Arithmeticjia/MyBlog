@@ -2152,6 +2152,52 @@ def get_article_single(request, article_id):
     return HttpResponse(json.dumps(response, ensure_ascii=False))
 
 
+@require_http_methods(["GET"])
+def single_article(request, rand_id):
+    response = {}
+    next_article_title = ""
+    prev_article_title = ""
+    next_article_id = 0
+    prev_article_id = 0
+    try:
+        article_id = Articles.objects.get(status="有效", rand_id=rand_id).id
+        article = Articles.objects.filter(status="有效").filter(rand_id=rand_id)
+        try:
+            prev_article_id = Articles.objects.filter(r__lt=article_id, status='有效').last().id
+            prev_article_title = Articles.objects.get(id=prev_article_id).title
+        except Exception as e:
+            response['msg'] = str(e)
+            response['error_num'] = 1
+        try:
+            next_article_id = Articles.objects.filter(id__gt=article_id, status='有效').first().id
+            next_article_title = Articles.objects.get(id=next_article_id).title
+        except Exception as e:
+            response['msg'] = str(e)
+            response['error_num'] = 1
+        single_article = get_object_or_404(Articles, id=article_id, status="有效")
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            # 'markdown.extensions.toc',
+            TocExtension(slugify=slugify)
+        ])
+        single_article.body = md.convert(single_article.body)
+        single_article.body = single_article.body.replace("/media", "https://www.guanacossj.com/media")
+        response['list'] = json.loads(
+            core_serializers.serialize("json", article, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['msg'] = 'success'
+        response['markdown'] = single_article.body
+        response['error_num'] = 0
+        response['prev_article_title'] = prev_article_title
+        response['next_article_title'] = next_article_title
+        response['prev_article_id'] = prev_article_id
+        response['next_article_id'] = next_article_id
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return HttpResponse(json.dumps(response, ensure_ascii=False))
+
+
 class JiaIndex(View):
     def get(self, request):
         blog_lists = Articles.objects.filter(status="有效").order_by("-timestamp")[0:9]  # 获取所有数据
