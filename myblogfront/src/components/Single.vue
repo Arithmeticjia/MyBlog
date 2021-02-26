@@ -231,6 +231,51 @@ let rendererMD = new marked.Renderer();
                 }
               })
           },
+          getSingleBlog () {
+            sessionStorage.setItem("detail", true);
+            this.$http.get('https://www.guanacossj.com/blog/single-article/' + this.$route.params.rand_id,{
+                _timeout:5000,
+                onTimeout :(request) => {
+                    this.$message.error({
+                      message: this.$t('common.timeout'),
+                      center: true
+                    });
+                    this.loading = false
+                  }
+                }).then((response) => {
+                var res = JSON.parse(response.bodyText);
+                if (res.error_num === 0) {
+                  this.tags = res['list'][0]['fields']['tags'];
+                  this.loading = false;
+                  this.markdownhtml = res.markdown;
+                  this.html = res['list'][0].fields.body;
+                  if (res.prev_article_title !== ""){
+                    this.prev_article_id = res.prev_article_id;
+                    this.prev_article_title = res.prev_article_title;
+                  }else {
+                    this.prev_article_title = "已经是第一篇了"
+                  }
+                  if (res.next_article_title !== ""){
+                    this.next_article_id = res.next_article_id;
+                    this.next_article_title = res.next_article_title;
+                  }else {
+                    this.next_article_title = "已经是最后一篇了"
+                  }
+                  this.singleBlog = res['list'];
+                  document.title = res['list'][0].fields.title;
+                  this.navList = this.handleNavTree();
+                  if(this.navList.length === 0) {
+                    this.navList[0] = {
+                      title: "此页目录为空",
+                      children: new Array(1)['length'] = 0
+                    };
+                  }
+                  this.getDocsFirstLevels(0);
+                } else {
+                  this.$message.error('查询博客详情失败');
+                }
+              })
+          },
           childrenCurrentClick(index) {
             this.childrenActiveIndex = index;
           },
