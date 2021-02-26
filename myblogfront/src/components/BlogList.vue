@@ -49,14 +49,14 @@
         :default-sort = "{prop: 'date', order: 'ascending'}"
         :data="blogList.slice((currentPage-1)*pageSize,currentPage*pageSize)"
       >
-        <el-table-column prop="date" :label="$t('common.table.post-id')" width="50">
-          <template slot-scope="scope"> {{ scope.row.pk }} </template>
+        <el-table-column prop="date" :label="$t('common.table.post-id')" width="100">
+          <template slot-scope="scope"> {{ scope.row.fields.rand_id }} </template>
         </el-table-column>
         <el-table-column prop="address" :label="$t('common.table.post-time')" sortable width="160">
           <template slot-scope="scope"> {{ scope.row.fields.timestamp | formatDate }} </template>
         </el-table-column>
         <el-table-column prop="name" :label="$t('common.table.post-title')" width="300">
-          <template slot-scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/post/'+ scope.row.pk"> {{ scope.row.fields.title }}</router-link></template>
+          <template slot-scope="scope"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/post/'+ scope.row.fields.rand_id"> {{ scope.row.fields.title }}</router-link></template>
         </el-table-column>
         <el-table-column prop="address" :label="$t('common.table.post-category')" width="100">
           <template slot-scope="scope"> <router-link style="color: #4D4D4D;text-decoration: none" :to="'/category/' + scope.row.fields.category"> {{ scope.row.fields.category }}</router-link> </template>

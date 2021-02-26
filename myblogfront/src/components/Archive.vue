@@ -22,7 +22,7 @@
               <el-col :span="20">
                 <i type="button" class="el-icon-share" style="float: right;cursor:pointer;margin-right: -30px" @click="share(value.pk)"></i>
                 <div class="grid-content bg-puprple-light">
-                  <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/post'+ '/' + value.pk">{{ value.fields.title }}</a></h1>
+                  <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/post'+ '/' + value.fields.rand_id">{{ value.fields.title }}</a></h1>
                   <div>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-date"></i> 发表于：{{ value.fields.timestamp | formatDate }}</span>
                     <el-divider direction="vertical"></el-divider>
@@ -31,7 +31,7 @@
                   <br>
                   <p style="font-size: 17px">{{ value.fields.body.substring(0,100)+'......' }}</p>
                   <br>
-                  <el-button style="border-radius: 0;" size="medium"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/post'+ '/' + value.pk">{{$t('common.Archive.read-more')}} >></router-link></el-button>
+                  <el-button style="border-radius: 0;" size="medium"><router-link style="color: #4D4D4D;text-decoration: none" :to="'/post'+ '/' + value.fields.rand_id">{{$t('common.Archive.read-more')}} >></router-link></el-button>
                 </div>
                 <br>
               </el-col>

@@ -138,7 +138,11 @@ let rendererMD = new marked.Renderer();
           '$route':'showSingleBlog'
         },
         mounted: function () {
-          this.showSingleBlog();
+          if(this.$route.params.id.length !== 8) {
+            this.showSingleBlog();
+          }else {
+            this.getSingleBlog();
+          }
         },
         filters: {
 	        /*
@@ -233,7 +237,7 @@ let rendererMD = new marked.Renderer();
           },
           getSingleBlog () {
             sessionStorage.setItem("detail", true);
-            this.$http.get('https://www.guanacossj.com/blog/single-article/' + this.$route.params.rand_id,{
+            this.$http.get('https://www.guanacossj.com/blog/single-article/' + this.$route.params.id,{
                 _timeout:5000,
                 onTimeout :(request) => {
                     this.$message.error({
