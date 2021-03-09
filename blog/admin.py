@@ -1,6 +1,7 @@
 from django.contrib import admin
 from . import models
 from mdeditor.widgets import MDEditorWidget
+from django.contrib.admin.models import LogEntry
 
 
 class BlogsPostAdmin(admin.ModelAdmin):
@@ -9,6 +10,10 @@ class BlogsPostAdmin(admin.ModelAdmin):
     }
     search_fields = ('title', 'body')
     list_display = ['title', 'id', 'body', 'timestamp', 'authorname']
+
+
+class LogEntryAdmin(admin.ModelAdmin):
+    list_display = ('content_type', 'user', 'action_time')
 
 
 admin.site.register(models.Articles, BlogsPostAdmin)
@@ -43,5 +48,6 @@ admin.site.register(models.Jia)
 admin.site.register(models.BlogUserCollect)
 admin.site.register(models.Hits)
 admin.site.register(models.LoveFZY)
+admin.site.register(LogEntry, LogEntryAdmin)
 
 # Register your models here.
