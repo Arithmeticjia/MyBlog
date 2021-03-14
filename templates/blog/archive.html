@@ -200,7 +200,7 @@
                                         </header>
                                 {% for i in contacts %}
                                         {#<hr style="height:2px;border:none;border-top:3px double black;" />#}
-                                        <div class="comment-form" style="border-top: 1px solid #f1f1f1;"><h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" style="color: #f5ab35;font-size:18px;text-decoration: none;" target="_blank">{{ i.title }}</a></h4>
+                                        <div class="comment-form" style="border-top: 1px solid #f1f1f1;"><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" style="text-decoration: none;" target="_blank"><h4 style="color: #f5ab35;font-size:18px;">{{ i.title }}</h4></a>
                                             <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.articlebodybrief|slice:"100"|safe}}</p>
                                             <p style="color:rgba(30,30,30,0.85);font-weight: bold;font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif">{{ i.timestamp }}&nbsp;&nbsp;&nbsp;&nbsp;views:&nbsp;&nbsp;{{ i.views }}&nbsp;&nbsp;&nbsp;&nbsp;comments:&nbsp;&nbsp;{{ i.all_comments.count }}&nbsp;&nbsp;&nbsp;&nbsp;greats:&nbsp;&nbsp;{{ i.greats }}</p>
                                         </div>
