@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<!-- set the encoding of your site -->
@@ -420,7 +420,7 @@
                                     var title = document.getElementById("title").value;
                                     var content = document.getElementById("message").value;
                                     var regu = "^(([0-9a-zA-Z]+)|([0-9a-zA-Z]+[_.0-9a-zA-Z-]*[0-9a-zA-Z]+))@([a-zA-Z0-9-]+[.])+([a-zA-Z]{2}|net|NET|com|COM|gov|GOV|mil|MIL|org|ORG|edu|EDU|int|INT)$";
-                                    if( author == ''){
+                                    if( author === ''){
                                         swal(
                                             'name不能为空！',
                                             '',
@@ -428,14 +428,14 @@
                                         );
                                         return false;
                                     }
-                                    if( email == ''){
+                                    if( email === ''){
                                         swal(
                                             'email不能为空！',
                                             '',
                                             'warning'
                                         );
                                         return false;
-                                    } else if (email.search(regu)== -1) {
+                                    } else if (email.search(regu) === -1) {
                                         swal(
                                             "请输入有效合法的E-mail地址 ！",
                                             '',
@@ -443,7 +443,7 @@
                                         );
                                         return false;
                                     }
-                                    else if (title == ''){
+                                    else if (title === ''){
                                         swal(
                                             'title不能为空！',
                                             '',
@@ -451,7 +451,7 @@
                                         );
                                         return false;
                                     }
-                                    else if (content == ''){
+                                    else if (content === ''){
                                         swal(
                                             'message不能为空！',
                                             '',
@@ -469,11 +469,11 @@
                                         },
                                         success: function (data) {
                                             $('#messageform')[0].reset();
-                                            var username = data.username;
-                                            var content = data.content;
-                                            var created_time = data.time;
-                                            var messpic = data.messpic;
-                                            var s = `<div class="commentlist-item">
+                                            const username = data.username;
+                                            const content = data.content;
+                                            const created_time = data.time;
+                                            const messpic = data.messpic;
+                                            const s = `<div class="commentlist-item">
 										<div class="comment even thread-even depth-1" id="comment-1">
 											<div class="avatar-holder">
 												<img alt="image description" src="${messpic}" class="avatar avatar-48 photo avatar-default">
@@ -481,9 +481,9 @@
 											<div class="commentlist-holder">
 												<p class="meta">
 													<strong class="name"><a href="#">${username}</a></strong>
-													<a href="#"><time datetime="2011-01-12">${ created_time }</time></a>
+													<a href="#"><time datetime="2011-01-12">${created_time}</time></a>
 												</p>
-												<p>${ content }</p>
+												<p>${content}</p>
 												<p><a class="comment-reply-link" href="#" onclick="return addComment.moveForm(&quot;comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;1&quot;)">REPLY</a></p>
 											</div>
 										</div>
@@ -534,44 +534,44 @@
                                 <div class="widget tel-widget version-ii contact-widget wow fadeInUp" data-wow-delay="0.6s">
 									<p>
 {#                                        {% for i in users %}#}
-										<span class="iconfont icon-yonghu"></span><a href="javascript:void(0);">{{ users }}</a>
+										<span class="iconfont icon-yonghu" style="vertical-align: middle"><a href="javascript:void(0);" style="font-size: 14px">{{ users }}</a></span>
 										<br>
 {#                                        {% endfor %}#}
 {#                                        {% for i in articles %}#}
-                                        <span class="iconfont icon-wenzhang"></span><a href="/blog/list" target="_blank">{{ articles }}</a>
+                                        <span class="iconfont icon-wenzhang" style="vertical-align: middle"><a href="/blog/list" target="_blank" style="font-size: 14px">{{ articles }}</a></span>
                                         <br>
 {#                                        {% endfor %}#}
 {#                                        {% for i in allvisits %}#}
-                                        <span class="iconfont icon-jiaoyinzujifangke"></span><a href="javascript:void(0);">{{ visits }}</a>
+                                        <span class="iconfont icon-jiaoyinzujifangke" style="vertical-align: middle"><a href="javascript:void(0);" style="font-size: 14px">{{ visits }}</a></span>
                                         <br>
 {#                                        {% endfor %}#}
 									</p>
 								</div>
                                 <div class="widget tel-widget version-ii contact-widget wow fadeInUp" data-wow-delay="0.6s">
 									<p>
-										<span class="iconfont icon-zhuye1"></span><a href="http://www.guanacossj.com" target="_blank">ArithmeticJia</a>
+										<span class="iconfont icon-zhuye1" style="vertical-align: middle"><a href="http://www.guanacossj.com" target="_blank" style="font-size: 14px">ArithmeticJia</a></span>
 										<br>
-                                        <span class="iconfont icon-github"></span><a href="https://github.com/Arithmeticjia/MyBlog" target="_blank">Github</a>
+                                        <span class="iconfont icon-github" style="vertical-align: middle"><a href="https://github.com/Arithmeticjia/MyBlog" target="_blank" style="font-size: 14px">GitHub</a></span>
                                         <br>
-                                        <span class="iconfont icon-csdn"></span><a href="https://blog.csdn.net/ssjdoudou" target="_blank">CSDN</a>
+                                        <span class="iconfont icon-csdn" style="vertical-align: middle"><a href="https://blog.csdn.net/ssjdoudou" target="_blank" style="font-size: 14px">CSDN</a></span>
                                         <br>
 									</p>
 								</div>
                                 <div class="widget tel-widget version-ii contact-widget wow fadeInUp" data-wow-delay="0.6s">
 									<p>
-										<span class="iconfont icon-zhiyuandidian"></span><a href="javascript:void(0);">Nanjing, Jiangsu, China</a>
+										<span class="iconfont icon-zhiyuandidian" style="vertical-align: middle"><a href="javascript:void(0);" style="font-size: 14px">Nanjing, Jiangsu, China</a></span>
 										<br>
-                                        <span class="iconfont icon-xuexiao"></span><a href="http://www.njupt.edu.cn/" target="_blank">NJUPT</a>
+                                        <span class="iconfont icon-xuexiao" style="vertical-align: middle"><a href="http://www.njupt.edu.cn/" target="_blank" style="font-size: 14px">NJUPT</a></span>
                                         <br>
 									</p>
 								</div>
 								<div class="widget tel-widget version-ii contact-widget wow fadeInUp" data-wow-delay="0.6s">
 									<p>
-										<span class="iconfont icon-youxiang"></span><a href="mailto:&#49;&#53;&#50;&#52;&#49;&#50;&#54;&#52;&#51;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#49;&#53;&#50;&#52;&#49;&#50;&#54;&#52;&#51;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a>
+										<span class="iconfont icon-youxiang" style="vertical-align: middle"><a href="mailto:&#49;&#53;&#50;&#52;&#49;&#50;&#54;&#52;&#51;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;" style="font-size: 14px">&#49;&#53;&#50;&#52;&#49;&#50;&#54;&#52;&#51;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a></span>
 										<br>
-										<span class="iconfont icon-houshinianshoujihao"></span><a href="tel:+0034524325">+183-519-22995</a>
+										<span class="iconfont icon-houshinianshoujihao" style="vertical-align: middle"><a href="tel:+0034524325" style="font-size: 14px">+183-519-22995</a></span>
                                         <br>
-                                        <span class="iconfont icon-weixin" ></span><a href="javascript:void(0);" onclick="mywechat()">wechat</a>
+                                        <span class="iconfont icon-weixin" style="vertical-align: middle"><a href="javascript:void(0);" onclick="mywechat()" style="font-size: 14px">wechat</a></span>
                                         <script>
                                             function mywechat() {
                                                 swal({
