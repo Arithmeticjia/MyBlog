@@ -47,6 +47,7 @@ if settings.DEBUG:
         url(r'^accounts/', include('django.contrib.auth.urls')),
         url(r'^auth/', include('commonauth.urls')),
         path('comment/', include('comment.urls', namespace='comment')),
+        path('log/', include('rtlog.urls', namespace='rtlog')),
         # url(r'^oauth/', include('social_django.urls', namespace='social')),
         # url(r'^search/', include('haystack.urls')),                       # old way
         # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
@@ -76,3 +77,6 @@ else:
         url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
         url(r'^media/(?P<path>.*)$',  serve, {"document_root": settings.MEDIA_ROOT}),
     ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler500 = 'blog.common.page_error'
+handler404 = 'blog.common.page_not_found'
