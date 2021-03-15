@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'rtlog/base.html' %}
 
 {% block title %}
     <title>文件列表</title>
@@ -61,7 +61,7 @@
                         {% else %}
 
                             {% if item.view == '1' %}
-                                <a href="/view_log/{{ herf_prefix }}&file_name={{ item.name }}" target="_blank"
+                                <a href="/log/view_log/{{ herf_prefix }}&file_name={{ item.name }}" target="_blank"
                                class="btn btn-info download" file_name="{{ dir }}/{{ item.name }}">查看</a>
                             {% endif %}
                             <a href="/download/{{ herf_prefix }}&file_name={{ item.name }}"

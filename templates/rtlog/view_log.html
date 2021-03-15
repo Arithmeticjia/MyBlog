@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'rtlog/base.html' %}
 
 {% block title %}
     <title>首页</title>
@@ -44,7 +44,7 @@
             let dir = $('#logs_dir').val();
             let file_name = $('#logs_file_name').val();
             $.ajax({  //发送ajax请求
-                url: '/close_log/',
+                url: '/log/close_log/',
                 type: "post",
                 data: {
                     'ip': ip,
@@ -74,7 +74,7 @@
             let ip = $('#logs_ip').val();
             let dir = $('#logs_dir').val();
             let file_name = $('#logs_file_name').val();
-            var socket = new WebSocket("ws://" + window.location.host + "/real_time_log/?ip=" + ip + "&dir=" + dir + "&file_name=" + file_name);
+            var socket = new WebSocket("ws://" + window.location.host + "/log/real_time_log/?ip=" + ip + "&dir=" + dir + "&file_name=" + file_name);
             console.log(socket);
             // 打开连接
             socket.onopen = function () {
@@ -120,7 +120,7 @@
             let dir = $('#logs_dir').val();
             let file_name = $('#logs_file_name').val();
             $.ajax({  //发送ajax请求
-                url: '/close_log/',
+                url: '/log/close_log/',
                 type: "post",
                 data: {
                     'ip': ip,

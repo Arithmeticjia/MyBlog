@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'rtlog/base.html' %}
 
 {% block title %}
     <title>首页</title>
@@ -37,7 +37,7 @@
                     <td class="ipaddr">{{ item.ipaddr }}</td>
                     <td>{{ item.create_time|date:'Y-n-d H:i:s' }}</td>
                     <td>
-                        <a href="view_dir?ip={{ item.ipaddr }}" class="btn btn-primary">进入</a>
+                        <a href="/log/view_dir?ip={{ item.ipaddr }}" class="btn btn-primary">进入</a>
                         {% if request.session.role == 1 %}
                             <button type="button" class="btn btn-info change_host" hostname="{{ item.ipaddr }}"
                                     data-toggle="modal"
