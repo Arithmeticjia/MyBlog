@@ -12,8 +12,6 @@ from markdown.extensions.toc import TocExtension
 import re
 import random
 import string
-from django.conf import settings
-from datetime import date
 
 '''class UserInfo(AbstractUser):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)'''
