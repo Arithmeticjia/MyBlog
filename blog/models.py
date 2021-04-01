@@ -99,7 +99,7 @@ class Articles(models.Model):
     articlebodybrief = models.TextField(blank=True, null=True)
     last_edit_timestamp = models.DateTimeField(auto_now=True, verbose_name="更新时间", editable=True)
     url_slug = models.SlugField(editable=False, max_length=200)
-    rand_id = models.CharField(max_length=8, default=''.join(random.sample(string.ascii_letters + string.digits, 8)))
+    rand_id = models.CharField(max_length=8, default="1a2b3c4d")
 
     pic_800_450 = ImageSpecField(
         source="pic",
@@ -129,6 +129,7 @@ class Articles(models.Model):
 
     def save(self, *args, **kwargs):
         self.url_slug = slugify(self.title)
+        self.rand_id = ''.join(random.sample(string.ascii_letters + string.digits, 8))
         super(Articles, self).save(*args, **kwargs)
 
     @property
