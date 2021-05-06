@@ -20,7 +20,7 @@
           <div class="input_search">
             <el-input
 	            clearable
-              @change="resetTable"
+              @visible-change="resetTable"
               type="text"
               v-model="searchInfo"
               prefix-icon="el-icon-search"
@@ -172,7 +172,7 @@
                 message: this.$t('common.warning.queryEmpty')});
               return;
             }
-            this.filterTableDataEnd=[];
+            this.filterTableDataEnd = [];
             this.originblogList.forEach((value, index) => {
               if(value.fields.title){
                 if(value.fields.title.indexOf(this.searchInfo)>=0){
@@ -181,12 +181,12 @@
               }
             });
             //页面数据改变重新统计数据数量和当前页
-             this.currentPage=1;
-             this.totalItems=this.filterTableDataEnd.length;
+             this.currentPage = 1;
+             this.totalItems = this.filterTableDataEnd.length;
              //渲染表格,根据值
              this.currentChangePage(this.filterTableDataEnd);
              //页面初始化数据需要判断是否检索过
-             this.flag=true
+             this.flag = true
           },
           handleSizeChange(val) {
              this.pageSize = val;
@@ -233,9 +233,6 @@
           },
           skip(url){
             window.open(url, '_blank')
-          },
-          skiplocal(url){
-            location.href = url
           },
           showBlogs () {
             this.$http.get('https://www.guanacossj.com/blog/getallarticle/',{
