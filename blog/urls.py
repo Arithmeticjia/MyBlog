@@ -6,10 +6,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 app_name = 'blog'
 
-# 定义restfulapi的路由地址
+# 定义restful的路由地址
 router = routers.DefaultRouter()
 
-# 注册restfulapi的路由地址
+# 注册restful的路由地址
 router.register(r'getarticleinfo', views.GetArticleInfo)
 router.register(r'posts', views.PostViewSet, basename='post')
 router.register(r"search", views.PostSearchView, basename="search")
@@ -20,7 +20,7 @@ urlpatterns = [
     path('api/index/', views.IndexPostListAPIView.as_view()),
     # path('api/single/', views.PostViewSet.as_view({'get': 'retrieve'})),
     path('api/auth/', include("rest_framework.urls", namespace="rest_framework")),
-    url(r'^search/', views.MySeachView(), name='haystack_search'),
+    url(r'^search/', views.MySearchView(), name='haystack_search'),
     url(r'^index/$', views.blog_index),
     url(r'^article/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.blog_info, name='article'),
     url(r'^list/$', views.blog_list),

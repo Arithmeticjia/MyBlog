@@ -234,10 +234,10 @@ class PostSearchView(HaystackViewSet):
     serializer_class = ArticleHaystackSerializer
 
 
-class MySeachView(SearchView):
+class MySearchView(SearchView):
     # 重载extra_context来添加额外的context内容
     def extra_context(self):
-        context = super(MySeachView, self).extra_context()
+        context = super(MySearchView, self).extra_context()
         categorys = Category.objects.all()
         blog_list_greats = Articles.objects.filter(status="有效").order_by('-greats')[0:10]
         blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
