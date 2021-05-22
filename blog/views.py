@@ -2055,7 +2055,6 @@ def get_article_all(request):
 
 @require_http_methods(["GET"])
 def get_categroy_all(request):
-
     category_list = Category.objects.values('name').annotate(
         num_articles=Count('articles'))
     data = {}
@@ -2368,4 +2367,30 @@ class PostLoveFZYInfo(APIView):
             serializer.save()
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
+
+
+def show_tags(request):
+    response = {}
+    tag_list = Tag.objects.annotate(num_posts=Count('articles')).filter(num_posts__gt=0)
+    response["data"] = json.loads(
+        core_serializers.serialize("json", tag_list, ensure_ascii=False))
+    return HttpResponse(json.dumps(response, ensure_ascii=False))
+
+
+@csrf_exempt
+def upload_resumes(request):
+    data = {}
+    if request.method == "POST":
+        form = request.FILES.get("file", None)
+        file_obj = models.JiaFile(file_name=form.name, file_url='media/resume/' + form.name, file_status=1)
+        file_obj.save()
+        destination = open(os.path.join("media/resume", form.name), 'wb')  # 打开特定的文件进行二进制的写操作
+        for chunk in form.chunks():  # 分块写入文件
+            destination.write(chunk)
+        destination.close()
+        data['result'] = 'success'
+        return HttpResponse(json.dumps(data), content_type='application/json')
+    else:
+        data['result'] = 'fail'
+        return HttpResponse(json.dumps(data), content_type='application/json')
 

@@ -24,6 +24,10 @@ const zh = {
     "Archive": {
       "read-more": "阅读全文",
     },
+    "Notice": {
+      "success": "上传成功",
+      "fail": "上传失败"
+    },
     "Login": {
       "login": "登录",
       "logout": "登出",

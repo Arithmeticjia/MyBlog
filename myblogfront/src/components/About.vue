@@ -26,11 +26,12 @@
                     <el-upload
                       class="upload-demo"
                       drag
-                      action="https://www.guanacossj.com/blog/ajfileupload/"
+                      action="https://www.guanacossj.com/blog/api/upload/resumes/"
                       multiple
                       :limit="3"
                       :show-file-list="false"
                       :on-exceed="handleExceed"
+                      :onSuccess="uploadSuccess"
                       :file-list="fileList">
                       <i class="el-icon-upload"></i>
                       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -390,6 +391,20 @@
           document.title = '请叫我算术嘉の博客 | ' + this.$t('common.about');
         },
         methods: {
+          // 上传成功后的回调
+          uploadSuccess (response, file, fileList) {
+            this.$message.success({
+                message: this.$t('common.Notice.success'),
+                center: true
+            });
+          },
+          // 上传错误
+          uploadError (response, file, fileList) {
+            this.$message.error({
+                message: this.$t('common.Notice.fail'),
+                center: true
+            });
+          },
           downloadFile(row) {
             // downLoad({ fileName: row.url }).then((res) => {
             //   if (res.code == 200) {

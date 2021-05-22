@@ -79,4 +79,6 @@ urlpatterns = [
     url(r'^getlovefzydown/$', views.GetLoveFZYDownList.as_view()),
     url(r'^postlovefzy/$', views.PostLoveFZYInfo.as_view()),
     url(r'^getlovefzytimeline/$', views.GetLoveFZYTimeline.as_view()),
+    url(r'^tags/$', views.show_tags),
+    url(r'^api/upload/resumes/$', views.upload_resumes),
 ]
