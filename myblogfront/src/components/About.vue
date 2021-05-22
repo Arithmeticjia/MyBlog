@@ -21,6 +21,32 @@
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
                 <div class="grid-content bg-puprple-light">
+                  <h2>{{$t('common.About.resume')}}</h2>
+                  <div class="me">
+                    <el-upload
+                      class="upload-demo"
+                      drag
+                      action="https://www.guanacossj.com/blog/ajfileupload/"
+                      multiple
+                      :limit="3"
+                      :show-file-list="false"
+                      :on-exceed="handleExceed"
+                      :file-list="fileList">
+                      <i class="el-icon-upload"></i>
+                      <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                      <div class="el-upload__tip" slot="tip">只能上传jpg/png/pdf文件，且不超过500kb</div>
+                    </el-upload>
+                    <br>
+                    <el-link icon="el-icon-document" type="primary" style="margin-right:10px" v-for="item in fileList" :href=item.url>{{ item.name }}</el-link>
+                  </div>
+                </div>
+              </el-col>
+            </el-row>
+        </div>
+        <div class="grid-content bg-puprple-light">
+            <el-row type="flex" class="row-bg" justify="space-around">
+              <el-col :span="20">
+                <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.About.information')}}</h2>
                   <div class="me">
                     <p>姓名：单沙嘉（Shàn shājiā）</p>
@@ -106,6 +132,10 @@
         data () {
           return {
             reverse: true,
+            fileList: [{
+              name: '单沙嘉的简历.pdf',
+              url: 'https://www.guanacossj.com/media/resume/%E5%8D%95%E6%B2%99%E5%98%89%E7%9A%84%E7%AE%80%E5%8E%86.pdf'
+            }],
             activities: [{
               content: '活动按期开始',
               timestamp: '2018-04-15'
@@ -360,6 +390,13 @@
           document.title = '请叫我算术嘉の博客 | ' + this.$t('common.about');
         },
         methods: {
+          downloadFile(row) {
+            // downLoad({ fileName: row.url }).then((res) => {
+            //   if (res.code == 200) {
+            //     window.open(res.msg);
+            //   }
+            // });
+          },
           skip(url){
            window.open(url, target='_blank')
           },
@@ -372,6 +409,18 @@
           },
           skiplocal(url){
             location.href = url
+          },
+          handleRemove(file, fileList) {
+            console.log(file, fileList);
+          },
+          handlePreview(file) {
+            console.log(file);
+          },
+          handleExceed(files, fileList) {
+            this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+          },
+          beforeRemove(file, fileList) {
+            return this.$confirm(`确定移除 ${ file.name }？`);
           },
           initChart() {
           let chart = echarts.init(document.getElementById("mywordcloud"));

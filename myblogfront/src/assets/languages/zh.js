@@ -12,7 +12,8 @@ const zh = {
       "information": "基本信息",
       "contact": "联系方式",
       "profession": "专业技能",
-      "hobby": "兴趣爱好"
+      "hobby": "兴趣爱好",
+      "resume": "我的简历",
     },
     "Single": {
       "donate": "打赏"
