@@ -32,7 +32,8 @@ const en = {
     "Archive": {
       "read-more": "Read More",
     },
-    "notice": {
+    "Upload": {
+      "authFail": "No Upload Auth",
       "success": "Upload Success",
       "fail": "Upload Fail"
     },

@@ -30,6 +30,7 @@
                       multiple
                       :limit="3"
                       :show-file-list="false"
+                      :before-upload="handleBeforeUpload"
                       :on-exceed="handleExceed"
                       :onSuccess="uploadSuccess"
                       :file-list="fileList">
@@ -122,16 +123,19 @@
 </template>
 
 <script>
-  import echarts from "echarts";
-  import "echarts-wordcloud/dist/echarts-wordcloud";
-  import "echarts-wordcloud/dist/echarts-wordcloud.min";
-  import Menu from "./Menu";
-  import NewMenu from "./NewMenu";
-    export default {
+import echarts from "echarts";
+import "echarts-wordcloud/dist/echarts-wordcloud";
+import "echarts-wordcloud/dist/echarts-wordcloud.min";
+import Menu from "./Menu";
+import NewMenu from "./NewMenu";
+import axios from "_axios@0.21.1@axios";
+
+export default {
         name: "About",
         components: {NewMenu, Menu },
         data () {
           return {
+            loginFlag: false,
             reverse: true,
             fileList: [{
               name: '单沙嘉的简历.pdf',
@@ -388,20 +392,21 @@
           }
         },
         mounted(){
+          this.checkLogin();
           document.title = '请叫我算术嘉の博客 | ' + this.$t('common.about');
         },
         methods: {
           // 上传成功后的回调
           uploadSuccess (response, file, fileList) {
             this.$message.success({
-                message: this.$t('common.Notice.success'),
+                message: this.$t('common.Upload.success'),
                 center: true
             });
           },
           // 上传错误
           uploadError (response, file, fileList) {
             this.$message.error({
-                message: this.$t('common.Notice.fail'),
+                message: this.$t('common.Upload.fail'),
                 center: true
             });
           },
@@ -412,9 +417,6 @@
             //   }
             // });
           },
-          skip(url){
-           window.open(url, target='_blank')
-          },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
             sessionStorage.setItem('lang', val);
@@ -422,8 +424,33 @@
           handleOpen(key, keyPath) {
             console.log(key, keyPath);
           },
-          skiplocal(url){
-            location.href = url
+          handleBeforeUpload() {
+            this.checkLogin();
+            if(this.loginFlag) {
+              return true
+            } else {
+              this.$message.error({
+                message: this.$t('common.Upload.authFail'),
+                center: true,
+                onClose: ()=> {
+                  this.$router.push({
+                    path: "/login",
+                  })
+                }
+              });
+              return false
+            }
+          },
+          checkLogin() {
+            axios.get("https://yun.guanacossj.com/yunprophet/api/v1/check-login", {
+              headers: {
+                'token': localStorage.getItem('Authorization')
+              }
+            }).then((res) => {
+              if(res.data.code === 200) {
+                this.loginFlag = true
+              }
+            });
           },
           handleRemove(file, fileList) {
             console.log(file, fileList);

@@ -24,7 +24,8 @@ const zh = {
     "Archive": {
       "read-more": "阅读全文",
     },
-    "Notice": {
+    "Upload": {
+      "authFail": "无上传权限",
       "success": "上传成功",
       "fail": "上传失败"
     },
