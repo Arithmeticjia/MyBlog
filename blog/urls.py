@@ -62,7 +62,7 @@ urlpatterns = [
     url(r'^collect/$', views.collect),
     url(r'^comments/(?P<article_id>[0-9]+)$', views.comments),
     url(r'^rss/$', views.RssFeed(), name='rss'),
-    url(r'^searchfile/$', views.searchfile),
+    url(r'^searchfile/$', views.search_file),
     url(r'^getallarticle/$', views.get_article_all),
     url(r'^getsinglearticle/(?P<article_id>[0-9]+)/$', views.get_article_single),
     url(r'^single-article/(?P<rand_id>[A-Za-z0-9]+)/$', views.single_article),

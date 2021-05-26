@@ -1990,7 +1990,7 @@ class RssFeed(Feed):
         return reverse('blog:article', args=(item.id, item.url_slug))
 
 
-def searchfile(request):
+def search_file(request):
     q = request.GET.get('q')
     error_msg = ''
     if not q:
@@ -2005,7 +2005,7 @@ def searchfile(request):
         try:
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2_from = oauth2login.provider
-        except:
+        except Exception as e:
             # oauth2_name = ' '
             oauth2_from = 'Django'
     file_name = []
@@ -2397,3 +2397,6 @@ def upload_resumes(request):
         data['result'] = 'fail'
         return HttpResponse(json.dumps(data), content_type='application/json')
 
+
+def love_fzy(request):
+    return render_to_response("lovepic.html")
