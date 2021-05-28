@@ -39,7 +39,7 @@
                       <div class="el-upload__tip" slot="tip">只能上传jpg/png/pdf文件，且不超过500kb</div>
                     </el-upload>
                     <br>
-                    <el-link icon="el-icon-document" type="primary" style="margin-right:10px" v-for="item in fileList" :href=item.url>{{ item.name }}</el-link>
+                    <el-link icon="el-icon-document" type="primary" style="margin-right:10px" v-for="(item, index) in fileList" :key="index" :href=item.url>{{ item.name }}</el-link>
                   </div>
                 </div>
               </el-col>

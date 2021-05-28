@@ -111,7 +111,7 @@
             totalItems: 0,
             pageSize: 20,
             blogList: [],
-            originblogList: [],
+            originBlogList: [],
             searchInfo: '',
             filterTableDataEnd: [],
             flag: false,
@@ -173,7 +173,7 @@
               return;
             }
             this.filterTableDataEnd = [];
-            this.originblogList.forEach((value, index) => {
+            this.originBlogList.forEach((value, index) => {
               if(value.fields.title){
                 if(value.fields.title.indexOf(this.searchInfo)>=0){
                   this.filterTableDataEnd.push(value);
@@ -250,7 +250,7 @@
                   this.loading = false;
                   this.blogList = res['list'];
                   this.totalItems = this.blogList.length;
-                  this.originblogList = this.blogList;
+                  this.originBlogList = this.blogList;
                 } else {
                   this.$message.error('查询博客列表失败');
                 }
