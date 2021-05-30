@@ -2184,6 +2184,22 @@ def single_article(request, rand_id):
             TocExtension(slugify=slugify)
         ])
         single_article.body = md.convert(single_article.body)
+        n = single_article.body.count('<div class="codehilite">', 0, len(single_article.body))
+        for i in range(n):
+            single_article.body = re.sub(r'<span></span>',
+                                         '&nbsp;&nbsp;<button id="ecodecopy" ref="copy" style="'
+                                         'background-color: #909399;border: none;cursor: pointer;'
+                                         'color: white;'
+                                         'padding: 6px 6px;'
+                                         'text-align: center;'
+                                         'text-decoration: none;'
+                                         'display: inline-block;'
+                                         'float:right;'
+                                         'font-size: 12px" class="copy_btn" '
+                                         'data-clipboard-action="copy" '
+                                         'data-clipboard-target="#code{}"'
+                                         'onclick="copyText()">复制</button> '
+                                         '<div class="codehilite" id="code{}">'.format(i, i), single_article.body, 1)
         single_article.body = single_article.body.replace("/media", "https://www.guanacossj.com/media")
         response['list'] = json.loads(
             core_serializers.serialize("json", article, use_natural_foreign_keys=True, ensure_ascii=False))

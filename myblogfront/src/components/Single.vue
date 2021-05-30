@@ -95,6 +95,7 @@ import "../assets/tango.css";
 import Markdown from "./Markdown";
 import marked from "marked";
 import NewMarkdown from "./NewMarkdown";
+import Clipboard from "clipboard"
 
 let rendererMD = new marked.Renderer();
   marked.setOptions({
@@ -109,14 +110,17 @@ let rendererMD = new marked.Renderer();
   });
     export default {
         name: "Single",
-        components: { Markdown, NewMarkdown },
+        components: {
+          Markdown,
+          NewMarkdown,
+        },
         data () {
           return {
             wechatUrl: "https://www.guanacossj.com/media/articlebodypics/wechatpay.png",
             singleId: 1,
             singleBlog: [],
             titleName: "",
-            markdownhtml: "",
+            markdownhtml: "s",
             prev_article_title: "已经是第一篇了",
             next_article_title: "已经是最后一篇了",
             prev_article_id: 0,
@@ -128,11 +132,12 @@ let rendererMD = new marked.Renderer();
             docsFirstLevels: [],
             docsSecondLevels: [],
             childrenActiveIndex: 0,
-            html: ""
+            html: "",
+            copyBtn: null //存储初始化复制按钮事件
           }
         },
         created: function () {
-          // this.getId();
+          window.copyText = this.copyText;
         },
         watch: {
           '$route':'showSingleBlog'
@@ -143,6 +148,7 @@ let rendererMD = new marked.Renderer();
           }else {
             this.getSingleBlog();
           }
+          this.copyBtn = new this.clipboard(this.$refs.copy);
         },
         filters: {
 	        /*
@@ -171,13 +177,27 @@ let rendererMD = new marked.Renderer();
           },
         },
         methods: {
-          back(){
+          copyText() {
+            const clipboard = new Clipboard(".copy_btn")
+            clipboard.on('success', e => {
+              this.$message({ type: 'success', message: '复制成功' })
+              // 释放内存
+              clipboard.destroy()
+            })
+            clipboard.on('error', e => {
+              // 不支持复制
+              this.$message({ type: 'warning', message: '该浏览器不支持自动复制' })
+              // 释放内存
+              clipboard.destroy()
+            })
+          },
+          back() {
             this.$router.go(-1);
           },
-          skip(url){
+          skip(url) {
             window.open(url, target='_blank');
           },
-          activeSon(){
+          activeSon() {
             this.fatherMethod()
           },
           skiplocal(url){

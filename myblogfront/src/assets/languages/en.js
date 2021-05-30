@@ -49,7 +49,8 @@ const en = {
       "resume": "Resume",
     },
     "Single": {
-      "donate": "Donate"
+      "donate": "Donate",
+      "copy": "copy"
     },
     "warning": {
       "queryEmpty": "Query condition cannot be empty!"

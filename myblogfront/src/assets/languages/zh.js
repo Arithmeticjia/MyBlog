@@ -16,7 +16,8 @@ const zh = {
       "resume": "我的简历",
     },
     "Single": {
-      "donate": "打赏"
+      "donate": "打赏",
+      "copy": "复制"
     },
     "warning": {
       "queryEmpty": "查询条件不能为空！"
