@@ -17,7 +17,8 @@ const zh = {
     },
     "Single": {
       "donate": "打赏",
-      "copy": "复制"
+      "copy": "复制",
+      "back": "返回"
     },
     "warning": {
       "queryEmpty": "查询条件不能为空！"

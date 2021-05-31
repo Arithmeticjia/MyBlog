@@ -50,7 +50,8 @@ const en = {
     },
     "Single": {
       "donate": "Donate",
-      "copy": "copy"
+      "copy": "copy",
+      "back": "Back"
     },
     "warning": {
       "queryEmpty": "Query condition cannot be empty!"

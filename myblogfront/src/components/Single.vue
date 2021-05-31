@@ -70,7 +70,7 @@
                 width="200"
                 trigger="hover"
                 content="可返回上次浏览的归档列表。">
-                <el-button slot="reference" size="medium" type="primary" icon="el-icon-back" circle @click="back"></el-button>
+                <el-button slot="reference" type="text" icon="el-icon-back" @click="back" style="font-size: 16px">{{$t('common.Single.back')}}</el-button>
               </el-popover>
             </div>
             <div class="prev-next">
@@ -192,6 +192,9 @@ let rendererMD = new marked.Renderer();
             })
           },
           back() {
+            this.$router.go(-1);
+          },
+          goBack() {
             this.$router.go(-1);
           },
           skip(url) {
@@ -517,6 +520,9 @@ let rendererMD = new marked.Renderer();
   }
   .back {
     margin-bottom: 20px;
+  }
+  .el-page-header {
+
   }
   .author-text {
     text-align: left;
