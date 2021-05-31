@@ -127,7 +127,8 @@ class Articles(models.Model):
 
     def save(self, *args, **kwargs):
         self.url_slug = slugify(self.title)
-        self.rand_id = ''.join(random.sample(string.ascii_letters + string.digits, 8))
+        if self.rand_id == "" or self.rand_id == "1a2b3c4d":
+            self.rand_id = ''.join(random.sample(string.ascii_letters + string.digits, 8))
         super(Articles, self).save(*args, **kwargs)
 
     @property
