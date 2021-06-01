@@ -51,6 +51,11 @@
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.About.information')}}</h2>
                   <div class="me">
+                    <el-image
+                    style="width: 120px;float: right"
+                    :src="url"
+                    :fit="cover">
+                    </el-image>
                     <p>姓名：单沙嘉（Shàn shājiā）</p>
                     <p>性别：男</p>
                     <p>星座：天蝎座</p>
@@ -89,7 +94,9 @@
                   <h2>{{$t('common.About.profession')}}</h2>
                   <div class="me">
                     <p>Python：Django/Flask/Pytorch/Tensorflow</p>
-                    <p>Java：SpringBoot</p>
+                    <p>Java：SpringBoot/MyBatis</p>
+                    <p>Golang：知乎（北京）后端实习</p>
+                    <p>C#：趋势科技（中国）研发中心后端实习</p>
                     <p>前端：HTML/CSS/JavaScript/Vue.js</p>
                     <p>深度学习：RNN/LSTM/GRU/Attention/Seq2Seq</p>
                     <p>未完待续...</p>
@@ -135,6 +142,7 @@ export default {
         components: {NewMenu, Menu },
         data () {
           return {
+            url: "https://www.guanacossj.com/media/jia/formalhead.jpg",
             loginFlag: false,
             reverse: true,
             fileList: [{

@@ -51,7 +51,9 @@ const en = {
     "Single": {
       "donate": "Donate",
       "copy": "copy",
-      "back": "Back"
+      "back": "Back",
+      "copy_success": "Copy Successfully",
+      "copy_fail": "This browser does not support automatic copy"
     },
     "warning": {
       "queryEmpty": "Query condition cannot be empty!"

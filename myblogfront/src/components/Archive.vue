@@ -20,7 +20,7 @@
         <div v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)" >
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
-                <i type="button" class="el-icon-share" style="float: right;cursor:pointer;margin-right: -30px" @click="share(value.pk)"></i>
+                <i type="button" class="el-icon-share" style="float: right;cursor:pointer;margin-right: -30px" @click="share(value.fields.rand_id)"></i>
                 <div class="grid-content bg-puprple-light">
                   <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/post'+ '/' + value.fields.rand_id">{{ value.fields.title }}</a></h1>
                   <div>
