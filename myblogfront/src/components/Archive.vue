@@ -20,7 +20,15 @@
         <div v-for="(value, key, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)" >
             <el-row type="flex" class="row-bg" justify="space-around">
               <el-col :span="20">
-                <i type="button" class="el-icon-share" style="float: right;cursor:pointer;margin-right: -30px" @click="share(value.fields.rand_id)"></i>
+                <el-dropdown  @command="handleCommand">
+                  <span class="el-dropdown-link"><i class="el-icon-share el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item icon="el-icon-plus">微博</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus">QQ</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus-outline" :command="composeValue(value.fields.rand_id, 'copyLink')">复制链接</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
                 <div class="grid-content bg-puprple-light">
                   <h1 style="font-size: 20px"><a style="text-decoration: none;color: #4D4D4D" :href="'/post'+ '/' + value.fields.rand_id">{{ value.fields.title }}</a></h1>
                   <div>
@@ -106,6 +114,18 @@
         created() {
         },
         methods: {
+          composeValue(extraParam, command) {
+            return {
+              'extraParam': extraParam,
+              'command': command
+            }
+          },
+          handleCommand(command) {
+            switch (command.command) {
+              case "copyLink":
+                this.share(command.extraParam);
+            }
+          },
           share(val) {
             let shareUrl = 'https://www.blog.guanacossj.com/post/'+ val;
             let oInput = document.createElement("input");

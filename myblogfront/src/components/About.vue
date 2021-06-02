@@ -23,6 +23,8 @@
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.About.resume')}}</h2>
                   <div class="me">
+                    <el-link icon="el-icon-document" type="primary" style="margin-right:10px;margin-bottom:10px" v-for="(item, index) in fileList" :key="index" :href=item.url>{{ item.name }}</el-link>
+                    <br>
                     <el-upload
                       class="upload-demo"
                       drag
@@ -38,8 +40,8 @@
                       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
                       <div class="el-upload__tip" slot="tip">只能上传jpg/png/pdf文件，且不超过500kb</div>
                     </el-upload>
+<!--                    <el-link icon="el-icon-document" type="primary" style="margin-right:10px" v-for="(item, index) in fileList" :key="index" :href=item.url>{{ item.name }}</el-link>-->
                     <br>
-                    <el-link icon="el-icon-document" type="primary" style="margin-right:10px" v-for="(item, index) in fileList" :key="index" :href=item.url>{{ item.name }}</el-link>
                   </div>
                 </div>
               </el-col>
@@ -65,6 +67,32 @@
                     <p>个人主页：<a href="https://www.guanacossj.com" target="_blank" style="color: #4D4D4D">https://www.guanacossj.com</a></p>
                     <p>CSDN：<a href="https://blog.csdn.net/ssjdoudou" target="_blank" style="color: #4D4D4D">https://blog.csdn.net/ssjdoudou</a></p>
                     <p>GitHub Page：<a href="https://arithmeticjia.github.io/" target="_blank" style="color: #4D4D4D">https://arithmeticjia.github.io</a></p>
+                    <br>
+                  </div>
+                </div>
+              </el-col>
+            </el-row>
+        </div>
+        <div class="grid-content bg-puprple-light">
+            <el-row type="flex" class="row-bg" justify="space-around">
+              <el-col :span="20">
+                <div class="grid-content bg-puprple-light">
+                  <h2>{{$t('common.About.intern')}}</h2>
+                  <div class="me">
+                    <el-collapse>
+                    <el-collapse-item title="知乎（北京）后端开发实习（2021.3.17—2021.6.4）" name="1">
+                      <div style="color: #4d4d4d">
+                        <p>内容平台迭代开发</p>
+                        <p>技术栈：Golang/Thrift/TiDB</p>
+                      </div>
+                    </el-collapse-item>
+                    <el-collapse-item title="趋势科技（中国）后端开发实习（2020.6.29—2021.8.21）" name="2">
+                      <div style="color: #4d4d4d">
+                        <p>待补充...</p>
+                        <p>技术栈：C#/JavaScript/CSS/HTML/SQLServer</p>
+                      </div>
+                    </el-collapse-item>
+                  </el-collapse>
                     <br>
                   </div>
                 </div>
@@ -559,21 +587,18 @@ export default {
     color: #4d4d4d;
     margin-top: 30px;
   }
+  .el-row {
+    margin-bottom: 20px;
+  }
+  .el-col {
+    border-radius: 4px;
+  }
   .me {
     background: #fff;
     width: 100%;
     height: 100%;
     text-align: left;
     font-size: 17px;
-  }
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
   }
   .row-bg {
     padding: 10px 0;
@@ -586,12 +611,6 @@ export default {
     border-radius: 4px;
     min-height: 36px;
   }
-  .el-menu-item.is-active {
-    background: rgb(67, 74, 80) !important;
-  }
-  .el-submenu__title.is-active {
-    background: #6db6ff !important;
-  }
   .el-dropdown {
     float: right;
   }
@@ -603,5 +622,12 @@ export default {
   }
   .layout-container {
     height: 100%;
+  }
+  /deep/ .el-collapse-item__header {
+    font-size: 16px;
+    color: #4d4d4d;
+  }
+  /deep/ .el-collapse-item__content {
+    font-size: 16px;
   }
 </style>

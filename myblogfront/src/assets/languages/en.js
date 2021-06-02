@@ -47,6 +47,7 @@ const en = {
       "profession": "Profession",
       "hobby": "Hobby",
       "resume": "Resume",
+      "intern": "Intern"
     },
     "Single": {
       "donate": "Donate",

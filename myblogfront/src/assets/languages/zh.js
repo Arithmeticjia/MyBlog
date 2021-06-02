@@ -14,6 +14,7 @@ const zh = {
       "profession": "专业技能",
       "hobby": "兴趣爱好",
       "resume": "我的简历",
+      "intern": "实习经历"
     },
     "Single": {
       "donate": "打赏",
