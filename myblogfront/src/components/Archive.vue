@@ -24,9 +24,9 @@
                   <span class="el-dropdown-link"><i class="el-icon-share el-icon--right"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item icon="el-icon-plus">微博</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus">QQ</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus-outline" :command="composeValue(value.fields.rand_id, 'copyLink')">复制链接</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-plus" :command="composeValue(value.fields.rand_id,value.fields.title, 'weibo')">新浪微博</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus" :command="composeValue(value.fields.rand_id,value.fields.title,'qq_zone')">QQ空间</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus-outline" :command="composeValue(value.fields.rand_id,value.fields.title, 'copyLink')">复制链接</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
                 <div class="grid-content bg-puprple-light">
@@ -67,10 +67,11 @@
 </template>
 
 <script>
-  import moment from 'moment';
-  import Menu from "./Menu";
-  import NewMenu from "./NewMenu";
-    export default {
+import moment from 'moment';
+import Menu from "./Menu";
+import NewMenu from "./NewMenu";
+
+export default {
         name: "Archive",
         components: { Menu, NewMenu },
         data () {
@@ -114,19 +115,37 @@
         created() {
         },
         methods: {
-          composeValue(extraParam, command) {
+          composeValue(token, title, command) {
             return {
-              'extraParam': extraParam,
+              'token': token,
+              'title': title,
               'command': command
             }
           },
           handleCommand(command) {
             switch (command.command) {
               case "copyLink":
-                this.share(command.extraParam);
+                this.copyLink(command.token);
+                return;
+              case "weibo":
+                this.shareWeibo(command.token, command.title)
+                return;
+              case "qq_zone":
+                this.shareQQZone(command.token, command.title)
+                return;
             }
           },
-          share(val) {
+          shareWeibo(token, title) {
+            const wb_appkey = "2841315419",
+              wb_ralateUid = "5155692052",
+              wb_pic = "",
+              wb_language = "zh_cn";
+            window.open("http://service.weibo.com/share/share.php?url="+"https://blog.guanacossj.com/post/"+token+"&appkey="+wb_appkey+"&title="+title+"&pic="+wb_pic+"&ralateUid="+wb_ralateUid+"&language="+wb_language+"", '_blank');
+          },
+          shareQQZone(token, title) {
+            window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+"https://blog.guanacossj.com/post/"+token+"&title="+title, '_blank');
+          },
+          copyLink(val) {
             let shareUrl = 'https://www.blog.guanacossj.com/post/'+ val;
             let oInput = document.createElement("input");
             oInput.value = shareUrl;

@@ -43,7 +43,7 @@
             <div class="mulu" @click="reSetIdex">{{$t('common.index')}}</div>
           </el-tooltip>
           <div class="mulu-detail" v-loading=mLoading>
-            <div ref="element" style="color: black;margin-left: 20px;margin-right: 25px;" v-for="(nav, index) in psMsg" :key="index"  @click="currentClick(index)"> <a href="javascript:" :class="{ 'active': activeIndex === index}" @click="pageJump(nav.title)">{{ nav.title }}</a>
+            <div ref="element" style="color: black;margin-left: 20px;margin-right: 25px;" v-for="(nav, index) in psMsg" :key="index" @click="currentClick(index)"> <a href="javascript:" :class="{ 'active': activeIndex === index}" @click="pageJump(nav.title)">{{ nav.title }}</a>
              <div v-if="nav.children.length &gt; 0" class="menu-children-list" style="color: black">
               <div class="nav-list" style="color: black">
                <p style="color: black" v-for="(item, idx) in nav.children" :key="idx"  @click.stop="childrenCurrentClick(index, idx)"> <a href="javascript:" :class="{ 'activeChildren': ((childrenActiveIndex === idx) && (activeIndex === index))}" @click="pageJump(item.title)">{{ item.title }}</a></p>
