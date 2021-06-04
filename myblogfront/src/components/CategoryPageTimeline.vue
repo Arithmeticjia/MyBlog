@@ -20,14 +20,14 @@
         <h1>{{ this.$route.params.name }}</h1>
         <div class="category-box">
           <div class="block">
-          <el-timeline>
-          <el-timeline-item :timestamp="value.fields.timestamp | formatDateymd" placement="top"  v-for="(value, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)" :key="index">
-            <el-card>
-              <router-link style="color: #4D4D4D;text-decoration: none" :to="'/post'+'/'+ value.fields.rand_id"><h3 style="font-size: 16px">{{ value.fields.title }}</h3></router-link>
-              <p style="color: #4d4d4d">{{ value.fields.authorname }} 发表于 {{ value.fields.timestamp | formatDate }}</p>
-            </el-card>
-          </el-timeline-item>
-          </el-timeline>
+              <el-timeline>
+              <el-timeline-item :timestamp="value.fields.timestamp | formatDateymd" placement="top"  v-for="(value, index) in reverseblogList.slice((currentPage-1)*pageSize,currentPage*pageSize)" :key="index">
+                <el-card>
+                  <router-link style="color: #4D4D4D;text-decoration: none" :to="'/post'+'/'+ value.fields.rand_id"><h3 style="font-size: 16px">{{ value.fields.title }}</h3></router-link>
+                  <p style="color: #4d4d4d">{{ value.fields.authorname }} 发表于 {{ value.fields.timestamp | formatDate }}</p>
+                </el-card>
+              </el-timeline-item>
+              </el-timeline>
           </div>
           <div class="hide-pagination">
             <el-switch v-model="value">
@@ -216,4 +216,11 @@
   .el-icon-arrow-down {
     font-size: 12px;
   }
+  /deep/ .el-timeline {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .el-timeline-item {
+      padding-left: 10px;
+    }
 </style>

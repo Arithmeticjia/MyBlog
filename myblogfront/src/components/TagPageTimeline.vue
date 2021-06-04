@@ -213,4 +213,11 @@
   .el-icon-arrow-down {
     font-size: 12px;
   }
+  /deep/ .el-timeline {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .el-timeline-item {
+      padding-left: 10px;
+    }
 </style>
