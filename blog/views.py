@@ -2153,6 +2153,7 @@ def get_article_single(request, article_id):
                                          'data-clipboard-action="copy" '
                                          'data-clipboard-target="#code{}"'
                                          'onclick="copyText()">复制</button> '
+                                         '<div style="clear:both"></div>'
                                          '<div class="codehilite" id="code{}">'.format(i, i), single_article.body, 1)
         single_article.body = single_article.body.replace("/media", "https://www.guanacossj.com/media")
         response['list'] = json.loads(
@@ -2215,6 +2216,7 @@ def single_article(request, rand_id):
                                          'data-clipboard-action="copy" '
                                          'data-clipboard-target="#code{}"'
                                          'onclick="copyText()">复制</button> '
+                                         '<div style="clear:both"></div>'
                                          '<div class="codehilite" id="code{}">'.format(i, i), single_article.body, 1)
         single_article.body = single_article.body.replace("/media", "https://www.guanacossj.com/media")
         response['list'] = json.loads(
@@ -2288,7 +2290,9 @@ class JiaPost(View):
         m = thisarticle.body.count('<code>', 0, len(thisarticle.body))
         for i in range(n):
             thisarticle.body = re.sub(r'<span></span>',
-                                      '&nbsp;&nbsp;<button id="ecodecopy" style="float: right;z-index:10" class="copybtn" '
+                                      '&nbsp;&nbsp;<button id="ecodecopy" '
+                                      'style="float: right;z-index:10" '
+                                      'class="copybtn" '
                                       'data-clipboard-action="copy" '
                                       'data-clipboard-target="#code{}">复制</button> '
                                       '<div class="codehilite" id="code{}">'.format(i, i), thisarticle.body, 1)

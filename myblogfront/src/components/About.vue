@@ -92,7 +92,7 @@
                         <p>技术栈：C#/JavaScript/CSS/HTML/SQLServer</p>
                       </div>
                     </el-collapse-item>
-                  </el-collapse>
+                    </el-collapse>
                     <br>
                   </div>
                 </div>
