@@ -273,11 +273,7 @@
           imgLoad(){
             this.$nextTick(()=>{
               this.bannerHeight=this.$refs.bannerHeight[0].height;
-              console.log(this.bannerHeight)
             })
-          },
-          skip(url){
-           window.open(url, target='_blank')
           },
           update: _.debounce(function(e) {
             this.input = e.target.value;
