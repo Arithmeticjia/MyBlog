@@ -70,7 +70,7 @@
                 width="200"
                 trigger="hover"
                 content="可返回上次浏览的归档列表。">
-                <el-button slot="reference" type="text" icon="el-icon-back" @click="back" style="font-size: 16px">{{$t('common.Single.back')}}</el-button>
+                <el-button slot="reference" type="text" icon="el-icon-back" @click="goBack" style="font-size: 16px">{{$t('common.Single.back')}}</el-button>
               </el-popover>
             </div>
             <div class="prev-next">
@@ -96,7 +96,7 @@ import Markdown from "./Markdown";
 import marked from "marked";
 import NewMarkdown from "./NewMarkdown";
 import Clipboard from "clipboard"
-
+import { removeWatermark, setWaterMark } from '../utils/watermark'
 
 let rendererMD = new marked.Renderer();
   marked.setOptions({
@@ -149,6 +149,7 @@ let rendererMD = new marked.Renderer();
           }else {
             this.getSingleBlog();
           }
+          //setWaterMark('liergou', '李二狗');
         },
         filters: {
 	        /*
@@ -191,20 +192,8 @@ let rendererMD = new marked.Renderer();
               clipboard.destroy()
             })
           },
-          back() {
-            this.$router.go(-1);
-          },
           goBack() {
             this.$router.go(-1);
-          },
-          skip(url) {
-            window.open(url, target='_blank');
-          },
-          activeSon() {
-            this.fatherMethod()
-          },
-          skiplocal(url){
-            location.href = url;
           },
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
