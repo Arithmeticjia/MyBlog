@@ -50,8 +50,8 @@ if settings.DEBUG:
                       path('comment/', include('comment.urls', namespace='comment')),
                       path('log/', include('rtlog.urls', namespace='rtlog')),
                       # url(r'^oauth/', include('social_django.urls', namespace='social')),
-                      # url(r'^search/', include('haystack.urls')),                       # old way
-                      # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
+                      # url(r'^search/', include('haystack.urls')),                        # old way
+                      # url(r'^search/', views.MySearchView(), name='haystack_search'),    # new way
                       path(r"__debug__/", include(debug_toolbar.urls)),
                   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -74,8 +74,8 @@ else:
                       url(r'^accounts/', include('django.contrib.auth.urls')),
                       path('comment/', include('comment.urls', namespace='comment')),
                       # url(r'^oauth/', include('social_django.urls', namespace='social')),
-                      # url(r'^search/', include('haystack.urls')),                       # old way
-                      # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
+                      # url(r'^search/', include('haystack.urls')),                        # old way
+                      # url(r'^search/', views.MySearchView(), name='haystack_search'),    # new way
                       url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
                       url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
                   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
