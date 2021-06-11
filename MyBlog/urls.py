@@ -32,53 +32,53 @@ application = ProtocolTypeRouter({
 
 if settings.DEBUG:
     urlpatterns = [
-        url(r'^$', views.blog_index),
-        path('admin/', admin.site.urls),
-        path('oblog/', include('oblog.urls', namespace="oblog")),
-        path('blog/', include('blog.urls', namespace="blog")),
-        path('blog/new/', include('blogproject.urls', namespace="blogproject")),
-        path('itube/', include('itube.urls', namespace="itube")),
-        path('activemq/', include('activemq.urls', namespace="activemq")),
-        path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
-        path('mdeditor/', include('mdeditor.urls')),
-        path('china-wuhan/', views.china_wuhan),
-        path('china-wuhan/virusdata', views.china_wuhan_virus),
-        path('love/fzy', views.love_fzy),
-        url(r'', include('social_django.urls', namespace='social')),
-        url(r'^accounts/', include('django.contrib.auth.urls')),
-        url(r'^auth/', include('commonauth.urls')),
-        path('comment/', include('comment.urls', namespace='comment')),
-        path('log/', include('rtlog.urls', namespace='rtlog')),
-        # url(r'^oauth/', include('social_django.urls', namespace='social')),
-        # url(r'^search/', include('haystack.urls')),                       # old way
-        # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
-        path(r"__debug__/", include(debug_toolbar.urls)),
-    ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                      url(r'^$', views.blog_index),
+                      path('admin/', admin.site.urls),
+                      path('oblog/', include('oblog.urls', namespace="oblog")),
+                      path('blog/', include('blog.urls', namespace="blog")),
+                      path('blog/new/', include('blogproject.urls', namespace="blogproject")),
+                      path('itube/', include('itube.urls', namespace="itube")),
+                      path('activemq/', include('activemq.urls', namespace="activemq")),
+                      path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
+                      path('mdeditor/', include('mdeditor.urls')),
+                      path('china-wuhan/', views.china_wuhan),
+                      path('china-wuhan/virusdata', views.china_wuhan_virus),
+                      path('love/fzy', views.love_fzy),
+                      url(r'', include('social_django.urls', namespace='social')),
+                      url(r'^accounts/', include('django.contrib.auth.urls')),
+                      url(r'^auth/', include('commonauth.urls')),
+                      path('comment/', include('comment.urls', namespace='comment')),
+                      path('log/', include('rtlog.urls', namespace='rtlog')),
+                      # url(r'^oauth/', include('social_django.urls', namespace='social')),
+                      # url(r'^search/', include('haystack.urls')),                       # old way
+                      # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
+                      path(r"__debug__/", include(debug_toolbar.urls)),
+                  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 else:
     urlpatterns = [
-        url(r'^$', views.blog_index),
-        path('admin/', admin.site.urls),
-        path('oblog/', include('oblog.urls', namespace="oblog")),
-        path('blog/', include('blog.urls', namespace="blog")),
-        path('blog/new/', include('blogproject.urls', namespace="blogproject")),
-        path('itube/', include('itube.urls', namespace="itube")),
-        path('activemq/', include('activemq.urls', namespace="activemq")),
-        path('cloudserver/', include('cloudserver.urls')),
-        path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
-        path('mdeditor/', include('mdeditor.urls')),
-        path('china-wuhan/', views.china_wuhan),
-        path('china-wuhan/virusdata', views.china_wuhan_virus),
-        path('love/fzy', views.love_fzy),
-        url(r'', include('social_django.urls', namespace='social')),
-        url(r'^accounts/', include('django.contrib.auth.urls')),
-        path('comment/', include('comment.urls', namespace='comment')),
-        # url(r'^oauth/', include('social_django.urls', namespace='social')),
-        # url(r'^search/', include('haystack.urls')),                       # old way
-        # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
-        url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
-        url(r'^media/(?P<path>.*)$',  serve, {"document_root": settings.MEDIA_ROOT}),
-    ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                      url(r'^$', views.blog_index),
+                      path('admin/', admin.site.urls),
+                      path('oblog/', include('oblog.urls', namespace="oblog")),
+                      path('blog/', include('blog.urls', namespace="blog")),
+                      path('blog/new/', include('blogproject.urls', namespace="blogproject")),
+                      path('itube/', include('itube.urls', namespace="itube")),
+                      path('activemq/', include('activemq.urls', namespace="activemq")),
+                      path('cloudserver/', include('cloudserver.urls')),
+                      path('online-intepreter/', include('online_intepreter.urls', namespace="online_intepreter")),
+                      path('mdeditor/', include('mdeditor.urls')),
+                      path('china-wuhan/', views.china_wuhan),
+                      path('china-wuhan/virusdata', views.china_wuhan_virus),
+                      path('love/fzy', views.love_fzy),
+                      url(r'', include('social_django.urls', namespace='social')),
+                      url(r'^accounts/', include('django.contrib.auth.urls')),
+                      path('comment/', include('comment.urls', namespace='comment')),
+                      # url(r'^oauth/', include('social_django.urls', namespace='social')),
+                      # url(r'^search/', include('haystack.urls')),                       # old way
+                      # url(r'^search/', views.MySeachView(), name='haystack_search'),    # new way
+                      url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
+                      url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
+                  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler500 = 'blog.common.page_error'
 handler404 = 'blog.common.page_not_found'

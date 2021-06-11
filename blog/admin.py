@@ -8,8 +8,8 @@ class BlogsPostAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.MDTextField: {'widget': MDEditorWidget}
     }
-    search_fields = ('title', 'body')
-    list_display = ['title', 'id', 'body', 'timestamp', 'authorname']
+    search_fields = ('title', 'body', 'rand_id')
+    list_display = ['title', 'id', 'rand_id', 'body', 'timestamp', 'authorname']
 
 
 class LogEntryAdmin(admin.ModelAdmin):
