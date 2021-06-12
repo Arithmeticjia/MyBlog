@@ -77,6 +77,11 @@ const router = new Router({
       component: () => import('@/components/Single')
     },
     {
+      path: '/article/:id',
+      name: 'post',
+      component: () => import('@/components/Post')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('@/components/About'),

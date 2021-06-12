@@ -12,6 +12,7 @@ from model_utils import Choices
 from model_utils.models import TimeStampedModel
 from uuslug import slugify
 from blogproject.utils import generate_rich_content
+from mdeditor.fields import MDTextField
 
 
 class User(AbstractUser):
@@ -59,7 +60,7 @@ class Post(models.Model):
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    content = MDTextField()
     excerpt = models.TextField(_("excerpt"), blank=True)
     views = models.PositiveIntegerField(_("views"), default=0, editable=False)
     created_time = models.DateTimeField(_("created time"), default=timezone.now)

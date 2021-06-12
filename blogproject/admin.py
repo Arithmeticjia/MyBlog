@@ -1,19 +1,20 @@
 from django.contrib import admin
 from . import models
-from django.utils.translation import gettext_lazy as _
-
 from .models import Post, Category, Tag, User
-
+from mdeditor.widgets import MDEditorWidget
 
 # Register your models here.
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.MDTextField: {'widget': MDEditorWidget}
+    }
     list_display = [
+        "title",
         "id",
         "rand_id",
-        "title",
         "author",
         "status",
         "category",
