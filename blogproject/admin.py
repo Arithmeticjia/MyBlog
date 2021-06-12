@@ -12,6 +12,7 @@ from .models import Post, Category, Tag, User
 class PostAdmin(admin.ModelAdmin):
     list_display = [
         "id",
+        "rand_id",
         "title",
         "author",
         "status",

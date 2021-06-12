@@ -1,5 +1,6 @@
+import random
+import string
 from django.db import models
-# from django.contrib.auth.models import User, AbstractUser
 from django.contrib.auth.models import AbstractUser
 from django.db.models import F
 from django.urls import reverse
@@ -9,10 +10,7 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
 from model_utils import Choices
 from model_utils.models import TimeStampedModel
-from imagekit.models import ImageSpecField
-# Create your models here.
 from uuslug import slugify
-
 from blogproject.utils import generate_rich_content
 
 
@@ -69,6 +67,7 @@ class Post(models.Model):
     likes = models.PositiveIntegerField(default=0)
     url_slug = models.SlugField(editable=False, max_length=200)
     cover_pic = models.ImageField(upload_to='blogcovers')
+    rand_id = models.CharField(max_length=8, default="1a2b3c4d")
 
     status = models.PositiveSmallIntegerField(
         _("status"), choices=STATUS_CHOICES, default=STATUS_CHOICES.draft
@@ -103,6 +102,9 @@ class Post(models.Model):
 
         if not self.created_time and self.status == self.STATUS_CHOICES.published:
             self.created_time = self.created_time
+
+        if self.rand_id == "" or self.rand_id == "1a2b3c4d":
+            self.rand_id = ''.join(random.sample(string.ascii_letters + string.digits, 8))
 
     def increase_views(self):
         self.__class__.objects.filter(id=self.id).update(views=F("views") + 1)
