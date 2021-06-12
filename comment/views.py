@@ -1,7 +1,9 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.core import serializers as core_serializers
 from .forms import CommentForm
 from .models import Comment
 from blogproject.models import Post, Tag, Category
@@ -49,3 +51,16 @@ def post_comment(request, article_id, parent_comment_id=None):
     # 处理其他请求
     else:
         return HttpResponse("仅接受GET/POST请求。")
+
+
+def get_comment(request, rand_id):
+    response = {}
+    try:
+        comments = Comment.objects.filter(post=1)
+        response['comments'] = json.loads(
+        core_serializers.serialize("json", comments, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['error_num'] = 0
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return HttpResponse(json.dumps(response, ensure_ascii=False))

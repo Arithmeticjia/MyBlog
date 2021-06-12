@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.contrib import auth
 from django.core import serializers as core_serializers
 from django.contrib.auth.decorators import login_required
 from django.db import connection
@@ -20,20 +19,15 @@ from django.db.models import Q, IntegerField, CharField, DateTimeField
 from django.views.decorators.http import require_POST
 from django.db.models import Count
 import re
-import logging
 from drf_haystack.serializers import HaystackSerializerMixin
 from drf_haystack.viewsets import HaystackViewSet
-from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
-
 from blog.models import Articles, Message, Tag, Category, Note, Comment, BlogUser, VisitNumber, Recruitment, \
     Recruinfo, Movie, JiaFile, Jia, BlogRole, Paper, Graduation, Honour, Teacher, Project, Version, BlogUserCollect, \
     SocialAuthUsersocialauth, AuthUser, Hits, LoveFZY
-
 from blogproject.models import User
 from django.contrib.auth import logout
 import time
-import requests
 import os
 from .forms import RegisterForm
 import psutil
