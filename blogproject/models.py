@@ -1,5 +1,7 @@
 import random
 import string
+import markdown
+from markdown.extensions.toc import TocExtension, slugify
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import F
@@ -97,15 +99,20 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         self.url_slug = slugify(self.title)
-        super(Post, self).save(*args, **kwargs)
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            TocExtension(slugify=slugify)
+        ])
         if not self.excerpt:
-            self.excerpt = strip_tags(self.content)[:150]
+            self.excerpt = strip_tags(md.convert(self.content))[:150]
 
         if not self.created_time and self.status == self.STATUS_CHOICES.published:
             self.created_time = self.created_time
 
         if self.rand_id == "" or self.rand_id == "1a2b3c4d":
             self.rand_id = ''.join(random.sample(string.ascii_letters + string.digits, 8))
+
         super(Post, self).save(*args, **kwargs)
 
     def increase_views(self):

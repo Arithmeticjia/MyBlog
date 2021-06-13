@@ -165,3 +165,18 @@ def single_article(request, rand_id):
         response['msg'] = str(e)
         response['error_num'] = 1
     return HttpResponse(json.dumps(response, ensure_ascii=False))
+
+
+@require_http_methods(["GET"])
+def get_articles_all(request):
+    response = {}
+    try:
+        articles = Post.objects.filter(status=1).order_by("id")
+        response['list'] = json.loads(
+            core_serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['msg'] = 'success'
+        response['error_num'] = 0
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return HttpResponse(json.dumps(response, ensure_ascii=False))
