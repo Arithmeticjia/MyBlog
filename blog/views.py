@@ -49,6 +49,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework import viewsets
 from rest_framework import mixins
+from collections import Counter
 
 
 # Create your views here.
@@ -1599,6 +1600,9 @@ def article_create_save(request):
             else:
                 lcropped = img.crop((width / 2 - 400, height / 2 - 225, width / 2 + 400, height / 2 + 225))
             lcropped.save('.%s' % (post.pic.url))
+        else:
+            messages = '创建失败'
+            return HttpResponse(messages)
         return redirect('/blog/mylist/')
 
 
@@ -2039,6 +2043,14 @@ def get_article_all(request):
         articles = Articles.objects.filter(status="有效").order_by("id")
         response['list'] = json.loads(
             core_serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            # 'markdown.extensions.toc',
+            TocExtension(slugify=slugify)
+        ])
+        for i in range(len(response['list'])):
+            response['list'][i]['fields']['words_number'] = len(md.convert(response['list'][i]['fields']['body']))
         response['msg'] = 'success'
         response['error_num'] = 0
     except Exception as e:
@@ -2050,7 +2062,7 @@ def get_article_all(request):
 @require_http_methods(["GET"])
 def get_categroy_all(request):
     category_list = Category.objects.values('name').annotate(
-        num_articles=Count('articles'))
+        num_articles=Count('articles', filter=Q(articles__status='有效')))
     data = {}
     try:
         list = []
@@ -2152,9 +2164,10 @@ def get_article_single(request, article_id):
         single_article.body = single_article.body.replace("/media", "https://www.guanacossj.com/media")
         response['list'] = json.loads(
             core_serializers.serialize("json", article, use_natural_foreign_keys=True, ensure_ascii=False))
-        response['msg'] = 'success'
-        response['markdown'] = single_article.body
         response['error_num'] = 0
+        response['msg'] = 'success'
+        response['words_number'] = len(md.convert(single_article.body))
+        response['markdown'] = single_article.body
         response['prev_article_title'] = prev_article_title
         response['next_article_title'] = next_article_title
         response['prev_article_id'] = prev_article_id
@@ -2172,18 +2185,22 @@ def single_article(request, rand_id):
     prev_article_title = ""
     next_article_id = 0
     prev_article_id = 0
+    prev_article_rand_id = ''
+    next_article_rand_id = ''
     try:
         article_id = Articles.objects.get(status="有效", rand_id=rand_id).id
         article = Articles.objects.filter(status="有效").filter(rand_id=rand_id)
         try:
             prev_article_id = Articles.objects.filter(id__lt=article_id, status='有效').last().id
             prev_article_title = Articles.objects.get(id=prev_article_id).title
+            prev_article_rand_id = Articles.objects.get(id=prev_article_id).rand_id
         except Exception as e:
             response['msg'] = str(e)
             response['error_num'] = 1
         try:
             next_article_id = Articles.objects.filter(id__gt=article_id, status='有效').first().id
             next_article_title = Articles.objects.get(id=next_article_id).title
+            next_article_rand_id = Articles.objects.get(id=next_article_id).rand_id
         except Exception as e:
             response['msg'] = str(e)
             response['error_num'] = 1
@@ -2215,13 +2232,16 @@ def single_article(request, rand_id):
         single_article.body = single_article.body.replace("/media", "https://www.guanacossj.com/media")
         response['list'] = json.loads(
             core_serializers.serialize("json", article, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['error_num'] = 0
         response['msg'] = 'success'
         response['markdown'] = single_article.body
-        response['error_num'] = 0
+        response['words_number'] = len(md.convert(single_article.body))
         response['prev_article_title'] = prev_article_title
         response['next_article_title'] = next_article_title
         response['prev_article_id'] = prev_article_id
         response['next_article_id'] = next_article_id
+        response['prev_article_rand_id'] = prev_article_rand_id
+        response['next_article_rand_id'] = next_article_rand_id
     except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1

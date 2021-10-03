@@ -107,7 +107,6 @@ class Articles(models.Model):
     )
 
     # 访问量
-
     def increase_views(self):
         self.views += 1
         self.save(update_fields=['views'])

@@ -48,4 +48,4 @@ class ArticleForm(forms.ModelForm):
         model = Articles
         # fields = ('title', 'body')
         exclude = ['authorname', 'timestamp', 'tags', 'category', 'greats', 'comments', 'pic', 'brief', 'views',
-                   'status']
+                   'status', 'last_edit_timestamp', 'url_slug', 'rand_id']
