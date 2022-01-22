@@ -4,15 +4,24 @@ import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
 import vueCanvasNest from 'vue-canvas-nest'
 import NProgress from 'nprogress'
+import mavonEditor from 'mavon-editor'
 import 'nprogress/nprogress.css'
 import '../assets/element-#545C64/index.css'
 import '../assets/iconfont/iconfont.css'
 import '../assets/iconfont/iconfont.js'
+import 'mavon-editor/dist/css/index.css'
 
 Vue.use(VueResource)
 Vue.use(Router)
 Vue.use(ElementUI)
 Vue.use(vueCanvasNest)
+Vue.use(mavonEditor)
+new Vue({
+  'el': '#main',
+  data() {
+    return { value: '' }
+  }
+})
 // Vue.use(ElementUI, { locale })
 
 Vue.component('vue-canvas-nest', vueCanvasNest);
@@ -124,6 +133,14 @@ const router = new Router({
       name: 'login',
       component: () => import('@/components/Login')
     },
+    {
+      path: '/post/:id/edit',
+      name: 'editor',
+      // meta: {
+      //   requiresAuth: true  //需要登录才能访问
+      // },
+      component: () => import('@/components/Editor')
+    }
   ]
 });
 // 路由跳转后钩子函数中 - 执行进度条加载结束
