@@ -3,7 +3,8 @@ from django.utils import timezone
 
 
 # 自定义的函数，不是视图
-def change_info(request):  # 修改网站访问量和访问ip等信息
+# 修改网站访问量和访问ip等信息
+def change_info(request):
     # 每一次访问，网站总访问次数加一
     count_nums = VisitNumber.objects.filter(id=1)
     if count_nums:

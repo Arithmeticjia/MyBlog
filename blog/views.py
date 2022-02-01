@@ -534,7 +534,6 @@ def blog_index(request):
             'version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     except IndexError as err:
-        print("error", err)
         version = models.Version.objects.order_by('-version_time')[0:1].values('version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     '''else:
@@ -675,7 +674,6 @@ def blog_info(request, article_id, slug):
             'version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     except IndexError as err:
-        print("error", err)
         version = models.Version.objects.order_by('-version_time')[0:1].values('version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     articles = Articles.objects.all().filter(status="有效")
@@ -760,7 +758,6 @@ def blog_list(request):
             'version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     except IndexError as err:
-        print("error", err)
         version = models.Version.objects.order_by('-version_time')[0:1].values('version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     articles = Articles.objects.all().filter(status="有效")
@@ -1190,7 +1187,6 @@ def Jiafile(request):
         version = models.Version.objects.order_by('-version_time')[0:1].values('version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     context = {
-        'recruitmentinfo': recruitmentinfo,
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
         'tags': tags,
@@ -1223,7 +1219,6 @@ def upload_file(request):
 
 @check_login
 def usereditor(request, article_id, slug):
-    # article = Articles.objects.filter(id=article_id)
     article = get_object_or_404(Articles, id=article_id)
     article_user_id = article.authorname_id
     jia = Jia.objects.get(id=1)
@@ -1283,8 +1278,6 @@ def mylist(request):
     blog_list_news = Articles.objects.filter(status="有效").order_by("-timestamp")[0:10]  # 获取10 recent posts
     comments = Comment.objects.count()
     tags = Tag.objects.all()
-    view = []
-    count = Articles.objects.count()
     categorys = Category.objects.all()
     catcharts = {}
     for cats in categorys:
@@ -1313,7 +1306,6 @@ def mylist(request):
             'version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     except IndexError as err:
-        print("error", err)
         version = models.Version.objects.order_by('-version_time')[0:1].values('version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     else:
@@ -1334,7 +1326,6 @@ def mylist(request):
         'versions': versions,
         'user': user,
         'mycategorys': mycategorys,
-        # 'mycategory':mycategory,
         'django': django,
         'python': python,
         'mysql': mysql,
@@ -1347,7 +1338,7 @@ def mylist(request):
         'my_collects': my_collects,
         'oauth2_from': oauth2_from
     }
-    # print((maxarticle))
+
     return render(request, 'blog/editorlist.html', context=context)
 
 
@@ -1484,10 +1475,10 @@ def article_save(request, article_id, slug):
         body = request.POST.get('body')
         category = request.POST.get('category')
         tags = request.POST.getlist('tags')
-        newtags = Tag.objects.filter(name__in=tags)
+        new_tags = Tag.objects.filter(name__in=tags)
         status = request.POST.get('status')
         tag_id = []
-        for i in newtags:
+        for i in new_tags:
             tag_id.append(i.id)
         pic = request.FILES.get('pic')
         try:
@@ -1497,9 +1488,6 @@ def article_save(request, article_id, slug):
             article.status = status
             article.category_id = Category.objects.get(name=category).id
             articlebodybrief = body.replace('```', '').replace('`', '')
-            # if '```' in body[0:300]:
-            #     pass
-            # else:
             if len(articlebodybrief) >= 200:
                 article.articlebodybrief = articlebodybrief[0:200]
             else:
@@ -1509,7 +1497,6 @@ def article_save(request, article_id, slug):
                 article.tags.set(tag_id)
                 article.save()
                 from PIL import Image
-                print(article.pic.url)
                 img = Image.open('.%s' % (article.pic.url))
                 width, height = img.size
                 w = int(width / 800)
@@ -1522,7 +1509,6 @@ def article_save(request, article_id, slug):
                 else:
                     lcropped = img.crop((width / 2 - 400, height / 2 - 225, width / 2 + 400, height / 2 + 225))
                 lcropped.save('.%s' % (article.pic.url))
-            # article.pic.url = article.pic.url
             else:
                 article.tags.set(tag_id)
                 article.save()
@@ -1549,7 +1535,6 @@ def article_create_save(request):
     change_info(request)
     if request.method == 'POST':
         name = request.session.get('user_name')
-        title = request.POST.get('title')
         body = request.POST.get('body')
         articlebodybrief = body.replace('```', '').replace('`', '')
         category = request.POST.get('category')
@@ -1557,9 +1542,9 @@ def article_create_save(request):
         tags = request.POST.getlist('tags')
         status = request.POST.get('status')
         pic = request.FILES.get('pic')
-        newtags = Tag.objects.filter(name__in=tags)
+        new_tags = Tag.objects.filter(name__in=tags)
         tag_id = []
-        for i in newtags:
+        for i in new_tags:
             tag_id.append(i.id)
         form = ArticleForm(request.POST)
         if form.is_valid():
@@ -1609,10 +1594,8 @@ def article_create_save(request):
 @csrf_exempt
 def article_delete(request, article_id, slug):
     if request.method == 'POST':
-        id = request.POST.get('article_id')
         data = {}
         try:
-            # Articles.objects.filter(id=article_id).delete()
             article = Articles.objects.get(id=article_id)
             article.status = 'DEL'
             article.save()
@@ -1650,7 +1633,6 @@ def collect_cpu():
     disk_usage = psutil.disk_usage('/')[3]
     disk_usage = round(disk_usage / 100, 2)
     models.Sysrecord.objects.create(cpu=cpu, mem=mem, disk_usage=disk_usage)
-    print(t, cpu)
 
 
 def pyeditor(request):
@@ -1682,8 +1664,6 @@ def api(request):
 @csrf_exempt
 def upload_images(request, article_id):
     pic = request.FILES['editormd-image-file']
-    # article = Articles.objects.get(id=article_id)
-    data = {}
     try:
         obj = models.ArticleBodyPic(article_id=article_id, pic=pic)
         obj.save()
@@ -1692,10 +1672,10 @@ def upload_images(request, article_id):
             "message": 'success',
             "url": obj.pic.url,
         }
-    except:
+    except Exception as e:
         data = {
             "success": 0,
-            "message": 'fail',
+            "message": 'fail, %s' % e,
         }
 
     return HttpResponse(json.dumps(data), content_type='application/json')
@@ -1703,14 +1683,12 @@ def upload_images(request, article_id):
 
 def recruitment(request):
     recruitment = Recruitment.objects.all()
-    recruitmentinfo = Recruinfo.objects.all()
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
     tags = Tag.objects.all()
     categorys = Category.objects.all()
     context = {
         'recruitment': recruitment,
-        'recruitmentinfo': recruitmentinfo,
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
         'tags': tags,
@@ -1720,14 +1698,14 @@ def recruitment(request):
     return render(request, 'blog/recruitment.html', context=context)
 
 
-def recruitmentinfo(request):
-    recruitmentinfo = Recruinfo.objects.all()
+def recruitment_info(request):
+    recruitment_info = Recruinfo.objects.all()
     blog_list_greats = Articles.objects.filter(status="有效").order_by("-greats")[0:10]
     blog_list_comments = Articles.objects.filter(status="有效").order_by("-comments")[0:10]
     tags = Tag.objects.all()
     categorys = Category.objects.all()
     context = {
-        'recruitmentinfo': recruitmentinfo,
+        'recruitmentinfo': recruitment_info,
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
         'tags': tags,
@@ -1742,7 +1720,6 @@ def findme(request):
     tags = Tag.objects.all()
     categorys = Category.objects.all()
     context = {
-        'recruitmentinfo': recruitmentinfo,
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
         'tags': tags,
@@ -1799,7 +1776,6 @@ def ajupload_file(request):
     data = {}
     if request.method == "POST":  # 请求方法为POST时，进行处理
         form = request.FILES.get("file", None)  # 获取上传的文件，如果没有文件，则默认为None
-        #        print(form,form.name)
         file_obj = models.JiaFile(file_name=form.name, file_url='static/Jia_File/' + form.name, file_status=1)
         file_obj.save()
         destination = open(os.path.join("static/Jia_File", form.name), 'wb')  # 打开特定的文件进行二进制的写操作
@@ -1838,8 +1814,6 @@ def collect(request):
             blog_id = request.POST.get('article_id')
             name = request.session.get('user_name')
             name_id = str(BlogUser.objects.get(name=name).id)
-            # thisarticle = get_object_or_404(Articles, id=blog_id)
-            # thisarticle.increase_views()
             if BlogUserCollect.objects.filter(blogid=blog_id).count() >= 1:
                 data["result"] = "fail"
             else:
@@ -1869,7 +1843,6 @@ def editor_addcategory(request):
 
 
 def china_wuhan(request):
-    import requests
     from bs4 import BeautifulSoup
     from selenium import webdriver
 
@@ -2022,7 +1995,6 @@ def search_file(request):
         version = models.Version.objects.order_by('-version_time')[0:1].values('version_content')
         versions = [item[key] for item in version for key in item][0].split(";")
     context = {
-        'recruitmentinfo': recruitmentinfo,
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
         'tags': tags,
@@ -2446,6 +2418,61 @@ def upload_resumes(request):
     else:
         data['result'] = 'fail'
         return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+def edit_article(request, rand_id):
+    change_info(request)
+    if request.method == 'POST':
+        response = {}
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+        category = request.POST.get('category')
+        tags = request.POST.getlist('tags')
+        new_tags = Tag.objects.filter(name__in=tags)
+        status = request.POST.get('status')
+        tag_id = []
+        for i in new_tags:
+            tag_id.append(i.id)
+        pic = request.FILES.get('pic')
+        try:
+            article = Articles.objects.get(rand_id=rand_id)
+            article.title = title
+            article.body = body
+            article.status = status
+            article.category_id = Category.objects.get(name=category).id
+            article_body_brief = body.replace('```', '').replace('`', '')
+            if len(article_body_brief) >= 200:
+                article.articlebodybrief = article_body_brief[0:200]
+            else:
+                article.articlebodybrief = article_body_brief
+            if pic is not None:
+                article.pic = pic
+                article.tags.set(tag_id)
+                article.save()
+                from PIL import Image
+                img = Image.open('.%s' % (article.pic.url))
+                width, height = img.size
+                w = int(width / 800)
+                h = int(height / 450)
+                if width >= 1600 and height >= 900:
+                    cropped = img.resize((int(width / w), int(height / h)))
+                    newwidth, newheight = cropped.size
+                    lcropped = cropped.crop((newwidth / 2 - 400, newheight / 2 - 225, newwidth / 2 + 400,
+                                             newheight / 2 + 225))  # (left, upper, right, lower)
+                else:
+                    lcropped = img.crop((width / 2 - 400, height / 2 - 225, width / 2 + 400, height / 2 + 225))
+                lcropped.save('.%s' % (article.pic.url))
+            else:
+                article.tags.set(tag_id)
+                article.save()
+
+            response['error_num'] = 0
+            response['msg'] = 'success'
+            return HttpResponse(json.dumps(response, ensure_ascii=False))
+        except Exception as e:
+            response['error_num'] = 1
+            response['msg'] = str(e)
+            return HttpResponse(json.dumps(response, ensure_ascii=False))
 
 
 def love_fzy(request):

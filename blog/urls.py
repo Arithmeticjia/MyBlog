@@ -50,7 +50,7 @@ urlpatterns = [
     url(r'^api/$', views.api),
     url(r'^upload_images/(?P<article_id>[0-9]+)/$', views.upload_images),
     url(r'^recruitment/$', views.recruitment),
-    url(r'^recruitment/info/$', views.recruitmentinfo),
+    url(r'^recruitment/info/$', views.recruitment_info),
     url(r'^recruitment/findme/$', views.findme),
     url(r'^film/', views.movie_list, name="movie"),
     url(r'^deletefile/$', views.deletefile),
@@ -81,4 +81,5 @@ urlpatterns = [
     url(r'^getlovefzytimeline/$', views.GetLoveFZYTimeline.as_view()),
     url(r'^tags/$', views.show_tags),
     url(r'^api/upload/resumes/$', views.upload_resumes),
+    url(r'^api/edit/article/(?P<rand_id>[A-Za-z0-9]+)/$', views.edit_article),
 ]

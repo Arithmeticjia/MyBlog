@@ -92,7 +92,6 @@
                                 article_id:article_id,
                             },
                             success:function (result) {
-                                console.log(result.result);
                                 if(result.result=="fail" ){
                                    swal(
                                        '你已经收藏过啦！',
@@ -289,7 +288,11 @@
                                     <script>
                                         var clipboard = new Clipboard('.copybtn');
                                         clipboard.on('success', function(e) {
-                                            console.log(e)
+                                            Swal.fire(
+                                                'Copy Successfully！',
+                                                '',
+                                                'success'
+                                            );
                                         });
                                         clipboard.on('error', function(e) {
                                         console.log(e);
@@ -300,7 +303,7 @@
 										<strong class="text comment-count"><span class="iconfont icon-comment_fill_light" id="commentcount">&nbsp;&nbsp;&nbsp;&nbsp;</span>{{ blog_list.all_comments.count }}&nbsp;&nbsp;&nbsp;&nbsp;</strong>
 										<strong class="text"><span class="iconfont icon-attention_fill">&nbsp;&nbsp;&nbsp;&nbsp;</span>{{ blog_list.views }}&nbsp;&nbsp;&nbsp;&nbsp;</strong>
 										<!--strong class="text share-count"><span class="icon ico-share"></span><a href="#">{{ blog_list.greats }} greats</a></strong-->
-                                        <strong class="text"><a href="/JiaBlog/articles/{{ blog_list.category.name }}" target="_blank"><span class="iconfont icon-news_hot_fill" >&nbsp;&nbsp;&nbsp;&nbsp;</span></a>{{ blog_list.category.name }}&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                        <strong class="text"><a href="/blog/articles/{{ blog_list.category.name }}" target="_blank"><span class="iconfont icon-news_hot_fill" >&nbsp;&nbsp;&nbsp;&nbsp;</span></a>{{ blog_list.category.name }}&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                                         <!--strong class="text"><a href="/JiaBlog/greats/{{ blog_list.id }}"><span class="iconfont icon-appreciate_fill" id="greats"> &nbsp;&nbsp;&nbsp;</span></a>{{ blog_list.greats }}</strong-->
                                         <!--form action="/JiaBlog/newgreats/" method="POST"-->
                                         <strong class="text"><span class="iconfont icon-appreciate_fill" style="cursor: pointer;" onclick="greats()">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif" id="greatsrel">{{ blog_list.greats }}</span>&nbsp;&nbsp;&nbsp;&nbsp;</strong>
