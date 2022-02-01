@@ -2,6 +2,7 @@ import random
 import string
 import markdown
 from markdown.extensions.toc import TocExtension, slugify
+from text_summarization.summary import *
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import F
@@ -71,6 +72,7 @@ class Post(models.Model):
     url_slug = models.SlugField(editable=False, max_length=200)
     cover_pic = models.ImageField(upload_to='blogcovers')
     rand_id = models.CharField(max_length=8, default="1a2b3c4d")
+    summary = models.TextField(_("summary"), blank=True)
 
     status = models.PositiveSmallIntegerField(
         _("status"), choices=STATUS_CHOICES, default=STATUS_CHOICES.draft
@@ -97,6 +99,12 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post:article_detail', args=[self.id])
 
+    # 访问量
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
+        return self.views
+
     def save(self, *args, **kwargs):
         self.url_slug = slugify(self.title)
         md = markdown.Markdown(extensions=[
@@ -104,6 +112,13 @@ class Post(models.Model):
             'markdown.extensions.codehilite',
             TocExtension(slugify=slugify)
         ])
+        if not self.summary:
+            stop_words = []
+            with open('text_summarization/stopWordList.txt', 'r') as f:
+                for line in f.readlines():
+                    stop_words.append(line.strip())
+            self.summary = get_summary(self.content, stop_words, topK_ratio=0.3)
+
         if not self.excerpt:
             self.excerpt = strip_tags(md.convert(self.content))[:150]
 

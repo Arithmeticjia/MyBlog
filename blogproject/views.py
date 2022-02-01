@@ -2,11 +2,12 @@ import markdown
 import re
 import json
 from django.shortcuts import render, get_object_or_404
+from text_summarization.summary import *
 from django.views import View
 from django.views.decorators.http import require_http_methods
 from markdown.extensions.toc import TocExtension, slugify
 from django.contrib.auth.decorators import login_required
-from blog.models import SocialAuthUsersocialauth
+from blog.models import SocialAuthUsersocialauth, Userip
 from blogproject.models import Post, Category, User
 from django.shortcuts import HttpResponse, render, redirect
 from comment.models import Comment
@@ -33,7 +34,7 @@ def get_oauth2_from(name):
         try:
             oauth2login = SocialAuthUsersocialauth.objects.get(user_id=d_user_id)
             oauth2_from = oauth2login.provider
-        except:
+        except Exception as e:
             oauth2_from = 'Django'
 
     return oauth2_from
@@ -105,13 +106,23 @@ class PostDetailView(View):
 
 @require_http_methods(["GET"])
 def single_article(request, rand_id):
+    # 记录访问ip和每个ip的次数
+    if 'HTTP_X_FORWARDED_FOR' in request.META:  # 获取ip
+        client_ip = request.META['HTTP_X_FORWARDED_FOR']
+        client_ip = client_ip.split(",")[0]  # 所以这里是真实的ip
+    else:
+        client_ip = request.META['REMOTE_ADDR']  # 这里获得代理ip
+    ip_exist = Userip.objects.filter(ip=str(client_ip))
     response = {}
     next_article_title = ""
     prev_article_title = ""
     next_article_id = 0
     prev_article_id = 0
     try:
-        article_id = Post.objects.get(status=1, rand_id=rand_id).id
+        article = Post.objects.get(status=1, rand_id=rand_id)
+        article_id = article.id
+        if ip_exist:
+            article.increase_views()
         article = Post.objects.filter(status=1).filter(rand_id=rand_id)
         try:
             prev_article_id = Post.objects.filter(id__lt=article_id, status=1).last().id
@@ -174,6 +185,25 @@ def get_articles_all(request):
         articles = Post.objects.filter(status=1).order_by("id")
         response['list'] = json.loads(
             core_serializers.serialize("json", articles, use_natural_foreign_keys=True, ensure_ascii=False))
+        response['msg'] = 'success'
+        response['error_num'] = 0
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return HttpResponse(json.dumps(response, ensure_ascii=False))
+
+
+@require_http_methods(["GET"])
+def get_article_summary(request, rand_id):
+    response = {}
+    try:
+        stop_word = []
+        with open('text_summarization/stopWordList.txt', 'r') as f:
+            for line in f.readlines():
+                stop_word.append(line.strip())
+        content = Post.objects.get(status=1, rand_id=rand_id).content
+        summary = get_summary(content, stop_word, topK_ratio=0.3)
+        response['summary'] = summary
         response['msg'] = 'success'
         response['error_num'] = 0
     except Exception as e:

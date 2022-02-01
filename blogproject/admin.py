@@ -11,6 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.MDTextField: {'widget': MDEditorWidget}
     }
+    readonly_fields = ["views", "updated_time"]
     list_display = [
         "title",
         "id",
