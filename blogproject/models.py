@@ -112,15 +112,15 @@ class Post(models.Model):
             'markdown.extensions.codehilite',
             TocExtension(slugify=slugify)
         ])
+        if not self.excerpt:
+            self.excerpt = strip_tags(md.convert(self.content))[:150]
+
         if not self.summary:
             stop_words = []
             with open('text_summarization/stopWordList.txt', 'r') as f:
                 for line in f.readlines():
                     stop_words.append(line.strip())
-            self.summary = get_summary(self.content, stop_words, topK_ratio=0.3)
-
-        if not self.excerpt:
-            self.excerpt = strip_tags(md.convert(self.content))[:150]
+            self.summary = get_summary(self.content, stop_words, self.excerpt, topK_ratio=0.3)
 
         if not self.created_time and self.status == self.STATUS_CHOICES.published:
             self.created_time = self.created_time

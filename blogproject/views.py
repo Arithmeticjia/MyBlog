@@ -202,7 +202,7 @@ def get_article_summary(request, rand_id):
             for line in f.readlines():
                 stop_word.append(line.strip())
         content = Post.objects.get(status=1, rand_id=rand_id).content
-        summary = get_summary(content, stop_word, topK_ratio=0.3)
+        summary = get_summary(content, stop_word, strip_tags(content), topK_ratio=0.3)
         response['summary'] = summary
         response['msg'] = 'success'
         response['error_num'] = 0

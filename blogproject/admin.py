@@ -1,6 +1,6 @@
 from django.contrib import admin
 from . import models
-from .models import Post, Category, Tag, User
+from .models import Post, Category, Tag
 from mdeditor.widgets import MDEditorWidget
 
 # Register your models here.
@@ -15,7 +15,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = [
         "title",
         "id",
-        "rand_id",
+        "rand_id"
         "author",
         "status",
         "category",
