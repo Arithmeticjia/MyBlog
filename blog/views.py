@@ -13,7 +13,7 @@ from django.views.decorators.http import require_http_methods
 from django.views import View
 from django.shortcuts import render_to_response, redirect, get_object_or_404, reverse, HttpResponseRedirect
 from django.http import JsonResponse
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, Http404
 from django.core.mail import send_mail
 from django.db.models import Q, IntegerField, CharField, DateTimeField
 from django.views.decorators.http import require_POST
@@ -49,7 +49,6 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework import viewsets
 from rest_framework import mixins
-from collections import Counter
 
 
 # Create your views here.
@@ -257,13 +256,11 @@ class MySearchView(SearchView):
 
 
 @csrf_exempt
-def cancelcollect(request, article_id, slug):
+def cancelcollect(request):
     if request.method == "POST":
         blog_id = request.POST.get('article_id')
         name = request.session.get('user_name')
         name_id = str(BlogUser.objects.get(name=name).id)
-        thisarticle = get_object_or_404(Articles, id=blog_id)
-        # thisarticle.increase_views()
         data = {}
 
         if BlogUserCollect.objects.filter(blogid=blog_id, userid=name_id).count() >= 1:
@@ -496,7 +493,6 @@ def blog_index(request):
         except:
             # oauth2_name = ' '
             oauth2_from = 'Django'
-    blog_lists = Articles.objects.filter(status="有效").order_by("-timestamp")[0:10]  # 获取所有数据
     blog_list_head = Articles.objects.filter(status="有效").filter(istop=1).order_by("-timestamp")[0:5]  # 获取5 头部的5个
     blog_list_up = Articles.objects.filter(status="有效").filter(istop=2).order_by("-timestamp")[0:4]  # 获取2，上面的4个
     blog_list_middle = Articles.objects.filter(status="有效").order_by('-comments')[0:2]  # 获取2，中间那两个
@@ -540,7 +536,6 @@ def blog_index(request):
         version = models.Version.objects.all()[0:1].values('version_content')
         versions = [item[key] for item in version for key in item][0].split(";")'''
     context = {
-        'blog_list': blog_lists,
         'blog_list_views': blog_list_views,
         'blog_list_greats': blog_list_greats,
         'blog_list_comments': blog_list_comments,
@@ -561,7 +556,6 @@ def blog_index(request):
         'catcharts': catcharts,
         'jia': jia,
         'year_month_number': year_month_number,
-        # 'oauth2':oauth2_name,
         'oauth2_from': oauth2_from
     }
     return render(request, 'blog/index.html', context=context)
@@ -710,7 +704,6 @@ def blog_info(request, article_id, slug):
         'toc': md.toc,
         'collect_flag': collect_flag,
         'oauth2_from': oauth2_from
-
     }
 
     return render(request, 'blog/single.html', context=context)
@@ -772,7 +765,6 @@ def blog_list(request):
         year_month_number.append([key[0], key[1], counter[key]])  # 把字典转化为（年，月，数目）元组为元素的列表
     year_month_number.sort(reverse=True)  # 排序
     context = {
-        'blog_list': blog_list,
         'blog_list_views': blog_list_views,
         'blog_list_comments': blog_list_comments,
         'tags': tags,
@@ -1566,9 +1558,9 @@ def article_create_save(request):
                 post.save()
                 post.tags.set(tag_id)
                 post.save()
-            except:
-                messages = '创建失败'
-                return HttpResponse(messages)
+            except Exception as e:
+                messages = '创建失败, '
+                return HttpResponse(messages + str(e))
             post.pic = pic
             post.tags.set(tag_id)
             post.save()
@@ -2220,7 +2212,7 @@ def single_article(request, rand_id):
     return HttpResponse(json.dumps(response, ensure_ascii=False))
 
 
-class JiaIndex(View):
+class Index(View):
     def get(self, request):
         blog_lists = Articles.objects.filter(status="有效").order_by("-timestamp")[0:9]  # 获取所有数据
         blog_list_views = Articles.objects.filter(status="有效").order_by('-views')[0:5]  # 点击排行
@@ -2231,7 +2223,7 @@ class JiaIndex(View):
         return render(request, 'newblog/index.html', context=context)
 
 
-class JiaPostList(View):
+class BlogPostArchive(View):
     def get(self, request):
         try:
             blog_list = Articles.objects.filter(status="有效").order_by("-timestamp")  # 获取所有数据
@@ -2249,11 +2241,11 @@ class JiaPostList(View):
                 'contacts': contacts,
             }
             return render(request, 'newblog/archives.html', context=context)
-        except:
+        except Exception as e:
             return render(request, '404.html')
 
 
-class JiaPost(View):
+class BlogPost(View):
     def get(self, request, article_id, slug):
         try:
             thisarticle = get_object_or_404(Articles, id=article_id, status='有效')
@@ -2300,7 +2292,7 @@ class JiaPost(View):
         return render(request, 'newblog/post.html', context=context)
 
 
-class JiaSearch(View):
+class BlogSearch(View):
     def get(self, request):
         q = request.GET.get('q')
         error_msg = ''
@@ -2477,3 +2469,43 @@ def edit_article(request, rand_id):
 
 def love_fzy(request):
     return render_to_response("lovepic.html")
+
+
+def convert(request):
+    global p
+    from blogproject import models as n_models
+    user = n_models.User.objects.get(username='Arithmeticjia')
+    b_list = Articles.objects.filter().order_by("timestamp")  # 获取所有数据
+    for i in b_list:
+        try:
+            p = get_object_or_404(n_models.Post, title=i.title)
+            p.rand_id = i.rand_id
+            p.created_time = i.timestamp
+            p.save()
+        except Http404 as e:
+            print(i.title + ' has not exist, ' + str(e))
+            # try:
+            #     tag_ids = []
+            #     obj = n_models.Post(author=user)
+            #     obj.rand_id = i.rand_id
+            #     obj.title = i.title
+            #     obj.views = i.views
+            #     obj.likes = i.greats
+            #     obj.content = i.body
+            #     obj.category_id = i.category_id
+            #     for j in i.tags.iterator():
+            #         tag_ids.append(j.id)
+            #     obj.save()
+            #     obj.tags.set(tag_ids)
+            # except Exception as e:
+            #     obj = n_models.Post(author=user)
+            #     obj.rand_id = i.rand_id
+            #     # obj.title = i.title
+            #     obj.save()
+            #     print(i.title + ', ' + str(e))
+
+
+    return HttpResponse('ok')
+
+
+

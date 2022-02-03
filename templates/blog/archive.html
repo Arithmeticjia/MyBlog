@@ -425,7 +425,11 @@
                                     {% endif %}
                                     <span>
                                         {% for pagelist in contacts.paginator.page_range %}
-                                            <a href="?page={{ pagelist }}" class="page-numbers"><b>{{ pagelist }}</b></a>&nbsp;
+                                            {% if contacts.number == pagelist %}
+                                                <a href="?page={{ pagelist }}" class="page-numbers" style="background: #2a2d34;color: #fff"><b>{{ pagelist }}</b></a>&nbsp;
+                                            {% else %}
+                                                <a href="?page={{ pagelist }}" class="page-numbers"><b>{{ pagelist }}</b></a>&nbsp;
+                                            {% endif %}
                                         {% endfor %}
                                     </span>
                                     <span class="page-numbers current">

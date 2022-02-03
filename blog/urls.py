@@ -2,7 +2,6 @@ from django.conf.urls import url, include
 from django.urls import path
 from blog import views
 from rest_framework import routers
-from django.views.decorators.csrf import csrf_exempt
 
 app_name = 'blog'
 
@@ -69,10 +68,10 @@ urlpatterns = [
     url(r'^getallcategory/$', views.get_categroy_all),
     url(r'^getcategoryarticles/(.+)/$', views.get_article_category),
     url(r'^gettagarticles/(.+)/$', views.get_article_tag),
-    url(r'^new/search/$', views.JiaSearch.as_view()),
-    url(r'^new/list/$', views.JiaPostList.as_view()),
-    url(r'^new/index/$', views.JiaIndex.as_view()),
-    url(r'^post/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.JiaPost.as_view()),
+    url(r'^new/search/$', views.BlogSearch.as_view()),
+    url(r'^archive/$', views.BlogPostArchive.as_view()),
+    url(r'^new/index/$', views.Index.as_view()),
+    url(r'^post/(?P<article_id>[0-9]+)/(?P<slug>[-\w]+)/$', views.BlogPost.as_view()),
     url(r'^upload_file_springboot/$', views.upload_facepic_springboot),
     url(r'^sign_in/$', views.sign_in),
     url(r'^getlovefzytodo/$', views.GetLoveFZYToDoList.as_view()),
@@ -82,4 +81,5 @@ urlpatterns = [
     url(r'^tags/$', views.show_tags),
     url(r'^api/upload/resumes/$', views.upload_resumes),
     url(r'^api/edit/article/(?P<rand_id>[A-Za-z0-9]+)/$', views.edit_article),
+    # url(r'^convert/$', views.convert),
 ]

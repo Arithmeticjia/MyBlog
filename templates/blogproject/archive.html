@@ -22,17 +22,11 @@
 	<link rel="stylesheet" href="/static/JiaBlog/style.css">
 	<!-- include the site stylesheet -->
 	<link rel="stylesheet" href="/static/JiaBlog/css/responsive.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
 	<!-- include the site stylesheet -->
 	<link type="text/css" rel="stylesheet" href="/static/css/github.css"/>
     <link rel="stylesheet" type="text/css" href="/static/viewerjs-master/dist/viewer.min.css">
     <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_dycynze6id6.css">
-    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_oyyrvpk63p.css">
-    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_07f5zbdbyf9q.css">
-    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_xmpmtbu3qm.css">
-    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_2jx8jr9khtj.css">
-    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_h5pzyznynb7.css">
-    <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_we12to92lhb.css">
     <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_1039987_38gskixsmzu.css">
     <style>
         p{
@@ -109,8 +103,16 @@
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
 											<li><a href="/blog/index/">Home</a></li>
-											<li><a href="/blog/list/">Archive</a></li>
-											<!--li><a href="single.html">Single</a></li-->
+											<li><a href="/blog/archive/">Archive</a></li>
+											<li class="dropdown">
+                                                <a href="/blog/contact-us" class="dropbtn">Service</a>
+                                                <div class="dropdown-content">
+                                                    <a href="https://www.position.guanacossj.com/">PoseNet</a>
+                                                    <a href="https://www.guanacossj.com/oblog/">Old Version</a>
+                                                    <a href="https://blog.guanacossj.com/">Vue Version</a>
+                                                    <a href="/blog/recruitment/info">Recruitment</a>
+                                                </div>
+                                            </li>
 											<li><a href="/blog/contact-us">Contact</a></li>
                                             <li><a href="/blog/file/" target="_blank">File</a></li>
                                             <li><a href="/online-intepreter" target="_blank">OnlineExplain</a></li>
@@ -219,7 +221,7 @@
                                                 <div class="img-holder">
                                                     <a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank"><img src="/media/{{ i.pic }}" alt="image description"></a>
                                                 </div>
-                                                <time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+                                                <time datetime="2011-01-12"><a href="#">{{ i.created_time }}</a></time>
                                                 <h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
                                                 <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.articlebodybrief|slice:"150"|safe }}</p>
                                                 <a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" class="read-more">Read more</a>
@@ -261,11 +263,11 @@
 							<section class="widget profile-widget version-ii hidden-lg hidden-md">
 								<div class="profile-pic">
 									<a href="#">
-										<img src="{{ jia.pic.url }}" alt="ArithmeticJia">
+										<img src="{{ shanshajia.profile_photo.url }}" alt="ArithmeticJia">
 									</a>
 								</div>
-								<h3>{{ jia.name }}</h3>
-								<p>{{ jia.brief }}</p>
+								<h3>{{ shanshajia.username }}</h3>
+								<p>{{ shanshajia.brief_info }}</p>
 								<!-- Social Network of the page -->
 								<ul class="social-networks">
 									<li><a href="#"><span class="icon ico-facebook"></span></a></li>
@@ -300,15 +302,15 @@
 		                                        });
                                             </script>
 										</div>
-										<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+										<time datetime="2011-01-12"><a href="#">{{ i.created_time }}</a></time>
 										<h2><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h2>
-										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.body|slice:"150"|safe}}</p>
+										<p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;/* autoprefixer: off */-webkit-box-orient: vertical;/* autoprefixer: on */">{{ i.content|slice:"150"|safe}}</p>
 										<a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" class="read-more">Read more</a>
 										<footer>
                                             <strong class="text comment-count"><span class="iconfont icon-comment_fill_light"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.all_comments.count }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
-                                            <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.greats }}</a></strong>
+                                            <strong class="text share-count"><span class="iconfont icon-appreciate_fill"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="font-size: 15px">{{ i.likes }}</a></strong>
 											<!--strong class="text comment-count"><span class="icon ico-comment"></span><a href="#">{{ i.all_comments.count }} comments</a></strong>
-											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">{{ i.greats }} greats</a></strong-->
+											<strong class="text share-count"><span class="icon ico-share"></span><a href="#">{{ i.likes }} greats</a></strong-->
 
 										</footer>
 									</div>
@@ -423,7 +425,11 @@
                                     {% endif %}
                                     <span>
                                         {% for pagelist in contacts.paginator.page_range %}
-                                            <a href="?page={{ pagelist }}" class="page-numbers"><b>{{ pagelist }}</b></a>&nbsp;
+                                            {% if contacts.number == pagelist %}
+                                                <a href="?page={{ pagelist }}" class="page-numbers" style="background: #2a2d34;color: #fff"><b>{{ pagelist }}</b></a>&nbsp;
+                                            {% else %}
+                                                <a href="?page={{ pagelist }}" class="page-numbers"><b>{{ pagelist }}</b></a>&nbsp;
+                                            {% endif %}
                                         {% endfor %}
                                     </span>
                                     <span class="page-numbers current">
@@ -478,7 +484,7 @@
 									<li>
 										<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 										<span class="post-tag">
-											<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+											<time datetime="2011-01-12"><a href="#">{{ i.created_time }}</a></time>
 											<strong class="tag hot">HOT</strong>
 										</span>
 									</li>
@@ -514,7 +520,7 @@
 												<div class="descr">
 													<h4><a href="/blog/article/{{ i.id }}/{{ i.url_slug }}" target="_blank">{{ i.title }}</a></h4>
 													<span class="post-tag">
-														<time datetime="2011-01-12"><a href="#">{{ i.timestamp }}</a></time>
+														<time datetime="2011-01-12"><a href="#">{{ i.created_time }}</a></time>
 													</span>
 												</div>
 
@@ -632,20 +638,6 @@
 								<ul>
                                     {% for i in categorys %}
 									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="/blog/articles/{{ i.name }}">- {{ i.name }}---({{ i.catcount }})</a></span></li>
-									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
-									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
-									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
-									<li class="cat-item cat-item-1"><span><a href="#">- Music</a></span><span><a href="#">- Music</a></span></li-->
-                                    {% endfor %}
-								</ul>
-							</div>
-                            <div class="widget widget_categories version-ii wow fadeInUp" data-wow-delay="0.4s">
-								<header class="widget-head">
-									<h3>Version Updates</h3>
-								</header>
-								<ul>
-                                    {% for i in versions %}
-									<li class="cat-item cat-item-1"><!--span><a href="#">- Lifestyle</a></span--><span><a href="#">- {{ i }}</a></span></li>
 									<!--li class="cat-item cat-item-1"><span><a href="#">- Movie</a></span><span><a href="#">- Movie</a></span></li>
 									<li class="cat-item cat-item-1"><span><a href="#">- Travel</a></span><span><a href="#">- Travel</a></span></li>
 									<li class="cat-item cat-item-1"><span><a href="#">- Sports</a></span><span><a href="#">- Sports</a></span></li>
