@@ -15,7 +15,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = [
         "title",
         "id",
-        "rand_id"
+        "rand_id",
         "author",
         "status",
         "category",
