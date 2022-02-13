@@ -1,6 +1,8 @@
 import markdown
 import re
 import json
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 from text_summarization.summary import *
 from django.views import View
@@ -8,7 +10,7 @@ from django.views.decorators.http import require_http_methods
 from markdown.extensions.toc import TocExtension, slugify
 from django.contrib.auth.decorators import login_required
 from blog.models import SocialAuthUsersocialauth, Userip
-from blogproject.models import Post, Category, User
+from blogproject.models import Post, Category, User, Tag
 from django.shortcuts import HttpResponse, render, redirect
 from comment.models import Comment
 from django.core import serializers as core_serializers
@@ -73,6 +75,54 @@ def post_detail(request, article_id, url_slug):
     return render(request, 'blogproject/single.html', context=context)
 
 
+class PostArchiveView(View):
+
+    def get(self, request):
+
+        try:
+            post_list = Post.objects.filter(status='published').order_by("-created_time")
+            paginator = Paginator(post_list, 16)  # 分页，每页10条数据
+            page = request.GET.get('page')
+            try:
+                contacts = paginator.page(page)  # contacts为Page对象！
+            except PageNotAnInteger:
+                # If page is not an integer, deliver first page.
+                contacts = paginator.page(1)
+            except EmptyPage:
+                # If page is out of range (e.g. 9999), deliver last page of results.
+                contacts = paginator.page(paginator.num_pages)
+            category_name_list = Category.objects.all()
+            tag_name_list = Tag.objects.all()
+            shanshajia = User.objects.get(username='shanshajia')
+            year_month = set()  # 设置集合，无重复元素
+            for a in post_list:
+                year_month.add((a.timestamp.year, a.timestamp.month))  # 把每篇文章的年、月以元组形式添加到集合中
+            counter = {}.fromkeys(year_month, 0)  # 以元组作为key，初始化字典
+            for a in post_list:
+                counter[(a.timestamp.year, a.timestamp.month)] += 1  # 按年月统计文章数目
+            year_month_number = []  # 初始化列表
+            for key in counter:
+                year_month_number.append([key[0], key[1], counter[key]])  # 把字典转化为（年，月，数目）元组为元素的列表
+            year_month_number.sort(reverse=True)  # 排序
+            context = {
+                'blog_list': post_list,
+                'blog_list_views': blog_list_views,
+                'blog_list_comments': blog_list_comments,
+                'tags': tag_name_list,
+                'contacts': contacts,
+                'blog_list_greats': blog_list_greats,
+                'categorys': category_name_list,
+                'blog_list_three': blog_list_news,
+                'shanshajia': shanshajia,
+                'year_month_number': year_month_number,
+                'oauth2_from': oauth2_from
+            }
+        except Exception as e:
+            return render(request, '404.html')
+
+        return render(request, 'blogproject/single.html', context=context)
+
+
 class PostDetailView(View):
 
     def get(self, request, article_id, url_slug):
@@ -83,7 +133,6 @@ class PostDetailView(View):
                 return render(request, '404.html')
         except Exception as e:
             return render(request, '404.html')
-        likes = post.likes
         category_id = post.category.id
         tag_name = post.tags.values('name')
         category = get_object_or_404(Category, id=category_id)
@@ -98,7 +147,6 @@ class PostDetailView(View):
             'post': post,
             'category': category,
             'tag': tag_name,
-            'likes': likes,
             'toc': md.toc,
         }
         return render(request, 'blogproject/single.html', context=context)

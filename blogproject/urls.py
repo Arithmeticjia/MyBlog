@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from blogproject import views
+from blogproject.views import PostArchiveView
 
 app_name = 'blogproject'
 
@@ -10,4 +11,5 @@ urlpatterns = [
     url(r'^single-article/(?P<rand_id>[A-Za-z0-9]+)/$', views.single_article),
     url(r'^all-articles/$', views.get_articles_all),
     url(r'^single-article/(?P<rand_id>[A-Za-z0-9]+)/summary$', views.get_article_summary),
+    url(r'^archive/$', PostArchiveView.as_view(), name='archive'),
 ]
