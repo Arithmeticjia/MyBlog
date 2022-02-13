@@ -25,7 +25,7 @@
                   <div>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-date"></i> 发表于：{{ value.fields.timestamp | formatDate }}</span>
                     <el-divider direction="vertical"></el-divider>
-                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-user"></i> 作者：{{ value.fields.authorname }}</span>
+                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-user"></i> 作者：{{ value.fields.author[0] }}</span>
                     <el-divider direction="vertical"></el-divider>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-document"></i><router-link style="color: #7D7D7D" :to="'/category/'+ value.fields.category"> 分类：{{ value.fields.category }}</router-link></span>
                     <el-divider direction="vertical"></el-divider>
@@ -50,19 +50,23 @@
                   style="width:210px; height: 300px;text-align: center"
                   :src="wechatUrl"
                   :fit="none"></el-image>
-                <el-button icon="el-icon-coin" type="info" slot="reference">{{$t('common.Single.donate')}}</el-button>
+                <el-button icon="el-icon-coin" type="danger" slot="reference">{{$t('common.Single.donate')}}</el-button>
               </el-popover>
             </div>
             </div>
             <br>
             <el-row type="flex" class="row-bg" justify="space-around">
-              <el-col :span="21">
-                <ul
+              <el-col :span="21" v-if="comments.length !== 0">
+                <p
                     class="comments-list  style-3"
                     v-for="comment in comments"
                     :key="comment.pk">
-                    <tree v-if="comment.parent==null" :tree-data="comment"></tree>
-                </ul>
+                    <tree  :tree-data="comment.fields"></tree>
+                </p>
+              </el-col>
+              <el-col :span="21" v-else>
+                <p>暂无评论
+                </p>
               </el-col>
             </el-row>
             <el-row type="flex" class="row-bg" justify="space-around">
@@ -218,7 +222,7 @@ let rendererMD = new marked.Renderer();
           },
           showComments () {
             sessionStorage.setItem("detail", true);
-            this.$http.get('https://www.guanacossj.com/comment/get-comment/1',{
+            this.$http.get('https://www.guanacossj.com/comment/get-comment/' + this.$route.params.id,{
                 _timeout:5000,
                 onTimeout :(request) => {
                     this.$message.error({
@@ -230,8 +234,7 @@ let rendererMD = new marked.Renderer();
                 }).then((response) => {
                 var res = JSON.parse(response.bodyText);
                 if (res.error_num === 0) {
-                  this.comments = res['comments'][0]
-                  console.log(this.comments)
+                  this.comments = res['comments']
                 } else {
                   this.$message.error('查询博客评论失败');
                 }
@@ -249,7 +252,7 @@ let rendererMD = new marked.Renderer();
                     this.loading = false
                   }
                 }).then((response) => {
-                var res = JSON.parse(response.bodyText);
+                const res = JSON.parse(response.bodyText);
                 if (res.error_num === 0) {
                   this.tags = res['list'][0]['fields']['tags'];
                   this.loading = false;
@@ -294,7 +297,7 @@ let rendererMD = new marked.Renderer();
                     this.loading = false
                   }
                 }).then((response) => {
-                var res = JSON.parse(response.bodyText);
+                const res = JSON.parse(response.bodyText);
                 if (res.error_num === 0) {
                   this.tags = res['list'][0]['fields']['tags'];
                   this.loading = false;

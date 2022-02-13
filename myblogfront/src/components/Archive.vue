@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title>请叫我算术嘉の博客 | {{$t('common.archive')}}</title>
+    <title>{{$t('common.archive')}} | 请叫我算术嘉の博客</title>
 <!--    <Menu></Menu>-->
     <NewMenu></NewMenu>
     <el-main>
@@ -34,7 +34,9 @@
                   <div>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-date"></i> 发表于：{{ value.fields.timestamp | formatDate }}</span>
                     <el-divider direction="vertical"></el-divider>
-                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views }}</span>
+                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views | numberFormat }}</span>
+                    <el-divider direction="vertical"></el-divider>
+                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-reading"></i> 字数：{{ value.fields.words_number | numberFormat }}</span>
                   </div>
                   <br>
                   <p style="font-size: 17px">{{ value.fields.body.substring(0,100)+'......' }}</p>
@@ -88,7 +90,7 @@ export default {
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
-            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.archive')
+            document.title = this.$t('common.archive') + ' | 请叫我算术嘉の博客'
           }
         },
         computed: {
@@ -100,14 +102,17 @@ export default {
 	        /*
 	         时间格式自定义 只需把字符串里面的改成自己所需的格式
 	        */
-	        formatDate:function(date) {
+	        formatDate: function(date) {
 	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
-	        }
+	        },
+          numberFormat: function (value) {
+            return value.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
+          }
         },
         mounted: function () {
           this.showBlogs();
           this.getLastPage();
-          document.title = '请叫我算术嘉の博客 | ' + this.$t('common.archive');
+          document.title = this.$t('common.archive') + ' | 请叫我算术嘉の博客';
         },
         destroyed(){
           sessionStorage.removeItem("detail");

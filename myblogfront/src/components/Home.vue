@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title>请叫我算术嘉の博客 | {{$t('common.home')}}</title>
+    <title>{{$t('common.home')}} | 请叫我算术嘉の博客</title>
     <NewMenu></NewMenu>
     <el-main>
       <div v-if="this.$store.state.Canvas">

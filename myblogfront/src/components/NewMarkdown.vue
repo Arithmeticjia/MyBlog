@@ -98,7 +98,7 @@ name: "NewMarkdown",
     },
     pageJump(id) {
       this.titleClickScroll = true;
-      //这里我与原作者的不太一样，发现原作者的scrollTop一直为0，所以使用了Vuetify自带的goTo事件
+      // 这里我与原作者的不太一样，发现原作者的scrollTop一直为0，所以使用了Vuetify自带的goTo事件
       this.$emit('callFather', id);
       // this.$vuetify.goTo(this.$el.querySelector('#app').offsetTop - 40);
       // setTimeout(() => (this.titleClickScroll = false), 100);

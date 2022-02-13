@@ -1,7 +1,6 @@
 <template>
   <el-container>
-    <title>请叫我算术嘉の博客 | {{$t('common.about')}}</title>
-<!--    <Menu></Menu>-->
+    <title>{{$t('common.about')}} | 请叫我算术嘉の博客</title>
     <NewMenu></NewMenu>
     <el-main>
       <div v-if="this.$store.state.Canvas">
@@ -141,6 +140,7 @@
                   <h2>{{$t('common.About.hobby')}}</h2>
                   <div class="me">
                     <p>王者荣耀：星耀✨✨✨✨</p>
+                    <p>养猫（虎斑美短一只）🐱</p>
                     <p>看电影...</p>
                     <p>数码产品...</p>
                     <p>睡大觉💤</p>
@@ -163,7 +163,7 @@ import "echarts-wordcloud/dist/echarts-wordcloud";
 import "echarts-wordcloud/dist/echarts-wordcloud.min";
 import Menu from "./Menu";
 import NewMenu from "./NewMenu";
-import axios from "_axios@0.21.1@axios";
+import axios from "axios";
 
 export default {
         name: "About",
@@ -177,17 +177,7 @@ export default {
               name: '单沙嘉的简历.pdf',
               url: 'https://www.guanacossj.com/media/resume/%E5%8D%95%E6%B2%99%E5%98%89%E7%9A%84%E7%AE%80%E5%8E%86.pdf'
             }],
-            activities: [{
-              content: '活动按期开始',
-              timestamp: '2018-04-15'
-            }, {
-              content: '通过审核',
-              timestamp: '2018-04-13'
-            }, {
-              content: '创建成功',
-              timestamp: '2018-04-11'
-            }],
-            worddata: [
+            wordData: [
             {
               name: "Django",
               value: 14000
@@ -424,12 +414,12 @@ export default {
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
-            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.about');
+            document.title = this.$t('common.about') + ' | 请叫我算术嘉の博客';
           }
         },
         mounted(){
           this.checkLogin();
-          document.title = '请叫我算术嘉の博客 | ' + this.$t('common.about');
+          document.title = this.$t('common.about') + ' | 请叫我算术嘉の博客';
         },
         methods: {
           // 上传成功后的回调
@@ -456,9 +446,6 @@ export default {
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
             sessionStorage.setItem('lang', val);
-          },
-          handleOpen(key, keyPath) {
-            console.log(key, keyPath);
           },
           handleBeforeUpload() {
             this.checkLogin();
@@ -487,9 +474,6 @@ export default {
                 this.loginFlag = true
               }
             });
-          },
-          handleRemove(file, fileList) {
-            console.log(file, fileList);
           },
           handlePreview(file) {
             console.log(file);
@@ -556,7 +540,7 @@ export default {
                 width: "150%",
                 height: "150%",
                 //数据
-                data: this.worddata,
+                data: this.wordData,
                 // data: this.randomworddata
               }
             ]

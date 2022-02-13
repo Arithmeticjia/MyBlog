@@ -1,8 +1,9 @@
 <template>
   <div class="tree">
-    <ul class="tree-list">
+    <div class="tree-list">
       <node-tree :node="treeData"></node-tree>
-    </ul>
+    </div>
+    <el-divider></el-divider>
   </div>
 </template>
 

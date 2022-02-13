@@ -1,7 +1,6 @@
 <template>
   <el-container>
     <title>请叫我算术嘉の博客 | {{$t('common.love')}}</title>
-<!--    <Menu></Menu>-->
     <NewMenu></NewMenu>
     <el-main>
       <div v-if="this.$store.state.Canvas">
@@ -165,11 +164,11 @@
 <script>
   import store from '../store';
   import axios from 'axios';
-  import Menu from "./Menu";
   import NewMenu from "./NewMenu";
+  import { marked } from 'marked';
     export default {
         name: "Love",
-        components: {NewMenu, Menu },
+        components: { NewMenu },
         data () {
           return {
             username: store.getters.userName,
@@ -244,7 +243,9 @@
         computed: {
           compiledMarkdown() {
             return function (value) {
-              return marked(value, {sanitize: true});
+              return marked(value || '', {
+		              sanitize: true
+		          });
             }
           },
         },
@@ -275,9 +276,6 @@
               this.bannerHeight=this.$refs.bannerHeight[0].height;
             })
           },
-          update: _.debounce(function(e) {
-            this.input = e.target.value;
-          }, 300),
           switchLang(val){
             this.$i18n.locale=val;//此处val为 zh 或者 en
             sessionStorage.setItem('lang', val);
@@ -326,10 +324,10 @@
                   'token': localStorage.getItem('Authorization')
                 }
               });
-              if(ans.data.code === 200) {
+              if (ans.data.code === 200) {
                 await this.getDownList();
                 await this.getToDOList();
-              }else {
+              } else {
                 this.$message.error({
                   message: '凭证已过期，请重新登录！',
                   center: true

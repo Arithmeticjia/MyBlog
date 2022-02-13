@@ -16,12 +16,6 @@ Vue.use(Router)
 Vue.use(ElementUI)
 Vue.use(vueCanvasNest)
 Vue.use(mavonEditor)
-new Vue({
-  'el': '#main',
-  data() {
-    return { value: '' }
-  }
-})
 // Vue.use(ElementUI, { locale })
 
 Vue.component('vue-canvas-nest', vueCanvasNest);
@@ -136,9 +130,9 @@ const router = new Router({
     {
       path: '/post/:id/edit',
       name: 'editor',
-      // meta: {
-      //   requiresAuth: true  //需要登录才能访问
-      // },
+      meta: {
+        requiresAuth: true
+      },
       component: () => import('@/components/Editor')
     }
   ]

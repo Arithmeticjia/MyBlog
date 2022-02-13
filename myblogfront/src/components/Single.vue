@@ -1,7 +1,6 @@
 <template>
   <el-container>
     <title></title>
-<!--    <Markdown :psMsg=navList @callFather="pageJump"></Markdown>-->
     <NewMarkdown :psMsg=navList @callFather="pageJump"></NewMarkdown>
     <el-main>
       <div v-if="this.$store.state.Canvas">
@@ -29,12 +28,12 @@
                     <el-divider direction="vertical"></el-divider>
                     <span style="color: #7d7d7d;font-size: small"><i class="el-icon-document"></i><router-link style="color: #7D7D7D" :to="'/category/'+ value.fields.category"> 分类：{{ value.fields.category }}</router-link></span>
                     <el-divider direction="vertical"></el-divider>
-                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views }}</span>
+                    <span style="color: #7d7d7d;font-size: small"><i class="el-icon-view"></i> 阅读次数：{{ value.fields.views | numberFormat}}</span>
                   </div>
                   <br>
                   <span style="color: #7d7d7d;font-size: small"><i class="el-icon-collection-tag"></i> 标签：</span>
                   <div style="display: inline" v-for="(tag) in tags">
-                    <el-tag size="mini"><router-link style="color: #7D7D7D" :to="'/tag/'+ tag">{{ tag }}</router-link></el-tag>&nbsp;
+                    <el-tag size="mini"><router-link style="color: #7D7D7D" :to="'/tag/'+ tag"># {{ tag }}</router-link></el-tag>&nbsp;
                   </div>
                   <br>
                   <div class="bodymarkdown" style="text-align: left;line-height: 2em;font-size: 17px" v-html="markdownhtml"></div>
@@ -50,7 +49,7 @@
                   style="width:210px; height: 300px;text-align: center"
                   :src="wechatUrl"
                   :fit="none"></el-image>
-                <el-button icon="el-icon-coin" type="info" slot="reference">{{$t('common.Single.donate')}}</el-button>
+                <el-button icon="el-icon-coin" type="danger" slot="reference">{{$t('common.Single.donate')}}</el-button>
               </el-popover>
             </div>
             </div>
@@ -77,26 +76,30 @@
               <div class="prev-article">
                 <i class="el-icon-caret-left" style="font-size: 20px;vertical-align: middle;"></i>
               </div>
-              <router-link :to="'/post/'+prev_article_id"><div class="prev-article" v-html="prev_article_title.substr(0,25)+'...'"></div></router-link>
+              <router-link :to="''" v-if="prev_article_rand_id === 'no'"><div class="prev-article" v-html="prev_article_title.substr(0,25)+'...'"></div></router-link>
+              <router-link :to="'/post/'+ prev_article_rand_id" v-else><div class="prev-article" v-html="prev_article_title.substr(0,25)+'...'"></div></router-link>
               <div class="next-article">
                 <i class="el-icon-caret-right" style="font-size: 20px;vertical-align: middle;"></i>
               </div>
-              <router-link :to="'/post/'+next_article_id"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
+              <router-link :to="''" v-if="next_article_rand_id === 'no'"><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
+              <router-link :to="'/post/'+ next_article_rand_id" v-else><div class="next-article" v-html="next_article_title.substr(0,25)+'...'"></div></router-link>
             </div>
         </div>
       <el-backtop target=".el-main"></el-backtop>
     </el-main>
+    <div class="edit" v-if="this.loginFlag===true">
+      <router-link style="color: white;text-decoration: none" :to="'/post/' + this.$route.params.id + '/edit'"><el-button type="primary" icon="el-icon-edit" circle></el-button></router-link>
+    </div>
   </el-container>
 </template>
 
 <script>
 import moment from 'moment';
 import "../assets/tango.css";
-import Markdown from "./Markdown";
-import marked from "marked";
+import {marked} from "marked";
 import NewMarkdown from "./NewMarkdown";
 import Clipboard from "clipboard"
-import { removeWatermark, setWaterMark } from '../utils/watermark'
+import axios from "_axios@0.21.4@axios";
 
 let rendererMD = new marked.Renderer();
   marked.setOptions({
@@ -112,11 +115,11 @@ let rendererMD = new marked.Renderer();
     export default {
         name: "Single",
         components: {
-          Markdown,
           NewMarkdown,
         },
         data () {
           return {
+            loginFlag: false,
             wechatUrl: "https://www.guanacossj.com/media/articlebodypics/wechatpay.png",
             singleId: 1,
             singleBlog: [],
@@ -126,6 +129,8 @@ let rendererMD = new marked.Renderer();
             next_article_title: "已经是最后一篇了",
             prev_article_id: 0,
             next_article_id: 0,
+            prev_article_rand_id: "",
+            next_article_rand_id: "",
             loading: true,
             tags: [],
             navList: [],
@@ -141,15 +146,16 @@ let rendererMD = new marked.Renderer();
           window.copyText = this.copyText;
         },
         watch: {
-          '$route':'showSingleBlog'
+          '$route':'showSingleBlog',
+          '$route.params':'getSingleBlog'
         },
         mounted: function () {
-          if(this.$route.params.id.length !== 8) {
+          if (this.$route.params.id.length !== 8) {
             this.showSingleBlog();
           }else {
             this.getSingleBlog();
           }
-          //setWaterMark('liergou', '李二狗');
+          this.checkLogin();
         },
         filters: {
 	        /*
@@ -157,13 +163,16 @@ let rendererMD = new marked.Renderer();
 	        */
 	        formatDate:function(date) {
 	        	return moment(date).format("YYYY-MM-DD HH:mm:ss");
-	        }
+	        },
+          numberFormat: function (value) {
+            return value.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
+          }
         },
         computed: {
           content() {
             return this.html;
           },
-        //此函数将markdown内容进一步的转换
+          //此函数将markdown内容进一步的转换
           compiledMarkdown: function() {
             let index = 0;
             rendererMD.heading = function(text, level) {
@@ -178,6 +187,18 @@ let rendererMD = new marked.Renderer();
           },
         },
         methods: {
+          checkLogin() {
+            axios.get("https://yun.guanacossj.com/yunprophet/api/v1/check-login", {
+              headers: {
+                'token': localStorage.getItem('Authorization')
+              }
+            }).then((res) => {
+              if(res.data.code === 200) {
+                this.loginFlag = true
+              }
+            });
+            return this.loginFlag;
+          },
           copyText() {
             const clipboard = new Clipboard(".copy_btn")
             clipboard.on('success', e => {
@@ -196,7 +217,7 @@ let rendererMD = new marked.Renderer();
             this.$router.go(-1);
           },
           switchLang(val){
-            this.$i18n.locale=val;//此处val为 zh 或者 en
+            this.$i18n.locale = val;//此处val为 zh 或者 en
             sessionStorage.setItem('lang', val);
           },
           getId() {
@@ -204,7 +225,7 @@ let rendererMD = new marked.Renderer();
           },
           showSingleBlog () {
             sessionStorage.setItem("detail", true);
-            this.$http.get('https://www.guanacossj.com/blog/getsinglearticle/' + this.$route.params.id,{
+            this.$http.get('https://www.guanacossj.com/blog/getsinglearticle/' + this.$route.params.id + '/',{
                 _timeout:5000,
                 onTimeout :(request) => {
                     this.$message.error({
@@ -223,14 +244,16 @@ let rendererMD = new marked.Renderer();
                   if (res.prev_article_title !== ""){
                     this.prev_article_id = res.prev_article_id;
                     this.prev_article_title = res.prev_article_title;
-                  }else {
-                    this.prev_article_title = "已经是第一篇了"
+                  } else {
+                    this.prev_article_title = "已经是第一篇了";
+                    this.prev_article_rand_id = 'no';
                   }
                   if (res.next_article_title !== ""){
                     this.next_article_id = res.next_article_id;
                     this.next_article_title = res.next_article_title;
-                  }else {
-                    this.next_article_title = "已经是最后一篇了"
+                  } else {
+                    this.next_article_title = "已经是最后一篇了";
+                    this.next_article_rand_id = 'no';
                   }
                   this.singleBlog = res['list'];
                   document.title = res['list'][0].fields.title;
@@ -249,7 +272,7 @@ let rendererMD = new marked.Renderer();
           },
           getSingleBlog () {
             sessionStorage.setItem("detail", true);
-            this.$http.get('https://www.guanacossj.com/blog/single-article/' + this.$route.params.id,{
+            this.$http.get('https://www.guanacossj.com/blog/single-article/' + this.$route.params.id + '/',{
                 _timeout:5000,
                 onTimeout :(request) => {
                     this.$message.error({
@@ -259,22 +282,23 @@ let rendererMD = new marked.Renderer();
                     this.loading = false
                   }
                 }).then((response) => {
-                var res = JSON.parse(response.bodyText);
+                const res = JSON.parse(response.bodyText);
                 if (res.error_num === 0) {
                   this.tags = res['list'][0]['fields']['tags'];
                   this.loading = false;
                   this.markdownhtml = res.markdown;
                   this.html = res['list'][0].fields.body;
                   if (res.prev_article_title !== ""){
-                    this.prev_article_id = res.prev_article_id;
+                    this.prev_article_rand_id = res.prev_article_rand_id;
                     this.prev_article_title = res.prev_article_title;
-                  }else {
+                  } else {
                     this.prev_article_title = "已经是第一篇了"
                   }
                   if (res.next_article_title !== ""){
-                    this.next_article_id = res.next_article_id;
+                    this.next_article_rand_id = res.next_article_rand_id;
                     this.next_article_title = res.next_article_title;
-                  }else {
+                  } else {
+                    this.next_article_rand_id = 'no';
                     this.next_article_title = "已经是最后一篇了"
                   }
                   this.singleBlog = res['list'];
@@ -521,5 +545,11 @@ let rendererMD = new marked.Renderer();
   }
   .router-link-active {
     text-decoration: none;
+  }
+  .edit {
+    width: 20px;
+    position:fixed;
+    top: 50%;
+    right: 3%;
   }
 </style>

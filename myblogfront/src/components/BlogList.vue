@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title>请叫我算术嘉の博客 | {{$t('common.search')}}</title>
+    <title>{{$t('common.search')}} | 请叫我算术嘉の博客</title>
 <!--    <Menu></Menu>-->
     <NewMenu></NewMenu>
       <el-main>
@@ -129,11 +129,11 @@
         },
         mounted: function () {
           this.showBlogs();
-          document.title = '请叫我算术嘉の博客 | ' + this.$t('common.search');
+          document.title = this.$t('common.search') + '| 请叫我算术嘉の博客';
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
-            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.search')
+            document.title = this.$t('common.search') + '| 请叫我算术嘉の博客';
           },
           searchInfo: function() {
             if (this.searchInfo.length === 0) {

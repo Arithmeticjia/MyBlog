@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <title>请叫我算术嘉の博客 | {{$t('common.category')}}</title>
+    <title>{{$t('common.category')}} | 请叫我算术嘉の博客</title>
 <!--    <Menu></Menu>-->
     <NewMenu></NewMenu>
     <el-main>
@@ -70,11 +70,11 @@ import NewMenu from "./NewMenu";
         },
         mounted() {
           this.showCategories();
-          document.title = '请叫我算术嘉の博客 | ' + this.$t('common.category');
+          document.title = this.$t('common.category') + ' | 请叫我算术嘉の博客';
         },
         watch: {
           '$i18n.locale'(newVal,oldVal) {
-            document.title = '请叫我算术嘉の博客 | ' + this.$t('common.category');
+            document.title = this.$t('common.category') + ' | 请叫我算术嘉の博客';
           }
         },
         methods: {
@@ -100,8 +100,8 @@ import NewMenu from "./NewMenu";
                     this.loading = false
                   }
                 }).then((response) => {
-                var res = JSON.parse(response.bodyText);
-                if (res.error_num === 0) {
+              const res = JSON.parse(response.bodyText);
+              if (res.error_num === 0) {
                   this.loading = false;
                   this.showpagination = true;
                   this.categoryList = res['list'];
