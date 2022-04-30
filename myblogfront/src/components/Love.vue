@@ -116,7 +116,7 @@
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.Love.down-list')}}</h2>
                   <div class="me" v-for="value in downList">
-                    <div v-html="compiledMarkdown(value.content)"></div>
+                    <div v-html="compiledMarkdownDown(value.content)"></div>
                   </div>
                   <br>
                 </div>
@@ -129,7 +129,7 @@
                 <div class="grid-content bg-puprple-light">
                   <h2>{{$t('common.Love.todo-list')}}</h2>
                   <div class="me" v-for="value in todoList">
-                    <div v-html="compiledMarkdown(value.content)"></div>
+                    <div v-html="compiledMarkdownToDo(value.content)"></div>
                   </div>
                 </div>
               </el-col>
@@ -166,6 +166,7 @@
   import axios from 'axios';
   import NewMenu from "./NewMenu";
   import { marked } from 'marked';
+  import request from '@/utils/request'
     export default {
         name: "Love",
         components: { NewMenu },
@@ -192,17 +193,6 @@
             },
             downList: [],
             todoList: [],
-            output: "- 吃一次螺蛳粉\n" +
-              "- 吃草莓味的DQ\n" +
-              "- 夜游秦淮河\n" +
-              "- 吃一次火锅",
-            input: "- 拥抱\n" +
-              "- 牵手\n" +
-              "- 接吻\n" +
-              "- 吃烤鸭\n" +
-              "- 雍和宫还愿\n" +
-              "- 爱国主义教育（圆明园\n" +
-              "- 看电影",
             imgUrls: [
               'https://www.guanacossj.com/media/fzy/189531609426993_.pic_hd.jpg',
               'https://www.guanacossj.com/media/fzy/189521609426989_.pic_hd.jpg',
@@ -218,12 +208,10 @@
             }, {
               content: '(๑′ᴗ‵๑)Ｉ Lᵒᵛᵉᵧₒᵤ❤在一起',
               timestamp: '2020-11-07 20:20'
-            },
-            {
+            }, {
               content: '第一次见面（北京）',
               timestamp: '2020-12-21 19:31'
-            },
-            {
+            }, {
               content: '第一次抱着睡💤',
               timestamp: '2020-12-23 22:50'
             }],
@@ -241,16 +229,27 @@
           document.title = '请叫我算术嘉の博客 | ' + this.$t('common.love');
         },
         computed: {
-          compiledMarkdown() {
+          compiledMarkdownDown() {
             return function (value) {
-              return marked(value || '', {
-		              sanitize: true
+              const htmlStr = marked(value, {
+		              sanitize: true,
 		          });
+              return htmlStr.replace('<li>','').replace('</li>','')
+              // return `<ul><input checked disabled type="checkbox">` + value + `</ul>`
+            }
+          },
+          compiledMarkdownToDo() {
+            return function (value) {
+              const htmlStr = marked(value, {
+		              sanitize: true,
+		          });
+              return htmlStr.replace('<li>','').replace('</li>','')
+              // return `<ul><input disabled="" type="checkbox">` + value + `</ul>`
             }
           },
         },
         watch: {
-          '$i18n.locale'(newVal,oldVal) {
+          '$i18n.locale'(newVal, oldVal) {
             document.title = '请叫我算术嘉の博客 | ' + this.$t('common.love');
           }
         },
@@ -303,7 +302,7 @@
                     });
                     this.getDownList();
                     this.getToDOList();
-                  }else {
+                  } else {
                     this.$message({
                       type: 'error',
                       message: `服务器出了点问题，请稍后重试!`,
@@ -319,14 +318,15 @@
           },
           async checkLogin() {
             try {
-              let ans = await axios.get("https://yun.guanacossj.com/yunprophet/api/v1/check-login", {
+              let ans = await request({
+                url: "yunprophet/api/v1/check-login",
                 headers: {
-                  'token': localStorage.getItem('Authorization')
-                }
-              });
+                'token': localStorage.getItem('Authorization')
+              }});
               if (ans.data.code === 200) {
                 await this.getDownList();
-                await this.getToDOList();
+                // await this.getToDOList();
+                await this.getToDOListNew();
               } else {
                 this.$message.error({
                   message: '凭证已过期，请重新登录！',
@@ -339,6 +339,25 @@
             } catch (e) {
               this.$message.error({
                 message: '页面出错了，请稍后再试！',
+                center: true
+              });
+            }
+          },
+          async getToDOListNew() {
+            try {
+              const {data} = await request({
+                baseURL: 'https://www.guanacossj.com',
+                url: '/blog/getlovefzytodo/',
+                method: 'get',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+              this.todoList = data;
+              this.loading = false;
+            } catch (e) {
+              this.$message.error({
+                message: '请求用户数据失败，请稍后再试！',
                 center: true
               });
             }

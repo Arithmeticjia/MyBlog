@@ -70,7 +70,7 @@ const zh = {
     "autograph-middle": "旧故里",
     "autograph-right": "草木深",
     "search-placeholder": "搜索",
-    "cat-before": "当前共计",
+    "cat-before": "当前共",
     "cat-after": "个分类",
     "load-text": "拼命加载中...",
     "timeout": "请求超时",

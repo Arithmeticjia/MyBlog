@@ -39,6 +39,12 @@
         </el-option>
       </el-select>
     </el-form-item>
+    <el-form-item label="文章状态">
+      <el-radio-group v-model="formLabelAlign.status">
+        <el-radio label="有效">公开</el-radio>
+        <el-radio label="DEL">删除</el-radio>
+      </el-radio-group>
+    </el-form-item>
     <el-form-item label="是否原创">
       <el-radio-group v-model="formLabelAlign.isOrigin">
         <el-radio label="1">原创</el-radio>
@@ -87,6 +93,7 @@ export default {
           tags: [],
           isOrigin: '1',
           pic: null,
+          status: ''
         },
         rules: {
           title: [
@@ -159,6 +166,7 @@ export default {
             this.formLabelAlign.content = this.singleBlog.fields.body;
             this.formLabelAlign.category = this.singleBlog.fields.category;
             this.formLabelAlign.tags = this.singleBlog.fields.tags;
+            this.formLabelAlign.status = this.singleBlog.fields.status;
             this.fileList[0].url = 'https://www.guanacossj.com/media/' + this.singleBlog.fields.pic;
             document.title = res['list'][0].fields.title;
             this.navList = this.handleNavTree();
@@ -195,6 +203,7 @@ export default {
                   message: `编辑成功!`,
                   center: true
                 });
+                this.$router.push("/post/" + this.$route.params.id + "/");
               } else {
                 this.$message({
                   type: 'error',

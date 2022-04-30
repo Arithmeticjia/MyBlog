@@ -1,7 +1,6 @@
-import Vue from 'vue' //引入 Vue
-import Vuex from 'vuex' //引入 Vuex
-import user from './modules/user' //引入 user module
-import VueLocalStorage from 'vue-localstorage'
+import Vue from 'vue'
+import Vuex from 'vuex'
+import user from './modules/user'
 
 Vue.use(Vuex);
 
@@ -34,4 +33,5 @@ const store = new Vuex.Store({
     }
   },
 });
+
 export default store

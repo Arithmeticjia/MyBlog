@@ -120,7 +120,7 @@
                   });
                   this.$router.push({
                     path: "/love",
-                    query: { data: response.data.data.username }
+                    query: { user: response.data.data.username }
                   });
                 } else {
                   this.$message.error({
