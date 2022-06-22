@@ -13,7 +13,7 @@ opencv_python==3.4.2.17
 selenium==3.11.0
 dwebsocket==0.5.11
 requests==2.22.0
-numpy==1.17.2
+numpy==1.22.0
 beautifulsoup4==4.8.2
 django_haystack==2.8.1
 djangorestframework==3.11.0
